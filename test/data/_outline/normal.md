@@ -85,4 +85,3 @@ Hal decides to call his brand new best buddy Clunk, thinking the robot can ask J
 Clunk tells Hal that Jerling won't advance any money, but Hal tells him to ask anyway. Clunk calls Jerling, who won't advance any money. Clunk mentions that he's found out what Incubots is all about, Jerling hangs up quickly.
 
 Clunk notices smoke in the air. He runs to the airlock and discovers the landing field is on fire.
-

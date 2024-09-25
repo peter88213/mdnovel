@@ -246,7 +246,7 @@ There was a crackling sound. "Help! Fire!" said a voice over the noise.
 
 
 
-Part 2
+# Part 2
 
 ## Chapter 18
 
@@ -361,7 +361,6 @@ Part 2
 
 
 * * *
-
 
 
 
