@@ -63,9 +63,8 @@ class MdImport(MdFile):
 
         cnvText = mdText
         mdLines = cnvText.split('\n')
-        scTitle = None
         for mdLine in mdLines:
-            if mdLine.startswith('# ') or mdLine.startswith('## '):
+            if mdLine.startswith('#'):
 
                 # Write previous section.
                 write_section_content(scId, lines)
@@ -83,11 +82,9 @@ class MdImport(MdFile):
                     self.novel.chapters[chId].chLevel = 1
                 else:
                     self.novel.chapters[chId].chLevel = 0
-                scTitle = None
             elif self.SECTION_DIVIDER in mdLine:
                 # Write previous section.
                 write_section_content(scId, lines)
-                scTitle = None
                 scId = None
             elif scId is not None:
                 if mdLine or lines:
@@ -103,9 +100,6 @@ class MdImport(MdFile):
                     scene=0,
                     )
                 self.novel.tree.append(chId, scId)
-                if scTitle is not None:
-                    self.novel.sections[scId].title = scTitle
-                else:
-                    self.novel.sections[scId].title = f'{_("Section")} {scCount}'
-                lines = []
+                self.novel.sections[scId].title = f'{_("Section")} {scCount}'
+                lines = [mdLine]
         write_section_content(scId, lines)

@@ -79,10 +79,7 @@ class ContentViewParser(sax.ContentHandler):
         elif self._note:
             tag = self.noteXmlTag
         if name == 'p' and not self._list:
-            if self.showTags:
-                suffix = '\n\n'
-            else:
-                suffix = '\n'
+            suffix = '\n'
         elif name == 'em':
             self._em = False
         elif name == 'strong':
