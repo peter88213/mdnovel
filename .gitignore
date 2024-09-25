@@ -1,0 +1,7 @@
+/src/locale/
+/test/work/
+/test/mdnovel.py
+/build/
+/build-ref/
+*.pyc
+*.bak

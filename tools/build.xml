@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+
+	<target name="build" description="Build the release package">
+		<exec executable="python" failonerror="true">
+		    <arg value="build.py"/>
+		</exec>
+	</target>
+   
+</project>
