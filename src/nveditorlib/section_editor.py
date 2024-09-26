@@ -14,7 +14,6 @@ from nveditorlib.platform_settings import KEYS
 from nveditorlib.platform_settings import PLATFORM
 from nveditorlib.text_box import TextBox
 import tkinter as tk
-import xml.etree.ElementTree as ET
 
 COLOR_MODES = [
     (_('Bright mode'), 'black', 'white'),
@@ -155,7 +154,6 @@ class SectionEditor(tk.Toplevel):
         self._sectionEditor.bind(KEYS.ITALIC[0], self._sectionEditor.emphasis)
         self._sectionEditor.bind(KEYS.BOLD[0], self._sectionEditor.strong_emphasis)
         self._sectionEditor.bind(KEYS.PLAIN[0], self._sectionEditor.plain)
-        self._sectionEditor.bind('<Return>', self._sectionEditor.new_paragraph)
         self.protocol("WM_DELETE_WINDOW", self.on_quit)
 
         self._set_wc_mode()
@@ -317,15 +315,6 @@ class SectionEditor(tk.Toplevel):
                 _('Cannot split the section, because the project is locked.'),
                 parent=self
                 )
-            self.lift()
-            return
-
-        # Verify that the split would produce a valid result.
-        try:
-            ET.fromstring(f"<a>{self._sectionEditor.get('1.0', 'insert')}</a>")
-            ET.fromstring(f"<a>{self._sectionEditor.get('insert', 'end')}</a>")
-        except:
-            self._ui.show_warning(_('Cannot split the section at the cursor position.'))
             self.lift()
             return
 

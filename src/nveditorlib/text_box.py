@@ -7,22 +7,20 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import re
 from tkinter import ttk
 
-from novxlib.xml.xml_filter import strip_illegal_characters
 import tkinter as tk
-import xml.etree.ElementTree as ET
 
 #--- Regular expressions for counting words and characters like in LibreOffice.
 # See: https://help.libreoffice.org/latest/en-GB/text/swriter/guide/words_count.html
-ADDITIONAL_WORD_LIMITS = re.compile(r'--|—|–|\<\/p\>')
+ADDITIONAL_WORD_LIMITS = re.compile(r'--|—|–')
 # this is to be replaced by spaces when counting words
 
-NO_WORD_LIMITS = re.compile(r'\<note\>.*?\<\/note\>|\<comment\>.*?\<\/comment\>|\<.+?\>')
+NO_WORD_LIMITS = re.compile(r'')
 # this is to be replaced by empty strings when counting words
 
 
 class TextBox(tk.Text):
     """A text editor widget for novelibre raw markup."""
-    _TAGS = ('em', 'strong')
+    _TAGS = ('*', '**')
     # Supported tags.
 
     def __init__(self, master=None, **kw):
@@ -50,34 +48,22 @@ class TextBox(tk.Text):
                 setattr(self, m, getattr(self.frame, m))
 
     def check_validity(self):
-        text = strip_illegal_characters(self.get("1.0", "end"))
-        xmlText = f'<a>{text}</a>'
-        try:
-            ET.fromstring(xmlText)
-        except Exception as ex:
-            issue, location = str(ex).split(':')
-            lineStr = re.search(r'line ([0-9]+)', location).group(1)
-            columnStr = re.search(r'column ([0-9]+)', location).group(1)
-            column = int(columnStr) - 3
-            self.mark_set('insert', f'{lineStr}.{column}')
-            raise ValueError(f'{issue}: line {lineStr} column {column}')
-            return False
-
         return True
 
     def get_text(self, start='1.0', end='end'):
         """Return the whole text from the editor box."""
-        text = self.get(start, end)
-        text = text.strip(' \n')
-        text = text.replace('\n', '')
-        return strip_illegal_characters(text)
+        text = self.get(start, end).strip()
+        if text:
+            return f'{text}\n'
+
+        else:
+            return ''
 
     def set_text(self, text):
         """Put text into the editor box and clear the undo/redo stack."""
-        startIndex = len("<p>")
+        startIndex = 0
         if not text:
-            text = '<p></p>'
-        text = text.replace('</p>', '</p>\n')
+            text = ''
         self.insert('end', text)
         self.edit_reset()
         # this is to prevent the user from clearing the box with Ctrl-Z
@@ -92,22 +78,17 @@ class TextBox(tk.Text):
 
     def emphasis(self, event=None):
         """Make the selection emphasized, or begin with emphasized input."""
-        self._set_format(tag='em')
+        self._set_format(tag='*')
         return 'break'
 
     def strong_emphasis(self, event=None):
         """Make the selection strongly emphasized, or begin with strongly emphasized input."""
-        self._set_format(tag='strong')
+        self._set_format(tag='**')
         return 'break'
 
     def plain(self, event=None):
         """Remove formatting from the selection."""
         self._set_format()
-        return 'break'
-
-    def new_paragraph(self, event=None):
-        """Insert an opening/closing pair of paragraph tags."""
-        self.insert('insert', '</p>\n<p>')
         return 'break'
 
     def _set_format(self, event=None, tag=''):
@@ -116,8 +97,8 @@ class TextBox(tk.Text):
             # Toggle format as specified by tag.
             if self.tag_ranges('sel'):
                 text = self.get(tk.SEL_FIRST, tk.SEL_LAST)
-                if text.startswith(f'<{tag}>'):
-                    if text.endswith(f'</{tag}>'):
+                if text.startswith(tag):
+                    if text.endswith(tag):
                         # The selection is already formatted: Remove markup.
                         text = self._remove_format(text, tag)
                         self._replace_selected(text)
@@ -126,11 +107,11 @@ class TextBox(tk.Text):
                 # Format the selection: Add markup.
                 text = self._remove_format(text, tag)
                 # to make sure that there is no nested markup of the same type
-                self._replace_selected(f'<{tag}>{text}</{tag}>')
+                self._replace_selected(f'{tag}{text}{tag}')
             else:
                 # Add markup to the cursor position.
-                self.insert('insert', f'<{tag}>')
-                endTag = f'</{tag}>'
+                self.insert('insert', tag)
+                endTag = tag
                 self.insert('insert', endTag)
                 self.mark_set('insert', f'insert-{len(endTag)}c')
         elif self.tag_ranges('sel'):
@@ -154,11 +135,11 @@ class TextBox(tk.Text):
         if tag in self._TAGS:
             finished = False
             while not finished:
-                start = text.find(f'<{tag}>')
+                start = text.find(tag)
                 if start >= 0:
-                    end = text.find(f'</{tag}>')
+                    end = text.find(tag)
                     if  start < end:
-                        text = f'{text[:start]}{text[start + len(tag) +2:end]}{text[end + len(tag) + 3:]}'
+                        text = f'{text[:start]}{text[start + len(tag):end]}{text[end + len(tag):]}'
                     else:
                         finished = True
                 else:

@@ -88,16 +88,6 @@ class ContentsViewer(RichTextNv):
     def view_text(self):
         """Build a list of "tagged text" tuples and send it to the text box."""
 
-        def convert_from_novx(text):
-            """Build a list of (text, tag) tuples from xml text."""
-            if not self.showMarkup.get():
-                self._contentParser.showTags = False
-            else:
-                self._contentParser.showTags = True
-            self._contentParser.textTag = textTag
-            self._contentParser.feed(text)
-            return self._contentParser.taggedText[1:-1]
-
         # Build a list of (text, tag) tuples for the whole book.
         taggedText = []
         for chId in self._mdl.novel.tree.get_children(CH_ROOT):
@@ -141,8 +131,7 @@ class ContentsViewer(RichTextNv):
                 taggedText.append((heading, headingTag))
 
                 if section.sectionContent:
-                    textTuples = convert_from_novx(section.sectionContent)
-                    taggedText.extend(textTuples)
+                    taggedText.append((section.sectionContent, textTag))
 
         if not taggedText:
             taggedText.append((f'({_("No text available")})', self.ITALIC_TAG))

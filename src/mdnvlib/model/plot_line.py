@@ -6,7 +6,7 @@ License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
 from mdnvlib.model.basic_element_notes import BasicElementNotes
 from mdnvlib.novx_globals import string_to_list
-import xml.etree.ElementTree as ET
+from mdnvlib.novx_globals import list_to_string
 
 
 class PlotLine(BasicElementNotes):
@@ -65,10 +65,10 @@ class PlotLine(BasicElementNotes):
                     plSections.append(scId)
         self.sections = plSections
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
+    def to_yaml(self, yaml):
+        yaml = super().to_yaml(yaml)
         if self.shortName:
-            ET.SubElement(xmlElement, 'ShortName').text = self.shortName
+            yaml.append(f'ShortName: {self.shortName}')
         if self.sections:
-            attrib = {'ids':' '.join(self.sections)}
-            ET.SubElement(xmlElement, 'Sections', attrib=attrib)
+            yaml.append(f'Sections: {list_to_string(self.sections)}')
+        return yaml

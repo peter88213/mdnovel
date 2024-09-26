@@ -9,16 +9,16 @@ from datetime import datetime
 from datetime import time
 from datetime import timedelta
 import re
+import xml.etree.ElementTree as ET
 
 from mdnvlib.model.basic_element_tags import BasicElementTags
 from mdnvlib.model.date_time_tools import get_specific_date
 from mdnvlib.model.date_time_tools import get_unspecific_date
-from mdnvlib.novx_globals import _
+from mdnvlib.novx_globals import _, list_to_string
 from mdnvlib.novx_globals import string_to_list
 from mdnvlib.novx_globals import verified_date
 from mdnvlib.novx_globals import verified_int_string
 from mdnvlib.novx_globals import verified_time
-import xml.etree.ElementTree as ET
 
 # Regular expressions for counting words and characters like in LibreOffice.
 # See: https://help.libreoffice.org/latest/en-GB/text/swriter/guide/words_count.html
@@ -531,26 +531,50 @@ class Section(BasicElementTags):
         # Content.
         xmlContent = xmlElement.find('Content')
         if xmlContent is not None:
-            xmlStr = ET.tostring(
+            text = ET.tostring(
                 xmlContent,
                 encoding='utf-8',
                 short_empty_elements=False
                 ).decode('utf-8')
-            xmlStr = xmlStr.replace('<Content>', '').replace('</Content>', '')
 
-            # Remove indentiation, if any.
-            lines = xmlStr.split('\n')
+            MD_REPLACEMENTS = [
+                ('<Content>', ''),
+                ('</Content>', ''),
+                ('<em> ', ' <em>'),
+                ('<strong> ', ' <strong>'),
+                ('<p>', ''),
+                ('<p style="quotations">', ''),
+                ('</p>', '\n'),
+                ('<em>', '*'),
+                ('</em>', '*'),
+                ('<strong>', '**'),
+                ('</strong>', '**'),
+                ('<comment>', '<!---\n'),
+                ('\n\n</comment>', '\n--->'),
+                ('</comment>\n\n', '--->'),
+                ('</comment>', '--->'),
+                ('  ', ' '),
+            ]
+            for novx, md in MD_REPLACEMENTS:
+                text = text.replace(novx, md)
+
             newlines = []
+            lines = text.split('\n')
             for line in lines:
                 newlines.append(line.strip())
-            xmlStr = ''.join(newlines)
-            if xmlStr:
-                self.sectionContent = xmlStr
+            text = '\n'.join(newlines)
+            text = re.sub('<creator>.*?</creator>', '', text)
+            text = re.sub('<date>.*?</date>', '', text)
+            # text = re.sub(r'<.*?>', '', text)
+            # removing the remaining XML tags, if any
+
+            if text:
+                self.sectionContent = f'{text.strip()}\n'
             else:
-                self.sectionContent = '<p></p>'
+                self.sectionContent = ''
         elif self.scType < 2:
             # normal or unused section; not a stage
-            self.sectionContent = '<p></p>'
+            self.sectionContent = ''
 
     def get_end_date_time(self):
         """Return the end (date, time, day) tuple calculated from start and duration."""
@@ -592,71 +616,43 @@ class Section(BasicElementTags):
                     pass
         return endDate, endTime, endDay
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
+    def to_yaml(self, yaml):
+        yaml = super().to_yaml(yaml)
         if self.scType:
-            xmlElement.set('type', str(self.scType))
+            yaml.append(f'type: {self.scType}')
         if self.status > 1:
-            xmlElement.set('status', str(self.status))
+            yaml.append(f'status: {self.status}')
         if self.scene > 0:
-            xmlElement.set('scene', str(self.scene))
+            yaml.append(f'scene: {self.scene}')
         if self.appendToPrev:
-            xmlElement.set('append', '1')
-
-        # Goal/Conflict/Outcome.
-        if self.goal:
-            xmlElement.append(self._text_to_xml_element('Goal', self.goal))
-        if self.conflict:
-            xmlElement.append(self._text_to_xml_element('Conflict', self.conflict))
-        if self.outcome:
-            xmlElement.append(self._text_to_xml_element('Outcome', self.outcome))
-
-        # Plot notes.
-        if self.plotlineNotes:
-            for plId in self.plotlineNotes:
-                if not plId in self.scPlotLines:
-                    continue
-
-                if not self.plotlineNotes[plId]:
-                    continue
-
-                xmlPlotlineNotes = self._text_to_xml_element('PlotlineNotes', self.plotlineNotes[plId])
-                xmlPlotlineNotes.set('id', plId)
-                xmlElement.append(xmlPlotlineNotes)
+            yaml.append(f'append: 1')
 
         # Date/Day and Time.
         if self.date:
-            ET.SubElement(xmlElement, 'Date').text = self.date
+            yaml.append(f'Date: {self.date}')
         elif self.day:
-            ET.SubElement(xmlElement, 'Day').text = self.day
+            yaml.append(f'Day: {self.day}')
         if self.time:
-            ET.SubElement(xmlElement, 'Time').text = self.time
+            yaml.append(f'Time: {self.time}')
 
         # Duration.
         if self.lastsDays and self.lastsDays != '0':
-            ET.SubElement(xmlElement, 'LastsDays').text = self.lastsDays
+            yaml.append(f'LastsDays: {self.lastsDays}')
         if self.lastsHours and self.lastsHours != '0':
-            ET.SubElement(xmlElement, 'LastsHours').text = self.lastsHours
+            yaml.append(f'LastsHours: {self.lastsHours}')
         if self.lastsMinutes and self.lastsMinutes != '0':
-            ET.SubElement(xmlElement, 'LastsMinutes').text = self.lastsMinutes
+            yaml.append(f'LastsMinutes: {self.lastsMinutes}')
 
         # Characters references.
         if self.characters:
-            attrib = {'ids':' '.join(self.characters)}
-            ET.SubElement(xmlElement, 'Characters', attrib=attrib)
+            yaml.append(f'Characters: {list_to_string(self.characters)}')
 
         # Locations references.
         if self.locations:
-            attrib = {'ids':' '.join(self.locations)}
-            ET.SubElement(xmlElement, 'Locations', attrib=attrib)
+            yaml.append(f'Locations: {list_to_string(self.locations)}')
 
         # Items references.
         if self.items:
-            attrib = {'ids':' '.join(self.items)}
-            ET.SubElement(xmlElement, 'Items', attrib=attrib)
+            yaml.append(f'Items: {list_to_string(self.items)}')
 
-        # Content.
-        sectionContent = self.sectionContent
-        if sectionContent:
-            if not sectionContent in ('<p></p>', '<p />'):
-                xmlElement.append(ET.fromstring(f'<Content>{sectionContent}</Content>'))
+        return yaml

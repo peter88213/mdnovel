@@ -6,7 +6,6 @@ License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
 from mdnvlib.model.world_element import WorldElement
 from mdnvlib.novx_globals import verified_date
-import xml.etree.ElementTree as ET
 
 
 class Character(WorldElement):
@@ -114,18 +113,15 @@ class Character(WorldElement):
         self.birthDate = verified_date(self._get_element_text(xmlElement, 'BirthDate'))
         self.deathDate = verified_date(self._get_element_text(xmlElement, 'DeathDate'))
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
+    def to_yaml(self, yaml):
+        yaml = super().to_yaml(yaml)
         if self.isMajor:
-            xmlElement.set('major', '1')
+            yaml.append(f'major: 1')
         if self.fullName:
-            ET.SubElement(xmlElement, 'FullName').text = self.fullName
-        if self.bio:
-            xmlElement.append(self._text_to_xml_element('Bio', self.bio))
-        if self.goals:
-            xmlElement.append(self._text_to_xml_element('Goals', self.goals))
+            yaml.append(f'FullName: {self.fullName}')
         if self.birthDate:
-            ET.SubElement(xmlElement, 'BirthDate').text = self.birthDate
+            yaml.append(f'BirthDate: {self.birthDate}')
         if self.deathDate:
-            ET.SubElement(xmlElement, 'DeathDate').text = self.deathDate
+            yaml.append(f'DeathDate: {self.deathDate}')
+        return yaml
 

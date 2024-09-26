@@ -94,13 +94,14 @@ class Chapter(BasicElementNotes):
         self.isTrash = xmlElement.get('isTrash', None) == '1'
         self.noNumber = xmlElement.get('noNumber', None) == '1'
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
+    def to_yaml(self, yaml):
+        yaml = super().to_yaml(yaml)
         if self.chType:
-            xmlElement.set('type', str(self.chType))
+            yaml.append(f'type: {self.chType}')
         if self.chLevel == 1:
-            xmlElement.set('level', '1')
+            yaml.append(f'level: 1')
         if self.isTrash:
-            xmlElement.set('isTrash', '1')
+            yaml.append(f'isTrash: 1')
         if self.noNumber:
-            xmlElement.set('noNumber', '1')
+            yaml.append(f'noNumber: 1')
+        return yaml

@@ -92,17 +92,15 @@ class BasicElement:
         self.desc = self._xml_element_to_text(xmlElement.find('Desc'))
         self.links = self._get_link_dict(xmlElement)
 
-    def to_xml(self, xmlElement):
+    def to_yaml(self, yaml):
         if self.title:
-            ET.SubElement(xmlElement, 'Title').text = self.title
-        if self.desc:
-            xmlElement.append(self._text_to_xml_element('Desc', self.desc))
+            yaml.append(f'Title: {self.title}')
         if self.links:
             for path in self.links:
-                xmlLink = ET.SubElement(xmlElement, 'Link')
-                ET.SubElement(xmlLink, 'Path').text = path
+                yaml.append(f'LinkPath: {path}')
                 if self.links[path]:
-                    ET.SubElement(xmlLink, 'FullPath').text = self.links[path]
+                    yaml.append(f'FullPath: {self.links[path]}')
+        return yaml
 
     def _get_element_text(self, xmlElement, tag, default=None):
         """Return the text field of an XML element.

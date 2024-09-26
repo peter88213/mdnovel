@@ -1,6 +1,6 @@
 """Provide a class for Markdown file representation. 
 
-Copyright (c) 2023 Peter Triesberger
+Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
@@ -92,7 +92,7 @@ class MdFile(FileExport):
             # removing the remaining XML tags, if any
         except AttributeError:
             text = ''
-        return text
+        return re.sub(r'<.*?>', '', text).strip()
 
     def read(self):
         """Parse the file and get the instance variables.

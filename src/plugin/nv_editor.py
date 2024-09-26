@@ -40,8 +40,8 @@ SETTINGS = dict(
         color_bg_dark='gray20',
         font_family='Courier',
         font_size=12,
-        line_spacing=6,
-        paragraph_spacing=6,
+        line_spacing=4,
+        paragraph_spacing=4,
         margin_x=40,
         margin_y=20,
 )
@@ -77,7 +77,7 @@ class Plugin(PluginBase):
         #--- Load configuration.
         try:
             homeDir = str(Path.home()).replace('\\', '/')
-            configDir = f'{homeDir}/.novx/config'
+            configDir = f'{homeDir}/.mdnovel/config'
         except:
             configDir = '.'
         self.iniFile = f'{configDir}/editor.ini'

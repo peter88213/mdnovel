@@ -10,7 +10,6 @@ import re
 
 from mdnvlib.novx_globals import verified_date
 from mdnvlib.model.basic_element import BasicElement
-import xml.etree.ElementTree as ET
 
 LANGUAGE_TAG = re.compile(r'\<span xml\:lang=\"(.*?)\"\>')
 
@@ -546,70 +545,71 @@ class Novel(BasicElement):
                 if not language in self.languages:
                     self.languages.append(language)
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
+    def to_yaml(self, yaml):
+        yaml = super().to_yaml(yaml)
         if self.renumberChapters:
-            xmlElement.set('renumberChapters', '1')
+            yaml.append(f'renumberChapters: 1')
         if self.renumberParts:
-            xmlElement.set('renumberParts', '1')
+            yaml.append(f'renumberParts: 1')
         if self.renumberWithinParts:
-            xmlElement.set('renumberWithinParts', '1')
+            yaml.append(f'renumberWithinParts: 1')
         if self.romanChapterNumbers:
-            xmlElement.set('romanChapterNumbers', '1')
+            yaml.append(f'romanChapterNumbers: 1')
         if self.romanPartNumbers:
-            xmlElement.set('romanPartNumbers', '1')
+            yaml.append(f'romanPartNumbers: 1')
         if self.saveWordCount:
-            xmlElement.set('saveWordCount', '1')
+            yaml.append(f'saveWordCount: 1')
         if self.workPhase is not None:
-            xmlElement.set('workPhase', str(self.workPhase))
+            yaml.append(f'workPhase: {self.workPhase}')
 
         # Author.
         if self.authorName:
-            ET.SubElement(xmlElement, 'Author').text = self.authorName
+            yaml.append(f'Author: {self.authorName}')
 
         # Chapter heading prefix/suffix.
         if self.chapterHeadingPrefix:
-            ET.SubElement(xmlElement, 'ChapterHeadingPrefix').text = self.chapterHeadingPrefix
+            yaml.append(f'ChapterHeadingPrefix: {self.chapterHeadingPrefix}')
         if self.chapterHeadingSuffix:
-            ET.SubElement(xmlElement, 'ChapterHeadingSuffix').text = self.chapterHeadingSuffix
+            yaml.append(f'ChapterHeadingSuffix: {self.chapterHeadingSuffix}')
 
         # Part heading prefix/suffix.
         if self.partHeadingPrefix:
-            ET.SubElement(xmlElement, 'PartHeadingPrefix').text = self.partHeadingPrefix
+            yaml.append(f'PartHeadingPrefix: {self.partHeadingPrefix}')
         if self.partHeadingSuffix:
-            ET.SubElement(xmlElement, 'PartHeadingSuffix').text = self.partHeadingSuffix
+            yaml.append(f'PartHeadingSuffix: {self.partHeadingSuffix}')
 
         # Custom Plot progress/Characterization/World building.
         if self.customPlotProgress:
-            ET.SubElement(xmlElement, 'CustomPlotProgress').text = self.customPlotProgress
+            yaml.append(f'CustomPlotProgress: {self.customPlotProgress}')
         if self.customCharacterization:
-            ET.SubElement(xmlElement, 'CustomCharacterization').text = self.customCharacterization
+            yaml.append(f'CustomCharacterization: {self.customCharacterization}')
         if self.customWorldBuilding:
-            ET.SubElement(xmlElement, 'CustomWorldBuilding').text = self.customWorldBuilding
+            yaml.append(f'CustomWorldBuilding: {self.customWorldBuilding}')
 
         # Custom Goal/Conflict/Outcome.
         if self.customGoal:
-            ET.SubElement(xmlElement, 'CustomGoal').text = self.customGoal
+            yaml.append(f'CustomGoal: {self.customGoal}')
         if self.customConflict:
-            ET.SubElement(xmlElement, 'CustomConflict').text = self.customConflict
+            yaml.append(f'CustomConflict: {self.customConflict}')
         if self.customOutcome:
-            ET.SubElement(xmlElement, 'CustomOutcome').text = self.customOutcome
+            yaml.append(f'CustomOutcome: {self.customOutcome}')
 
         # Custom Character Bio/Goals.
         if self.customChrBio:
-            ET.SubElement(xmlElement, 'CustomChrBio').text = self.customChrBio
+            yaml.append(f'CustomChrBio: {self.customChrBio}')
         if self.customChrGoals:
-            ET.SubElement(xmlElement, 'CustomChrGoals').text = self.customChrGoals
+            yaml.append(f'CustomChrGoals: {self.customChrGoals}')
 
         # Word count start/Word target.
         if self.wordCountStart:
-            ET.SubElement(xmlElement, 'WordCountStart').text = str(self.wordCountStart)
+            yaml.append(f'WordCountStart: {self.wordCountStart}')
         if self.wordTarget:
-            ET.SubElement(xmlElement, 'WordTarget').text = str(self.wordTarget)
+            yaml.append(f'WordTarget: {self.wordTarget}')
 
         # Reference date.
         if self.referenceDate:
-            ET.SubElement(xmlElement, 'ReferenceDate').text = self.referenceDate
+            yaml.append(f'ReferenceDate: {self.referenceDate}')
+        return yaml
 
     def update_plot_lines(self):
         """Set section back references to PlotLine.sections and PlotPoint.sectionAssoc. """

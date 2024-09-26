@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/mdnvlib
 License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
 from mdnvlib.model.basic_element_notes import BasicElementNotes
-import xml.etree.ElementTree as ET
 
 
 class PlotPoint(BasicElementNotes):
@@ -38,7 +37,8 @@ class PlotPoint(BasicElementNotes):
         if xmlSectionAssoc is not None:
             self.sectionAssoc = xmlSectionAssoc.get('id', None)
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
+    def to_yaml(self, yaml):
+        yaml = super().to_yaml(yaml)
         if self.sectionAssoc:
-            ET.SubElement(xmlElement, 'Section', attrib={'id': self.sectionAssoc})
+            yaml.append(f'Section: {self.sectionAssoc}')
+        return yaml

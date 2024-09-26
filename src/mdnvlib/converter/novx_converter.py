@@ -6,7 +6,7 @@ License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
 from mdnvlib.converter.converter_ff import ConverterFf
 from mdnvlib.converter.new_project_factory import NewProjectFactory
-from novxlib.novx.novx_file import NovxFile
+from mdnvlib.mdnov.mdnov_file import MdnovFile
 from novxlib.ods.ods_r_charlist import OdsRCharList
 from novxlib.ods.ods_r_grid import OdsRGrid
 from novxlib.ods.ods_r_itemlist import OdsRItemList
@@ -51,7 +51,7 @@ class NovxConverter(ConverterFf):
         CREATE_SOURCE_CLASSES -- list of classes that - additional to HtmlImport
                         and HtmlOutline - can be exported to a new mdnovel project.
     """
-    EXPORT_SOURCE_CLASSES = [NovxFile]
+    EXPORT_SOURCE_CLASSES = [MdnovFile]
     EXPORT_TARGET_CLASSES = [
         OdsWCharList,
         OdsWGrid,
@@ -85,7 +85,7 @@ class NovxConverter(ConverterFf):
         OdtRSectionDesc,
         OdtRStages,
     ]
-    IMPORT_TARGET_CLASSES = [NovxFile]
+    IMPORT_TARGET_CLASSES = [MdnovFile]
     CREATE_SOURCE_CLASSES = []
 
     def __init__(self):

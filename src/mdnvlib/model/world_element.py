@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/mdnvlib
 License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
 from mdnvlib.model.basic_element_tags import BasicElementTags
-import xml.etree.ElementTree as ET
 
 
 class WorldElement(BasicElementTags):
@@ -34,8 +33,9 @@ class WorldElement(BasicElementTags):
         super().from_xml(xmlElement)
         self.aka = self._get_element_text(xmlElement, 'Aka')
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
+    def to_yaml(self, yaml):
+        yaml = super().to_yaml(yaml)
         if self.aka:
-            ET.SubElement(xmlElement, 'Aka').text = self.aka
+            yaml.append(f'Aka: {self.aka}')
+        return yaml
 

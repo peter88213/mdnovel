@@ -10,7 +10,7 @@ from tkinter import messagebox
 
 from mdnvlib.exporter.filter_factory import FilterFactory
 from mdnvlib.file.doc_open import open_document
-from mdnvlib.md.md_file import MdFile
+from mdnvlib.md.md_export import MdExport
 from mdnvlib.nv_globals import prefs
 from mdnvlib.widgets.nv_simpledialog import SimpleDialog
 from mdnvlib.converter.export_target_factory import ExportTargetFactory
@@ -40,7 +40,7 @@ from novxlib.odt.odt_w_xref import OdtWXref
 class NvDocExporter:
     """Converter class for document export."""
     EXPORT_TARGET_CLASSES = [
-        MdFile,
+        MdExport,
         DataWriter,
         OdsWCharList,
         OdsWGrid,
@@ -82,8 +82,7 @@ class NvDocExporter:
         """
         self._source = source
         self._isNewer = False
-        # __, self._target = self.exportTargetFactory.make_file_objects(self._source.filePath, suffix=suffix)
-        self._target = MdFile(self._source.filePath.replace('novx', 'md'))
+        __, self._target = self.exportTargetFactory.make_file_objects(self._source.filePath, suffix=suffix)
         if os.path.isfile(self._target.filePath):
             targetTimestamp = os.path.getmtime(self._target.filePath)
             try:

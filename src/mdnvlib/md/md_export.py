@@ -1,18 +1,18 @@
 """Provide a class for Markdown file representation. 
 
-Copyright (c) 2023 Peter Triesberger
+Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
 import re
 
 from mdnvlib.novx_globals import *
-from mdnvlib.file.file_export import FileExport
+from mdnvlib.md.md_file import MdFile
 from mdnvlib.model.chapter import Chapter
 from mdnvlib.model.section import Section
 
 
-class MdFile(FileExport):
+class MdExport(MdFile):
     """Markdown file representation.
 
     Public methods:
@@ -29,7 +29,7 @@ class MdFile(FileExport):
 '''
     _partTemplate = '\n# ${Title}\n\n'
     _chapterTemplate = '\n## ${Title}\n\n'
-    _sectionTemplate = '### ${Title}\n\n${SectionContent}\n\n'
+    _sectionTemplate = '${SectionContent}\n\n'
     _sectionDivider = f'{SECTION_DIVIDER}\n\n'
 
     def _get_chapterMapping(self, chId, chapterNumber):
@@ -79,10 +79,11 @@ class MdFile(FileExport):
             ('  ', ' '),
         ]
         try:
-            for novx, md in MD_REPLACEMENTS:
-                text = text.replace(novx, md)
+            text = re.sub(r'<note>.*?</note>', '', text)
             text = re.sub(r'<creator>.*?</creator>', '', text)
             text = re.sub(r'<date>.*?</date>', '', text)
+            for novx, md in MD_REPLACEMENTS:
+                text = text.replace(novx, md)
             text = re.sub(r'<.*?>', '', text)
             # removing the remaining XML tags, if any
         except AttributeError:

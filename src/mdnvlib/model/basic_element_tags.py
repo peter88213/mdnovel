@@ -7,7 +7,6 @@ License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 from mdnvlib.model.basic_element_notes import BasicElementNotes
 from mdnvlib.novx_globals import list_to_string
 from mdnvlib.novx_globals import string_to_list
-import xml.etree.ElementTree as ET
 
 
 class BasicElementTags(BasicElementNotes):
@@ -43,9 +42,9 @@ class BasicElementTags(BasicElementNotes):
             strippedTags.append(tag.strip())
         self.tags = strippedTags
 
-    def to_xml(self, xmlElement):
-        super().to_xml(xmlElement)
-        tagStr = list_to_string(self.tags)
-        if tagStr:
-            ET.SubElement(xmlElement, 'Tags').text = tagStr
+    def to_yaml(self, yaml):
+        yaml = super().to_yaml(yaml)
+        if self.tags:
+            yaml.append(f'Tags: {list_to_string(self.tags)}')
+        return yaml
 
