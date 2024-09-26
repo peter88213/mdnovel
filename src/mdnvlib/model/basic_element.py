@@ -4,7 +4,6 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnvlib
 License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """
-import xml.etree.ElementTree as ET
 
 
 class BasicElement:
@@ -134,19 +133,6 @@ class BasicElement:
             if path:
                 links[path] = fullPath
         return links
-
-    def _text_to_xml_element(self, tag, text):
-        """Return an ElementTree element named "tag" with paragraph subelements.
-        
-        Positional arguments:
-        tag: str -- Name of the XML element to return.    
-        text -- string to convert.
-        """
-        xmlElement = ET.Element(tag)
-        if text:
-            for line in text.split('\n'):
-                ET.SubElement(xmlElement, 'p').text = line
-        return xmlElement
 
     def _xml_element_to_text(self, xmlElement):
         """Return plain text, converted from ElementTree paragraph subelements.
