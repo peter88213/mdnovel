@@ -2,6 +2,8 @@
 
 A novel writing application using markdown.
 
+![Screenshot](docs/Screenshots/screen01.png)
+
 This is a variant of the [novelibre](https://github.com/peter88213/novelibre) novel writing application. 
 
 ## Note
