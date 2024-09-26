@@ -130,7 +130,7 @@ class SectionEditor(tk.Toplevel):
         self._mainMenu.add_cascade(label=_('Format'), menu=self._formatMenu)
         self._formatMenu.add_command(label=_('Emphasis'), accelerator=KEYS.ITALIC[1], command=self._sectionEditor.emphasis)
         self._formatMenu.add_command(label=_('Strong emphasis'), accelerator=KEYS.BOLD[1], command=self._sectionEditor.strong_emphasis)
-        self._formatMenu.add_command(label=_('Plain'), accelerator=KEYS.PLAIN[1], command=self._sectionEditor.plain)
+        # self._formatMenu.add_command(label=_('Plain'), accelerator=KEYS.PLAIN[1], command=self._sectionEditor.plain)
 
         # Add a "Word count" Submenu to the editor window.
         self._wcMenu = tk.Menu(self._mainMenu, tearoff=0)
@@ -153,7 +153,7 @@ class SectionEditor(tk.Toplevel):
         self._sectionEditor.bind(KEYS.CREATE_SCENE[0], self._create_section)
         self._sectionEditor.bind(KEYS.ITALIC[0], self._sectionEditor.emphasis)
         self._sectionEditor.bind(KEYS.BOLD[0], self._sectionEditor.strong_emphasis)
-        self._sectionEditor.bind(KEYS.PLAIN[0], self._sectionEditor.plain)
+        # self._sectionEditor.bind(KEYS.PLAIN[0], self._sectionEditor.plain)
         self.protocol("WM_DELETE_WINDOW", self.on_quit)
 
         self._set_wc_mode()

@@ -86,10 +86,12 @@ class TextBox(tk.Text):
         self._set_format(tag='**')
         return 'break'
 
+    '''
     def plain(self, event=None):
         """Remove formatting from the selection."""
         self._set_format()
         return 'break'
+    '''
 
     def _set_format(self, event=None, tag=''):
         """Insert an opening/closing pair of novelibre markup tags."""
