@@ -2,7 +2,7 @@
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnvlib
-License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mdnvlib.model.basic_element_notes import BasicElementNotes
 from mdnvlib.novx_globals import string_to_list
