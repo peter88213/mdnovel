@@ -1,10 +1,41 @@
 # mdnovel
 
-Novel writing tool using markdown.
+A novel writing application using markdown.
 
 This is a variant of the [novelibre](https://github.com/peter88213/novelibre) novel writing application. 
 
-The differences to *novelibre*: 
+## Note
+
+This program is intended only as a proof of concept. It is still in pre-Alpha status. There is no release yet.
+
+## Features (to come)
+
+- With *mdnovel*, extensive novels can be broken down into **parts, chapters, and sections**. 
+- You can store data on **characters, locations, and items** that are important for the story. 
+  This includes the optional definition of a **viewpoint character** for each section. 
+- All of this appears as a clear and editable **tree** structure with listed information. 
+- Summaries can be entered at all these levels, from which **synopses** and lists can be generated. 
+- If you choose a **narrative structure**, *mdnovel* can display stages (e.g. acts or steps) in the tree.
+  When plotting, descriptions of these stages can be entered, from which *mdnovel* can generate 
+  its own documentation. Prefabricated structural models can also be imported from templates.
+- *mdnovel* also allows you to create and document an underlying structure of **plot lines** 
+  (e.g. subplots or character arcs) apart from the chapters and sections. This can then be linked 
+  to the sections of the novel text.
+- *mdnovel* provides a **plot grid** with plot line notes for each section. This allows you to 
+  see the big picture and keep track of multiple subplots.   
+- To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
+- Individual chapters and sections can be flagged as "unused" to exclude them from document export.
+- You can add information about the **narrative time** and duration to each section. If you enter a date, 
+  the day of the week is displayed. You can also call up the age of characters that are assigned to
+  a section. The date and time information can be synchronised with dedicated timeline software.
+- For **printing**, *mdnovel* exports a neatly designed novel manuscript that can be converted with *pandoc*
+  into several document and ebook formats. 
+- *mdnovel* saves its data in a single, easy-to-understand Markdown/YAML-formatted text file.
+- *mdnovel* is written in Python and should run on several **operating systems**, like Windows and Linux.
+- The application is ready for internationalization with GNU gettext. German translations are provided. 
+
+
+## The differences to *novelibre* 
 
 - All section content in *mdnovel* is Markdown-formatted.
 - *mdnovel* comes with a Markdown section editor. The user is not supposed to export the text for editing. 
@@ -13,7 +44,17 @@ The differences to *novelibre*:
 - Document export is in Markdown or csv format. 
 - New project can be created from Markdown-formatted Work-in-progress or outline.
 
-Users may want to install [pandoc](https://pandoc.org/) for processing the documents exported from *mdnovel*.
+
+## Requirements
+
+- Windows or Linux. Mac OS support is experimental, see [discussion](https://github.com/peter88213/novelibre/discussions/29).
+- [Python](https://www.python.org/) version 3.6+. 
+     - For current Windows versions, use version 3.9.10 or above.
+     - For Vista and Windows 7, use version 3.7.2.
+     - Linux users: Make sure you have the *python3-tk* package installed. 
+       To see the tooltips, make sure that you have the *idle3* package installed.
+- Users may want to install [pandoc](https://pandoc.org/) for processing the exported documents.
+
 
 ## License
 
