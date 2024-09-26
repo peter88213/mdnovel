@@ -42,14 +42,14 @@ This program is intended only as a proof of concept. It is still in pre-Alpha st
 - All section content in *mdnovel* is Markdown-formatted.
 - *mdnovel* comes with a Markdown section editor. The user is not supposed to export the text for editing. 
 - *mdnovel* saves the project in a YAML/Markdown based file format instead of the XML based *.novx* format.
-- There is no connection with OpenOffice/libreOffice. 
+- There is no connection with OpenOffice/LibreOffice. 
 - Document export is in Markdown or csv format. 
 - New project can be created from Markdown-formatted Work-in-progress or outline.
 
 
 ## Requirements
 
-- Windows or Linux. Mac OS support is experimental, see [discussion](https://github.com/peter88213/novelibre/discussions/29).
+- Windows or Linux. Mac OS support is experimental.
 - [Python](https://www.python.org/) version 3.6+. 
      - For current Windows versions, use version 3.9.10 or above.
      - For Vista and Windows 7, use version 3.7.2.
