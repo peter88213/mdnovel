@@ -130,13 +130,6 @@ setuplib.main(False)
             '../../mdnovel/src/',
             copynovxlib=copynovxlib,
             )
-        inliner.run(
-            target,
-            target,
-            'novxlib',
-            '../../mdnovel/src/',
-            copynovxlib=copynovxlib,
-            )
 
     def insert_version_number(self, source, version='unknown'):
         """Write the actual version string and make sure that Unix EOL is used."""

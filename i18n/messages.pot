@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
-"POT-Creation-Date: 2024-09-25 18:45:51\n"
+"POT-Creation-Date: 2024-09-26 20:39:24\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -74,16 +74,10 @@ msgstr ""
 msgid "Add parent"
 msgstr ""
 
-msgid "Aka"
-msgstr ""
-
 msgid "All"
 msgstr ""
 
 msgid "All files"
-msgstr ""
-
-msgid "Always discard documents after import"
 msgstr ""
 
 msgid "Append to previous section"
@@ -137,12 +131,6 @@ msgstr ""
 msgid "Cannot convert date/days"
 msgstr ""
 
-msgid "Cannot create directory"
-msgstr ""
-
-msgid "Cannot create file"
-msgstr ""
-
 msgid "Cannot create the element at this position"
 msgstr ""
 
@@ -159,9 +147,6 @@ msgid "Cannot open link"
 msgstr ""
 
 msgid "Cannot overwrite file"
-msgstr ""
-
-msgid "Cannot parse File"
 msgstr ""
 
 msgid "Cannot process file"
@@ -188,9 +173,6 @@ msgstr ""
 msgid "Chapter"
 msgstr ""
 
-msgid "Chapter beginning"
-msgstr ""
-
 msgid "Chapter descriptions"
 msgstr ""
 
@@ -201,9 +183,6 @@ msgid "Chapter number prefix"
 msgstr ""
 
 msgid "Chapter number suffix"
-msgstr ""
-
-msgid "Chapter_20_beginning"
 msgstr ""
 
 msgid "Chapters belonging to plot line"
@@ -225,9 +204,6 @@ msgid "Characterization"
 msgstr ""
 
 msgid "Characters"
-msgstr ""
-
-msgid "Characters/locations/items data files"
 msgstr ""
 
 msgid "Choice"
@@ -290,16 +266,10 @@ msgstr ""
 msgid "Copy style sheet"
 msgstr ""
 
-msgid "Corrupt marker"
-msgstr ""
-
 msgid "Corrupt project data"
 msgstr ""
 
 msgid "Country code"
-msgstr ""
-
-msgid "Create a mdnovel project file from {0}\nNew project: \"{1}\""
 msgstr ""
 
 msgid "Create from Markdown..."
@@ -359,16 +329,10 @@ msgstr ""
 msgid "Dilemma"
 msgstr ""
 
-msgid "Discard"
-msgstr ""
-
 msgid "Discard changes and reload the project?"
 msgstr ""
 
 msgid "Discard changes and restore the latest backup?"
-msgstr ""
-
-msgid "Discard documents only when sections are split"
 msgstr ""
 
 msgid "Discard manuscript"
@@ -383,9 +347,6 @@ msgstr ""
 msgid "Do not auto-number this part"
 msgstr ""
 
-msgid "Document"
-msgstr ""
-
 msgid "Document language"
 msgstr ""
 
@@ -396,9 +357,6 @@ msgid "Draft"
 msgstr ""
 
 msgid "Duration"
-msgstr ""
-
-msgid "Editable manuscript"
 msgstr ""
 
 msgid "Empty project"
@@ -479,9 +437,6 @@ msgstr ""
 msgid "Export type is not supported"
 msgstr ""
 
-msgid "Exported documents"
-msgstr ""
-
 msgid "File"
 msgstr ""
 
@@ -495,9 +450,6 @@ msgid "File has changed on disk. Reload?"
 msgstr ""
 
 msgid "File has changed on disk. Save anyway?"
-msgstr ""
-
-msgid "File is write protected"
 msgstr ""
 
 msgid "File not found"
@@ -533,9 +485,6 @@ msgstr ""
 msgid "HTML Plot list"
 msgstr ""
 
-msgid "Heading 3 invisible"
-msgstr ""
-
 msgid "Heading_20_3_20_invisible"
 msgstr ""
 
@@ -557,22 +506,7 @@ msgstr ""
 msgid "Image file"
 msgstr ""
 
-msgid "Import"
-msgstr ""
-
-msgid "Import documents even if locked; do not discard"
-msgstr ""
-
-msgid "Import selected elements"
-msgstr ""
-
-msgid "Importance"
-msgstr ""
-
 msgid "Input rejected"
-msgstr ""
-
-msgid "Input: {0} \"{1}\"\nOutput: {2} \"{3}\""
 msgstr ""
 
 msgid "Insert Stage"
@@ -704,31 +638,13 @@ msgstr ""
 msgid "No backup available"
 msgstr ""
 
-msgid "No character data found"
-msgstr ""
-
 msgid "No description"
-msgstr ""
-
-msgid "No document type"
-msgstr ""
-
-msgid "No item data found"
-msgstr ""
-
-msgid "No location data found"
 msgstr ""
 
 msgid "No mdnovel project to write"
 msgstr ""
 
 msgid "No text available"
-msgstr ""
-
-msgid "No valid version found in file"
-msgstr ""
-
-msgid "No valid xml root element found in file"
 msgstr ""
 
 msgid "None"
@@ -752,16 +668,10 @@ msgstr ""
 msgid "Notes on the selected plot line"
 msgstr ""
 
-msgid "Novel outline"
-msgstr ""
-
 msgid "Number of sections"
 msgstr ""
 
 msgid "ODF document"
-msgstr ""
-
-msgid "ODS Plot list"
 msgstr ""
 
 msgid "OK"
@@ -813,9 +723,6 @@ msgid "Outline"
 msgstr ""
 
 msgid "Overwrite"
-msgstr ""
-
-msgid "Overwrite existing file \"{}\"?"
 msgstr ""
 
 msgid "Part"
@@ -911,9 +818,6 @@ msgstr ""
 msgid "Refresh Tree"
 msgstr ""
 
-msgid "Refresh view"
-msgstr ""
-
 msgid "Relationships"
 msgstr ""
 
@@ -980,12 +884,6 @@ msgstr ""
 msgid "Section list"
 msgstr ""
 
-msgid "Section mark"
-msgstr ""
-
-msgid "Section mark unused"
-msgstr ""
-
 msgid "Section notes"
 msgstr ""
 
@@ -1002,15 +900,6 @@ msgid "Sections belonging to plot line"
 msgstr ""
 
 msgid "Sections from viewpoint"
-msgstr ""
-
-msgid "Select characters"
-msgstr ""
-
-msgid "Select items"
-msgstr ""
-
-msgid "Select locations"
 msgstr ""
 
 msgid "Set Status"
@@ -1079,9 +968,6 @@ msgstr ""
 msgid "Style sheet copied into the project folder."
 msgstr ""
 
-msgid "Tagged manuscript for proofing"
-msgstr ""
-
 msgid "Tags"
 msgstr ""
 
@@ -1107,12 +993,6 @@ msgid "The plugin remains active until next start."
 msgstr ""
 
 msgid "The previous section has no time set."
-msgstr ""
-
-msgid "The project \"{}\" was created with a newer mdnovel version."
-msgstr ""
-
-msgid "The project \"{}\" was created with an outdated mdnovel version."
 msgstr ""
 
 msgid "The project is locked.\nUnlock?"
@@ -1205,9 +1085,6 @@ msgstr ""
 msgid "Words written"
 msgstr ""
 
-msgid "Work in progress"
-msgstr ""
-
 msgid "Work phase"
 msgstr ""
 
@@ -1226,22 +1103,7 @@ msgstr ""
 msgid "Wrong name"
 msgstr ""
 
-msgid "Wrong table structure"
-msgstr ""
-
 msgid "Wrong time"
-msgstr ""
-
-msgid "XML character data file"
-msgstr ""
-
-msgid "XML data file"
-msgstr ""
-
-msgid "XML item data file"
-msgstr ""
-
-msgid "XML location data file"
 msgstr ""
 
 msgid "YYYY-MM-DD"
@@ -1250,10 +1112,10 @@ msgstr ""
 msgid "by"
 msgstr ""
 
-msgid "deleted"
+msgid "csv Plot list"
 msgstr ""
 
-msgid "elements imported"
+msgid "deleted"
 msgstr ""
 
 msgid "hh:mm"
@@ -1262,13 +1124,7 @@ msgstr ""
 msgid "last saved on"
 msgstr ""
 
-msgid "manuscript"
-msgstr ""
-
 msgid "mdnovel API"
-msgstr ""
-
-msgid "mdnovel XML data files"
 msgstr ""
 
 msgid "mdnovel project"

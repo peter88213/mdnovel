@@ -3,7 +3,6 @@
 	<name>mdnovel</name>
 	<comment></comment>
 	<projects>
-		<project>novxlib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

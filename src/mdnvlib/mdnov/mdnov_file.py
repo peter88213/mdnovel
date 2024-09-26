@@ -34,7 +34,18 @@ from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import intersection
 from mdnvlib.novx_globals import verified_date
 from mdnvlib.novx_globals import verified_int_string
-from novxlib.xml.xml_open import get_xml_root
+
+import xml.etree.ElementTree as ET
+from mdnvlib.novx_globals import norm_path
+
+
+def get_xml_root(filePath):
+    try:
+        xmlTree = ET.parse(filePath)
+    except Exception as ex:
+        raise Error(f'{_("Cannot process file")}: "{norm_path(filePath)}" - {str(ex)}')
+
+    return xmlTree.getroot()
 
 
 class MdnovFile(FileExport):

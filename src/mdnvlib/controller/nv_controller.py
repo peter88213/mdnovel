@@ -30,9 +30,7 @@ from mdnvlib.novx_globals import norm_path
 from mdnvlib.controller.link_processor import LinkProcessor
 from mdnvlib.exporter.nv_doc_exporter import NvDocExporter
 from mdnvlib.exporter.nv_html_reporter import NvHtmlReporter
-from mdnvlib.importer.nv_data_importer import NvDataImporter
 from mdnvlib.importer.nv_doc_importer import NvDocImporter
-from mdnvlib.importer.prj_updater import PrjUpdater
 from mdnvlib.model.nv_model import NvModel
 from mdnvlib.model.nv_work_file import NvWorkFile
 from mdnvlib.nv_globals import prefs
@@ -615,18 +613,6 @@ class NvController:
         """Return a reference to the application's main view object."""
         return self._ui
 
-    def import_world_elements(self, prefix):
-        """Import characters/locations/items from an XML data file.
-        
-        Positional arguments:
-            prefix: str -- Prefix specifying the WorldElement type to be imported.
-        """
-        self._ui.restore_status()
-        fileTypes = [(_('XML data file'), '.xml')]
-        filePath = filedialog.askopenfilename(filetypes=fileTypes)
-        if filePath:
-            NvDataImporter(self._mdl, self._ui, self, filePath, prefix)
-
     def import_md(self, event=None, sourcePath=None, defaultExtension='.md'):
         """Update or create the project from a Marksown-formatted document.
         
@@ -1182,26 +1168,6 @@ class NvController:
         if self._mdl.prjFile.has_changed_on_disk():
             if self._ui.ask_yes_no(_('File has changed on disk. Reload?')):
                 self.open_project(filePath=self._mdl.prjFile.filePath)
-        return 'break'
-
-    def update_from_odt(self, suffix='', event=None):
-        """Update the project from an exported ODT document specified by suffix. 
-        
-        Optional arguments:
-            suffix: str -- the document's file name suffix, indicating the document type.        
-        """
-        fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
-        self.import_md(sourcePath=f'{fileName}{suffix}.odt')
-        return 'break'
-
-    def update_project(self, event=None):
-        """Update the project from a previously exported document.
-        
-        Using a toplevel window with a pick list of refresh sources.
-        """
-        offset = 300
-        __, x, y = self._ui.root.geometry().split('+')
-        PrjUpdater(self._mdl, self._ui, self, f'+{int(x)+offset}+{int(y)+offset}')
         return 'break'
 
     def _view_new_element(self, newNode):

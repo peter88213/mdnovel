@@ -14,20 +14,6 @@ from mdnvlib.mdnov.mdnov_file import MdnovFile
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from novxlib.ods.ods_r_charlist import OdsRCharList
-from novxlib.ods.ods_r_grid import OdsRGrid
-from novxlib.ods.ods_r_itemlist import OdsRItemList
-from novxlib.ods.ods_r_loclist import OdsRLocList
-from novxlib.odt.odt_r_chapterdesc import OdtRChapterDesc
-from novxlib.odt.odt_r_characters import OdtRCharacters
-from novxlib.odt.odt_r_items import OdtRItems
-from novxlib.odt.odt_r_locations import OdtRLocations
-from novxlib.odt.odt_r_manuscript import OdtRManuscript
-from novxlib.odt.odt_r_partdesc import OdtRPartDesc
-from novxlib.odt.odt_r_plotlines import OdtRPlotlines
-from novxlib.odt.odt_r_proof import OdtRProof
-from novxlib.odt.odt_r_sectiondesc import OdtRSectionDesc
-from novxlib.odt.odt_r_stages import OdtRStages
 from mdnvlib.nv_globals import prefs
 
 
@@ -38,20 +24,6 @@ class NvDocImporter:
     that are written with OpenOffice/LibreOffice Writer or Calc.
     """
     IMPORT_SOURCE_CLASSES = [
-        OdsRCharList,
-        OdsRGrid,
-        OdsRItemList,
-        OdsRLocList,
-        OdtRChapterDesc,
-        OdtRCharacters,
-        OdtRItems,
-        OdtRLocations,
-        OdtRManuscript,
-        OdtRPartDesc,
-        OdtRPlotlines,
-        OdtRProof,
-        OdtRSectionDesc,
-        OdtRStages,
     ]
     CREATE_SOURCE_CLASSES = [
     ]

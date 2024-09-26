@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from novxlib.xml.xml_filter import strip_illegal_characters
 import tkinter as tk
 
 
@@ -57,7 +56,7 @@ class TextBox(tk.Text):
     def get_text(self):
         """Return the whole text."""
         text = self.get('1.0', 'end').strip(' \n')
-        return strip_illegal_characters(text)
+        return text
 
     def set_text(self, text):
         """Clear the box, reset the change flag, and load text."""

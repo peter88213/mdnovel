@@ -142,26 +142,6 @@ class Toolbar:
             )
         self._lockButton.pack(side='left')
         self._lockButton.image = self._ui.icons.lockIcon
-
-        # "Update from manuscript" button.
-        self._updateButton = ttk.Button(
-            self.buttonBar,
-            text=_('Update from manuscript'),
-            image=self._ui.icons.updateFromManuscriptIcon,
-            command=lambda: self._ctrl.update_from_odt(suffix=MANUSCRIPT_SUFFIX)
-            )
-        self._updateButton.pack(side='left')
-        self._updateButton.image = self._ui.icons.updateFromManuscriptIcon
-
-        # "Manuscript" button.
-        self._manuscriptButton = ttk.Button(
-            self.buttonBar,
-            text=_('Export Manuscript'),
-            image=self._ui.icons.manuscriptIcon,
-            command=lambda:self._ctrl.export_document(MANUSCRIPT_SUFFIX, ask=False)
-            )
-        self._manuscriptButton.pack(side='left')
-        self._manuscriptButton.image = self._ui.icons.manuscriptIcon
         """
 
         # Separator.
