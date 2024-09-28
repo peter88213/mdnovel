@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from string import Template
 
 from mdnvlib.md.md_file import MdFile
-from mdnvlib.novx_globals import MANUSCRIPT_SUFFIX
 from mdnvlib.novx_globals import PLOTLINES_SUFFIX
 from mdnvlib.novx_globals import SECTIONS_SUFFIX
 from mdnvlib.novx_globals import _
@@ -79,7 +78,6 @@ $Desc
                     Description=_('Description'),
                     Manuscript=_('Manuscript'),
                     scID=scId,
-                    ManuscriptSuffix=MANUSCRIPT_SUFFIX,
                     SectionsSuffix=SECTIONS_SUFFIX,
                 )
                 template = Template(self._assocSectionTemplate)

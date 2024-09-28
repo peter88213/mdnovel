@@ -7,7 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 from mdnvlib.csv.csv_file import CsvFile
 from mdnvlib.novx_globals import CH_ROOT
-from mdnvlib.novx_globals import MANUSCRIPT_SUFFIX
 from mdnvlib.novx_globals import PLOTLINES_SUFFIX
 from mdnvlib.novx_globals import PLOTLIST_SUFFIX
 from mdnvlib.novx_globals import PL_ROOT
@@ -87,7 +86,7 @@ class CsvPlotList(CsvFile):
                     odsText.append(
                         create_cell(
                             self.novel.sections[scId].title,
-                            link=f'{MANUSCRIPT_SUFFIX}.odt#{scId}%7Cregion'
+                            link=f'.odt#{scId}%7Cregion'
                         )
                     )
                     for i, plId in enumerate(plotLines):

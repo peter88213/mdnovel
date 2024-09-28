@@ -11,7 +11,6 @@ from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import CR_ROOT
 from mdnvlib.novx_globals import IT_ROOT
 from mdnvlib.novx_globals import LC_ROOT
-from mdnvlib.novx_globals import MANUSCRIPT_SUFFIX
 from mdnvlib.novx_globals import PL_ROOT
 from mdnvlib.novx_globals import PN_ROOT
 from mdnvlib.novx_globals import _

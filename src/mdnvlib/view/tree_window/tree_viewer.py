@@ -14,7 +14,6 @@ from mdnvlib.novx_globals import ITEM_PREFIX
 from mdnvlib.novx_globals import IT_ROOT
 from mdnvlib.novx_globals import LC_ROOT
 from mdnvlib.novx_globals import LOCATION_PREFIX
-from mdnvlib.novx_globals import MANUSCRIPT_SUFFIX
 from mdnvlib.novx_globals import PLOT_LINE_PREFIX
 from mdnvlib.novx_globals import PLOT_POINT_PREFIX
 from mdnvlib.novx_globals import PL_ROOT
@@ -508,7 +507,6 @@ class TreeViewer(ttk.Frame):
         self._wrCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_element)
         self._wrCtxtMenu.add_separator()
-        self._wrCtxtMenu.add_command(label=_('Export manuscript filtered by viewpoint'), command=self._export_manuscript)
         self._wrCtxtMenu.add_command(label=_('Export synopsis filtered by viewpoint'), command=self._export_synopsis)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
@@ -520,7 +518,6 @@ class TreeViewer(ttk.Frame):
         self._plCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_plot_line)
         self._plCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_plot_point)
         self._plCtxtMenu.add_separator()
-        self._plCtxtMenu.add_command(label=_('Export manuscript filtered by plot line'), command=self._export_manuscript)
         self._plCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self._export_synopsis)
         self._plCtxtMenu.add_separator()
         self._plCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
@@ -655,9 +652,6 @@ class TreeViewer(ttk.Frame):
             return False
 
         return True
-
-    def _export_manuscript(self, event=None):
-        self._ctrl.export_document(MANUSCRIPT_SUFFIX, filter=self.tree.selection()[0], ask=False)
 
     def _export_synopsis(self, event=None):
         self._ctrl.export_document(SECTIONS_SUFFIX, filter=self.tree.selection()[0], ask=False)

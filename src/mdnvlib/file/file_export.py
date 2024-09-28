@@ -21,7 +21,6 @@ from mdnvlib.novx_globals import ITEMS_SUFFIX
 from mdnvlib.novx_globals import IT_ROOT
 from mdnvlib.novx_globals import LC_ROOT
 from mdnvlib.novx_globals import LOCATIONS_SUFFIX
-from mdnvlib.novx_globals import MANUSCRIPT_SUFFIX
 from mdnvlib.novx_globals import MONTHS
 from mdnvlib.novx_globals import PL_ROOT
 from mdnvlib.novx_globals import PN_ROOT
@@ -183,7 +182,6 @@ class FileExport(File):
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
-            ManuscriptSuffix=MANUSCRIPT_SUFFIX,
         )
         return chapterMapping
 
@@ -636,7 +634,6 @@ class FileExport(File):
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
-            ManuscriptSuffix=MANUSCRIPT_SUFFIX,
             SectionsSuffix=SECTIONS_SUFFIX,
             CustomPlotProgress=pltPrgs,
             CustomCharacterization=chrczn,

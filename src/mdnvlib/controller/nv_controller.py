@@ -18,7 +18,6 @@ from mdnvlib.novx_globals import ITEM_PREFIX
 from mdnvlib.novx_globals import IT_ROOT
 from mdnvlib.novx_globals import LC_ROOT
 from mdnvlib.novx_globals import LOCATION_PREFIX
-from mdnvlib.novx_globals import MANUSCRIPT_SUFFIX
 from mdnvlib.novx_globals import PLOT_LINE_PREFIX
 from mdnvlib.novx_globals import PLOT_POINT_PREFIX
 from mdnvlib.novx_globals import PL_ROOT
@@ -557,23 +556,6 @@ class NvController:
         """Disable menu entries when no project is open."""
         self._ui.disable_menu()
         self.plugins.disable_menu()
-
-    def discard_manuscript(self):
-        """Rename the current editable manuscript. 
-        
-        This might be useful to avoid confusion in certain cases.
-        
-        OBSOLETE
-        """
-        fileName, __ = os.path.splitext(self._mdl.prjFile.filePath)
-        manuscriptPath = f'{fileName}{MANUSCRIPT_SUFFIX}.odt'
-        if os.path.isfile(manuscriptPath):
-            prjPath, manuscriptName = os.path.split(manuscriptPath)
-            if os.path.isfile(f'{prjPath}/.~lock.{manuscriptName}#'):
-                self._ui.set_status(f"!{_('Please close the manuscript first')}.")
-            elif self._ui.ask_yes_no(f"{_('Discard manuscript')}?", self._mdl.novel.title):
-                os.replace(manuscriptPath, f'{fileName}{MANUSCRIPT_SUFFIX}.odt.bak')
-                self._ui.set_status(f"{_('Manuscript discarded')}.")
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
