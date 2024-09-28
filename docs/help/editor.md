@@ -34,7 +34,7 @@ the `Enter` key.
 -   `Ctrl`-`I` places \"emphasized\" markup around the selected text or
     at the cursor, like so:
 
-    `*Example*`{.md}
+    `*Example*`
 
     If the selection is already emphasized, the command removes the
     markup.
@@ -42,7 +42,7 @@ the `Enter` key.
 -   `Ctrl`-`B` places \"strong\" markup around the selected text or at
     the cursor, like so:
 
-    `**Example**`{.md}
+    `**Example**`
 
     If the selection is already strong, the command removes the markup.
 
