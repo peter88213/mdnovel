@@ -21,7 +21,7 @@ class MdPlotlines(MdFile):
     DESCRIPTION = _('Plot lines')
     SUFFIX = PLOTLINES_SUFFIX
 
-    _fileHeader = f''
+    _fileHeader = f'{MdFile._fileHeader}# {DESCRIPTION}\n\n'
     _arcHeadingTemplate = f'''<text:h text:style-name="Heading_20_1" text:outline-level="1">{_('Plot lines')}
 '''
 

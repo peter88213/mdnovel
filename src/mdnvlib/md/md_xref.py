@@ -18,7 +18,7 @@ class MdXref(MdFile):
     DESCRIPTION = _('Cross reference')
     SUFFIX = XREF_SUFFIX
 
-    _fileHeader = f''
+    _fileHeader = f'{MdFile._fileHeader}# {DESCRIPTION}\n\n'
     _sectionTemplate = f'''<text:p text:style-name="{_('Section_20_mark')}">
 <text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$ID%7Cregion">$SectionNumber</text:a> (Ch $Chapter) $Title
 </text:p>

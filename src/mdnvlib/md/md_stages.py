@@ -17,7 +17,7 @@ class MdStages(MdFile):
     DESCRIPTION = _('Story structure')
     SUFFIX = STAGES_SUFFIX
 
-    _fileHeader = f''
+    _fileHeader = f'{MdFile._fileHeader}# {DESCRIPTION}\n\n'
 
     _stage1Template = '''<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark text:name="$ID"/>$Title
 <text:section text:style-name="Sect1" text:name="$ID">
