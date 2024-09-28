@@ -287,7 +287,7 @@ class EditorWindow(tk.Toplevel):
         self.show_wordcount()
 
     def _open_help(self, event=None):
-        open_help(f'editor.rst')
+        open_help(f'editor')
 
     def _set_editor_colors(self):
         cm = EditorWindow.colorMode.get()
