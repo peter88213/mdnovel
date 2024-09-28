@@ -17,13 +17,8 @@ class MdItems(MdFile):
     DESCRIPTION = _('Item descriptions')
     SUFFIX = ITEMS_SUFFIX
 
-    _fileHeader = f''
-
-    _itemTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title$AKA</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
+    _fileHeader = f'{MdFile._fileHeader}# {DESCRIPTION}\n\n'
+    _itemTemplate = '\n## $Title$AKA\n\n$Desc'
 
     def _get_itemMapping(self, itId):
         """Return a mapping dictionary for an item section.
@@ -37,4 +32,10 @@ $Desc
         itemMapping = super()._get_itemMapping(itId)
         if self.novel.items[itId].aka:
             itemMapping['AKA'] = f' ("{self.novel.items[itId].aka}")'
+        else:
+            itemMapping['AKA'] = ''
+        if self.novel.items[itId].desc:
+            itemMapping['Desc'] = f'### {_("Description")}\n\n{self.novel.items[itId].desc}\n\n'
+        else:
+            itemMapping['Desc'] = ''
         return itemMapping

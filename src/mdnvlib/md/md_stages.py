@@ -19,13 +19,13 @@ class MdStages(MdFile):
 
     _fileHeader = f''
 
-    _stage1Template = '''<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark text:name="$ID"/>$Title</text:h>
+    _stage1Template = '''<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark text:name="$ID"/>$Title
 <text:section text:style-name="Sect1" text:name="$ID">
 $Desc
 </text:section>
 '''
 
-    _stage2Template = '''<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="$ID"/>$Title</text:h>
+    _stage2Template = '''## <text:bookmark text:name="$ID"/>$Title
 <text:section text:style-name="Sect1" text:name="$ID">
 $Desc
 </text:section>

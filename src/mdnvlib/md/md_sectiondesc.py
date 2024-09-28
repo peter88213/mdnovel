@@ -17,27 +17,10 @@ class MdSectionDesc(MdFile):
     DESCRIPTION = _('Section descriptions')
     SUFFIX = SECTIONS_SUFFIX
 
-    _fileHeader = f''
-
-    _partTemplate = '''<text:section text:style-name="Sect1" text:name="$ID">
-<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>
-'''
-
-    _chapterTemplate = '''<text:section text:style-name="Sect1" text:name="$ID">
-<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$Title|outline">$Title</text:a></text:h>
-'''
-
-    _sectionTemplate = f'''<text:h text:style-name="{_('Heading_20_3_20_invisible')}" text:outline-level="3">$Title</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
-
-    _sectionDivider = '''<text:p text:style-name="Heading_20_4">* * *</text:p>
-'''
-
-    _chapterEndTemplate = '''</text:section>
-'''
+    _partTemplate = '\n# ${Title}\n\n'
+    _chapterTemplate = '\n## ${Title}\n\n'
+    _sectionTemplate = '${Desc}\n\n'
+    _sectionDivider = f'{MdFile.SECTION_DIVIDER}\n\n'
 
     def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, **kwargs):
         """Return a mapping dictionary for a section section.

@@ -39,19 +39,19 @@ $SectionNumber (Ch $Chapter) $Title (Unused)
 <text:a xlink:href="../$ProjectName$ItemsSuffix.odt#$ID%7Cregion">$Title</text:a>
 </text:p>
 '''
-    _scnPerChrTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Sections with Character $Title:</text:h>
+    _scnPerChrTemplate = '''## Sections with Character $Title:
 '''
-    _scnPerLocTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Sections with Location $Title:</text:h>
+    _scnPerLocTemplate = '''## Sections with Location $Title:
 '''
-    _scnPerItmTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Sections with Item $Title:</text:h>
+    _scnPerItmTemplate = '''## Sections with Item $Title:
 '''
-    _chrPerTagTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Characters tagged $Tag:</text:h>
+    _chrPerTagTemplate = '''## Characters tagged $Tag:
 '''
-    _locPerTagTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Locations tagged $Tag:</text:h>
+    _locPerTagTemplate = '''## Locations tagged $Tag:
 '''
-    _itmPerTagTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Items tagged $Tag:</text:h>
+    _itmPerTagTemplate = '''## Items tagged $Tag:
 '''
-    _scnPerTagtemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">Sections tagged $Tag:</text:h>
+    _scnPerTagtemplate = '''## Sections tagged $Tag:
 '''
 
     def __init__(self, filePath, **kwargs):

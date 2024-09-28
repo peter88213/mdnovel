@@ -17,14 +17,6 @@ class MdBriefSynopsis(MdFile):
     DESCRIPTION = _('Brief synopsis')
     SUFFIX = BRF_SYNOPSIS_SUFFIX
 
-    _fileHeader = f''
-
-    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>
-'''
-
-    _chapterTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title</text:h>
-'''
-
-    _sectionTemplate = '''<text:p text:style-name="Text_20_body">$Title</text:p>
-'''
-
+    _partTemplate = '\n# ${Title}\n\n'
+    _chapterTemplate = '\n## ${Title}\n\n'
+    _sectionTemplate = '${Title}\n\n'

@@ -17,13 +17,8 @@ class MdLocations(MdFile):
     DESCRIPTION = _('Location descriptions')
     SUFFIX = LOCATIONS_SUFFIX
 
-    _fileHeader = f''
-
-    _locationTemplate = '''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title$AKA</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
+    _fileHeader = f'{MdFile._fileHeader}# {DESCRIPTION}\n\n'
+    _locationTemplate = '\n## $Title$AKA\n\n$Desc'
 
     def _get_locationMapping(self, lcId):
         """Return a mapping dictionary for a location section.
@@ -37,4 +32,10 @@ $Desc
         locationMapping = super()._get_locationMapping(lcId)
         if self.novel.locations[lcId].aka:
             locationMapping['AKA'] = f' ("{self.novel.locations[lcId].aka}")'
+        else:
+            locationMapping['AKA'] = ''
+        if self.novel.locations[lcId].desc:
+            locationMapping['Desc'] = f'### {_("Description")}\n\n{self.novel.locations[lcId].desc}\n\n'
+        else:
+            locationMapping['Desc'] = ''
         return locationMapping

@@ -17,28 +17,8 @@ class MdCharacters(MdFile):
     DESCRIPTION = _('Character descriptions')
     SUFFIX = CHARACTERS_SUFFIX
 
-    _fileHeader = f''
-
-    _characterTemplate = f'''<text:h text:style-name="Heading_20_2" text:outline-level="2">$Title$FullName$AKA</text:h>
-<text:section text:style-name="Sect1" text:name="$ID">
-<text:h text:style-name="Heading_20_3" text:outline-level="3">{_("Description")}</text:h>
-<text:section text:style-name="Sect1" text:name="desc:$ID">
-$Desc
-</text:section>
-<text:h text:style-name="Heading_20_3" text:outline-level="3">$CustomChrBio</text:h>
-<text:section text:style-name="Sect1" text:name="bio:$ID">
-$Bio
-</text:section>
-<text:h text:style-name="Heading_20_3" text:outline-level="3">$CustomChrGoals</text:h>
-<text:section text:style-name="Sect1" text:name="goals:$ID">
-$Goals
-</text:section>
-<text:h text:style-name="Heading_20_3" text:outline-level="3">{_("Notes")}</text:h>
-<text:section text:style-name="Sect1" text:name="notes:$ID">
-$Notes
-</text:section>
-</text:section>
-'''
+    _fileHeader = f'{MdFile._fileHeader}# {DESCRIPTION}\n\n'
+    _characterTemplate = f'''\n## $Title$FullName$AKA\n\n$Desc$Bio$Goals'''
 
     def _get_characterMapping(self, crId):
         """Return a mapping dictionary for a character section.
@@ -49,10 +29,26 @@ $Notes
         Special formatting of alternate and full name. 
         Extends the superclass method.
         """
-        characterMapping = super()._get_characterMapping(self, crId)
+        characterMapping = super()._get_characterMapping(crId)
         if self.novel.characters[crId].aka:
             characterMapping['AKA'] = f' ("{self.novel.characters[crId].aka}")'
+        else:
+            characterMapping['AKA'] = ''
         if self.novel.characters[crId].fullName:
             characterMapping['FullName'] = f'/{self.novel.characters[crId].fullName}'
+        else:
+            characterMapping['FullName'] = ''
+        if self.novel.characters[crId].desc:
+            characterMapping['Desc'] = f'### {_("Description")}\n\n{self.novel.characters[crId].desc}\n\n'
+        else:
+            characterMapping['Desc'] = ''
+        if self.novel.characters[crId].bio:
+            characterMapping['Bio'] = f"### {characterMapping['CustomChrBio']}\n\n{self.novel.characters[crId].bio}\n\n"
+        else:
+            characterMapping['Bio'] = ''
+        if self.novel.characters[crId].goals:
+            characterMapping['Goals'] = f"### {characterMapping['CustomChrGoals']}\n\n{self.novel.characters[crId].goals}\n\n"
+        else:
+            characterMapping['Goals'] = ''
 
         return characterMapping

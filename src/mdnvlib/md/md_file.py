@@ -32,10 +32,6 @@ class MdFile(FileExport):
 *${AuthorName}*  
   
 '''
-    _partTemplate = '\n# ${Title}\n\n'
-    _chapterTemplate = '\n## ${Title}\n\n'
-    _sectionTemplate = '### ${Title}\n\n${SectionContent}\n\n'
-    _sectionDivider = f'{SECTION_DIVIDER}\n\n'
 
     def _get_chapterMapping(self, chId, chapterNumber):
         """Return a mapping dictionary for a chapter section.

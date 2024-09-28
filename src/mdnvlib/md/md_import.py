@@ -17,7 +17,7 @@ from mdnvlib.novx_globals import norm_path
 
 
 class MdImport(MdFile):
-    """Markdown file representation.
+    """Markdown work-in-progress reader.
 
     Public methods:
         read() -- parse the file and get the instance variables.

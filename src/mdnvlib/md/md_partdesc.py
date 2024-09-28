@@ -19,11 +19,5 @@ class MdPartDesc(MdFile):
     DESCRIPTION = _('Part descriptions')
     SUFFIX = PARTS_SUFFIX
 
-    _fileHeader = f''
-
-    _partTemplate = '''<text:section text:style-name="Sect1" text:name="$ID">
-<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$Title|outline">$Title</text:a></text:h>
-$Desc
-</text:section>
-'''
+    _partTemplate = '# ${Title}\n\n$Desc\n\n'
 

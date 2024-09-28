@@ -1,4 +1,4 @@
-"""Provide a class for Markdown file representation. 
+"""Provide a class for Markdown outline reader. 
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel

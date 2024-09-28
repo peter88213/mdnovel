@@ -22,16 +22,16 @@ class MdPlotlines(MdFile):
     SUFFIX = PLOTLINES_SUFFIX
 
     _fileHeader = f''
-    _arcHeadingTemplate = f'''<text:h text:style-name="Heading_20_1" text:outline-level="1">{_('Plot lines')}</text:h>
+    _arcHeadingTemplate = f'''<text:h text:style-name="Heading_20_1" text:outline-level="1">{_('Plot lines')}
 '''
 
-    _arcTemplate = '''$Heading<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:bookmark text:name="$ID"/>$Title</text:h>
+    _arcTemplate = '''$Heading## <text:bookmark text:name="$ID"/>$Title
 <text:section text:style-name="Sect1" text:name="$ID">
 $Desc
 </text:section>
 $TurningPoints
 '''
-    _plotPointTemplate = '''<text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark text:name="$ID"/>$Title</text:h>
+    _plotPointTemplate = '''<text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark text:name="$ID"/>$Title
 <text:section text:style-name="Sect1" text:name="$ID">
 $Desc
 </text:section>

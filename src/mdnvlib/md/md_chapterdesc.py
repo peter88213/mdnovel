@@ -17,14 +17,6 @@ class MdChapterDesc(MdFile):
     DESCRIPTION = _('Chapter descriptions')
     SUFFIX = CHAPTERS_SUFFIX
 
-    _fileHeader = f''
-
-    _partTemplate = '''<text:h text:style-name="Heading_20_1" text:outline-level="1">$Title</text:h>
-'''
-
-    _chapterTemplate = '''<text:section text:style-name="Sect1" text:name="$ID">
-<text:h text:style-name="Heading_20_2" text:outline-level="2"><text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$Title|outline">$Title</text:a></text:h>
-$Desc
-</text:section>
-'''
+    _partTemplate = '\n# ${Title}\n\n'
+    _chapterTemplate = '## ${Title}\n\n$Desc\n\n'
 
