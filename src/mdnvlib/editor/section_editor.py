@@ -1,4 +1,4 @@
-"""A multi-section "plain text" editor plugin for mdnovel."""
+"""A multi-section "plain text" editor class for mdnovel."""
 import os
 from pathlib import Path
 import sys
@@ -9,7 +9,6 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.nv_globals import SC_EDITOR
 from mdnvlib.nv_globals import SC_EDITOR_ICON
 from mdnvlib.nv_globals import _
-from mdnvlib.nv_globals import open_help
 import tkinter as tk
 
 ED_SETTINGS = dict(
@@ -34,7 +33,7 @@ ED_OPTIONS = dict(
 
 
 class SectionEditor:
-    """novelibre multi-section "plain text" editor plugin class."""
+    """novelibre multi-section "plain text" editor class."""
 
     def __init__(self, model, view, controller):
         """Add a submenu to the main menu.
@@ -69,9 +68,6 @@ class SectionEditor:
         # Add the "Edit" command to novelibre's "Section" menu.
         self._ui.sectionMenu.add_separator()
         self._ui.sectionMenu.add_command(label=_('Edit'), underline=0, command=self.open_node)
-
-        # Add an entry to the Help menu.
-        self._ui.helpMenu.add_command(label=_('Editor plugin Online help'), command=open_help)
 
         # Set window icon.
         self.sectionEditors = {}

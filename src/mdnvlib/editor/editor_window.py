@@ -141,10 +141,10 @@ class EditorWindow(tk.Toplevel):
         # Help
         self.helpMenu = tk.Menu(self._mainMenu, tearoff=0)
         self._mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
-        self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=open_help)
+        self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._open_help)
 
         # Event bindings.
-        self.bind(KEYS.OPEN_HELP[0], open_help)
+        self.bind(KEYS.OPEN_HELP[0], self._open_help)
         if PLATFORM != 'win':
             self._sectionEditor.bind(KEYS.QUIT_PROGRAM[0], self.on_quit)
         self._sectionEditor.bind(KEYS.APPLY_CHANGES[0], self._apply_changes)
@@ -285,6 +285,9 @@ class EditorWindow(tk.Toplevel):
         self._sectionEditor.set_text(self._section.sectionContent)
         self._initialWc = self._sectionEditor.count_words()
         self.show_wordcount()
+
+    def _open_help(self, event=None):
+        open_help(f'editor.rst')
 
     def _set_editor_colors(self):
         cm = EditorWindow.colorMode.get()
