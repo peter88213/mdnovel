@@ -10,7 +10,6 @@ the `Enter` key.
 
 **Note**
 
--   If the project is locked, editor windows cannot be opened.
 -   If you choose a section already open, the window will be brought to
     the foreground.
 
@@ -105,9 +104,6 @@ program when editing big sections. This is why it's disabled by default.
 
 With `Ctrl`-`S`, you can apply changes to the section. Then \"Modified\"
 status is displayed in *novelibre*.
-
--   If the project is locked in *novelibre*, you will be asked to unlock
-    it before changes can be applied.
 
 ---
 

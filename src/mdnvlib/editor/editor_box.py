@@ -20,7 +20,7 @@ NO_WORD_LIMITS = re.compile(r'')
 
 class EditorBox(tk.Text):
     """A text editor widget for novelibre raw markup."""
-    _TAGS = ('*', '**')
+    _TAGS = ('**', '*')
     # Supported tags.
 
     def __init__(self, master=None, **kw):
@@ -86,12 +86,10 @@ class EditorBox(tk.Text):
         self._set_format(tag='**')
         return 'break'
 
-    '''
     def plain(self, event=None):
         """Remove formatting from the selection."""
         self._set_format()
         return 'break'
-    '''
 
     def _set_format(self, event=None, tag=''):
         """Insert an opening/closing pair of novelibre markup tags."""
@@ -135,18 +133,8 @@ class EditorBox(tk.Text):
     def _remove_format(self, text, tag):
         """Return text without opening/closing markup, if any."""
         if tag in self._TAGS:
-            finished = False
-            while not finished:
-                start = text.find(tag)
-                if start >= 0:
-                    end = text.find(tag)
-                    if  start < end:
-                        text = f'{text[:start]}{text[start + len(tag):end]}{text[end + len(tag):]}'
-                    else:
-                        finished = True
-                else:
-                    finished = True
-            return text
+            text = text.replace(tag, '')
+        return text
 
     def clear(self):
         self.delete('1.0', 'end')
