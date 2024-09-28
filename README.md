@@ -1,4 +1,4 @@
-# mdnovel
+# ![N](docs/img/nLogo32.png) mdnovel
 
 A novel writing application using markdown.
 
