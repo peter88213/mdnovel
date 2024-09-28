@@ -6,15 +6,15 @@ Open a section editor window by double-clicking on a section, or via the
 **Section \> Edit** menu entry when a section is selected, or by hitting
 the `Enter` key.
 
-::: note
-::: title
-Note
-:::
+---
+
+**Note**
 
 -   If the project is locked, editor windows cannot be opened.
 -   If you choose a section already open, the window will be brought to
     the foreground.
-:::
+
+---
 
 ## Select text
 
@@ -91,14 +91,15 @@ section.
     text. This is enabled or disabled via the **Word count \> Live
     update** menu checkbox.
 
-::: note
-::: title
-Note
-:::
+
+---
+
+**Note**
 
 Live updating the word count is resource intensive and may slow down the
 program when editing big sections. This is why it's disabled by default.
-:::
+
+---
 
 ## Apply changes
 
@@ -108,14 +109,14 @@ status is displayed in *novelibre*.
 -   If the project is locked in *novelibre*, you will be asked to unlock
     it before changes can be applied.
 
-::: note
-::: title
-Note
-:::
+---
+
+**Note**
 
 Before applying changes, the program checks the editor content for XML
 validity. Malformed XML will not be accepted.
-:::
+
+---
 
 ## Close the editor window
 
