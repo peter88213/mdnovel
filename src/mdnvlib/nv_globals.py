@@ -11,8 +11,8 @@ from mdnvlib.novx_globals import _
 
 prefs = {}
 
-HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/'
-HOME_URL = 'https://github.com/peter88213/mdnovel/docs/help/'
+HELP_URL = 'https://github.com/peter88213/mdnovel/docs/help/'
+HOME_URL = 'https://github.com/peter88213/mdnovel/'
 SC_EDITOR = _('Section Editor')
 SC_EDITOR_ICON = 'eLogo32'
 
