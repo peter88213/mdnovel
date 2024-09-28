@@ -18,7 +18,7 @@ NO_WORD_LIMITS = re.compile(r'')
 # this is to be replaced by empty strings when counting words
 
 
-class TextBox(tk.Text):
+class EditorBox(tk.Text):
     """A text editor widget for novelibre raw markup."""
     _TAGS = ('*', '**')
     # Supported tags.

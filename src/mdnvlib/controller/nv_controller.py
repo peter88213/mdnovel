@@ -36,6 +36,7 @@ from mdnvlib.nv_globals import prefs
 from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.plugin.plugin_manager import PluginManager
 from mdnvlib.view.nv_view import NvView
+from mdnvlib.editor.section_editor import SectionEditor
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -84,6 +85,9 @@ class NvController:
         # Strictly speaking, this breaks the MVC pattern, since the
         # model depends on a data structure defined by the GUI framework.
         self._mdl.tree = self._ui.tv.tree
+
+        #--- Initialize the section sectionEditor.
+        self.sectionEditor = SectionEditor(self._mdl, self._ui, self)
 
         #--- Load the plugins.
         self.plugins = PluginCollection(self._mdl, self._ui, self)
@@ -475,6 +479,7 @@ class NvController:
         - trigger plugins.
         """
         self._ui.propertiesView.apply_changes()
+        self.sectionEditor.on_close()
         self.plugins.on_close()
         # closing the current element _view after checking for modifications
         if self._mdl.isModified and not doNotSave:
@@ -735,6 +740,7 @@ class NvController:
         try:
             if self._mdl.prjFile is not None:
                 self.close_project()
+            self.sectionEditor.on_quit()
             self.plugins.on_quit()
             self._ui.on_quit()
         except Exception as ex:

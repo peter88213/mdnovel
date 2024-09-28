@@ -7,12 +7,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import messagebox
 from tkinter import ttk
 
-from nveditorlib.nveditor_globals import APPLICATION
-from nveditorlib.nveditor_globals import _
-from nveditorlib.nveditor_globals import open_help
-from nveditorlib.platform_settings import KEYS
-from nveditorlib.platform_settings import PLATFORM
-from nveditorlib.text_box import TextBox
+from mdnvlib.editor.editor_box import EditorBox
+from mdnvlib.nv_globals import SC_EDITOR
+from mdnvlib.nv_globals import _
+from mdnvlib.nv_globals import open_help
+from mdnvlib.view.platform_settings import KEYS
+from mdnvlib.view.platform_settings import PLATFORM
 import tkinter as tk
 
 COLOR_MODES = [
@@ -23,7 +23,7 @@ COLOR_MODES = [
 # (name, foreground, background) tuples for color modes.
 
 
-class SectionEditor(tk.Toplevel):
+class EditorWindow(tk.Toplevel):
     """A separate section editor window with a menu bar, a text box, and a status bar.
     
     Public instance methods:
@@ -32,8 +32,8 @@ class SectionEditor(tk.Toplevel):
         show_status(message=None) -- Display a message on the status bar.
         show_wordcount()-- Display the word count on the status bar.
     """
-    liveWordCount = tk.BooleanVar(value=False)
-    colorMode = tk.IntVar(value=0)
+    liveWordCount = None
+    colorMode = None
 
     def __init__(self, plugin, model, view, controller, scId, size, icon=None):
         self._mdl = model
@@ -60,7 +60,7 @@ class SectionEditor(tk.Toplevel):
         """
 
         # Add a text editor with scrollbar to the editor window.
-        self._sectionEditor = TextBox(
+        self._sectionEditor = EditorBox(
             self,
             wrap='word',
             undo=True,
@@ -113,7 +113,7 @@ class SectionEditor(tk.Toplevel):
         self._viewMenu = tk.Menu(self._mainMenu, tearoff=0)
         self._mainMenu.add_cascade(label=_('View'), menu=self._viewMenu)
         for i, cm in enumerate(COLOR_MODES):
-            self._viewMenu.add_radiobutton(label=cm[0], variable=SectionEditor.colorMode, command=self._set_editor_colors, value=i)
+            self._viewMenu.add_radiobutton(label=cm[0], variable=EditorWindow.colorMode, command=self._set_editor_colors, value=i)
 
         # Add an "Edit" Submenu to the editor window.
         self._editMenu = tk.Menu(self._mainMenu, tearoff=0)
@@ -136,7 +136,7 @@ class SectionEditor(tk.Toplevel):
         self._wcMenu = tk.Menu(self._mainMenu, tearoff=0)
         self._mainMenu.add_cascade(label=_('Word count'), menu=self._wcMenu)
         self._wcMenu.add_command(label=_('Update'), accelerator=KEYS.UPDATE_WORDCOUNT[1], command=self.show_wordcount)
-        self._wcMenu.add_checkbutton(label=_('Live update'), variable=SectionEditor.liveWordCount, command=self._set_wc_mode)
+        self._wcMenu.add_checkbutton(label=_('Live update'), variable=EditorWindow.liveWordCount, command=self._set_wc_mode)
 
         # Help
         self.helpMenu = tk.Menu(self._mainMenu, tearoff=0)
@@ -197,7 +197,7 @@ class SectionEditor(tk.Toplevel):
         """
         if self._ctrl.isLocked:
             messagebox.showinfo(
-                APPLICATION,
+                SC_EDITOR,
                 _('Cannot create sections, because the project is locked.'),
                 parent=self
                 )
@@ -240,7 +240,7 @@ class SectionEditor(tk.Toplevel):
         sectionText = self._sectionEditor.get_text()
         if sectionText or self._section.sectionContent:
             if self._section.sectionContent != sectionText:
-                if messagebox.askyesno(APPLICATION, _('Apply section changes?'), parent=self):
+                if messagebox.askyesno(SC_EDITOR, _('Apply section changes?'), parent=self):
                     try:
                         self._sectionEditor.check_validity()
                     except ValueError as ex:
@@ -287,13 +287,13 @@ class SectionEditor(tk.Toplevel):
         self.show_wordcount()
 
     def _set_editor_colors(self):
-        cm = SectionEditor.colorMode.get()
+        cm = EditorWindow.colorMode.get()
         self._sectionEditor['fg'] = COLOR_MODES[cm][1]
         self._sectionEditor['bg'] = COLOR_MODES[cm][2]
         self._sectionEditor['insertbackground'] = COLOR_MODES[cm][1]
 
     def _set_wc_mode(self, *args):
-        if SectionEditor.liveWordCount.get():
+        if EditorWindow.liveWordCount.get():
             self.bind('<KeyRelease>', self.show_wordcount)
             self.show_wordcount()
         else:
@@ -311,7 +311,7 @@ class SectionEditor(tk.Toplevel):
 
         if self._ctrl.isLocked:
             messagebox.showinfo(
-                APPLICATION,
+                SC_EDITOR,
                 _('Cannot split the section, because the project is locked.'),
                 parent=self
                 )
@@ -319,7 +319,7 @@ class SectionEditor(tk.Toplevel):
             return
 
         if messagebox.askyesno(
-            APPLICATION,
+            SC_EDITOR,
             f'{_("Move the text from the cursor position to the end into a new section")}?',
             parent=self
             ):
@@ -373,7 +373,7 @@ class SectionEditor(tk.Toplevel):
 
         if self._ctrl.isLocked:
             if messagebox.askyesno(
-                APPLICATION,
+                SC_EDITOR,
                 _('Cannot apply section changes, because the project is locked.\nUnlock and apply changes?'),
                 parent=self
                 ):

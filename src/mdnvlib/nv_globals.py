@@ -13,6 +13,8 @@ prefs = {}
 
 HELP_URL = f'https://peter88213.github.io/{_("nvhelp-en")}/'
 HOME_URL = 'https://github.com/peter88213/mdnovel/'
+SC_EDITOR = _('Section Editor')
+SC_EDITOR_ICON = 'eLogo32'
 
 
 def to_string(text):
