@@ -656,7 +656,7 @@ class NvView:
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_command(label=_('Export section descriptions'), command=lambda: self._ctrl.export_document(SECTIONS_SUFFIX))
-        self.sectionMenu.add_command(label=_('Section list'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
+        # self.sectionMenu.add_command(label=_('Section list'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
 
         # Character
         self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -666,7 +666,7 @@ class NvView:
         self.characterMenu.add_cascade(label=_('Set Status'), menu=self.tv.crStatusMenu)
         self.characterMenu.add_separator()
         self.characterMenu.add_command(label=_('Export character descriptions'), command=lambda: self._ctrl.export_document(CHARACTERS_SUFFIX))
-        self.characterMenu.add_command(label=_('Export character list'), command=lambda: self._ctrl.export_document(CHARLIST_SUFFIX))
+        # self.characterMenu.add_command(label=_('Export character list'), command=lambda: self._ctrl.export_document(CHARLIST_SUFFIX))
         self.characterMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(CHARACTER_REPORT_SUFFIX))
 
         # Location
@@ -675,7 +675,7 @@ class NvView:
         self.locationMenu.add_command(label=_('Add'), command=self._ctrl.add_location)
         self.locationMenu.add_separator()
         self.locationMenu.add_command(label=_('Export location descriptions'), command=lambda: self._ctrl.export_document(LOCATIONS_SUFFIX))
-        self.locationMenu.add_command(label=_('Export location list'), command=lambda: self._ctrl.export_document(LOCLIST_SUFFIX))
+        # self.locationMenu.add_command(label=_('Export location list'), command=lambda: self._ctrl.export_document(LOCLIST_SUFFIX))
         self.locationMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(LOCATION_REPORT_SUFFIX))
 
         # "Item" menu.
@@ -684,7 +684,7 @@ class NvView:
         self.itemMenu.add_command(label=_('Add'), command=self._ctrl.add_item)
         self.itemMenu.add_separator()
         self.itemMenu.add_command(label=_('Export item descriptions'), command=lambda: self._ctrl.export_document(ITEMS_SUFFIX))
-        self.itemMenu.add_command(label=_('Export item list'), command=lambda: self._ctrl.export_document(ITEMLIST_SUFFIX))
+        # self.itemMenu.add_command(label=_('Export item list'), command=lambda: self._ctrl.export_document(ITEMLIST_SUFFIX))
         self.itemMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(ITEM_REPORT_SUFFIX))
 
         # "Plot" menu.
@@ -697,10 +697,10 @@ class NvView:
         self.plotMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Export plot grid'), command=lambda:self._ctrl.export_document(GRID_SUFFIX))
-        self.plotMenu.add_command(label=_('Export story structure description'), command=lambda:self._ctrl.export_document(STAGES_SUFFIX))
-        self.plotMenu.add_command(label=_('Export plot line descriptions'), command=lambda: self._ctrl.export_document(PLOTLINES_SUFFIX, lock=False))
+        # self.plotMenu.add_command(label=_('Export story structure description'), command=lambda:self._ctrl.export_document(STAGES_SUFFIX))
+        # self.plotMenu.add_command(label=_('Export plot line descriptions'), command=lambda: self._ctrl.export_document(PLOTLINES_SUFFIX, lock=False))
         self.plotMenu.add_separator()
-        self.plotMenu.add_command(label=_('Export plot list'), command=lambda: self._ctrl.export_document(PLOTLIST_SUFFIX, lock=False))
+        # self.plotMenu.add_command(label=_('Export plot list'), command=lambda: self._ctrl.export_document(PLOTLIST_SUFFIX, lock=False))
         self.plotMenu.add_command(label=_('Show Plot list'), command=lambda: self._ctrl.show_report(PLOTLIST_SUFFIX))
 
         # Project notes
@@ -715,7 +715,7 @@ class NvView:
         self.mainMenu.add_cascade(label=_('Export'), menu=self.exportMenu)
         self.exportMenu.add_command(label=_('Manuscript'), command=lambda: self._ctrl.export_document('', lock=False))
         self.exportMenu.add_command(label=_('Brief synopsis'), command=lambda: self._ctrl.export_document(BRF_SYNOPSIS_SUFFIX, lock=False))
-        self.exportMenu.add_command(label=_('Cross references'), command=lambda: self._ctrl.export_document(XREF_SUFFIX, lock=False))
+        # self.exportMenu.add_command(label=_('Cross references'), command=lambda: self._ctrl.export_document(XREF_SUFFIX, lock=False))
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Options'), command=self._export_options)
 

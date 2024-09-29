@@ -45,6 +45,7 @@ class ExportOptionsWindow(tk.Toplevel):
             ).pack(padx=5, pady=5, anchor='w')
         self._askDocOpen.trace('w', self._change_ask_doc_open)
 
+        """
         # Checkbox: Lock the project after document export.
         self._lockOnExport = tk.BooleanVar(frame1, value=prefs['lock_on_export'])
         ttk.Checkbutton(
@@ -53,6 +54,7 @@ class ExportOptionsWindow(tk.Toplevel):
             variable=self._lockOnExport
             ).pack(padx=5, pady=5, anchor='w')
         self._lockOnExport.trace('w', self._change_lock_on_export)
+        """
 
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 
