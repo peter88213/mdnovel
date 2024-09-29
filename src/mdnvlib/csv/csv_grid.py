@@ -4,15 +4,9 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-import csv
-
-from string import Template
-
 from mdnvlib.csv.csv_file import CsvFile
 from mdnvlib.novx_globals import GRID_SUFFIX
-from mdnvlib.novx_globals import PLOTLINES_SUFFIX
 from mdnvlib.novx_globals import PL_ROOT
-from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import _
 
 
@@ -23,6 +17,10 @@ class CsvGrid(CsvFile):
     SUFFIX = GRID_SUFFIX
 
     def _get_header_columns(self):
+        """Return a list with all column records of a headline.
+        
+        Overrides the superclass method
+        """
         pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls = self._get_renamings()
         columns = []
         columns.append(_("Section"))
@@ -43,6 +41,10 @@ class CsvGrid(CsvFile):
         return columns
 
     def _get_section_columns(self, scId, scNumber):
+        """Return a list with all column records of a section row.
+        
+        Overrides the superclass method
+        """
         columns = []
         mapping = self._get_sectionMapping(scId, scNumber, 0)
         columns.append(mapping['SectionNumber'])
@@ -71,15 +73,5 @@ class CsvGrid(CsvFile):
         return columns
 
     def _get_text(self):
-        csvRows = [self._get_header_columns()]
-        scNumber = 0
-        for chId in self.novel.tree.get_children(CH_ROOT):
-            for scId in self.novel.tree.get_children(chId):
-                if self.novel.sections[scId].scType > 0:
-                    continue
-
-                scNumber += 1
-                csvColumns = self._get_section_columns(scId, scNumber)
-                csvRows.append(csvColumns)
-        return csvRows
+        return self._get_sections()
 

@@ -4,23 +4,17 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mdnvlib.csv.csv_grid import CsvGrid
+from mdnvlib.csv.csv_file import CsvFile
 from mdnvlib.model.section import Section
 from mdnvlib.novx_globals import SECTIONLIST_SUFFIX
 from mdnvlib.novx_globals import _
 
 
-class CsvSectionList(CsvGrid):
+class CsvSectionList(CsvFile):
     """csv section list writer."""
 
     DESCRIPTION = _('Section list')
     SUFFIX = SECTIONLIST_SUFFIX
-
-    # Column width:
-    # co1 2.000cm
-    # co2 3.000cm
-    # co3 4.000cm
-    # co4 8.000cm
 
     # Header structure:
     # Section ID (hidden)
@@ -284,3 +278,51 @@ $TimeCell
         sectionMapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal)
         sectionMapping['Status'] = Section.STATUS[sectionMapping['Status']]
         return sectionMapping
+
+    def _get_header_columns(self):
+        """Return a list with all column records of a headline.
+        
+        Overrides the superclass method
+        """
+        pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls = self._get_renamings()
+        columns = []
+        columns.append(_("Section"))
+        columns.append(_("Date"))
+        columns.append(_("Time"))
+        columns.append(_("Day"))
+        columns.append(_("Title"))
+        columns.append(_("Description"))
+        columns.append(_("Viewpoint"))
+        columns.append(_("Tags"))
+        columns.append(_("Scene"))
+        columns.append(f'{_("Goal")} / {_("Reaction")} / {goal}')
+        columns.append(f'{chrczn} / {_("Conflict")} / {_("Dilemma")} / {cflct}')
+        columns.append(f'{wrldbld} / {_("Outcome")} / {_("Choice")} / {outcm}')
+        columns.append(_("Notes"))
+        return columns
+
+    def _get_section_columns(self, scId, scNumber):
+        """Return a list with all column records of a section row.
+        
+        Overrides the superclass method
+        """
+        columns = []
+        mapping = self._get_sectionMapping(scId, scNumber, 0)
+        columns.append(mapping['SectionNumber'])
+        columns.append(mapping['Date'])
+        columns.append(mapping['Time'])
+        columns.append(mapping['Day'])
+        columns.append(mapping['Title'])
+        columns.append(mapping['Desc'])
+        columns.append(mapping['Viewpoint'])
+        columns.append(mapping['Tags'])
+        columns.append(mapping['Scene'])
+        columns.append(mapping['Goal'])
+        columns.append(mapping['Conflict'])
+        columns.append(mapping['Outcome'])
+        columns.append(mapping['Notes'])
+        return columns
+
+    def _get_text(self):
+        return self._get_sections()
+
