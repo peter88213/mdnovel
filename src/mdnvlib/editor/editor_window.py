@@ -33,7 +33,9 @@ class EditorWindow(tk.Toplevel):
         show_wordcount()-- Display the word count on the status bar.
     """
     liveWordCount = None
+    # to be overwritten by the client with tk.BooleanVar()
     colorMode = None
+    # to be overwritten by the client with tk.IntVar()
 
     def __init__(self, plugin, model, view, controller, scId, size, icon=None):
         self._mdl = model
@@ -65,12 +67,12 @@ class EditorWindow(tk.Toplevel):
             wrap='word',
             undo=True,
             autoseparators=True,
-            spacing1=self._plugin.kwargs['paragraph_spacing'],
-            spacing2=self._plugin.kwargs['line_spacing'],
+            spacing1=self._plugin.kwargs['ed_paragraph_spacing'],
+            spacing2=self._plugin.kwargs['ed_line_spacing'],
             maxundo=-1,
-            padx=self._plugin.kwargs['margin_x'],
-            pady=self._plugin.kwargs['margin_y'],
-            font=(self._plugin.kwargs['font_family'], self._plugin.kwargs['font_size']),
+            padx=self._plugin.kwargs['ed_margin_x'],
+            pady=self._plugin.kwargs['ed_margin_y'],
+            font=(self._plugin.kwargs['ed_font_family'], self._plugin.kwargs['ed_font_size']),
             )
         self._sectionEditor.pack(expand=True, fill='both')
         self._sectionEditor.pack_propagate(0)
@@ -176,7 +178,7 @@ class EditorWindow(tk.Toplevel):
             return 'break'
             # keeping the editor window open due to an XML error to be fixed before saving
 
-        self._plugin.kwargs['window_geometry'] = self.winfo_geometry()
+        self._plugin.kwargs['ed_win_geometry'] = self.winfo_geometry()
         self.destroy()
         self.isOpen = False
 

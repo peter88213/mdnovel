@@ -12,23 +12,23 @@ from mdnvlib.nv_globals import _
 import tkinter as tk
 
 ED_SETTINGS = dict(
-        window_geometry='600x800',
-        color_mode=0,
-        color_fg_bright='white',
-        color_bg_bright='black',
-        color_fg_light='antique white',
-        color_bg_light='black',
-        color_fg_dark='light grey',
-        color_bg_dark='gray20',
-        font_family='Courier',
-        font_size=12,
-        line_spacing=4,
-        paragraph_spacing=4,
-        margin_x=40,
-        margin_y=20,
+        ed_win_geometry='600x800',
+        ed_color_mode=0,
+        ed_color_fg_bright='white',
+        ed_color_bg_bright='black',
+        ed_color_fg_light='antique white',
+        ed_color_bg_light='black',
+        ed_color_fg_dark='light grey',
+        ed_color_bg_dark='gray20',
+        ed_font_family='Courier',
+        ed_font_size=12,
+        ed_line_spacing=4,
+        ed_paragraph_spacing=4,
+        ed_margin_x=40,
+        ed_margin_y=20,
 )
 ED_OPTIONS = dict(
-        live_wordcount=False,
+        ed_live_wordcount=False,
 )
 
 
@@ -81,10 +81,10 @@ class SectionEditor:
 
         # Configure the editor box.
         EditorWindow.colorMode = tk.IntVar(
-            value=int(self.kwargs['color_mode'])
+            value=int(self.kwargs['ed_color_mode'])
             )
         EditorWindow.liveWordCount = tk.BooleanVar(
-            value=self.kwargs['live_wordcount']
+            value=self.kwargs['ed_live_wordcount']
             )
 
         # Set Key bindings.
@@ -109,8 +109,8 @@ class SectionEditor:
         self.on_close()
 
         #--- Save project specific configuration
-        self.kwargs['color_mode'] = EditorWindow.colorMode.get()
-        self.kwargs['live_wordcount'] = EditorWindow.liveWordCount.get()
+        self.kwargs['ed_color_mode'] = EditorWindow.colorMode.get()
+        self.kwargs['ed_live_wordcount'] = EditorWindow.liveWordCount.get()
         for keyword in self.kwargs:
             if keyword in self.configuration.options:
                 self.configuration.options[keyword] = self.kwargs[keyword]
@@ -138,7 +138,7 @@ class SectionEditor:
                     self.sectionEditors[nodeId].lift()
                     return
 
-                self.sectionEditors[nodeId] = EditorWindow(self, self._mdl, self._ui, self._ctrl, nodeId, self.kwargs['window_geometry'], icon=self._icon)
+                self.sectionEditors[nodeId] = EditorWindow(self, self._mdl, self._ui, self._ctrl, nodeId, self.kwargs['ed_win_geometry'], icon=self._icon)
 
         except IndexError:
             # Nothing selected
