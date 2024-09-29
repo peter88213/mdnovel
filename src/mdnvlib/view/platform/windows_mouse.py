@@ -4,7 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mdnvlib.view.generic_mouse import GenericMouse
+from mdnvlib.view.platform.generic_mouse import GenericMouse
 
 
 class WindowsMouse(GenericMouse):

@@ -11,8 +11,8 @@ from mdnvlib.editor.editor_box import EditorBox
 from mdnvlib.nv_globals import SC_EDITOR
 from mdnvlib.nv_globals import _
 from mdnvlib.nv_globals import open_help
-from mdnvlib.view.platform_settings import KEYS
-from mdnvlib.view.platform_settings import PLATFORM
+from mdnvlib.view.platform.platform_settings import KEYS
+from mdnvlib.view.platform.platform_settings import PLATFORM
 import tkinter as tk
 
 COLOR_MODES = [

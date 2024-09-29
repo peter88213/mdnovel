@@ -9,7 +9,7 @@ from tkinter import ttk
 from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import open_help
 from mdnvlib.nv_globals import prefs
-from mdnvlib.view.platform_settings import KEYS
+from mdnvlib.view.platform.platform_settings import KEYS
 import tkinter as tk
 
 

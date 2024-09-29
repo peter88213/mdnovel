@@ -15,7 +15,7 @@ from mdnvlib.model.nv_tree import NvTree
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.view.ui import Ui
+from mdnvlib.converter.ui import Ui
 
 
 class Converter:

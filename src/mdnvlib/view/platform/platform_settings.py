@@ -6,12 +6,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import platform
 
-from mdnvlib.view.generic_keys import GenericKeys
-from mdnvlib.view.generic_mouse import GenericMouse
-from mdnvlib.view.mac_keys import MacKeys
-from mdnvlib.view.mac_mouse import MacMouse
-from mdnvlib.view.windows_keys import WindowsKeys
-from mdnvlib.view.windows_mouse import WindowsMouse
+from mdnvlib.view.platform.generic_keys import GenericKeys
+from mdnvlib.view.platform.generic_mouse import GenericMouse
+from mdnvlib.view.platform.mac_keys import MacKeys
+from mdnvlib.view.platform.mac_mouse import MacMouse
+from mdnvlib.view.platform.windows_keys import WindowsKeys
+from mdnvlib.view.platform.windows_mouse import WindowsMouse
 
 if platform.system() == 'Windows':
     PLATFORM = 'win'
