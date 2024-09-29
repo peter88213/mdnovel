@@ -7,12 +7,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from mdnvlib.configuration.configuration import Configuration
 from mdnvlib.model.moonphase import get_moon_phase_string
 from mdnvlib.model.novel import Novel
-from mdnvlib.model.novx_service import NovxService
+from mdnvlib.model.mdnov_service import MdnovService
 from mdnvlib.model.nv_treeview import NvTreeview
 
 
-class NvService(NovxService):
-    """Getters and factory methods for novxlib objects."""
+class NvService(MdnovService):
+    """Getters and factory methods for mdnovel objects."""
 
     def get_moon_phase_str(self, isoDate):
         return get_moon_phase_string(isoDate)

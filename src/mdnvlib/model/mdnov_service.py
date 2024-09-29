@@ -16,10 +16,10 @@ from mdnvlib.model.world_element import WorldElement
 from mdnvlib.mdnov.mdnov_file import MdnovFile
 
 
-class NovxService:
-    """Getters and factory methods for novxlib model objects."""
+class MdnovService:
+    """Getters and factory methods for mdnov  model objects."""
 
-    def get_novx_file_extension(self):
+    def get_mdnov_file_extension(self):
         return MdnovFile.EXTENSION
 
     def make_basic_element(self, **kwargs):
