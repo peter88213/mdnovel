@@ -17,7 +17,6 @@ from mdnvlib.model.plot_line import PlotLine
 from mdnvlib.model.plot_point import PlotPoint
 from mdnvlib.model.section import Section
 from mdnvlib.model.world_element import WorldElement
-from mdnvlib.xml.xml_indent import indent
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import CR_ROOT
 from mdnvlib.novx_globals import Error
@@ -29,6 +28,7 @@ from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import list_to_string
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.novx_globals import string_to_list
+from mdnvlib.xml.xml_indent import indent
 import xml.etree.ElementTree as ET
 
 
@@ -475,14 +475,18 @@ class NovxFile(File):
         if prjScn.outcome:
             xmlSection.append(text_to_xml_element('Outcome', prjScn.outcome))
 
-        #--- Plot notes.
-        if prjScn.plotNotes:
-            xmlPlotNotes = ET.SubElement(xmlSection, 'PlotNotes')
-            for plId in prjScn.plotNotes:
-                if plId in prjScn.scPlotLines:
-                    xmlPlotNote = text_to_xml_element('PlotlineNotes', prjScn.plotNotes[plId])
-                    xmlPlotNote.set('id', plId)
-                    xmlPlotNotes.append(xmlPlotNote)
+        # Plot notes.
+        if prjScn.plotlineNotes:
+            for plId in prjScn.plotlineNotes:
+                if not plId in prjScn.scPlotLines:
+                    continue
+
+                if not prjScn.plotlineNotes[plId]:
+                    continue
+
+                xmlPlotlineNotes = text_to_xml_element('PlotlineNotes', self.plotlineNotes[plId])
+                xmlPlotlineNotes.set('id', plId)
+                xmlSection.append(xmlPlotlineNotes)
 
         #--- Date/Day and Time.
         if prjScn.date:
@@ -518,8 +522,7 @@ class NovxFile(File):
         #--- Content.
         sectionContent = prjScn.sectionContent
         if sectionContent:
-            if not sectionContent in ('<p></p>', '<p />'):
-                xmlSection.append(ET.fromstring(f'<Content>{sectionContent}</Content>'))
+            xmlSection.append(text_to_xml_element('Content', sectionContent))
 
     def _get_aka(self, xmlElement, prjElement):
         prjElement.aka = get_element_text(xmlElement, 'Aka')
@@ -842,6 +845,16 @@ class NovxFile(File):
                 plId = xmlPlotLineNote.get('id', None)
                 plotNotes[plId] = xml_element_to_text(xmlPlotLineNote)
             self.novel.sections[scId].plotNotes = plotNotes
+
+        xmlPlotNotes = xmlSection.find('PlotNotes')
+        # looking for deprecated element from DTD 1.3
+        if xmlPlotNotes is None:
+            xmlPlotNotes = xmlSection
+        plotNotes = {}
+        for xmlPlotLineNote in xmlPlotNotes.iterfind('PlotlineNotes'):
+            plId = xmlPlotLineNote.get('id', None)
+            plotNotes[plId] = self._xml_element_to_text(xmlPlotLineNote)
+        self.novel.sections[scId].plotlineNotes = plotNotes
 
         #--- Date/Day and Time.
         if xmlSection.find('Date') is not None:

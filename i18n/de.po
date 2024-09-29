@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
-"POT-Creation-Date: 2024-09-29 11:40:51\n"
-"PO-Revision-Date: 2024-09-29 11:40:51\n"
+"POT-Creation-Date: 2024-09-29 12:37:18\n"
+"PO-Revision-Date: 2024-09-29 12:37:18\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -294,6 +294,9 @@ msgstr "Ländercode"
 
 msgid "Create from Markdown..."
 msgstr "Aus Markdown erzeugen..."
+
+msgid "Create from novx..."
+msgstr "Aus novx erzeugen..."
 
 msgid "Create from yw7..."
 msgstr "Aus yw7 erzeugen..."
@@ -1245,9 +1248,6 @@ msgstr "Jahre seit dem Todesfall"
 
 msgid "years old"
 msgstr "Jahre alt"
-
-msgid "yw7 project"
-msgstr "yw7-Projekt"
 
 msgid "{0} (last saved on {1})"
 msgstr "{0} (zuletzt gespeichert: {1})"

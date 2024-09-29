@@ -1,4 +1,4 @@
-"""yw7 file import/export for mdnovel.
+"""novx file import/export for mdnovel.
 
 Requires Python 3.6+
 Copyright (c) 2024 Peter Triesberger
@@ -10,11 +10,11 @@ from tkinter import filedialog
 
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.yw7.yw7_file import Yw7File
+from mdnvlib.novx.novx_file import NovxFile
 
 
-class Yw7Converter:
-    """yw7 file import/export class."""
+class NovxConverter:
+    """novx file import/export class."""
 
     def __init__(self, model, view, controller, prefs=None):
         """Add commands to the view.
@@ -35,14 +35,14 @@ class Yw7Converter:
         self._prefs = controller.get_preferences()
 
         # Add an entry to the "File > New" menu.
-        self._ui.newMenu.add_command(label=_('Create from yw7...'), command=self._import_yw7)
+        self._ui.newMenu.add_command(label=_('Create from novx...'), command=self._import_novx)
 
         # Add an entry to the "Export" menu.
-        self._ui.exportMenu.insert_command(_('Options'), label=Yw7File.DESCRIPTION, command=self._export_yw7)
+        self._ui.exportMenu.insert_command(_('Options'), label=NovxFile.DESCRIPTION, command=self._export_novx)
         self._ui.exportMenu.insert_separator(_('Options'))
 
-    def _export_yw7(self):
-        """Export the current project to yw7.
+    def _export_novx(self):
+        """Export the current project to novx.
         
         Return True on success, otherwise return False.
         """
@@ -50,28 +50,28 @@ class Yw7Converter:
             return False
 
         path, __ = os.path.splitext(self._mdl.prjFile.filePath)
-        yw7Path = f'{path}{Yw7File.EXTENSION}'
-        if os.path.isfile(yw7Path):
-            if not self._ui.ask_yes_no(_('Overwrite existing file "{}"?').format(norm_path(yw7Path))):
+        novxPath = f'{path}{NovxFile.EXTENSION}'
+        if os.path.isfile(novxPath):
+            if not self._ui.ask_yes_no(_('Overwrite existing file "{}"?').format(norm_path(novxPath))):
                 self._ui.set_status(f'!{_("Action canceled by user")}.')
                 return False
 
         self._ui.restore_status()
         self._ui.propertiesView.apply_changes()
-        yw7File = Yw7File(yw7Path, nv_service=self._mdl.nvService)
-        yw7File.novel = self._mdl.novel
-        yw7File.wcLog = self._mdl.prjFile.wcLog
+        novxFile = NovxFile(novxPath, nv_service=self._mdl.nvService)
+        novxFile.novel = self._mdl.novel
+        novxFile.wcLog = self._mdl.prjFile.wcLog
         try:
-            yw7File.write()
+            novxFile.write()
         except TypeError as ex:
             self._ui.set_status(f'!{str(ex)}')
             return False
 
-        self._ui.set_status(f'{_("File exported")}: {yw7Path}')
+        self._ui.set_status(f'{_("File exported")}: {novxPath}')
         return True
 
-    def _import_yw7(self, yw7Path=''):
-        """Convert a yw7 file to novx and open the novx file.
+    def _import_novx(self, novxPath=''):
+        """Convert a novx file to novx and open the novx file.
         
         Return True on success, otherwise return False.
         """
@@ -79,19 +79,19 @@ class Yw7Converter:
         initDir = os.path.dirname(self._prefs.get('last_open', ''))
         if not initDir:
             initDir = './'
-        if not yw7Path or not os.path.isfile(yw7Path):
-            fileTypes = [(Yw7File.DESCRIPTION, Yw7File.EXTENSION)]
-            yw7Path = filedialog.askopenfilename(
+        if not novxPath or not os.path.isfile(novxPath):
+            fileTypes = [(NovxFile.DESCRIPTION, NovxFile.EXTENSION)]
+            novxPath = filedialog.askopenfilename(
                 filetypes=fileTypes,
-                defaultextension=Yw7File.EXTENSION,
+                defaultextension=NovxFile.EXTENSION,
                 initialdir=initDir
                 )
-        if not yw7Path:
+        if not novxPath:
             return False
 
         try:
-            filePath, extension = os.path.splitext(yw7Path)
-            if extension == Yw7File.EXTENSION:
+            filePath, extension = os.path.splitext(novxPath)
+            if extension == NovxFile.EXTENSION:
                 mdnovPath = f'{filePath}{self._mdl.nvService.get_novx_file_extension()}'
                 if os.path.isfile(mdnovPath):
                     if not self._ui.ask_yes_no(_('Overwrite existing file "{}"?').format(norm_path(mdnovPath))):
@@ -99,12 +99,12 @@ class Yw7Converter:
                         return False
 
                 self._ctrl.close_project()
-                yw7File = Yw7File(yw7Path, nv_service=self._mdl.nvService)
-                yw7File.novel = self._mdl.nvService.make_novel()
-                yw7File.read()
+                novxFile = NovxFile(novxPath, nv_service=self._mdl.nvService)
+                novxFile.novel = self._mdl.nvService.make_novel()
+                novxFile.read()
                 mdnovFile = self._mdl.nvService.make_mdnov_file(mdnovPath, nv_service=self._mdl.nvService)
-                mdnovFile.novel = yw7File.novel
-                mdnovFile.wcLog = yw7File.wcLog
+                mdnovFile.novel = novxFile.novel
+                mdnovFile.wcLog = novxFile.wcLog
                 mdnovFile.write()
             else:
                 self._ui.set_status(f'!{_("File type is not supported")}.')
@@ -115,6 +115,6 @@ class Yw7Converter:
             return False
 
         self._ctrl.open_project(filePath=mdnovFile.filePath)
-        self._ui.set_status(f'{_("File imported")}: {yw7Path}')
+        self._ui.set_status(f'{_("File imported")}: {mdnovPath}')
         return True
 
