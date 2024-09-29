@@ -8,6 +8,7 @@ from datetime import datetime
 import os
 
 from mdnvlib.mdnov.mdnov_file import MdnovFile
+from mdnvlib.novx.novx_file import NovxFile
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import _
 
@@ -81,7 +82,12 @@ class NvWorkFile(MdnovFile):
         
         Extends the superclass method.
         """
-        super().read()
+        filePath = self.filePath.replace(self.EXTENSION, NovxFile.EXTENSION)
+        novxFile = NovxFile(filePath)
+        novxFile.novel = self.novel
+        novxFile.read()
+        self.novel = novxFile.novel
+
         self.novel.check_locale()
         # using the system locale if no reasonable looking locale is set
 

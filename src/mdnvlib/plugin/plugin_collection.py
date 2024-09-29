@@ -137,7 +137,7 @@ class PluginCollection(dict):
         Return True on success, otherwise return False. 
         """
         if not os.path.isdir(pluginPath):
-            print('Plugin directory not found.')
+            # print('Plugin directory not found.')
             return False
 
         # Load all plugins in the Plugin path.
@@ -198,15 +198,6 @@ class PluginCollection(dict):
             if self[moduleName].isActive:
                 try:
                     self[moduleName].on_close()
-                except:
-                    pass
-
-    def open_node(self, event=None):
-        """Actions on double-clicking on a node or pressing the Return key."""
-        for moduleName in self:
-            if self[moduleName].isActive:
-                try:
-                    self[moduleName].open_node()
                 except:
                     pass
 
