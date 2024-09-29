@@ -17,7 +17,7 @@ from mdnvlib.model.plot_line import PlotLine
 from mdnvlib.model.plot_point import PlotPoint
 from mdnvlib.model.section import Section
 from mdnvlib.model.world_element import WorldElement
-from mdnvlib.novx.xml_indent import indent
+from mdnvlib.xml.xml_indent import indent
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import CR_ROOT
 from mdnvlib.novx_globals import Error

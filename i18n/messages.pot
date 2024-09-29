@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
-"POT-Creation-Date: 2024-09-26 20:39:24\n"
+"POT-Creation-Date: 2024-09-29 11:40:51\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -86,6 +86,12 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
+msgid "Apply changes"
+msgstr ""
+
+msgid "Apply section changes?"
+msgstr ""
+
 msgid "Ask before opening exported documents"
 msgstr ""
 
@@ -119,19 +125,34 @@ msgstr ""
 msgid "Brief synopsis"
 msgstr ""
 
+msgid "Bright mode"
+msgstr ""
+
 msgid "Broken link fixed"
 msgstr ""
 
 msgid "Can not do"
 msgstr ""
 
+msgid "Can not process file"
+msgstr ""
+
 msgid "Cancel"
+msgstr ""
+
+msgid "Cannot apply section changes, because the project is locked.\nUnlock and apply changes?"
 msgstr ""
 
 msgid "Cannot convert date/days"
 msgstr ""
 
+msgid "Cannot create sections, because the project is locked."
+msgstr ""
+
 msgid "Cannot create the element at this position"
+msgstr ""
+
+msgid "Cannot edit sections, because the project is locked."
 msgstr ""
 
 msgid "Cannot generate date/time"
@@ -159,6 +180,9 @@ msgid "Cannot save the project"
 msgstr ""
 
 msgid "Cannot save: The project is locked"
+msgstr ""
+
+msgid "Cannot split the section, because the project is locked."
 msgstr ""
 
 msgid "Cannot write file"
@@ -263,6 +287,9 @@ msgstr ""
 msgid "Convert days to dates"
 msgstr ""
 
+msgid "Copy"
+msgstr ""
+
 msgid "Copy style sheet"
 msgstr ""
 
@@ -273,6 +300,12 @@ msgid "Country code"
 msgstr ""
 
 msgid "Create from Markdown..."
+msgstr ""
+
+msgid "Create from yw7..."
+msgstr ""
+
+msgid "Create section"
 msgstr ""
 
 msgid "Created {0} on {1}."
@@ -288,6 +321,12 @@ msgid "Cross references"
 msgstr ""
 
 msgid "Ctrl"
+msgstr ""
+
+msgid "Cut"
+msgstr ""
+
+msgid "Dark mode"
 msgstr ""
 
 msgid "Date"
@@ -335,9 +374,6 @@ msgstr ""
 msgid "Discard changes and restore the latest backup?"
 msgstr ""
 
-msgid "Discard manuscript"
-msgstr ""
-
 msgid "Display localized dates"
 msgstr ""
 
@@ -357,6 +393,12 @@ msgid "Draft"
 msgstr ""
 
 msgid "Duration"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Emphasis"
 msgstr ""
 
 msgid "Empty project"
@@ -443,6 +485,9 @@ msgstr ""
 msgid "File already exists"
 msgstr ""
 
+msgid "File exported"
+msgstr ""
+
 msgid "File has changed on disk. Reload anyway?"
 msgstr ""
 
@@ -452,6 +497,9 @@ msgstr ""
 msgid "File has changed on disk. Save anyway?"
 msgstr ""
 
+msgid "File imported"
+msgstr ""
+
 msgid "File not found"
 msgstr ""
 
@@ -459,6 +507,9 @@ msgid "File type is not supported"
 msgstr ""
 
 msgid "File written"
+msgstr ""
+
+msgid "Format"
 msgstr ""
 
 msgid "Forward"
@@ -483,9 +534,6 @@ msgid "Goals"
 msgstr ""
 
 msgid "HTML Plot list"
-msgstr ""
-
-msgid "Heading_20_3_20_invisible"
 msgstr ""
 
 msgid "Help"
@@ -539,7 +587,13 @@ msgstr ""
 msgid "Latest backup successfully restored."
 msgstr ""
 
+msgid "Light mode"
+msgstr ""
+
 msgid "Links"
+msgstr ""
+
+msgid "Live update"
 msgstr ""
 
 msgid "Location"
@@ -566,9 +620,6 @@ msgstr ""
 msgid "Manuscript"
 msgstr ""
 
-msgid "Manuscript discarded"
-msgstr ""
-
 msgid "Markdown document"
 msgstr ""
 
@@ -582,6 +633,9 @@ msgid "Module"
 msgstr ""
 
 msgid "Moon phase"
+msgstr ""
+
+msgid "Move the text from the cursor position to the end into a new section"
 msgstr ""
 
 msgid "N"
@@ -645,6 +699,9 @@ msgid "No mdnovel project to write"
 msgstr ""
 
 msgid "No text available"
+msgstr ""
+
+msgid "No valid version found in file"
 msgstr ""
 
 msgid "None"
@@ -725,6 +782,9 @@ msgstr ""
 msgid "Overwrite"
 msgstr ""
 
+msgid "Overwrite existing file \"{}\"?"
+msgstr ""
+
 msgid "Part"
 msgstr ""
 
@@ -737,6 +797,9 @@ msgstr ""
 msgid "Part number suffix"
 msgstr ""
 
+msgid "Paste"
+msgstr ""
+
 msgid "Peak em. moment"
 msgstr ""
 
@@ -746,10 +809,10 @@ msgstr ""
 msgid "Pick Mode (click here or press Esc to exit)"
 msgstr ""
 
-msgid "Please close the document first"
+msgid "Plain"
 msgstr ""
 
-msgid "Please close the manuscript first"
+msgid "Please close the document first"
 msgstr ""
 
 msgid "Please enter a reference date."
@@ -878,6 +941,9 @@ msgstr ""
 msgid "Section"
 msgstr ""
 
+msgid "Section Editor"
+msgstr ""
+
 msgid "Section descriptions"
 msgstr ""
 
@@ -950,6 +1016,9 @@ msgstr ""
 msgid "Source document deleted"
 msgstr ""
 
+msgid "Split at cursor position"
+msgstr ""
+
 msgid "Stage"
 msgstr ""
 
@@ -963,6 +1032,9 @@ msgid "Status"
 msgstr ""
 
 msgid "Story structure"
+msgstr ""
+
+msgid "Strong emphasis"
 msgstr ""
 
 msgid "Style sheet copied into the project folder."
@@ -993,6 +1065,12 @@ msgid "The plugin remains active until next start."
 msgstr ""
 
 msgid "The previous section has no time set."
+msgstr ""
+
+msgid "The project \"{}\" was created with a newer novelibre version."
+msgstr ""
+
+msgid "The project \"{}\" was created with an outdated novelibre version."
 msgstr ""
 
 msgid "The project is locked.\nUnlock?"
@@ -1052,6 +1130,9 @@ msgstr ""
 msgid "Unused"
 msgstr ""
 
+msgid "Update"
+msgstr ""
+
 msgid "Update the project?"
 msgstr ""
 
@@ -1071,6 +1152,9 @@ msgid "View"
 msgstr ""
 
 msgid "Viewpoint"
+msgstr ""
+
+msgid "Word count"
 msgstr ""
 
 msgid "Words"
@@ -1130,10 +1214,13 @@ msgstr ""
 msgid "mdnovel project"
 msgstr ""
 
+msgid "new"
+msgstr ""
+
 msgid "no data"
 msgstr ""
 
-msgid "nvhelp-en"
+msgid "novelibre project"
 msgstr ""
 
 msgid "options"
@@ -1145,10 +1232,22 @@ msgstr ""
 msgid "unknown"
 msgstr ""
 
+msgid "words"
+msgstr ""
+
+msgid "yWriter 7 project"
+msgstr ""
+
+msgid "yWriter seems to be open. Please close first"
+msgstr ""
+
 msgid "years after death"
 msgstr ""
 
 msgid "years old"
+msgstr ""
+
+msgid "yw7 project"
 msgstr ""
 
 msgid "{0} (last saved on {1})"

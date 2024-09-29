@@ -50,6 +50,6 @@ class NovxService:
     def make_world_element(self, **kwargs):
         return WorldElement(**kwargs)
 
-    def make_novx_file(self, filePath, **kwargs):
+    def make_mdnov_file(self, filePath, **kwargs):
         return MdnovFile(filePath, **kwargs)
 

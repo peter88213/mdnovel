@@ -37,6 +37,7 @@ from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.plugin.plugin_manager import PluginManager
 from mdnvlib.view.nv_view import NvView
 from mdnvlib.editor.section_editor import SectionEditor
+from mdnvlib.yw7.yw7_converter import Yw7Converter
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -88,6 +89,9 @@ class NvController:
 
         #--- Initialize the section sectionEditor.
         self.sectionEditor = SectionEditor(self._mdl, self._ui, self)
+
+        #--- Initialize the yWriter converter.
+        self.yw7Converter = Yw7Converter(self._mdl, self._ui, self)
 
         #--- Load the plugins.
         self.plugins = PluginCollection(self._mdl, self._ui, self)

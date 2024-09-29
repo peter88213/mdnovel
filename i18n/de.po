@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
-"POT-Creation-Date: 2024-09-26 20:39:24\n"
-"PO-Revision-Date: 2024-09-26 20:39:24\n"
+"POT-Creation-Date: 2024-09-29 11:40:51\n"
+"PO-Revision-Date: 2024-09-29 11:40:51\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -79,6 +79,12 @@ msgstr "An den vorherigen Abschnitt anhängen"
 msgid "Apply"
 msgstr "Anwenden"
 
+msgid "Apply changes"
+msgstr "Änderungen übernehmen"
+
+msgid "Apply section changes?"
+msgstr "Änderungen am Abschnitt übernehmen?"
+
 msgid "Ask before opening exported documents"
 msgstr "Vor dem Öffnen exportierter Dokumente nachfragen"
 
@@ -112,20 +118,35 @@ msgstr "Buch"
 msgid "Brief synopsis"
 msgstr "Kurzzusammenfassung"
 
+msgid "Bright mode"
+msgstr "Heller Modus"
+
 msgid "Broken link fixed"
 msgstr "Defekten Link korrigiert"
 
 msgid "Can not do"
 msgstr "Geht nicht"
 
+msgid "Can not process file"
+msgstr "Kann Datei nicht verarbeiten"
+
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Cannot apply section changes, because the project is locked.\nUnlock and apply changes?"
+msgstr "Das Projekt ist gesperrt.\nEntsperren und Änderungen übernehmen.?"
 
 msgid "Cannot convert date/days"
 msgstr "Kann Datum/Tage nicht umwandeln"
 
+msgid "Cannot create sections, because the project is locked."
+msgstr "Abschnitte können nicht erzeugt werden werden, weil das Projekt gesperrt ist."
+
 msgid "Cannot create the element at this position"
 msgstr "Kann das Element nicht an dieser Position erzeugen"
+
+msgid "Cannot edit sections, because the project is locked."
+msgstr "Abschnitte können nicht bearbeitet werden werden, weil das Projekt gesperrt ist."
 
 msgid "Cannot generate date/time"
 msgstr "Kann Datum/Zeit nicht erzeugen"
@@ -153,6 +174,9 @@ msgstr "Kann das Projekt nicht abspeichern"
 
 msgid "Cannot save: The project is locked"
 msgstr "Speichern nicht möglich: Das Projekt ist gesperrt"
+
+msgid "Cannot split the section, because the project is locked."
+msgstr "Der Abschnitt kann nicht geteilt werden, weil das Projekt gesperrt ist."
 
 msgid "Cannot write file"
 msgstr "Kann Datei nicht schreiben"
@@ -256,6 +280,9 @@ msgstr "Datum in Tage umwandeln"
 msgid "Convert days to dates"
 msgstr "Tage in Datum umwandeln"
 
+msgid "Copy"
+msgstr "Kopieren"
+
 msgid "Copy style sheet"
 msgstr "Style sheet kopieren"
 
@@ -266,7 +293,13 @@ msgid "Country code"
 msgstr "Ländercode"
 
 msgid "Create from Markdown..."
-msgstr "Erzeuge aus Markdown..."
+msgstr "Aus Markdown erzeugen..."
+
+msgid "Create from yw7..."
+msgstr "Aus yw7 erzeugen..."
+
+msgid "Create section"
+msgstr "Abschnitt erzeugen"
 
 msgid "Created {0} on {1}."
 msgstr "{0} erzeugt am {1}."
@@ -282,6 +315,12 @@ msgstr "Querverweise"
 
 msgid "Ctrl"
 msgstr "Strg"
+
+msgid "Cut"
+msgstr "Ausschneiden"
+
+msgid "Dark mode"
+msgstr "Dunkler Modus"
 
 msgid "Date"
 msgstr "Datum"
@@ -328,9 +367,6 @@ msgstr "Änderungen verwerfen und das Projekt neu laden?"
 msgid "Discard changes and restore the latest backup?"
 msgstr "Änderungen verwerfen und die letzte Sicherungskopie wiederherstellen?"
 
-msgid "Discard manuscript"
-msgstr "Manuskript verwerfen"
-
 msgid "Display localized dates"
 msgstr "Lokalisierte Datumsangaben anzeigen"
 
@@ -351,6 +387,12 @@ msgstr "Entwurf"
 
 msgid "Duration"
 msgstr "Dauer"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Emphasis"
+msgstr "Betont"
 
 msgid "Empty project"
 msgstr "Leeres Projekt"
@@ -436,6 +478,9 @@ msgstr "Datei"
 msgid "File already exists"
 msgstr "Datei existiert bereits"
 
+msgid "File exported"
+msgstr "Datei exportiert"
+
 msgid "File has changed on disk. Reload anyway?"
 msgstr "Die Datei wurde auf der Festplatte geändert. Trotzdem laden?"
 
@@ -445,6 +490,9 @@ msgstr "Die Datei wurde auf der Festplatte geändert. Neu laden?"
 msgid "File has changed on disk. Save anyway?"
 msgstr "Die Datei wurde auf der Festplatte geändert. Trotzdem speichern?"
 
+msgid "File imported"
+msgstr "Datei importiert"
+
 msgid "File not found"
 msgstr "Datei nicht gefunden"
 
@@ -453,6 +501,9 @@ msgstr "Dateityp wird nicht unterstützt"
 
 msgid "File written"
 msgstr "Datei gespeichert"
+
+msgid "Format"
+msgstr "Format"
 
 msgid "Forward"
 msgstr "Vor"
@@ -477,9 +528,6 @@ msgstr "Ziele"
 
 msgid "HTML Plot list"
 msgstr "HTML-Plotliste"
-
-msgid "Heading_20_3_20_invisible"
-msgstr "Überschrift_20_3_20_unsichtbar"
 
 msgid "Help"
 msgstr "Hilfe"
@@ -532,8 +580,14 @@ msgstr "Große Symbole in der Werkzeugleiste"
 msgid "Latest backup successfully restored."
 msgstr "Letzte Sicherung erfolgreich wiederhergestellt."
 
+msgid "Light mode"
+msgstr "Lichter Modus"
+
 msgid "Links"
 msgstr "Links"
+
+msgid "Live update"
+msgstr "Laufende Aktualisierung"
 
 msgid "Location"
 msgstr "Schauplatz"
@@ -559,9 +613,6 @@ msgstr "Hauptfigur"
 msgid "Manuscript"
 msgstr "Manuskript"
 
-msgid "Manuscript discarded"
-msgstr "Manuskript verworfen"
-
 msgid "Markdown document"
 msgstr "Markdown-Dokument"
 
@@ -576,6 +627,9 @@ msgstr "Modul"
 
 msgid "Moon phase"
 msgstr "Mondphase"
+
+msgid "Move the text from the cursor position to the end into a new section"
+msgstr "Den Text von der Cursorposition bis zum Ende in einen neuen Abschnitt verschieben"
 
 msgid "N"
 msgstr "N"
@@ -639,6 +693,9 @@ msgstr "Kein mdnovel-Projekt zum Schreiben"
 
 msgid "No text available"
 msgstr "Kein Text vorhanden"
+
+msgid "No valid version found in file"
+msgstr "Keine gültige Versionsangabe in der Datei gefunden"
 
 msgid "None"
 msgstr "Keiner"
@@ -718,6 +775,9 @@ msgstr "Gliederung"
 msgid "Overwrite"
 msgstr "Überschreiben"
 
+msgid "Overwrite existing file \"{}\"?"
+msgstr "Bestehende Datei \"{}\" überschreiben?"
+
 msgid "Part"
 msgstr "Teil"
 
@@ -730,6 +790,9 @@ msgstr "Präfix Teilenummer"
 msgid "Part number suffix"
 msgstr "Suffix Teilenummer"
 
+msgid "Paste"
+msgstr "Einfügen"
+
 msgid "Peak em. moment"
 msgstr "Em. Höhepunkt"
 
@@ -739,11 +802,11 @@ msgstr "Emotionaler Höhepunkt"
 msgid "Pick Mode (click here or press Esc to exit)"
 msgstr "Auswahlmodus (zum Verlassen hier klicken oder Esc drücken)"
 
+msgid "Plain"
+msgstr "Unformatiert"
+
 msgid "Please close the document first"
 msgstr "Bitte zuerst das Dokument schließen"
-
-msgid "Please close the manuscript first"
-msgstr "Bitte zuerst das Manuskript schließen"
 
 msgid "Please enter a reference date."
 msgstr "Geben Sie bitte ein Bezugsdatum ein."
@@ -871,6 +934,9 @@ msgstr "Szene"
 msgid "Section"
 msgstr "Abschnitt"
 
+msgid "Section Editor"
+msgstr "Abschnittseditor"
+
 msgid "Section descriptions"
 msgstr "Abschnittsbeschreibungen"
 
@@ -943,6 +1009,9 @@ msgstr "Liste anzeigen"
 msgid "Source document deleted"
 msgstr "Quelldokument gelöscht"
 
+msgid "Split at cursor position"
+msgstr "An der Cursorposition teilen"
+
 msgid "Stage"
 msgstr "Stadium"
 
@@ -957,6 +1026,9 @@ msgstr "Status"
 
 msgid "Story structure"
 msgstr "Erzählstruktur"
+
+msgid "Strong emphasis"
+msgstr "Stark betont"
 
 msgid "Style sheet copied into the project folder."
 msgstr "Style sheet in den Projektordner kopiert."
@@ -987,6 +1059,12 @@ msgstr "Das Plugin bleibt bis zum nächsten Start aktiv."
 
 msgid "The previous section has no time set."
 msgstr "Der vorhergehende Abschnitt hat keine Zeitangabe"
+
+msgid "The project \"{}\" was created with a newer novelibre version."
+msgstr "Das Projekt \"{}\" wurde mit einer neueren Version von novelibre erzeugt."
+
+msgid "The project \"{}\" was created with an outdated novelibre version."
+msgstr "Das Projekt \"{}\" wurde mit einer veralteten Version von novelibre erzeugt."
 
 msgid "The project is locked.\nUnlock?"
 msgstr "Das Projekt is gesperrt.\nEntsperren?"
@@ -1045,6 +1123,9 @@ msgstr "Projekt ohne Titel"
 msgid "Unused"
 msgstr "Unbenutzt"
 
+msgid "Update"
+msgstr "Aktualisieren"
+
 msgid "Update the project?"
 msgstr "Das Projekt aktualisieren?"
 
@@ -1065,6 +1146,9 @@ msgstr "Ansicht"
 
 msgid "Viewpoint"
 msgstr "Perspektive"
+
+msgid "Word count"
+msgstr "Wortzählung"
 
 msgid "Words"
 msgstr "Wörter"
@@ -1129,11 +1213,14 @@ msgstr "mdnovel API"
 msgid "mdnovel project"
 msgstr "mdnovel-Projekt"
 
+msgid "new"
+msgstr "neu"
+
 msgid "no data"
 msgstr "keine Daten"
 
-msgid "nvhelp-en"
-msgstr "nvhelp-de"
+msgid "novelibre project"
+msgstr "novelibre-Projekt"
 
 msgid "options"
 msgstr "Optionen"
@@ -1144,11 +1231,23 @@ msgstr "pluginmanager"
 msgid "unknown"
 msgstr "unbekannt"
 
+msgid "words"
+msgstr "Wörter"
+
+msgid "yWriter 7 project"
+msgstr "yWriter 7-Projekt"
+
+msgid "yWriter seems to be open. Please close first"
+msgstr "yWriter scheint offen zu sein. Bitte schließen"
+
 msgid "years after death"
 msgstr "Jahre seit dem Todesfall"
 
 msgid "years old"
 msgstr "Jahre alt"
+
+msgid "yw7 project"
+msgstr "yw7-Projekt"
 
 msgid "{0} (last saved on {1})"
 msgstr "{0} (zuletzt gespeichert: {1})"
