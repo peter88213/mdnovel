@@ -602,13 +602,12 @@ class NovxFile(File):
 
                 #--- Section branch.
                 self.novel.tree.append(CH_ROOT, chId)
-                if xmlChapter.find('SECTION'):
-                    for xmlSection in xmlChapter.iterfind('SECTION'):
-                        scId = xmlSection.attrib['id']
-                        self._read_section(xmlSection, scId)
-                        if self.novel.sections[scId].scType < self.novel.chapters[chId].chType:
-                            self.novel.sections[scId].scType = self.novel.chapters[chId].chType
-                        self.novel.tree.append(chId, scId)
+                for xmlSection in xmlChapter.iterfind('SECTION'):
+                    scId = xmlSection.attrib['id']
+                    self._read_section(xmlSection, scId)
+                    if self.novel.sections[scId].scType < self.novel.chapters[chId].chType:
+                        self.novel.sections[scId].scType = self.novel.chapters[chId].chType
+                    self.novel.tree.append(chId, scId)
         except TypeError:
             pass
 
