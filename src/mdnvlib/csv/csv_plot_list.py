@@ -14,7 +14,7 @@ from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import list_to_string
 
 
-class CsvPlotList(CsvFile):
+class CsvPlotlist(CsvFile):
     """csv plot list representation.
 
     Public instance variables:

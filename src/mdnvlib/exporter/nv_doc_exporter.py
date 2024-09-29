@@ -13,7 +13,7 @@ from mdnvlib.csv.csv_charlist import CsvCharList
 from mdnvlib.csv.csv_grid import CsvGrid
 from mdnvlib.csv.csv_itemlist import CsvItemList
 from mdnvlib.csv.csv_loclist import CsvLocList
-from mdnvlib.csv.csv_plot_list import CsvPlotList
+from mdnvlib.csv.csv_plot_list import CsvPlotlist
 from mdnvlib.csv.csv_sectionlist import CsvSectionList
 from mdnvlib.exporter.filter_factory import FilterFactory
 from mdnvlib.file.doc_open import open_document
@@ -43,7 +43,7 @@ class NvDocExporter:
         CsvGrid,
         CsvItemList,
         CsvLocList,
-        CsvPlotList,
+        CsvPlotlist,
         CsvSectionList,
         MdBriefSynopsis,
         MdChapterDesc,
