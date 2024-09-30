@@ -41,7 +41,7 @@ class ContentsViewer(RichTextNv):
         super().__init__(parent, **prefs)
         self.pack(expand=True, fill='both')
         self.showMarkup = tk.BooleanVar(parent, value=prefs['show_markdown'])
-        ttk.Checkbutton(parent, text=_('Show Markdown'), variable=self.showMarkup).pack(anchor='w')
+        # ttk.Checkbutton(parent, text=_('Show Markdown'), variable=self.showMarkup).pack(anchor='w')
         self.showMarkup.trace('w', self.refresh)
         self._textMarks = {}
         self._index = '1.0'

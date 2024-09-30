@@ -82,4 +82,4 @@ class ExportOptionsWindow(tk.Toplevel):
         prefs['lock_on_export'] = self._lockOnExport.get()
 
     def _open_help(self, event=None):
-        open_help(f'export_menu.html#{_("options").lower()}')
+        open_help(f'export_menu#{_("options").lower()}')
