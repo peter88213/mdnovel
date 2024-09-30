@@ -14,8 +14,7 @@ the `Enter` key.
 
 **Note**
 
--   If you choose a section already open, the window will be brought to
-    the foreground.
+If you choose a section already open, the window will be brought to the foreground.
 
 ---
 

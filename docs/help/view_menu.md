@@ -93,8 +93,8 @@ titles and section content.
 
 **Hint**
 
--   On reopening, the windows shows the text, where the tree is
-    selected.
+On reopening, the windows shows the text, where the tree is selected.
+
 ---
 
 ## Toggle Properties
