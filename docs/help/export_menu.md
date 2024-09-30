@@ -9,7 +9,7 @@ Export menu
 
 With **Export >  Manuscript for printing (export only)**,
 you can create a text document for further use,
-e.g. a final document when you are finished with *novelibre*.
+e.g. a final document when you are finished with *mdnovel*.
 
 
 -  The document is placed in the same folder as the project.
@@ -18,7 +18,7 @@ e.g. a final document when you are finished with *novelibre*.
    sections marked "unused" are not exported.
 -  Part titles appear as first level heading.
 -  Chapter titles appear as second level heading.
--  Sections are separated by ``* * *``. The first line is not indented.
+-  Sections are separated by ``* * *``.
 
 
 ## Brief synopsis
@@ -44,9 +44,9 @@ File name suffix is ``_brf_synopsis``.
 File name suffix is ``.yw7``.
 
 
-## novelibre project
+## mdnovel project
 
-**Export a project file for the [noelibre](https://github.com/peter88213/novelibre) writing program**
+**Export a project file for the [noelibre](https://github.com/peter88213/mdnovel) writing program**
 
 File name suffix is ``.novx``.
 
@@ -64,10 +64,10 @@ You can open a dialog for settings concerning the document export.
 This checkbox controls the behavior on document export.
 
 - If ticked, you will be asked whether you want to
-  have *novelibre* launch your standard application with the newly created
+  have *mdnovel* launch your standard application with the newly created
   document opened.
 
-- If unticked, *novelibre* will launch your standard application
+- If unticked, *mdnovel* will launch your standard application
   with the newly created document opened right away.
 
 

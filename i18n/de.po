@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
-"POT-Creation-Date: 2024-09-29 12:37:18\n"
-"PO-Revision-Date: 2024-09-29 12:37:18\n"
+"POT-Creation-Date: 2024-09-30 11:08:20\n"
+"PO-Revision-Date: 2024-09-30 11:08:20\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -313,9 +313,6 @@ msgstr "Programmfehler"
 msgid "Cross reference"
 msgstr "Querverweise"
 
-msgid "Cross references"
-msgstr "Querverweise"
-
 msgid "Ctrl"
 msgstr "Strg"
 
@@ -424,23 +421,14 @@ msgstr "Kapitelbeschreibungen exportieren"
 msgid "Export character descriptions"
 msgstr "Figurenbeschreibungen exportieren"
 
-msgid "Export character list"
-msgstr "Figurenliste exportieren"
-
 msgid "Export document"
 msgstr "Dokument exportieren"
 
 msgid "Export item descriptions"
 msgstr "Gegenstandsbeschreibungen exportieren"
 
-msgid "Export item list"
-msgstr "Gegenstandsliste exportieren"
-
 msgid "Export location descriptions"
 msgstr "Schauplatzbeschreibungen exportieren"
-
-msgid "Export location list"
-msgstr "Schauplatzliste exportieren"
 
 msgid "Export manuscript filtered by plot line"
 msgstr "Manuskript nach Plotlinie gefiltert exportieren"
@@ -454,17 +442,8 @@ msgstr "Teilebeschreibungen exportieren"
 msgid "Export plot grid"
 msgstr "Handlungsraster (Plot grid) exportieren"
 
-msgid "Export plot line descriptions"
-msgstr "Plotlinienbeschreibungen exportieren"
-
-msgid "Export plot list"
-msgstr "Plot-Liste exportieren"
-
 msgid "Export section descriptions"
 msgstr "Abschnittsbeschreibungen exportieren"
-
-msgid "Export story structure description"
-msgstr "Erzählstruktur-Beschreibung exportieren"
 
 msgid "Export synopsis filtered by plot line"
 msgstr "Zusammenfassung nach Plottlinie gefiltert exportieren"
@@ -603,9 +582,6 @@ msgstr "Schauplatzliste"
 
 msgid "Locations"
 msgstr "Schauplätze"
-
-msgid "Lock the project after document export for editing"
-msgstr "Nach dem Dokumentenexport zum Editieren das Projekt sperren"
 
 msgid "Log writing progress"
 msgstr "Schreibfortschritt protokollieren"
@@ -990,9 +966,6 @@ msgstr "Gegenstände anzeigen"
 
 msgid "Show Locations"
 msgstr "Schauplätze anzeigen"
-
-msgid "Show Markdown"
-msgstr "Markdown anzeigen"
 
 msgid "Show Plot lines"
 msgstr "Plotlinien anzeigen"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
-"POT-Creation-Date: 2024-09-29 12:37:18\n"
+"POT-Creation-Date: 2024-09-30 11:08:20\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -320,9 +320,6 @@ msgstr ""
 msgid "Cross reference"
 msgstr ""
 
-msgid "Cross references"
-msgstr ""
-
 msgid "Ctrl"
 msgstr ""
 
@@ -431,22 +428,13 @@ msgstr ""
 msgid "Export character descriptions"
 msgstr ""
 
-msgid "Export character list"
-msgstr ""
-
 msgid "Export document"
 msgstr ""
 
 msgid "Export item descriptions"
 msgstr ""
 
-msgid "Export item list"
-msgstr ""
-
 msgid "Export location descriptions"
-msgstr ""
-
-msgid "Export location list"
 msgstr ""
 
 msgid "Export manuscript filtered by plot line"
@@ -461,16 +449,7 @@ msgstr ""
 msgid "Export plot grid"
 msgstr ""
 
-msgid "Export plot line descriptions"
-msgstr ""
-
-msgid "Export plot list"
-msgstr ""
-
 msgid "Export section descriptions"
-msgstr ""
-
-msgid "Export story structure description"
 msgstr ""
 
 msgid "Export synopsis filtered by plot line"
@@ -609,9 +588,6 @@ msgid "Location list"
 msgstr ""
 
 msgid "Locations"
-msgstr ""
-
-msgid "Lock the project after document export for editing"
 msgstr ""
 
 msgid "Log writing progress"
@@ -917,7 +893,7 @@ msgstr ""
 msgid "Required"
 msgstr ""
 
-msgid "Reset chapter number when starting a new part"
+msgid "Restart chapter numbering at part beginning"
 msgstr ""
 
 msgid "Restore backup"
@@ -996,9 +972,6 @@ msgid "Show Items"
 msgstr ""
 
 msgid "Show Locations"
-msgstr ""
-
-msgid "Show Markdown"
 msgstr ""
 
 msgid "Show Plot lines"
