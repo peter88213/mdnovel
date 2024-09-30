@@ -62,9 +62,6 @@ split the section at the cursor position.
 -   All the text from the cursor position is cut and pasted into a newly
     created section.
 -   The new section is placed after the currently edited section.
--   The new section is
-    [appended](../section_view.html#append-to-previous-section) to the
-    currently edited section.
 -   The new section has the same status as the currently edited section.
 -   The new section is of the same type as the currently edited section.
 -   The new section has the same viewpoint character as the currently
@@ -103,7 +100,7 @@ program when editing big sections. This is why it's disabled by default.
 ## Apply changes
 
 With `Ctrl`-`S`, you can apply changes to the section. Then \"Modified\"
-status is displayed in *novelibre*.
+status is displayed in *mdnovel*.
 
 ---
 
