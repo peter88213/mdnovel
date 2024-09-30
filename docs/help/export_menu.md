@@ -46,7 +46,7 @@ File name suffix is ``.yw7``.
 
 ## mdnovel project
 
-**Export a project file for the [noelibre](https://github.com/peter88213/mdnovel) writing program**
+**Export a project file for the [noelibre](https://github.com/peter88213/novelibre) writing program**
 
 File name suffix is ``.novx``.
 
