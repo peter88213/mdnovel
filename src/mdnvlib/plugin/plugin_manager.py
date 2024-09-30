@@ -123,7 +123,7 @@ class PluginManager(tk.Toplevel):
         self._deleteButton.configure(state=deleteButtonState)
 
     def _open_help(self, event=None):
-        open_help(f'tools_menu.html#{_("plugin-manager").lower()}')
+        open_help(f'tools_menu#plugin-manager')
 
     def _open_home_page(self, event=None):
         moduleName = self._moduleCollection.selection()[0]

@@ -11,7 +11,7 @@
 ## Command reference
 
 - File menu
-- View menu
+- [View menu](view_menu)
 - Part menu
 - Chapter menu
 - Section menu

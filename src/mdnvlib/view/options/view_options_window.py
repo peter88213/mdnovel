@@ -141,4 +141,4 @@ class ViewOptionsWindow(tk.Toplevel):
         self._ui.propertiesView.refresh()
 
     def _open_help(self, event=None):
-        open_help(f'view_menu.html#{_("options").lower()}')
+        open_help('view_menu#options')
