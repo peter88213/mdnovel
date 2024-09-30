@@ -82,7 +82,7 @@ notes\" branch.
 **Show/hide the novel text**
 
 With **View \> Toggle Text viewer** or `Ctrl`-`T`, you can open or close
-the [text viewer](desktop.html) window, showing part/chapter/section
+the [text viewer](desktop) window, showing part/chapter/section
 titles and section content.
 
 ---
@@ -149,8 +149,7 @@ Status
 Work phase
 
 :   Normal sections are highlighted if their completion status does not
-    match the work phase defined in the [Book
-    properties](book_view.html#writing-pogress).
+    match the work phase defined in the [Book properties](book_view#writing-pogress).
 
 ### Large toolbar icons
 
