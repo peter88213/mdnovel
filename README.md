@@ -10,6 +10,11 @@ This is a variant of the [novelibre](https://github.com/peter88213/novelibre) no
 
 This program is intended only as a proof of concept. It is still in pre-Alpha status. There is no release yet.
 
+See the development details in the [mdnovel features project](https://github.com/users/peter88213/projects/17/views/2).
+
+As soon as the features with the highest priority are implemented, the Alpha version 0.1.0 will be released.
+In the meantime, those interested can engage in discussions in the [forum](https://github.com/peter88213/mdnovel/discussions).
+
 ## Features (to come)
 
 - With *mdnovel*, extensive novels can be broken down into **parts, chapters, and sections**. 
