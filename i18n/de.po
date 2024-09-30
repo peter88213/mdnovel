@@ -910,8 +910,8 @@ msgstr "Umbenennungen"
 msgid "Required"
 msgstr "Erforderlich"
 
-msgid "Reset chapter number when starting a new part"
-msgstr "Kapitelnummerierung per Teil"
+msgid "Restart chapter numbering at part beginning"
+msgstr "Kapitelnummerierung in jedem Teil neu beginnen"
 
 msgid "Restore backup"
 msgstr "Sicherungskopie wiederherstellen"
