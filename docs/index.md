@@ -1,1 +1,2 @@
-[Help pages](help/)
+- [Changelog](changelog)
+- [Help pages](help/)
