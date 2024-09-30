@@ -1,4 +1,4 @@
-[Home](../../) > [Help pages](../) > View menu
+[Home](../) > [Help pages](index) > View menu
 
 ---
 

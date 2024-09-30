@@ -1,4 +1,4 @@
-[Home](../../) > [Help pages](../) > Section editor
+[Home](../) > [Help pages](index) > Section editor
 
 ---
 

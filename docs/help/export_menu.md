@@ -1,4 +1,4 @@
-[Home](../../) > [Help pages](../) > Export menu
+[Home](../) > [Help pages](index) > Export menu
 
 ---
 
