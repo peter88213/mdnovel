@@ -23,8 +23,8 @@
 - [Export menu](export_menu)
 - Tools menu
 - Help menu
-- Tree view context menu
-- the toolbar
+- The tree view context menu
+- The toolbar
 
 ## Properties reference
 
