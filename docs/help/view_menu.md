@@ -1,3 +1,7 @@
+[Home](../../) > [Help pages](../) > View menu
+
+---
+
 # View menu
 
 **Control the display**

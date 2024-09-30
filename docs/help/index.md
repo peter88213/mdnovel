@@ -1,3 +1,7 @@
+[Home](../) > Help pages
+
+---
+
 # Help pages
 
 ## General

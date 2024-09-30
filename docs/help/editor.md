@@ -1,3 +1,7 @@
+[Home](../../) > [Help pages](../) > Section editor
+
+---
+
 # Section editor
 
 ## Launch the section editor
