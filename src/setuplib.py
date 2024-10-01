@@ -1,6 +1,6 @@
 """mdnovel installer library module. 
 
-Version @release
+Version 0.1.0
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
@@ -25,7 +25,6 @@ except ModuleNotFoundError:
     sys.exit(1)
 
 from tkinter import messagebox
-import relocate
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -43,7 +42,7 @@ except:
         return message
 
 APPNAME = 'mdnovel'
-VERSION = ' @release'
+VERSION = ' 0.1.0'
 APP = f'{APPNAME}.py'
 START_UP_SCRIPT = 'run.pyw'
 INI_FILE = f'{APPNAME}.ini'
@@ -69,9 +68,9 @@ ADD_TO_REGISTRY = f'''Windows Registry Editor Version 5.00
 [-HKEY_CURRENT_USER\Software\Classes\\noveltree]
 [-HKEY_CURRENT_USER\Software\Classes\\mdnovel]
 [-HKEY_CURRENT_USER\Software\Classes\\mdnovel]
-[-HKEY_CURRENT_USER\Software\Classes\\novxCollection]
-[-HKEY_CURRENT_USER\Software\Classes\\.novx]
-[HKEY_CURRENT_USER\Software\Classes\\.novx]
+[-HKEY_CURRENT_USER\Software\Classes\\mdnovelCollection]
+[-HKEY_CURRENT_USER\Software\Classes\\.mdnovel]
+[HKEY_CURRENT_USER\Software\Classes\\.mdnovel]
 "Content Type"="text/xml"
 @="mdnovel"
 [HKEY_CURRENT_USER\Software\Classes\\mdnovel]
@@ -82,10 +81,10 @@ ADD_TO_REGISTRY = f'''Windows Registry Editor Version 5.00
 @="\\"$PYTHON\\" \\"$SCRIPT\\" \\"%1\\""
 [HKEY_CURRENT_USER\Software\Classes\\.nvcx]
 "Content Type"="text/xml"
-@="novxCollection"
-[HKEY_CURRENT_USER\Software\Classes\\novxCollection]
+@="mdnovelCollection"
+[HKEY_CURRENT_USER\Software\Classes\\mdnovelCollection]
 @="mdnovel Collection"
-[HKEY_CURRENT_USER\Software\Classes\\novxCollection\DefaultIcon]
+[HKEY_CURRENT_USER\Software\Classes\\mdnovelCollection\DefaultIcon]
 @="$INSTALL\\\\icons\\\\cLogo64.ico"
 
 '''
@@ -95,7 +94,7 @@ REMOVE_FROM_REGISTRY = f'''Windows Registry Editor Version 5.00
 [-HKEY_CURRENT_USER\Software\Classes\\noveltree]
 [-HKEY_CURRENT_USER\Software\Classes\\nv5Collection]
 [-HKEY_CURRENT_USER\Software\Classes\\mdnovel]
-[-HKEY_CURRENT_USER\Software\Classes\\.novx]
+[-HKEY_CURRENT_USER\Software\Classes\\.mdnovel]
 
 '''
 
@@ -194,12 +193,7 @@ def install(installDir, zipped):
         copy_file = copy2
         copy_tree = cp_tree
 
-    #--- Relocate the v1.x installation directory, if necessary.
-    message = relocate.main()
-    if message:
-        messagebox.showinfo('Moving the mdnovel installation directory', message)
-
-    #--- Create a general novxlib installation directory, if necessary.
+    #--- Create a general mdnovel installation directory, if necessary.
     os.makedirs(installDir, exist_ok=True)
     cnfDir = f'{installDir}/{INI_PATH}'
     if os.path.isfile(f'{installDir}/{APP}'):
@@ -300,14 +294,14 @@ def main(zipped=True):
 
     # Run the installation.
     homePath = str(Path.home()).replace('\\', '/')
-    novxlibPath = f'{homePath}/.novx'
+    mdnovelPath = f'{homePath}/.mdnovel'
     try:
-        install(novxlibPath, zipped)
+        install(mdnovelPath, zipped)
     except Exception as ex:
         output(str(ex))
 
     # Show options: open installation folders or quit.
-    root.openButton = tk.Button(text="Open installation folder", command=lambda: open_folder(f'{homePath}/.novx'))
+    root.openButton = tk.Button(text="Open installation folder", command=lambda: open_folder(f'{homePath}/.mdnovel'))
     root.openButton.config(height=1, width=30)
     root.openButton.pack(padx=5, pady=5)
     root.quitButton = tk.Button(text="Quit", command=quit)
