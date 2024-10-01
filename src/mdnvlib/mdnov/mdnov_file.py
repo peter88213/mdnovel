@@ -32,11 +32,10 @@ from mdnvlib.novx_globals import PRJ_NOTE_PREFIX
 from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import intersection
+from mdnvlib.novx_globals import norm_path
 from mdnvlib.novx_globals import verified_date
 from mdnvlib.novx_globals import verified_int_string
-
 import xml.etree.ElementTree as ET
-from mdnvlib.novx_globals import norm_path
 
 
 def get_xml_root(filePath):
@@ -285,6 +284,10 @@ $Desc
             raise Error(f"{_('Corrupt project data')} ({str(ex)})")
         self._get_timestamp()
         self._keep_word_count()
+
+    def write(self):
+        super().write()
+        self._get_timestamp()
 
     def _check_id(self, elemId, elemPrefix):
         """Raise an exception if elemId does not start with the correct prefix."""

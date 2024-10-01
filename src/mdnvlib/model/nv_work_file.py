@@ -7,13 +7,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import datetime
 import os
 
-from mdnvlib.mdnov.mdnov_file import MdnovFile
 from mdnvlib.novx.novx_file import NovxFile
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import _
 
 
-class NvWorkFile(MdnovFile):
+class NvWorkFile(NovxFile):
     """mdnovel project file representation.
     
     Public properties:
@@ -82,12 +81,7 @@ class NvWorkFile(MdnovFile):
         
         Extends the superclass method.
         """
-        filePath = self.filePath.replace(self.EXTENSION, NovxFile.EXTENSION)
-        novxFile = NovxFile(filePath)
-        novxFile.novel = self.novel
-        novxFile.read()
-        self.novel = novxFile.novel
-
+        super().read()
         self.novel.check_locale()
         # using the system locale if no reasonable looking locale is set
 

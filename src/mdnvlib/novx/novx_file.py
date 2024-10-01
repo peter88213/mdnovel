@@ -111,6 +111,10 @@ class NovxFile(File):
         # key: str -- date (iso formatted)
         # value: list -- [word count: str, with unused: str]
         self.wcLogUpdate = {}
+        # key: str -- date (iso formatted)
+        # value: list -- [word count: str, with unused: str]
+
+        self.timestamp = None
 
     def adjust_section_types(self):
         """Make sure that nodes with "Unused" parents inherit the type."""
@@ -189,6 +193,8 @@ class NovxFile(File):
                 wcTotalCount = xmlWc.find('WithUnused').text
                 if wcDate and wcCount and wcTotalCount:
                     self.wcLog[wcDate] = [wcCount, wcTotalCount]
+        self._get_timestamp()
+        self._keep_word_count()
 
     def write(self):
         """Write instance variables to the novx xml file.
@@ -220,6 +226,7 @@ class NovxFile(File):
         self.xmlTree = ET.ElementTree(xmlRoot)
         self._write_element_tree(self)
         self._postprocess_xml_file(self.filePath)
+        self._get_timestamp()
 
     def _build_chapter_branch(self, xmlChapters, prjChp, chId):
         xmlChapter = ET.SubElement(xmlChapters, 'CHAPTER', attrib={'id':chId})
@@ -522,7 +529,15 @@ class NovxFile(File):
         #--- Content.
         sectionContent = prjScn.sectionContent
         if sectionContent:
-            xmlSection.append(text_to_xml_element('Content', sectionContent))
+            sectionContent = sectionContent.replace('\n\n', '\n').strip()
+            newlines = []
+            for line in sectionContent.split('\n'):
+                line = re.sub(r'([^\*])\*\*(.+?)\*\*([^\*])', '\\1<strong>\\2</strong>\\3', line)
+                line = re.sub(r'([^\*])\*(.+?)\*([^\*])', '\\1<em>\\2</em>\\3', line)
+                line = f'<p>{line}</p>'
+                newlines.append(line)
+            sectionContent = '\n'.join(newlines)
+            xmlSection.append(ET.fromstring(f'<Content>\n{sectionContent}\n</Content>'))
 
     def _get_aka(self, xmlElement, prjElement):
         prjElement.aka = get_element_text(xmlElement, 'Aka')
@@ -551,6 +566,17 @@ class NovxFile(File):
     def _get_tags(self, xmlElement, prjElement):
         tags = string_to_list(get_element_text(xmlElement, 'Tags'))
         prjElement.tags = self._strip_spaces(tags)
+
+    def _get_timestamp(self):
+        try:
+            self.timestamp = os.path.getmtime(self.filePath)
+        except:
+            self.timestamp = None
+
+    def _keep_word_count(self):
+        """Keep the actual wordcount, if not logged."""
+        if not self.wcLog:
+            return
 
     def _postprocess_xml_file(self, filePath):
         """Postprocess an xml file created by ElementTree.

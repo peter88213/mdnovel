@@ -6,7 +6,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 ### Version 0.1.0
 
-- Reading and writing the *.mdnov* file format.
+- The novx format is the standard file format for the time being. 
 - Featuring an in-place section editor.
 - Importing and exporting the *.novx* file format.
 - Importing and exporting the *.yw7* file format.

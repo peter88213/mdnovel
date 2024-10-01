@@ -18,11 +18,7 @@ from mdnvlib.nv_globals import prefs
 
 
 class NvDocImporter:
-    """A converter for universal import.
-
-    Support mdnovel projects and most of the File subclasses 
-    that are written with OpenOffice/LibreOffice Writer or Calc.
-    """
+    """A converter for universal import."""
     IMPORT_SOURCE_CLASSES = [
     ]
     CREATE_SOURCE_CLASSES = [

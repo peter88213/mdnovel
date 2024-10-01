@@ -25,6 +25,7 @@ from mdnvlib.configuration.configuration import Configuration
 from mdnvlib.configuration.nv_configuration import NvConfiguration
 from mdnvlib.controller.nv_controller import NvController
 from mdnvlib.nv_globals import prefs
+from mdnvlib.model.nv_work_file import NvWorkFile
 
 SETTINGS = dict(
     arcs_width=55,
@@ -144,6 +145,9 @@ def main():
         sourcePath = ''
     if not sourcePath or not os.path.isfile(sourcePath):
         sourcePath = prefs['last_open']
+    root, extension = os.path.splitext(sourcePath)
+    if extension != NvWorkFile.EXTENSION:
+        sourcePath = f'{root}{NvWorkFile.EXTENSION}'
     if sourcePath and os.path.isfile(sourcePath):
         app.open_project(filePath=sourcePath)
 
