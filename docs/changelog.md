@@ -18,3 +18,7 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Exporting a Markdown brief synopsis with chapter titles and section titles.
 - Exporting a Markdown full synopsis with section descriptions.
 - Exporting a csv Plot Grid.
+
+### Version 0.1.1
+
+- Bugfix / refactor.

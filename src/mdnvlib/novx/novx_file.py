@@ -32,46 +32,6 @@ from mdnvlib.xml.xml_indent import indent
 import xml.etree.ElementTree as ET
 
 
-def get_element_text(xmlElement, tag, default=None):
-    """Return the text field of an XML element.
-    
-    If the element doesn't exist, return default.
-    """
-    if xmlElement.find(tag) is not None:
-        return xmlElement.find(tag).text
-    else:
-        return default
-
-
-def text_to_xml_element(tag, text):
-    """Return an ElementTree element named "tag" with paragraph subelements.
-    
-    Positional arguments:
-    tag: str -- Name of the XML element to return.    
-    text -- string to convert.
-    """
-    xmlElement = ET.Element(tag)
-    if text:
-        for line in text.split('\n'):
-            ET.SubElement(xmlElement, 'p').text = line
-    return xmlElement
-
-
-def xml_element_to_text(xmlElement):
-    """Return plain text, converted from ElementTree paragraph subelements.
-    
-    Positional arguments:
-        xmlElement -- ElementTree element.        
-    
-    Each <p> subelement of xmlElement creates a line. Formatting is discarded.
-    """
-    lines = []
-    if xmlElement is not None:
-        for paragraph in xmlElement.iterfind('p'):
-            lines.append(''.join(t for t in paragraph.itertext()))
-    return '\n'.join(lines)
-
-
 class NovxFile(File):
     """novx file representation.
 
@@ -270,11 +230,11 @@ class NovxFile(File):
 
         #--- Bio.
         if prjCrt.bio:
-            xmlCrt.append(text_to_xml_element('Bio', prjCrt.bio))
+            xmlCrt.append(self._text_to_xml_element('Bio', prjCrt.bio))
 
         #--- Goals.
         if prjCrt.goals:
-            xmlCrt.append(text_to_xml_element('Goals', prjCrt.goals))
+            xmlCrt.append(self._text_to_xml_element('Goals', prjCrt.goals))
 
         #--- Birth date.
         if prjCrt.birthDate:
@@ -476,11 +436,11 @@ class NovxFile(File):
 
         #--- Goal/Conflict/Outcome.
         if prjScn.goal:
-            xmlSection.append(text_to_xml_element('Goal', prjScn.goal))
+            xmlSection.append(self._text_to_xml_element('Goal', prjScn.goal))
         if prjScn.conflict:
-            xmlSection.append(text_to_xml_element('Conflict', prjScn.conflict))
+            xmlSection.append(self._text_to_xml_element('Conflict', prjScn.conflict))
         if prjScn.outcome:
-            xmlSection.append(text_to_xml_element('Outcome', prjScn.outcome))
+            xmlSection.append(self._text_to_xml_element('Outcome', prjScn.outcome))
 
         # Plot notes.
         if prjScn.plotlineNotes:
@@ -491,7 +451,7 @@ class NovxFile(File):
                 if not prjScn.plotlineNotes[plId]:
                     continue
 
-                xmlPlotlineNotes = text_to_xml_element('PlotlineNotes', self.plotlineNotes[plId])
+                xmlPlotlineNotes = self._text_to_xml_element('PlotlineNotes', prjScn.plotlineNotes[plId])
                 xmlPlotlineNotes.set('id', plId)
                 xmlSection.append(xmlPlotlineNotes)
 
@@ -529,23 +489,34 @@ class NovxFile(File):
         #--- Content.
         sectionContent = prjScn.sectionContent
         if sectionContent:
-            sectionContent = sectionContent.replace('\n\n', '\n').strip()
+            while '\n\n' in sectionContent:
+                sectionContent = sectionContent.replace('\n\n', '\n').strip()
             newlines = []
             for line in sectionContent.split('\n'):
-                line = re.sub(r'([^\*])\*\*(.+?)\*\*([^\*])', '\\1<strong>\\2</strong>\\3', line)
-                line = re.sub(r'([^\*])\*(.+?)\*([^\*])', '\\1<em>\\2</em>\\3', line)
+                line = re.sub(r'(^|[^\*])\*\*(.+?)\*\*([^\*]|$)', '\\1<strong>\\2</strong>\\3', line)
+                line = re.sub(r'(^|[^\*])\*(.+?)\*([^\*]|$)', '\\1<em>\\2</em>\\3', line)
                 line = f'<p>{line}</p>'
                 newlines.append(line)
             sectionContent = '\n'.join(newlines)
             xmlSection.append(ET.fromstring(f'<Content>\n{sectionContent}\n</Content>'))
 
     def _get_aka(self, xmlElement, prjElement):
-        prjElement.aka = get_element_text(xmlElement, 'Aka')
+        prjElement.aka = self._get_element_text(xmlElement, 'Aka')
 
     def _get_base_data(self, xmlElement, prjElement):
-        prjElement.title = get_element_text(xmlElement, 'Title')
-        prjElement.desc = xml_element_to_text(xmlElement.find('Desc'))
+        prjElement.title = self._get_element_text(xmlElement, 'Title')
+        prjElement.desc = self._xml_element_to_text(xmlElement.find('Desc'))
         prjElement.links = self._get_link_dict(xmlElement)
+
+    def _get_element_text(self, xmlElement, tag, default=None):
+        """Return the text field of an XML element.
+        
+        If the element doesn't exist, return default.
+        """
+        if xmlElement.find(tag) is not None:
+            return xmlElement.find(tag).text
+        else:
+            return default
 
     def _get_link_dict(self, parent):
         """Return a dictionary of links.
@@ -561,10 +532,10 @@ class NovxFile(File):
         return links
 
     def _get_notes(self, xmlElement, prjElement):
-        prjElement.notes = xml_element_to_text(xmlElement.find('Notes'))
+        prjElement.notes = self._xml_element_to_text(xmlElement.find('Notes'))
 
     def _get_tags(self, xmlElement, prjElement):
-        tags = string_to_list(get_element_text(xmlElement, 'Tags'))
+        tags = string_to_list(self._get_element_text(xmlElement, 'Tags'))
         prjElement.tags = self._strip_spaces(tags)
 
     def _get_timestamp(self):
@@ -654,19 +625,19 @@ class NovxFile(File):
                 self._get_aka(xmlCharacter, self.novel.characters[crId])
 
                 #--- Full name.
-                self.novel.characters[crId].fullName = get_element_text(xmlCharacter, 'FullName')
+                self.novel.characters[crId].fullName = self._get_element_text(xmlCharacter, 'FullName')
 
                 #--- Bio.
-                self.novel.characters[crId].bio = xml_element_to_text(xmlCharacter.find('Bio'))
+                self.novel.characters[crId].bio = self._xml_element_to_text(xmlCharacter.find('Bio'))
 
                 #--- Goals.
-                self.novel.characters[crId].goals = xml_element_to_text(xmlCharacter.find('Goals'))
+                self.novel.characters[crId].goals = self._xml_element_to_text(xmlCharacter.find('Goals'))
 
                 #--- Birth date.
-                self.novel.characters[crId].birthDate = get_element_text(xmlCharacter, 'BirthDate')
+                self.novel.characters[crId].birthDate = self._get_element_text(xmlCharacter, 'BirthDate')
 
                 #--- Death date.
-                self.novel.characters[crId].deathDate = get_element_text(xmlCharacter, 'DeathDate')
+                self.novel.characters[crId].deathDate = self._get_element_text(xmlCharacter, 'DeathDate')
 
                 self.novel.tree.append(CR_ROOT, crId)
         except TypeError:
@@ -724,7 +695,7 @@ class NovxFile(File):
                 self._get_notes(xmlPlotLine, self.novel.plotLines[plId])
 
                 #--- Short name.
-                self.novel.plotLines[plId].shortName = get_element_text(xmlPlotLine, 'ShortName')
+                self.novel.plotLines[plId].shortName = self._get_element_text(xmlPlotLine, 'ShortName')
 
                 #--- Section references.
                 acSections = []
@@ -782,24 +753,24 @@ class NovxFile(File):
         self._get_base_data(xmlProject, self.novel)
 
         #--- Author.
-        self.novel.authorName = get_element_text(xmlProject, 'Author')
+        self.novel.authorName = self._get_element_text(xmlProject, 'Author')
 
         #--- Chapter heading prefix/suffix.
-        self.novel.chapterHeadingPrefix = get_element_text(xmlProject, 'ChapterHeadingPrefix')
-        self.novel.chapterHeadingSuffix = get_element_text(xmlProject, 'ChapterHeadingSuffix')
+        self.novel.chapterHeadingPrefix = self._get_element_text(xmlProject, 'ChapterHeadingPrefix')
+        self.novel.chapterHeadingSuffix = self._get_element_text(xmlProject, 'ChapterHeadingSuffix')
 
         #--- Part heading prefix/suffix.
-        self.novel.partHeadingPrefix = get_element_text(xmlProject, 'PartHeadingPrefix')
-        self.novel.partHeadingSuffix = get_element_text(xmlProject, 'PartHeadingSuffix')
+        self.novel.partHeadingPrefix = self._get_element_text(xmlProject, 'PartHeadingPrefix')
+        self.novel.partHeadingSuffix = self._get_element_text(xmlProject, 'PartHeadingSuffix')
 
         #--- Custom Goal/Conflict/Outcome.
-        self.novel.customGoal = get_element_text(xmlProject, 'CustomGoal')
-        self.novel.customConflict = get_element_text(xmlProject, 'CustomConflict')
-        self.novel.customOutcome = get_element_text(xmlProject, 'CustomOutcome')
+        self.novel.customGoal = self._get_element_text(xmlProject, 'CustomGoal')
+        self.novel.customConflict = self._get_element_text(xmlProject, 'CustomConflict')
+        self.novel.customOutcome = self._get_element_text(xmlProject, 'CustomOutcome')
 
         #--- Custom Character Bio/Goals.
-        self.novel.customChrBio = get_element_text(xmlProject, 'CustomChrBio')
-        self.novel.customChrGoals = get_element_text(xmlProject, 'CustomChrGoals')
+        self.novel.customChrBio = self._get_element_text(xmlProject, 'CustomChrBio')
+        self.novel.customChrGoals = self._get_element_text(xmlProject, 'CustomChrGoals')
 
         #--- Word count start/Word target.
         if xmlProject.find('WordCountStart') is not None:
@@ -808,7 +779,7 @@ class NovxFile(File):
             self.novel.wordTarget = int(xmlProject.find('WordTarget').text)
 
         #--- Reference date.
-        self.novel.referenceDate = get_element_text(xmlProject, 'ReferenceDate')
+        self.novel.referenceDate = self._get_element_text(xmlProject, 'ReferenceDate')
 
     def _read_project_notes(self, root):
         """Read project notes from the xml element tree."""
@@ -858,9 +829,9 @@ class NovxFile(File):
         self._get_tags(xmlSection, self.novel.sections[scId])
 
         #--- Goal/Conflict/outcome.
-        self.novel.sections[scId].goal = xml_element_to_text(xmlSection.find('Goal'))
-        self.novel.sections[scId].conflict = xml_element_to_text(xmlSection.find('Conflict'))
-        self.novel.sections[scId].outcome = xml_element_to_text(xmlSection.find('Outcome'))
+        self.novel.sections[scId].goal = self._xml_element_to_text(xmlSection.find('Goal'))
+        self.novel.sections[scId].conflict = self._xml_element_to_text(xmlSection.find('Conflict'))
+        self.novel.sections[scId].outcome = self._xml_element_to_text(xmlSection.find('Outcome'))
 
         #--- Plot notes.
         xmlPlotNotes = xmlSection.find('PlotNotes')
@@ -868,7 +839,7 @@ class NovxFile(File):
             plotNotes = {}
             for xmlPlotLineNote in xmlPlotNotes.iterfind('PlotlineNotes'):
                 plId = xmlPlotLineNote.get('id', None)
-                plotNotes[plId] = xml_element_to_text(xmlPlotLineNote)
+                plotNotes[plId] = self._xml_element_to_text(xmlPlotLineNote)
             self.novel.sections[scId].plotNotes = plotNotes
 
         xmlPlotNotes = xmlSection.find('PlotNotes')
@@ -909,9 +880,9 @@ class NovxFile(File):
                 self.novel.sections[scId].time = timeStr
 
         #--- Duration.
-        self.novel.sections[scId].lastsDays = get_element_text(xmlSection, 'LastsDays')
-        self.novel.sections[scId].lastsHours = get_element_text(xmlSection, 'LastsHours')
-        self.novel.sections[scId].lastsMinutes = get_element_text(xmlSection, 'LastsMinutes')
+        self.novel.sections[scId].lastsDays = self._get_element_text(xmlSection, 'LastsDays')
+        self.novel.sections[scId].lastsHours = self._get_element_text(xmlSection, 'LastsHours')
+        self.novel.sections[scId].lastsMinutes = self._get_element_text(xmlSection, 'LastsMinutes')
 
         #--- Characters references.
         scCharacters = []
@@ -964,10 +935,8 @@ class NovxFile(File):
                 ('</em>', '*'),
                 ('<strong>', '**'),
                 ('</strong>', '**'),
-                ('<comment>', '<!---\n'),
-                ('\n\n</comment>', '\n--->'),
-                ('</comment>\n\n', '--->'),
-                ('</comment>', '--->'),
+                ('<comment>', '<!-- Comment start-->'),
+                ('</comment>', '<!-- Comment end-->'),
                 ('  ', ' '),
             ]
             for novx, md in MD_REPLACEMENTS:
@@ -978,11 +947,9 @@ class NovxFile(File):
             for line in lines:
                 newlines.append(line.strip())
             text = '\n'.join(newlines)
+            text = re.sub('<span.*?>|</span>', '', text)
             text = re.sub('<creator>.*?</creator>', '', text)
             text = re.sub('<date>.*?</date>', '', text)
-            # text = re.sub(r'<.*?>', '', text)
-            # removing the remaining XML tags, if any
-
             if text:
                 self.novel.sections[scId].sectionContent = f'{text.strip()}\n'
             else:
@@ -999,7 +966,7 @@ class NovxFile(File):
         if prjElement.title:
             ET.SubElement(xmlElement, 'Title').text = prjElement.title
         if prjElement.desc:
-            xmlElement.append(text_to_xml_element('Desc', prjElement.desc))
+            xmlElement.append(self._text_to_xml_element('Desc', prjElement.desc))
         if prjElement.links:
             for path in prjElement.links:
                 xmlLink = ET.SubElement(xmlElement, 'Link')
@@ -1009,7 +976,7 @@ class NovxFile(File):
 
     def _set_notes(self, xmlElement, prjElement):
         if prjElement.notes:
-            xmlElement.append(text_to_xml_element('Notes', prjElement.notes))
+            xmlElement.append(self._text_to_xml_element('Notes', prjElement.notes))
 
     def _set_tags(self, xmlElement, prjElement):
         tagStr = list_to_string(prjElement.tags)
@@ -1028,6 +995,19 @@ class NovxFile(File):
         for line in lines:
             stripped.append(line.strip())
         return stripped
+
+    def _text_to_xml_element(self, tag, text):
+        """Return an ElementTree element named "tag" with paragraph subelements.
+        
+        Positional arguments:
+        tag: str -- Name of the XML element to return.    
+        text -- string to convert.
+        """
+        xmlElement = ET.Element(tag)
+        if text:
+            for line in text.split('\n'):
+                ET.SubElement(xmlElement, 'p').text = line
+        return xmlElement
 
     def _write_element_tree(self, xmlProject):
         """Write back the xml element tree to a .novx xml file located at filePath.
@@ -1051,4 +1031,18 @@ class NovxFile(File):
             if backedUp:
                 os.replace(f'{xmlProject.filePath}.bak', xmlProject.filePath)
             raise Error(f'{_("Cannot write file")}: "{norm_path(xmlProject.filePath)}".')
+
+    def _xml_element_to_text(self, xmlElement):
+        """Return plain text, converted from ElementTree paragraph subelements.
+        
+        Positional arguments:
+            xmlElement -- ElementTree element.        
+        
+        Each <p> subelement of xmlElement creates a line. Formatting is discarded.
+        """
+        lines = []
+        if xmlElement is not None:
+            for paragraph in xmlElement.iterfind('p'):
+                lines.append(''.join(t for t in paragraph.itertext()))
+        return '\n'.join(lines)
 
