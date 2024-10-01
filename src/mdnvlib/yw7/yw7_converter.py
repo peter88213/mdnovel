@@ -92,7 +92,7 @@ class Yw7Converter:
         try:
             filePath, extension = os.path.splitext(yw7Path)
             if extension == Yw7File.EXTENSION:
-                mdnovPath = f'{filePath}{self._mdl.nvService.get_novx_file_extension()}'
+                mdnovPath = f'{filePath}{self._mdl.nvService.get_prj_file_extension()}'
                 if os.path.isfile(mdnovPath):
                     if not self._ui.ask_yes_no(_('Overwrite existing file "{}"?').format(norm_path(mdnovPath))):
                         self._ui.set_status(f'!{_("Action canceled by user")}.')
@@ -102,7 +102,7 @@ class Yw7Converter:
                 yw7File = Yw7File(yw7Path, nv_service=self._mdl.nvService)
                 yw7File.novel = self._mdl.nvService.make_novel()
                 yw7File.read()
-                mdnovFile = self._mdl.nvService.make_mdnov_file(mdnovPath, nv_service=self._mdl.nvService)
+                mdnovFile = self._mdl.nvService.make_prj_file(mdnovPath, nv_service=self._mdl.nvService)
                 mdnovFile.novel = yw7File.novel
                 mdnovFile.wcLog = yw7File.wcLog
                 mdnovFile.write()
