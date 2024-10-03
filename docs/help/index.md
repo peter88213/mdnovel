@@ -4,41 +4,11 @@
 
 # Help pages
 
-## General
-
-- Desktop overview
+- [Desktop overview](desktop)
 - Basic concepts
 - Getting started
 - [The section editor](editor)
 - Plotting with mdnovel
-
-## Command reference
-
-- File menu
-- [View menu](view_menu)
-- Part menu
-- Chapter menu
-- Section menu
-- Characters menu
-- Locations menu
-- Items menu
-- Plot menu
-- Project notes menu
-- [Export menu](export_menu)
-- Tools menu
-- Help menu
-- The tree view context menu
-- The toolbar
-
-## Properties reference
-
-- Book properties
-- Chapter/part properties
-- Stage properties
-- Section properties
-- Character properties
-- Location/item properties
-- Plot line properties
-- Plot point properties 
-- Project note properties
+- [Command reference](command_reference)
+- [Properties reference](properties)
 
