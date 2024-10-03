@@ -203,7 +203,7 @@ setuplib.main(False)
         self.build_package()
         self.clean_up()
         self.write_version_ini()
-        # self.update_landing_page()
+        self.update_landing_page()
         print('\nDone')
 
     def update_landing_page(self):

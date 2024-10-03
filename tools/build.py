@@ -12,7 +12,7 @@ import sys
 sys.path.insert(0, f'{os.getcwd()}/../../mdnovel/tools')
 from package_builder import PackageBuilder
 
-VERSION = '0.1.1'
+VERSION = '0.1.2'
 
 
 class ApplicationBuilder(PackageBuilder):
@@ -24,12 +24,7 @@ class ApplicationBuilder(PackageBuilder):
         super().__init__(version)
         self.sourceFile = f'{self.sourceDir}{self.PRJ_NAME}_.py'
 
-    def add_css(self):
-        print('\nAdding css ...')
-        copytree(f'../../novxlib/css', f'{self.buildDir}/css')
-
     def add_extras(self):
-        self.add_css()
         self.add_icons()
 
     def build_script(self):

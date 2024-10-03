@@ -19,6 +19,13 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Exporting a Markdown full synopsis with section descriptions.
 - Exporting a csv Plot Grid.
 
+
 ### Version 0.1.1
 
 - Bugfix / refactor.
+
+
+### Version 0.1.2
+
+- Fix novx import/export and yw7 export.
+- Provide a download link on the landing page.

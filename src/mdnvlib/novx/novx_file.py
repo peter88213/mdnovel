@@ -490,11 +490,15 @@ class NovxFile(File):
         sectionContent = prjScn.sectionContent
         if sectionContent:
             while '\n\n' in sectionContent:
-                sectionContent = sectionContent.replace('\n\n', '\n').strip()
+                sectionContent = sectionContent.replace('\n\n', '@%&').strip()
+            while '***' in sectionContent:
+                sectionContent = sectionContent.replace('***', '§%§')
+            sectionContent = re.sub(r'\*\*(.+?)\*\*', '<strong>\\1</strong>', sectionContent)
+            sectionContent = re.sub(r'\*(.+?)\*', '<em>\\1</em>', sectionContent)
+            while '§%§' in sectionContent:
+                sectionContent = sectionContent.replace('§%§', '***')
             newlines = []
-            for line in sectionContent.split('\n'):
-                line = re.sub(r'(^|[^\*])\*\*(.+?)\*\*([^\*]|$)', '\\1<strong>\\2</strong>\\3', line)
-                line = re.sub(r'(^|[^\*])\*(.+?)\*([^\*]|$)', '\\1<em>\\2</em>\\3', line)
+            for line in sectionContent.split('@%&'):
                 line = f'<p>{line}</p>'
                 newlines.append(line)
             sectionContent = '\n'.join(newlines)
@@ -518,15 +522,25 @@ class NovxFile(File):
         else:
             return default
 
-    def _get_link_dict(self, parent):
+    def _get_link_dict(self, xmlElement):
         """Return a dictionary of links.
         
         If the element doesn't exist, return an empty dictionary.
         """
         links = {}
-        for xmlLink in parent.iterfind('Link'):
-            path = xmlLink.attrib.get('path', None)
-            fullPath = xmlLink.attrib.get('fullPath', None)
+        for xmlLink in xmlElement.iterfind('Link'):
+            xmlPath = xmlLink.find('Path')
+            if xmlPath is not None:
+                path = xmlPath.text
+                xmlFullPath = xmlLink.find('FullPath')
+                if xmlFullPath is not None:
+                    fullPath = xmlFullPath.text
+                else:
+                    fullPath = None
+            else:
+                # Read deprecated attributes from DTD 1.3.
+                path = xmlLink.attrib.get('path', None)
+                fullPath = xmlLink.attrib.get('fullPath', None)
             if path:
                 links[path] = fullPath
         return links
@@ -928,6 +942,8 @@ class NovxFile(File):
                 ('</Content>', ''),
                 ('<em> ', ' <em>'),
                 ('<strong> ', ' <strong>'),
+                ('</em><em>', ''),
+                ('</strong><strong>', ''),
                 ('<p>', ''),
                 ('<p style="quotations">', ''),
                 ('</p>', '\n'),
@@ -935,21 +951,19 @@ class NovxFile(File):
                 ('</em>', '*'),
                 ('<strong>', '**'),
                 ('</strong>', '**'),
-                ('<comment>', '<!-- Comment start-->'),
-                ('</comment>', '<!-- Comment end-->'),
                 ('  ', ' '),
             ]
             for novx, md in MD_REPLACEMENTS:
                 text = text.replace(novx, md)
-
+            text = text.replace('\n', '@%&')
+            text = re.sub(r'<comment>.*?</comment>', '', text)
+            text = re.sub(r'<note .*?>].*?<\/note>', '', text)
             newlines = []
-            lines = text.split('\n')
+            lines = text.split('@%&')
             for line in lines:
                 newlines.append(line.strip())
             text = '\n'.join(newlines)
-            text = re.sub('<span.*?>|</span>', '', text)
-            text = re.sub('<creator>.*?</creator>', '', text)
-            text = re.sub('<date>.*?</date>', '', text)
+            text = re.sub(r'<span.*?>|</span>', '', text)
             if text:
                 self.novel.sections[scId].sectionContent = f'{text.strip()}\n'
             else:

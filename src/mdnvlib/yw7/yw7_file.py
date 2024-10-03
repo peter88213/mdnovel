@@ -1302,6 +1302,20 @@ class Yw7File(File):
         
         Return a yw7 markup string.
         """
+        if text:
+            while '\n\n' in text:
+                text = text.replace('\n\n', '@%&').strip()
+            while '***' in text:
+                text = text.replace('***', '§%§')
+            text = re.sub(r'([^\*])\*\*(.+?)\*\*', '\\1[b]\\2[/b]', text)
+            text = re.sub(r'([^\*])\*(.+?)\*', '\\1[i]\\2[/i]', text)
+            while '§%§' in text:
+                text = text.replace('§%§', '***')
+            newlines = []
+            for line in text.split('@%&'):
+                line = f'<p>{line}</p>'
+                newlines.append(line)
+            text = '\n'.join(newlines)
         text = re.sub(r'\*\*(.+?)\*\*', '[b]\\1[/b]', text)
         text = re.sub(r'\*([^ ].+?[^ ])\*', '[i]\\1[/i]', text)
         MD_REPLACEMENTS = [
