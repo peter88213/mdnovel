@@ -1,8 +1,12 @@
+[Home](../) > [Help pages](index) > Desktop
+
+---
+
 # Desktop overview
 
 The *mdnovel* desktop is divided into three panes:
 
-![Screenshot](_images/desktop01.png)
+![Screenshot](images/desktop01.png)
 
 ## Project tree
 
@@ -40,9 +44,9 @@ Browsing the tree
     This allows you to go back and forth e.g. between a section and its
     related characters.
 
-    -   ![Go back](_images/goBack.png) selects a node back in the tree
+    -   ![Go back](images/goBack.png) selects a node back in the tree
         browsing history.
-    -   ![Go forward](_images/goForward.png) selects a node forward in
+    -   ![Go forward](images/goForward.png) selects a node forward in
         the tree browsing history.
 
     ---
@@ -68,13 +72,13 @@ button, then the `Alt` key.
 
 ---
 
-::: caution
-::: title
-Caution
-:::
+---
+
+**Caution**
 
 Be aware, there is no \"Undo\" feature.
-:::
+
+---
 
 #### Delete tree elements
 
@@ -94,7 +98,7 @@ contents with their titles as headings.
 
 -   You can open or close the middle pane with the Text viewer with
     **View \> Toggle Text viewer**, or `Ctrl`-`T`, or clicking on
-    ![Toggle Text viewer](_images/viewer.png).
+    ![Toggle Text viewer](images/viewer.png).
 -   On opening, the text viewer shows the text where the tree is
     selected.
 -   When changing the tree selection, the text moves along.
@@ -116,7 +120,7 @@ metadata of the element selected in the project tree.
 -   The project settings can be made in the *Book* properties view.
 -   You can open or close the element properties window with **View \>
     Toggle Properties** or `Ctrl`-`Alt`-`T`, or clicking on ![Toggle
-    Properties](_images/properties.png).
+    Properties](images/properties.png).
 -   On opening, the windows shows the editable properties of the
     selected element.
 -   You can detach or dock the element properties window with **View \>
