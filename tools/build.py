@@ -5,14 +5,13 @@ Note: VERSION must be updated manually before starting this script.
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from shutil import copytree
 import os
 import sys
 
 sys.path.insert(0, f'{os.getcwd()}/../../mdnovel/tools')
 from package_builder import PackageBuilder
 
-VERSION = '0.1.2'
+VERSION = '0.1.3'
 
 
 class ApplicationBuilder(PackageBuilder):

@@ -29,3 +29,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 - Fix novx import/export and yw7 export.
 - Provide a download link on the landing page.
+
+
+### Version 0.1.3
+
+- Reading Section.appendToPref from novx. This avoids unnessecarily asking for saving changes when closing. 
+

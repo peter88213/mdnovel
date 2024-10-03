@@ -837,6 +837,8 @@ class NovxFile(File):
             if sceneKind in ('1', '2'):
                 self.novel.sections[scId].scene = int(sceneKind) + 1
 
+        self.novel.sections[scId].appendToPrev = xmlSection.get('append', None) == '1'
+
         #--- Inherited properties.
         self._get_base_data(xmlSection, self.novel.sections[scId])
         self._get_notes(xmlSection, self.novel.sections[scId])
