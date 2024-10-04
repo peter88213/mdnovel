@@ -1,4 +1,4 @@
-[Home](../) > [Help pages](index) > View menu
+[Home](../) > [Help pages](index) > [Command reference](command_reference) > View menu
 
 ---
 

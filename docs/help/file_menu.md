@@ -1,3 +1,7 @@
+[Home](../) > [Help pages](index) > [Command reference](command_reference) > File menu
+
+---
+
 # File menu
 
 **File operation**
@@ -10,27 +14,29 @@
 With **File \> New**, you can create a new project. This will open a
 submenu.
 
-Empty project  
-- This will close the current project and create a blank project.
-- A file select dialog asks for the new project’s file name. If you
-  cancel the dialog, you can select the file name later when saving the
-  project.
+Empty project
 
-Create from Markdown...  
-- This will close the current project and open a file dialog asking for
-  a Markdown document to create the new projec from.
-- The newly created project is saved automatically in the same directory
-  as the Markdown document, using its file name and the extension *.novx*.
-- If a project with the same file name as the Markdown document already
-  exists in the directory, no new project will be created.
-- If you select a previously exported document belonging to an existing
-  project, this project will be updated and loaded.
-- The Markdown document can either be a
-  [Work-in-progress](getting_started#starting-with-a-work-in-progress),
-  i.e. a regular novel manuscript with chapter headings and section
-  contents, r an
-  [outline](getting_started#starting-with-an-outline) containing
-  the chapter and section structure with titles and descriptions.
+:  - This will close the current project and create a blank project.
+   - A file select dialog asks for the new project’s file name. If you
+     cancel the dialog, you can select the file name later when saving the
+     project.
+
+Create from Markdown...
+
+:  - This will close the current project and open a file dialog asking for
+     a Markdown document to create the new projec from.
+   - The newly created project is saved automatically in the same directory
+     as the Markdown document, using its file name and the extension *.novx*.
+   - If a project with the same file name as the Markdown document already
+     exists in the directory, no new project will be created.
+   - If you select a previously exported document belonging to an existing
+     project, this project will be updated and loaded.
+   - The Markdown document can either be a
+     [Work-in-progress](getting_started#starting-with-a-work-in-progress),
+     i.e. a regular novel manuscript with chapter headings and section
+     contents, r an
+     [outline](getting_started#starting-with-an-outline) containing
+     the chapter and section structure with titles and descriptions.
 
 ## Open...
 

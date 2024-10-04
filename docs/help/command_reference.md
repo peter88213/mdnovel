@@ -4,7 +4,7 @@
 
 # Command reference
 
-- File menu
+- [File menu](file_menu)
 - [View menu](view_menu)
 - Part menu
 - Chapter menu
@@ -18,4 +18,4 @@
 - Tools menu
 - Help menu
 - The tree view context menu
-- The toolbar
+- [The toolbar](toolbar)

@@ -5,7 +5,7 @@
 # Help pages
 
 - [Desktop overview](desktop)
-- Basic concepts
+- [Basic concepts](basic_concepts)
 - Getting started
 - [The section editor](editor)
 - Plotting with mdnovel
