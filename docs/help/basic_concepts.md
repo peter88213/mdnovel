@@ -1,3 +1,7 @@
+[Home](../) > [Help pages](index) > Basic concepts
+
+---
+
 # Basic concepts
 
 ## The Book hierarchy
