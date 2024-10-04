@@ -697,7 +697,7 @@ class NvView:
         self.plotMenu.add_cascade(label=_('Change Level'), menu=self.tv.selectLevelMenu)
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Export plot grid'), command=lambda:self._ctrl.export_document(GRID_SUFFIX))
-        # self.plotMenu.add_command(label=_('Export story structure description'), command=lambda:self._ctrl.export_document(STAGES_SUFFIX))
+        self.plotMenu.add_command(label=_('Export story structure description'), command=lambda:self._ctrl.export_document(STAGES_SUFFIX))
         # self.plotMenu.add_command(label=_('Export plot line descriptions'), command=lambda: self._ctrl.export_document(PLOTLINES_SUFFIX, lock=False))
         self.plotMenu.add_separator()
         # self.plotMenu.add_command(label=_('Export plot list'), command=lambda: self._ctrl.export_document(PLOTLIST_SUFFIX, lock=False))

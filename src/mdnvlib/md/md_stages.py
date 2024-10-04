@@ -12,22 +12,13 @@ from mdnvlib.novx_globals import _
 class MdStages(MdFile):
     """Markdown story structure file representation.
 
-    Export a plot description with story structure and arcs.
+    Export a story structure description with stages.
     """
     DESCRIPTION = _('Story structure')
     SUFFIX = STAGES_SUFFIX
 
     _fileHeader = f'{MdFile._fileHeader}# {DESCRIPTION}\n\n'
 
-    _stage1Template = '''<text:h text:style-name="Heading_20_1" text:outline-level="1"><text:bookmark text:name="$ID"/>$Title
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
-
-    _stage2Template = '''## <text:bookmark text:name="$ID"/>$Title
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
+    _stage1Template = '\n## $Title\n\n$Desc\n\n'
+    _stage2Template = '\n### $Title\n\n$Desc\n\n'
 

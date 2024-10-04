@@ -35,3 +35,9 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 
 - Reading Section.appendToPref from novx. This avoids unnessecarily asking for saving changes when closing. 
 
+
+### Version 0.2.0
+
+- Export a story structure description.
+
+
