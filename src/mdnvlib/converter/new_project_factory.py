@@ -14,7 +14,7 @@ from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import XREF_SUFFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.mdnov.mdnov_file import MdnovFile
+from mdnvlib.novx.novx_file import NovxFile
 
 
 class NewProjectFactory(FileFactory):
@@ -42,7 +42,7 @@ class NewProjectFactory(FileFactory):
             raise Error(f'{_("This document is not meant to be written back")}.')
 
         fileName, __ = os.path.splitext(sourcePath)
-        targetFile = MdnovFile(f'{fileName}{MdnovFile.EXTENSION}', **kwargs)
+        targetFile = NovxFile(f'{fileName}{NovxFile.EXTENSION}', **kwargs)
         if sourcePath.endswith('.md'):
             # The source file might be an outline or a "work in progress".
             try:

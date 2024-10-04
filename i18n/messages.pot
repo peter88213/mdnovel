@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.3.0\n"
-"POT-Creation-Date: 2024-10-04 19:40:23\n"
+"Project-Id-Version: 0.3.1\n"
+"POT-Creation-Date: 2024-10-04 20:17:47\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -170,9 +170,6 @@ msgstr ""
 msgid "Cannot overwrite file"
 msgstr ""
 
-msgid "Cannot process file"
-msgstr ""
-
 msgid "Cannot read file"
 msgstr ""
 
@@ -291,9 +288,6 @@ msgid "Copy"
 msgstr ""
 
 msgid "Copy style sheet"
-msgstr ""
-
-msgid "Corrupt project data"
 msgstr ""
 
 msgid "Country code"

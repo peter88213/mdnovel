@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.3.0\n"
-"POT-Creation-Date: 2024-10-04 19:40:23\n"
-"PO-Revision-Date: 2024-10-04 19:40:23\n"
+"Project-Id-Version: 0.3.1\n"
+"POT-Creation-Date: 2024-10-04 20:17:47\n"
+"PO-Revision-Date: 2024-10-04 20:17:47\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -163,9 +163,6 @@ msgstr "Kann Link nicht öffnen"
 msgid "Cannot overwrite file"
 msgstr "Kann Datei nicht überschreiben"
 
-msgid "Cannot process file"
-msgstr "Kann Datei nicht verarbeiten"
-
 msgid "Cannot read file"
 msgstr "Kann Datei nicht lesen"
 
@@ -285,9 +282,6 @@ msgstr "Kopieren"
 
 msgid "Copy style sheet"
 msgstr "Style sheet kopieren"
-
-msgid "Corrupt project data"
-msgstr "Projektdaten fehlerhaft"
 
 msgid "Country code"
 msgstr "Ländercode"

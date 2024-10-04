@@ -46,3 +46,6 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Export descriptions of plot lines and plot points.
 
 
+### Version 0.3.1
+
+- Fix Markdown import/export issues.
