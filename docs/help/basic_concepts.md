@@ -52,22 +52,24 @@ Each part, chapter, and section is of a type that can be changed via
 context menu or Part/Chapter/Section menu. The type can be *Normal* or
 *Unused*.
 
-Normal  
-- "Normal" type parts, chapters, and sections are counted. The totals
-  are displayed in the status bar.
-- "Normal" type sections are exported to the manuscript and included in
-  the word count.
-- "Normal" type parts and chapters can have subelements of each type.
-- "Normal" type tree elements are color coded according to the [coloring
-  mode settings](view_menu#coloring-mode).
+Normal
 
-Unused  
-You can mark parts, chapters, and sections as unused to exclude them
-from word count totals and export.
+:  - "Normal" type parts, chapters, and sections are counted. The totals
+     are displayed in the status bar.
+   - "Normal" type sections are exported to the manuscript and included in
+     the word count.
+   - "Normal" type parts and chapters can have subelements of each type.
+   - "Normal" type tree elements are color coded according to the [coloring
+     mode settings](view_menu#coloring-mode).
 
-- The subelements of unused parts and chapters are unused as well.
-- If you mark a section "Unused", its properties are preserved.
-- Unused tree elements are displayed in gray.
+Unused
+
+:  You can mark parts, chapters, and sections as unused to exclude them
+   from word count totals and export.
+   
+   - The subelements of unused parts and chapters are unused as well.
+   - If you mark a section "Unused", its properties are preserved.
+   - Unused tree elements are displayed in gray.
 
 ## Section completion status
 
@@ -109,7 +111,7 @@ facilitate access if your external application allows this.
 
 ---
 
-**Important***
+**Important**
 
 If you want to assign **viewpoint characters** to your sections, you
 first have to [create](characters_menu#add) the characters that
