@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.2.0\n"
-"POT-Creation-Date: 2024-10-04 19:12:31\n"
-"PO-Revision-Date: 2024-10-04 19:12:32\n"
+"Project-Id-Version: 0.3.0\n"
+"POT-Creation-Date: 2024-10-04 19:40:23\n"
+"PO-Revision-Date: 2024-10-04 19:40:23\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -430,29 +430,20 @@ msgstr "Gegenstandsbeschreibungen exportieren"
 msgid "Export location descriptions"
 msgstr "Schauplatzbeschreibungen exportieren"
 
-msgid "Export manuscript filtered by plot line"
-msgstr "Manuskript nach Plotlinie gefiltert exportieren"
-
-msgid "Export manuscript filtered by viewpoint"
-msgstr "Manuskript nach Perspektive gefiltert exportieren"
-
 msgid "Export part descriptions"
 msgstr "Teilebeschreibungen exportieren"
 
 msgid "Export plot grid"
 msgstr "Handlungsraster (Plot grid) exportieren"
 
+msgid "Export plot line descriptions"
+msgstr "Plotlinienbeschreibungen exportieren"
+
 msgid "Export section descriptions"
 msgstr "Abschnittsbeschreibungen exportieren"
 
 msgid "Export story structure description"
 msgstr "Erzählstruktur-Beschreibung exportieren"
-
-msgid "Export synopsis filtered by plot line"
-msgstr "Zusammenfassung nach Plottlinie gefiltert exportieren"
-
-msgid "Export synopsis filtered by viewpoint"
-msgstr "Zusammenfassung nach Perspektive gefiltert exportieren"
 
 msgid "Export type is not supported"
 msgstr "Exporttyp wird nicht unterstützt"

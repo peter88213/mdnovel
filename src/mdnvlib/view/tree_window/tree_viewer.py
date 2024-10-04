@@ -507,8 +507,6 @@ class TreeViewer(ttk.Frame):
         self._wrCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_element)
         self._wrCtxtMenu.add_separator()
-        self._wrCtxtMenu.add_command(label=_('Export synopsis filtered by viewpoint'), command=self._export_synopsis)
-        self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
@@ -517,8 +515,6 @@ class TreeViewer(ttk.Frame):
         self._plCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._plCtxtMenu.add_command(label=_('Add Plot line'), command=self._ctrl.add_plot_line)
         self._plCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_plot_point)
-        self._plCtxtMenu.add_separator()
-        self._plCtxtMenu.add_command(label=_('Export synopsis filtered by plot line'), command=self._export_synopsis)
         self._plCtxtMenu.add_separator()
         self._plCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
 
@@ -1051,8 +1047,6 @@ class TreeViewer(ttk.Frame):
                     self._wrCtxtMenu.entryconfig(_('Add'), state='disabled')
                     self._wrCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
-                    self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='disabled')
-                    self._wrCtxtMenu.entryconfig(_('Export synopsis filtered by viewpoint'), state='disabled')
                 else:
                     self._wrCtxtMenu.entryconfig(_('Add'), state='normal')
                     if prefix.startswith('wr'):
@@ -1064,13 +1058,9 @@ class TreeViewer(ttk.Frame):
                     if prefix.startswith(CHARACTER_PREFIX) or  row.endswith(CHARACTER_PREFIX):
                         # Context is a character.
                         self._wrCtxtMenu.entryconfig(_('Set Status'), state='normal')
-                        self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='normal')
-                        self._wrCtxtMenu.entryconfig(_('Export synopsis filtered by viewpoint'), state='normal')
                     else:
                         # Context is not a character.
                         self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
-                        self._wrCtxtMenu.entryconfig(_('Export manuscript filtered by viewpoint'), state='disabled')
-                        self._wrCtxtMenu.entryconfig(_('Export synopsis filtered by viewpoint'), state='disabled')
                 try:
                     self._wrCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:
@@ -1082,24 +1072,14 @@ class TreeViewer(ttk.Frame):
                     self._plCtxtMenu.entryconfig(_('Add Plot line'), state='disabled')
                     self._plCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self._plCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    self._plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
-                    self._plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 elif prefix.startswith(PL_ROOT):
                     self._plCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self._plCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self._plCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    self._plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
-                    self._plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 else:
                     self._plCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self._plCtxtMenu.entryconfig(_('Add Plot point'), state='normal')
                     self._plCtxtMenu.entryconfig(_('Delete'), state='normal')
-                    if prefix == PLOT_LINE_PREFIX:
-                        self._plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='normal')
-                        self._plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='normal')
-                    else:
-                        self._plCtxtMenu.entryconfig(_('Export manuscript filtered by plot line'), state='disabled')
-                        self._plCtxtMenu.entryconfig(_('Export synopsis filtered by plot line'), state='disabled')
                 try:
                     self._plCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:

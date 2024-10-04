@@ -41,3 +41,8 @@ See the [GitHub "Features" project](https://github.com/users/peter88213/projects
 - Export a story structure description.
 
 
+### Version 0.3.0
+
+- Export descriptions of plot lines and plot points.
+
+

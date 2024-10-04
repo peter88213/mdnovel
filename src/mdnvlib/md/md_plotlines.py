@@ -21,25 +21,12 @@ class MdPlotlines(MdFile):
     SUFFIX = PLOTLINES_SUFFIX
 
     _fileHeader = f'{MdFile._fileHeader}# {DESCRIPTION}\n\n'
-    _arcHeadingTemplate = f'''<text:h text:style-name="Heading_20_1" text:outline-level="1">{_('Plot lines')}
+    _arcHeadingTemplate = f'''# {_('Plot lines')}
 '''
 
-    _arcTemplate = '''$Heading## <text:bookmark text:name="$ID"/>$Title
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-$TurningPoints
-'''
-    _plotPointTemplate = '''<text:h text:style-name="Heading_20_3" text:outline-level="3"><text:bookmark text:name="$ID"/>$Title
-<text:section text:style-name="Sect1" text:name="$ID">
-$Desc
-</text:section>
-'''
-    _assocSectionTemplate = '''<text:p text:style-name="Text_20_body" />
-<text:p text:style-name="Text_20_body">$Section: <text:span text:style-name="Emphasis">$SectionTitle</text:span></text:p>    
-<text:p text:style-name="Text_20_body">→ <text:a xlink:href="../$ProjectName$SectionsSuffix.odt#$scID%7Cregion">$Description</text:a></text:p>
-<text:p text:style-name="Text_20_body">→ <text:a xlink:href="../$ProjectName$ManuscriptSuffix.odt#$scID%7Cregion">$Manuscript</text:a></text:p>
-'''
+    _arcTemplate = '\n## $Title\n\n$Desc\n\n$TurningPoints\n\n'
+    _plotPointTemplate = '### $Title\n\n$Desc'
+    _assocSectionTemplate = '$Section: *$SectionTitle*'
 
     def write(self):
         """Initialize "first plot line" flag.
@@ -82,6 +69,6 @@ $Desc
                 )
                 template = Template(self._assocSectionTemplate)
                 plotPoints.append(template.safe_substitute(sectionAssocMapping))
-        arcMapping['TurningPoints'] = '\n'.join(plotPoints)
+        arcMapping['TurningPoints'] = '\n\n'.join(plotPoints)
         return arcMapping
 
