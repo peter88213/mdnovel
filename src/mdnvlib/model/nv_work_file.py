@@ -7,12 +7,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import datetime
 import os
 
-from mdnvlib.novx.novx_file import NovxFile
+from mdnvlib.mdnov.mdnov_file import MdnovFile
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import _
 
 
-class NvWorkFile(NovxFile):
+class NvWorkFile(MdnovFile):
     """mdnovel project file representation.
     
     Public properties:

@@ -4,6 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnvlib
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from urllib.parse import quote
 
 
 class BasicElement:
@@ -94,12 +95,20 @@ class BasicElement:
     def to_yaml(self, yaml):
         if self.title:
             yaml.append(f'Title: {self.title}')
+        return yaml
+
+    def get_links(self):
+        """Return a list of (relative link, absolute link) tuples."""
+        linkList = []
         if self.links:
             for path in self.links:
-                yaml.append(f'LinkPath: {path}')
+                relativeLink = f'[LinkPath]({quote(path)})'
                 if self.links[path]:
-                    yaml.append(f'FullPath: {self.links[path]}')
-        return yaml
+                    absoluteLink = f'[FullPath](file:///{quote(self.links[path])})'
+                else:
+                    absoluteLink = ''
+                linkList.append((relativeLink, absoluteLink))
+        return linkList
 
     def _get_element_text(self, xmlElement, tag, default=None):
         """Return the text field of an XML element.

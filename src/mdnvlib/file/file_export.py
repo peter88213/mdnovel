@@ -32,7 +32,7 @@ from mdnvlib.novx_globals import norm_path
 
 
 class FileExport(File):
-    """Abstract mdnovel project file exporter representation.
+    """Abstract novelibre project file exporter representation.
     
     This class is generic and contains no conversion algorithm and no templates.
     """
@@ -133,10 +133,10 @@ class FileExport(File):
         """
         arcMapping = dict(
             ID=plId,
-            Title=self.novel.plotLines[plId].title,
-            Desc=self.novel.plotLines[plId].desc,
-            Notes=self.novel.plotLines[plId].notes,
-            ProjectName=self.projectName,
+            Title=self._convert_from_novx(self.novel.plotLines[plId].title, quick=True),
+            Desc=self._convert_from_novx(self.novel.plotLines[plId].desc),
+            Notes=self._convert_from_novx(self.novel.plotLines[plId].notes),
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
@@ -175,10 +175,10 @@ class FileExport(File):
         chapterMapping = dict(
             ID=chId,
             ChapterNumber=chapterNumber,
-            Title=self.novel.chapters[chId].title,
-            Desc=self.novel.chapters[chId].desc,
-            Notes=self.novel.chapters[chId].notes,
-            ProjectName=self.projectName,
+            Title=self._convert_from_novx(self.novel.chapters[chId].title, quick=True),
+            Desc=self._convert_from_novx(self.novel.chapters[chId].desc),
+            Notes=self._convert_from_novx(self.novel.chapters[chId].notes),
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
@@ -257,16 +257,16 @@ class FileExport(File):
 
         characterMapping = dict(
             ID=crId,
-            Title=self.novel.characters[crId].title,
-            Desc=self.novel.characters[crId].desc,
-            Tags=tags,
-            AKA=self.novel.characters[crId].aka,
-            Notes=self.novel.characters[crId].notes,
-            Bio=self.novel.characters[crId].bio,
-            Goals=self.novel.characters[crId].goals,
-            FullName=self.novel.characters[crId].fullName,
+            Title=self._convert_from_novx(self.novel.characters[crId].title, quick=True),
+            Desc=self._convert_from_novx(self.novel.characters[crId].desc),
+            Tags=self._convert_from_novx(tags),
+            AKA=self._convert_from_novx(self.novel.characters[crId].aka, quick=True),
+            Notes=self._convert_from_novx(self.novel.characters[crId].notes),
+            Bio=self._convert_from_novx(self.novel.characters[crId].bio),
+            Goals=self._convert_from_novx(self.novel.characters[crId].goals),
+            FullName=self._convert_from_novx(self.novel.characters[crId].fullName, quick=True),
             Status=characterStatus,
-            ProjectName=self.projectName,
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             CharactersSuffix=CHARACTERS_SUFFIX,
             CustomChrBio=chrBio,
@@ -292,6 +292,15 @@ class FileExport(File):
             if self.characterFilter.accept(self, crId):
                 lines.append(template.safe_substitute(self._get_characterMapping(crId)))
         return lines
+
+    def _get_fileFooter(self):
+        lines = []
+        template = Template(self._fileFooter)
+        lines.append(template.safe_substitute(self._get_fileFooterMapping()))
+        return lines
+
+    def _get_fileFooterMapping(self):
+        return []
 
     def _get_fileHeader(self):
         """Process the file header.
@@ -327,16 +336,16 @@ class FileExport(File):
             if message:
                 filterMessages.append(message)
             if filterMessages:
-                filters = '\n'.join(filterMessages)
+                filters = self._convert_from_novx('\n'.join(filterMessages))
             else:
                 filters = ''
             pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls = self._get_renamings()
 
         fileHeaderMapping = dict(
-            Title=self.novel.title,
+            Title=self._convert_from_novx(self.novel.title, quick=True),
             Filters=filters,
-            Desc=self.novel.desc,
-            AuthorName=self.novel.authorName,
+            Desc=self._convert_from_novx(self.novel.desc),
+            AuthorName=self._convert_from_novx(self.novel.authorName, quick=True),
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
             CustomPlotProgress=pltPrgs,
@@ -365,12 +374,12 @@ class FileExport(File):
 
         itemMapping = dict(
             ID=itId,
-            Title=self.novel.items[itId].title,
-            Desc=self.novel.items[itId].desc,
-            Notes=self.novel.items[itId].notes,
-            Tags=tags,
-            AKA=self.novel.items[itId].aka,
-            ProjectName=self.projectName,
+            Title=self._convert_from_novx(self.novel.items[itId].title, quick=True),
+            Desc=self._convert_from_novx(self.novel.items[itId].desc),
+            Notes=self._convert_from_novx(self.novel.items[itId].notes),
+            Tags=self._convert_from_novx(tags, quick=True),
+            AKA=self._convert_from_novx(self.novel.items[itId].aka, quick=True),
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             ItemsSuffix=ITEMS_SUFFIX,
         )
@@ -410,12 +419,12 @@ class FileExport(File):
 
         locationMapping = dict(
             ID=lcId,
-            Title=self.novel.locations[lcId].title,
-            Desc=self.novel.locations[lcId].desc,
-            Notes=self.novel.locations[lcId].notes,
-            Tags=tags,
-            AKA=self.novel.locations[lcId].aka,
-            ProjectName=self.projectName,
+            Title=self._convert_from_novx(self.novel.locations[lcId].title, quick=True),
+            Desc=self._convert_from_novx(self.novel.locations[lcId].desc),
+            Notes=self._convert_from_novx(self.novel.locations[lcId].notes),
+            Tags=self._convert_from_novx(tags, quick=True),
+            AKA=self._convert_from_novx(self.novel.locations[lcId].aka, quick=True),
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             LocationsSuffix=LOCATIONS_SUFFIX,
         )
@@ -621,16 +630,16 @@ class FileExport(File):
             LastsMinutes=lastsMinutes,
             Duration=duration,
             Scene=Section.SCENE[self.novel.sections[scId].scene],
-            Goal=self.novel.sections[scId].goal,
-            Conflict=self.novel.sections[scId].conflict,
-            Outcome=self.novel.sections[scId].outcome,
-            Tags=tags,
+            Goal=self._convert_from_novx(self.novel.sections[scId].goal),
+            Conflict=self._convert_from_novx(self.novel.sections[scId].conflict),
+            Outcome=self._convert_from_novx(self.novel.sections[scId].outcome),
+            Tags=self._convert_from_novx(tags, quick=True),
             Characters=sectionChars,
             Viewpoint=viewpointChar,
             Locations=sectionLocs,
             Items=sectionItems,
-            Notes=self.novel.sections[scId].notes,
-            ProjectName=self.projectName,
+            Notes=self._convert_from_novx(self.novel.sections[scId].notes),
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             Language=self.novel.languageCode,
             Country=self.novel.countryCode,
@@ -726,9 +735,9 @@ class FileExport(File):
         """
         noteMapping = dict(
             ID=pnId,
-            Title=self.novel.projectNotes[pnId].title,
-            Desc=self.novel.projectNotes[pnId].desc,
-            ProjectName=self.projectName,
+            Title=self._convert_from_novx(self.novel.projectNotes[pnId].title, quick=True),
+            Desc=self._convert_from_novx(self.novel.projectNotes[pnId].desc),
+            ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
         )
         return noteMapping
@@ -762,6 +771,6 @@ class FileExport(File):
         lines.extend(self._get_items())
         lines.extend(self._get_arcs())
         lines.extend(self._get_projectNotes())
-        lines.append(self._fileFooter)
+        lines.extend(self._get_fileFooter())
         return ''.join(lines)
 

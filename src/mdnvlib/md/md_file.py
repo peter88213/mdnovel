@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/mdnovel
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
 from mdnvlib.file.file_export import FileExport
+from mdnvlib.md.md_helper import sanitize_markdown
 
 
 class MdFile(FileExport):
@@ -37,9 +38,5 @@ class MdFile(FileExport):
         if text is None:
             return ''
 
-        if quick:
-            # Just clean up a one-liner without sophisticated formatting.
-            return text
-
-        return text.replace('\n\n', '\n').replace('\n', '\n\n').strip()
+        return sanitize_markdown(text)
 
