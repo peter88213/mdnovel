@@ -86,6 +86,7 @@ class NvWorkFile(MdnovFile):
         novxFile = NovxFile(filePath)
         novxFile.novel = self.novel
         novxFile.read()
+        self.wcLog = novxFile.wcLog
         self.novel = novxFile.novel
 
         self.novel.check_locale()

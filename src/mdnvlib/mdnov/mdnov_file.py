@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 import os
 
-from mdnvlib.file.file_export import FileExport
+from mdnvlib.md.md_file import MdFile
 from mdnvlib.md.md_helper import sanitize_markdown
 from mdnvlib.model.basic_element import BasicElement
 from mdnvlib.model.chapter import Chapter
@@ -33,6 +33,7 @@ from mdnvlib.novx_globals import PRJ_NOTE_PREFIX
 from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import intersection
+from mdnvlib.novx_globals import list_to_string
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.novx_globals import verified_date
 from mdnvlib.novx_globals import verified_int_string
@@ -48,7 +49,7 @@ def get_xml_root(filePath):
     return xmlTree.getroot()
 
 
-class MdnovFile(FileExport):
+class MdnovFile(MdFile):
     """mdnov file representation.
 
     Public instance variables:
@@ -134,7 +135,7 @@ $Links
 
 $Desc
 '''
-    _fileFooter = ''
+    _fileFooter = '\n$Wordcountlog\n'
 
     def __init__(self, filePath, **kwargs):
         """Initialize instance variables.
@@ -160,126 +161,6 @@ $Desc
         # value: list -- [word count: str, with unused: str]
 
         self.timestamp = None
-
-    def _add_key(self, text, key):
-        if not key:
-            return ''
-
-        if not text:
-            return ''
-
-        return f'%%{key}:\n\n{text.strip()}\n\n'
-
-    def _add_links(self, element, mapping):
-        links = element.get_links()
-        linkRepr = []
-        if links:
-            for relativeLink, absoluteLink in links:
-                linkRepr.append('%%Link:')
-                linkRepr.append(relativeLink)
-                linkRepr.append(absoluteLink)
-        mapping['Links'] = '\n\n'.join(linkRepr)
-        return mapping
-
-    def _add_plotline_notes(self, prjScn, mapping):
-        plRepr = []
-        if prjScn.plotlineNotes:
-            for plId in prjScn.plotlineNotes:
-                if not plId in prjScn.scPlotLines:
-                    continue
-
-                if not prjScn.plotlineNotes[plId]:
-                    continue
-
-                plRepr.append('%%Plotline:')
-                plRepr.append(plId)
-
-                plRepr.append('%%Plotline note:')
-                plRepr.append(sanitize_markdown(prjScn.plotlineNotes[plId]))
-        plStr = '\n\n'.join(plRepr)
-        mapping['Plotlines'] = f'{plStr}\n\n'
-        return mapping
-
-    def _add_yaml(self, element, mapping):
-        yaml = element.to_yaml([])
-        mapping['YAML'] = '\n'.join(yaml)
-        return mapping
-
-    def _get_arcMapping(self, plId):
-        mapping = super()._get_arcMapping(plId)
-        element = self.novel.plotLines[plId]
-        mapping = self._add_yaml(element, mapping)
-        mapping = self._add_links(element, mapping)
-        mapping['Desc'] = self._add_key(element.desc, 'Desc')
-        return mapping
-
-    def _get_chapterMapping(self, chId, chapterNumber):
-        mapping = super()._get_chapterMapping(chId, chapterNumber)
-        element = self.novel.chapters[chId]
-        mapping = self._add_yaml(element, mapping)
-        mapping = self._add_links(element, mapping)
-        mapping['Desc'] = self._add_key(element.desc, 'Desc')
-        mapping['Notes'] = self._add_key(element.desc, 'Notes')
-        return mapping
-
-    def _get_characterMapping(self, crId):
-        mapping = super()._get_characterMapping(crId)
-        element = self.novel.characters[crId]
-        mapping = self._add_yaml(element, mapping)
-        mapping = self._add_links(element, mapping)
-        mapping['Desc'] = self._add_key(element.desc, 'Desc')
-        mapping['Bio'] = self._add_key(element.bio, 'Bio')
-        mapping['Goals'] = self._add_key(element.goals, 'Goals')
-        mapping['Notes'] = self._add_key(element.desc, 'Notes')
-        return mapping
-
-    def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, firstInChapter=False):
-        mapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal)
-        element = self.novel.sections[scId]
-        mapping = self._add_yaml(element, mapping)
-        mapping = self._add_links(element, mapping)
-        mapping = self._add_plotline_notes(element, mapping)
-        mapping['Desc'] = self._add_key(element.desc, 'Desc')
-        mapping['Goal'] = self._add_key(element.goal, 'Goal')
-        mapping['Conflict'] = self._add_key(element.conflict, 'Conflict')
-        mapping['Outcome'] = self._add_key(element.outcome, 'Outcome')
-        mapping['Notes'] = self._add_key(element.notes, 'Notes')
-        mapping['SectionContent'] = self._add_key(element.sectionContent, 'Content')
-        return mapping
-
-    def _get_fileHeaderMapping(self):
-        mapping = super()._get_fileHeaderMapping()
-        element = self.novel
-        mapping = self._add_yaml(element, mapping)
-        mapping = self._add_links(element, mapping)
-        mapping['Desc'] = self._add_key(element.desc, 'Desc')
-        return mapping
-
-    def _get_itemMapping(self, itId):
-        mapping = super()._get_itemMapping(itId)
-        element = self.novel.items[itId]
-        mapping = self._add_yaml(element, mapping)
-        mapping = self._add_links(element, mapping)
-        mapping['Desc'] = self._add_key(element.desc, 'Desc')
-        mapping['Notes'] = self._add_key(element.desc, 'Notes')
-        return mapping
-
-    def _get_locationMapping(self, lcId):
-        mapping = super()._get_locationMapping(lcId)
-        element = self.novel.locations[lcId]
-        mapping = self._add_yaml(element, mapping)
-        mapping = self._add_links(element, mapping)
-        mapping['Desc'] = self._add_key(element.desc, 'Desc')
-        mapping['Notes'] = self._add_key(element.desc, 'Notes')
-        return mapping
-
-    def _get_prjNoteMapping(self, pnId):
-        mapping = super()._get_prjNoteMapping(pnId)
-        element = self.novel.projectNotes[pnId]
-        mapping = self._add_yaml(element, mapping)
-        mapping = self._add_links(element, mapping)
-        mapping['Desc'] = self._add_key(element.desc, 'Desc')
-        return mapping
 
     def adjust_section_types(self):
         """Make sure that nodes with "Unused" parents inherit the type."""
@@ -341,10 +222,150 @@ $Desc
         super().write()
         self._get_timestamp()
 
+    def _add_key(self, text, key):
+        if not key:
+            return ''
+
+        if not text:
+            return ''
+
+        return f'%%{key}:\n\n{sanitize_markdown(text)}\n\n'
+
+    def _add_links(self, element, mapping):
+        links = element.get_links()
+        linkRepr = []
+        if links:
+            for relativeLink, absoluteLink in links:
+                linkRepr.append('%%Link:')
+                linkRepr.append(relativeLink)
+                linkRepr.append(absoluteLink)
+        mapping['Links'] = '\n\n'.join(linkRepr)
+        return mapping
+
+    def _add_plotline_notes(self, prjScn, mapping):
+        plRepr = []
+        if prjScn.plotlineNotes:
+            for plId in prjScn.plotlineNotes:
+                if not plId in prjScn.scPlotLines:
+                    continue
+
+                if not prjScn.plotlineNotes[plId]:
+                    continue
+
+                plRepr.append('%%Plotline:')
+                plRepr.append(plId)
+
+                plRepr.append('%%Plotline note:')
+                plRepr.append(sanitize_markdown(prjScn.plotlineNotes[plId]))
+        plStr = '\n\n'.join(plRepr)
+        mapping['Plotlines'] = f'{plStr}\n\n'
+        return mapping
+
+    def _add_yaml(self, element, mapping):
+        yaml = element.to_yaml([])
+        mapping['YAML'] = '\n'.join(yaml)
+        return mapping
+
     def _check_id(self, elemId, elemPrefix):
         """Raise an exception if elemId does not start with the correct prefix."""
         if not elemId.startswith(elemPrefix):
             raise Error(f"bad ID: '{elemId}'")
+
+    def _get_arcMapping(self, plId):
+        mapping = super()._get_arcMapping(plId)
+        element = self.novel.plotLines[plId]
+        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        return mapping
+
+    def _get_chapterMapping(self, chId, chapterNumber):
+        mapping = super()._get_chapterMapping(chId, chapterNumber)
+        element = self.novel.chapters[chId]
+        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        mapping['Notes'] = self._add_key(element.desc, 'Notes')
+        return mapping
+
+    def _get_characterMapping(self, crId):
+        mapping = super()._get_characterMapping(crId)
+        element = self.novel.characters[crId]
+        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        mapping['Bio'] = self._add_key(element.bio, 'Bio')
+        mapping['Goals'] = self._add_key(element.goals, 'Goals')
+        mapping['Notes'] = self._add_key(element.desc, 'Notes')
+        return mapping
+
+    def _get_fileFooterMapping(self):
+        mapping = {}
+        if not self.wcLog:
+            return mapping
+
+        lines = ['@@Progress']
+        wcLastCount = None
+        wcLastTotalCount = None
+        for wc in self.wcLog:
+            if self.novel.saveWordCount:
+                # Discard entries with unchanged word count.
+                if self.wcLog[wc][0] == wcLastCount and self.wcLog[wc][1] == wcLastTotalCount:
+                    continue
+
+                wcLastCount = self.wcLog[wc][0]
+                wcLastTotalCount = self.wcLog[wc][1]
+            lines.append(f'- {list_to_string([wc, self.wcLog[wc][0], self.wcLog[wc][1]])}')
+        mapping['Wordcountlog'] = '\n'.join(lines)
+        return mapping
+
+    def _get_fileHeaderMapping(self):
+        mapping = super()._get_fileHeaderMapping()
+        element = self.novel
+        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        return mapping
+
+    def _get_itemMapping(self, itId):
+        mapping = super()._get_itemMapping(itId)
+        element = self.novel.items[itId]
+        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        mapping['Notes'] = self._add_key(element.desc, 'Notes')
+        return mapping
+
+    def _get_locationMapping(self, lcId):
+        mapping = super()._get_locationMapping(lcId)
+        element = self.novel.locations[lcId]
+        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        mapping['Notes'] = self._add_key(element.desc, 'Notes')
+        return mapping
+
+    def _get_prjNoteMapping(self, pnId):
+        mapping = super()._get_prjNoteMapping(pnId)
+        element = self.novel.projectNotes[pnId]
+        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        return mapping
+
+    def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, firstInChapter=False):
+        mapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal)
+        element = self.novel.sections[scId]
+        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping = self._add_plotline_notes(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        mapping['Goal'] = self._add_key(element.goal, 'Goal')
+        mapping['Conflict'] = self._add_key(element.conflict, 'Conflict')
+        mapping['Outcome'] = self._add_key(element.outcome, 'Outcome')
+        mapping['Notes'] = self._add_key(element.notes, 'Notes')
+        mapping['SectionContent'] = self._add_key(element.sectionContent, 'Content')
+        return mapping
 
     def _get_timestamp(self):
         try:

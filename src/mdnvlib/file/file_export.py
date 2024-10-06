@@ -293,6 +293,15 @@ class FileExport(File):
                 lines.append(template.safe_substitute(self._get_characterMapping(crId)))
         return lines
 
+    def _get_fileFooter(self):
+        lines = []
+        template = Template(self._fileFooter)
+        lines.append(template.safe_substitute(self._get_fileFooterMapping()))
+        return lines
+
+    def _get_fileFooterMapping(self):
+        return []
+
     def _get_fileHeader(self):
         """Process the file header.
         
@@ -727,7 +736,7 @@ class FileExport(File):
         noteMapping = dict(
             ID=pnId,
             Title=self._convert_from_novx(self.novel.projectNotes[pnId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.projectNotes[pnId].desc, quick=True),
+            Desc=self._convert_from_novx(self.novel.projectNotes[pnId].desc),
             ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
         )
@@ -762,6 +771,6 @@ class FileExport(File):
         lines.extend(self._get_items())
         lines.extend(self._get_arcs())
         lines.extend(self._get_projectNotes())
-        lines.append(self._fileFooter)
+        lines.extend(self._get_fileFooter())
         return ''.join(lines)
 
