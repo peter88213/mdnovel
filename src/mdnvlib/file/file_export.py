@@ -294,6 +294,14 @@ class FileExport(File):
         return lines
 
     def _get_fileFooter(self):
+        """Process the file footer.
+        
+        Apply the file footer template, substituting placeholders 
+        according to the file footer mapping dictionary.
+        Return a list of strings.
+        
+        This is a template method that can be extended or overridden by subclasses.
+        """
         lines = []
         template = Template(self._fileFooter)
         lines.append(template.safe_substitute(self._get_fileFooterMapping()))
