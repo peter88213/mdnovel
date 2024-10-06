@@ -8,6 +8,7 @@ from datetime import date
 import os
 
 from mdnvlib.file.file_export import FileExport
+from mdnvlib.md.md_helper import sanitize_newlines
 from mdnvlib.model.basic_element import BasicElement
 from mdnvlib.model.chapter import Chapter
 from mdnvlib.model.character import Character
@@ -90,7 +91,7 @@ $YAML
 
 $Links
 
-$Desc$Notes$Goal$Conflict$Outcome$SectionContent
+$Desc$Notes$Goal$Conflict$Outcome$Plotlines$SectionContent
 '''
     _unusedSectionTemplate = _sectionTemplate
     _stage1Template = _sectionTemplate
@@ -180,6 +181,25 @@ $Desc
         mapping['Links'] = '\n\n'.join(linkRepr)
         return mapping
 
+    def _add_plotline_notes(self, prjScn, mapping):
+        plRepr = []
+        if prjScn.plotlineNotes:
+            for plId in prjScn.plotlineNotes:
+                if not plId in prjScn.scPlotLines:
+                    continue
+
+                if not prjScn.plotlineNotes[plId]:
+                    continue
+
+                plRepr.append('%%Plotline:')
+                plRepr.append(plId)
+
+                plRepr.append('%%Plotline note:')
+                plRepr.append(prjScn.plotlineNotes[plId])
+        plStr = '\n\n'.join(plRepr)
+        mapping['Plotlines'] = f'{sanitize_newlines(plStr)}\n\n'
+        return mapping
+
     def _add_yaml(self, element, mapping):
         yaml = element.to_yaml([])
         mapping['YAML'] = '\n'.join(yaml)
@@ -218,6 +238,7 @@ $Desc
         element = self.novel.sections[scId]
         mapping = self._add_yaml(element, mapping)
         mapping = self._add_links(element, mapping)
+        mapping = self._add_plotline_notes(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Goal'] = self._add_key(element.goal, 'Goal')
         mapping['Conflict'] = self._add_key(element.conflict, 'Conflict')
