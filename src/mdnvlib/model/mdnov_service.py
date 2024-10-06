@@ -13,14 +13,14 @@ from mdnvlib.model.plot_line import PlotLine
 from mdnvlib.model.plot_point import PlotPoint
 from mdnvlib.model.section import Section
 from mdnvlib.model.world_element import WorldElement
-from mdnvlib.novx.novx_file import NovxFile
+from mdnvlib.mdnov.mdnov_file import MdnovFile
 
 
 class MdnovService:
     """Getters and factory methods for mdnov  model objects."""
 
     def get_prj_file_extension(self):
-        return NovxFile.EXTENSION
+        return MdnovFile.EXTENSION
 
     def make_basic_element(self, **kwargs):
         return BasicElement(**kwargs)
@@ -51,5 +51,5 @@ class MdnovService:
         return WorldElement(**kwargs)
 
     def make_prj_file(self, filePath, **kwargs):
-        return NovxFile(filePath, **kwargs)
+        return MdnovFile(filePath, **kwargs)
 
