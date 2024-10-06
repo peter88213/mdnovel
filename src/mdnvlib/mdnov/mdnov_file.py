@@ -8,7 +8,7 @@ from datetime import date
 import os
 
 from mdnvlib.file.file_export import FileExport
-from mdnvlib.md.md_helper import sanitize_newlines
+from mdnvlib.md.md_helper import sanitize_markdown
 from mdnvlib.model.basic_element import BasicElement
 from mdnvlib.model.chapter import Chapter
 from mdnvlib.model.character import Character
@@ -195,9 +195,9 @@ $Desc
                 plRepr.append(plId)
 
                 plRepr.append('%%Plotline note:')
-                plRepr.append(prjScn.plotlineNotes[plId])
+                plRepr.append(sanitize_markdown(prjScn.plotlineNotes[plId]))
         plStr = '\n\n'.join(plRepr)
-        mapping['Plotlines'] = f'{sanitize_newlines(plStr)}\n\n'
+        mapping['Plotlines'] = f'{plStr}\n\n'
         return mapping
 
     def _add_yaml(self, element, mapping):

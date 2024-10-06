@@ -6,5 +6,12 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
 
-def sanitize_newlines(text):
-    return text.replace('\n\n', '\n').replace('\n', '\n\n').strip()
+def sanitize_markdown(text):
+    while '\n---' in text:
+        text = text.replace('\n---', '\n???')
+    text = text.replace('@@', '??')
+    text = text.replace('%%', '??')
+    while '\n\n' in text:
+        text = text.replace('\n\n', '\n')
+    text = text.replace('\n', '\n\n').strip()
+    return text

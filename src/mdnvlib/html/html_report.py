@@ -4,6 +4,7 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnvlib
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from html import escape
 from mdnvlib.file.file_export import FileExport
 
 
@@ -45,16 +46,9 @@ td.chtitle {font-weight: bold}
         if not text:
             return ''
 
-        text = text.rstrip()
-        HTML_REPLACEMENTS = [
-            ('&', '&amp;'),  # must be first!
-            ('"', '&quot;'),
-            ("'", '&apos;'),
-            ('>', '&gt;'),
-            ('<', '&lt;'),
-            ('\n', '<p />'),
-        ]
-        for nv, htm in HTML_REPLACEMENTS:
-            text = text.replace(nv, htm)
-        return text
+        text = escape(text.rstrip())
+        newlines = []
+        for line in text.split('\n'):
+            newlines.append(f'<p>{line}</p>')
+        return '\n'.join(newlines)
 
