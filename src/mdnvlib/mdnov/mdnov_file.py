@@ -67,12 +67,16 @@ $YAML
 ---
 
 
+$Links
+
 '''
     _chapterTemplate = '''@@$ID
     
 ---
 $YAML
 ---
+
+$Links
 
 $Desc$Notes
 '''
@@ -83,6 +87,8 @@ $Desc$Notes
 ---
 $YAML
 ---
+
+$Links
 
 $Desc$Notes$Goal$Conflict$Outcome$SectionContent
 '''
@@ -99,6 +105,8 @@ $Desc$Notes$Goal$Conflict$Outcome$SectionContent
 $YAML
 ---
 
+$Links
+
 $Desc$Bio$Goals
 '''
     _locationSectionHeading = ''
@@ -107,6 +115,8 @@ $Desc$Bio$Goals
 ---
 $YAML
 ---
+
+$Links
 
 $Desc
 '''
@@ -118,6 +128,8 @@ $Desc
 ---
 $YAML
 ---
+
+$Links
 
 $Desc
 '''
@@ -157,6 +169,17 @@ $Desc
 
         return f'%%{key}:\n\n{text.strip()}\n\n'
 
+    def _add_links(self, element, mapping):
+        links = element.get_links()
+        linkRepr = []
+        if links:
+            for relativeLink, absoluteLink in links:
+                linkRepr.append('%%Link:')
+                linkRepr.append(relativeLink)
+                linkRepr.append(absoluteLink)
+        mapping['Links'] = '\n\n'.join(linkRepr)
+        return mapping
+
     def _add_yaml(self, element, mapping):
         yaml = element.to_yaml([])
         mapping['YAML'] = '\n'.join(yaml)
@@ -164,8 +187,9 @@ $Desc
 
     def _get_arcMapping(self, plId):
         mapping = super()._get_arcMapping(plId)
-        element = self.novel.arcs[plId]
+        element = self.novel.plotLines[plId]
         mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         return mapping
 
@@ -173,6 +197,7 @@ $Desc
         mapping = super()._get_chapterMapping(chId, chapterNumber)
         element = self.novel.chapters[chId]
         mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Notes'] = self._add_key(element.desc, 'Notes')
         return mapping
@@ -181,6 +206,7 @@ $Desc
         mapping = super()._get_characterMapping(crId)
         element = self.novel.characters[crId]
         mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Bio'] = self._add_key(element.bio, 'Bio')
         mapping['Goals'] = self._add_key(element.goals, 'Goals')
@@ -191,6 +217,7 @@ $Desc
         mapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal)
         element = self.novel.sections[scId]
         mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Goal'] = self._add_key(element.goal, 'Goal')
         mapping['Conflict'] = self._add_key(element.conflict, 'Conflict')
@@ -203,6 +230,7 @@ $Desc
         mapping = super()._get_fileHeaderMapping()
         element = self.novel
         mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         return mapping
 
@@ -210,6 +238,7 @@ $Desc
         mapping = super()._get_itemMapping(itId)
         element = self.novel.items[itId]
         mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Notes'] = self._add_key(element.desc, 'Notes')
         return mapping
@@ -218,6 +247,7 @@ $Desc
         mapping = super()._get_locationMapping(lcId)
         element = self.novel.locations[lcId]
         mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Notes'] = self._add_key(element.desc, 'Notes')
         return mapping
@@ -226,6 +256,7 @@ $Desc
         mapping = super()._get_prjNoteMapping(pnId)
         element = self.novel.projectNotes[pnId]
         mapping = self._add_yaml(element, mapping)
+        mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         return mapping
 

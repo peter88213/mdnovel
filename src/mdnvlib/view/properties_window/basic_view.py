@@ -169,7 +169,7 @@ class BasicView(ttk.Frame, ABC):
             widget.config(state='normal')
         self._isLocked = False
 
-    def _add_link(self):
+    def _add_links(self):
         """Select a link and add it to the list."""
         fileTypes = [
             (_('Image file'), '.jpg'),
@@ -237,7 +237,7 @@ class BasicView(ttk.Frame, ABC):
         self._linksWindow.pack(fill='x')
         self._linkCollection = CollectionBox(
             self._linksWindow,
-            cmdAdd=self._add_link,
+            cmdAdd=self._add_links,
             cmdRemove=self._remove_link,
             cmdOpen=self._open_link,
             cmdActivate=self._activate_link_buttons,

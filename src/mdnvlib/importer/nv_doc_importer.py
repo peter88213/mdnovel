@@ -10,7 +10,7 @@ from tkinter import messagebox
 from mdnvlib.converter.import_source_factory import ImportSourceFactory
 from mdnvlib.converter.import_target_factory import ImportTargetFactory
 from mdnvlib.converter.new_project_factory import NewProjectFactory
-from mdnvlib.novx.novx_file import NovxFile
+from mdnvlib.mdnov.mdnov_file import MdnovFile
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
@@ -28,7 +28,7 @@ class NvDocImporter:
         """Set up the Factory strategies."""
         self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
         self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)
-        self.importTargetFactory = ImportTargetFactory([NovxFile])
+        self.importTargetFactory = ImportTargetFactory([MdnovFile])
         self.newFile = None
 
     def run(self, sourcePath, **kwargs):
