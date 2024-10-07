@@ -19,7 +19,6 @@ from mdnvlib.novx_globals import string_to_list
 from mdnvlib.novx_globals import verified_date
 from mdnvlib.novx_globals import verified_int_string
 from mdnvlib.novx_globals import verified_time
-import xml.etree.ElementTree as ET
 
 # Regular expressions for counting words and characters like in LibreOffice.
 # See: https://help.libreoffice.org/latest/en-GB/text/swriter/guide/words_count.html

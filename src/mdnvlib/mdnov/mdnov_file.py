@@ -12,6 +12,7 @@ from mdnvlib.md.md_helper import sanitize_markdown
 from mdnvlib.model.basic_element import BasicElement
 from mdnvlib.model.chapter import Chapter
 from mdnvlib.model.character import Character
+from mdnvlib.model.novel import Novel
 from mdnvlib.model.plot_line import PlotLine
 from mdnvlib.model.plot_point import PlotPoint
 from mdnvlib.model.section import Section
@@ -161,6 +162,9 @@ $Desc
         # value: list -- [word count: str, with unused: str]
 
         self.timestamp = None
+        self._range = None
+        self._collectedLines = None
+        self._properties = {}
 
     def adjust_section_types(self):
         """Make sure that nodes with "Unused" parents inherit the type."""
@@ -201,7 +205,7 @@ $Desc
         processor = None
         elemId = None
         chId = None
-        self._yaml = None
+        self._collectedLines = None
         self.novel.tree.reset()
         for self._line in lines:
             if self._line.startswith('@@book'):
@@ -228,7 +232,7 @@ $Desc
                 continue
 
             if self._line.startswith(f'@@{ITEM_PREFIX}'):
-                processor = self._read_item
+                processor = self._read_world_element
                 elemId = self._line.split('@@')[1].strip()
                 self.novel.items[elemId] = WorldElement(on_element_change=self.on_element_change)
                 self.novel.tree.append(IT_ROOT, elemId)
@@ -236,7 +240,7 @@ $Desc
                 continue
 
             if self._line.startswith(f'@@{LOCATION_PREFIX}'):
-                processor = self._read_location
+                processor = self._read_world_element
                 elemId = self._line.split('@@')[1].strip()
                 self.novel.locations[elemId] = WorldElement(on_element_change=self.on_element_change)
                 self.novel.tree.append(LC_ROOT, elemId)
@@ -480,47 +484,85 @@ $Desc
                 fileDateIso = date.today().isoformat()
             self.wcLogUpdate[fileDateIso] = [actualCount, actualTotalCount]
 
-    def _read_yaml(self, element):
+    def _read_element(self, element):
         if self._line.startswith('---'):
-            if self._yaml is None:
-                self._yaml = []
+            if self._range != 'yaml':
+                self._range = 'yaml'
+                self._collectedLines = []
             else:
-                element.from_yaml(self._yaml)
-                self._yaml = None
+                element.from_yaml(self._collectedLines)
+                self._range = None
             return
 
-        if self._yaml is not None:
-            self._yaml.append(self._line)
+        if self._line.startswith('%%'):
+
+            if self._range is not None:
+                # write collected lines
+                text = '\n'.join(self._collectedLines).strip()
+                classProperty = self._properties.get(self._range, None)
+                if classProperty is not None:
+                    classProperty.fset(element, text)
+
+            self._collectedLines = []
+            tag = self._line.strip('%: ')
+            self._range = tag
+
+        elif self._range is not None:
+            self._collectedLines.append(self._line)
 
     def _read_chapter(self, element):
-        self._read_yaml(element)
+        self._properties = {
+            'Desc':Chapter.desc,
+            'Notes':Chapter.notes,
+        }
+        self._read_element(element)
 
     def _read_section(self, element):
-        self._read_yaml(element)
+        self._properties = {
+            'Desc':Section.desc,
+            'Notes':Section.notes,
+        }
+        self._read_element(element)
 
     def _read_character(self, element):
-        self._read_yaml(element)
+        self._properties = {
+            'Desc':Character.desc,
+            'Notes':Character.notes,
+        }
+        self._read_element(element)
 
-    def _read_item(self, element):
-        self._read_yaml(element)
-
-    def _read_location(self, element):
-        self._read_yaml(element)
+    def _read_world_element(self, element):
+        self._properties = {
+            'Desc':WorldElement.desc,
+            'Notes':WorldElement.notes,
+        }
+        self._read_element(element)
 
     def _read_plot_line(self, element):
-        self._read_yaml(element)
+        self._properties = {
+            'Desc':PlotLine.desc,
+            'Notes':PlotLine.notes,
+        }
+        self._read_element(element)
 
     def _read_plot_point(self, element):
-        self._read_yaml(element)
+        self._properties = {
+            'Desc':PlotPoint.desc,
+            'Notes':PlotPoint.notes,
+        }
+        self._read_element(element)
 
     def _read_project(self, element):
-        self._read_yaml(element)
+        self._properties = {
+            'Desc':Novel.desc,
+        }
+        self._read_element(element)
 
     def _read_project_note(self, element):
-        self._read_yaml(element)
-
-    def _read_section_data(self, element):
-        self._read_yaml(element)
+        self._properties = {
+            'Desc':BasicElement.desc,
+        }
+        self._read_element(element)
 
     def _read_word_count_log(self, xmlRoot):
         """Read the word count log from the xml element tree."""
