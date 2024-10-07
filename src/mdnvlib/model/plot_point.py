@@ -31,11 +31,9 @@ class PlotPoint(BasicElementNotes):
             self._sectionAssoc = newVal
             self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        xmlSectionAssoc = xmlElement.find('Section')
-        if xmlSectionAssoc is not None:
-            self.sectionAssoc = xmlSectionAssoc.get('id', None)
+    def from_yaml(self, yaml):
+        super().from_yaml(yaml)
+        self.sectionAssoc = self._get_meta_value('Section')
 
     def to_yaml(self, yaml):
         yaml = super().to_yaml(yaml)

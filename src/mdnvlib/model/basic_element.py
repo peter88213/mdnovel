@@ -38,7 +38,10 @@ class BasicElement:
             self.on_element_change = on_element_change
         self._title = title
         self._desc = desc
-        self._links = links
+        if links is None:
+            self._links = {}
+        else:
+            self._links = links
 
     @property
     def title(self):
@@ -87,10 +90,18 @@ class BasicElement:
         """Standard callback routine for element changes."""
         pass
 
-    def from_xml(self, xmlElement):
-        self.title = self._get_element_text(xmlElement, 'Title')
-        self.desc = self._xml_element_to_text(xmlElement.find('Desc'))
-        self.links = self._get_link_dict(xmlElement)
+    def from_yaml(self, yaml):
+        self._metaDict = {}
+        for entry in yaml:
+            try:
+                metaData = entry.split(':')
+                metaKey = metaData[0].strip()
+                metaValue = metaData[1].strip()
+                self._metaDict[metaKey] = metaValue
+            except:
+                pass
+
+        self.title = self._get_meta_value('Title')
 
     def to_yaml(self, yaml):
         if self.title:
@@ -110,13 +121,10 @@ class BasicElement:
                 linkList.append((relativeLink, absoluteLink))
         return linkList
 
-    def _get_element_text(self, xmlElement, tag, default=None):
-        """Return the text field of an XML element.
-        
-        If the element doesn't exist, return default.
-        """
-        if xmlElement.find(tag) is not None:
-            return xmlElement.find(tag).text
+    def _get_meta_value(self, key, default=None):
+        text = self._metaDict.get(key, None)
+        if text is not None:
+            return text
         else:
             return default
 

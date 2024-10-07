@@ -13,7 +13,8 @@ import re
 from mdnvlib.model.basic_element_tags import BasicElementTags
 from mdnvlib.model.date_time_tools import get_specific_date
 from mdnvlib.model.date_time_tools import get_unspecific_date
-from mdnvlib.novx_globals import _, list_to_string
+from mdnvlib.novx_globals import _
+from mdnvlib.novx_globals import list_to_string
 from mdnvlib.novx_globals import string_to_list
 from mdnvlib.novx_globals import verified_date
 from mdnvlib.novx_globals import verified_int_string
@@ -440,21 +441,21 @@ class Section(BasicElementTags):
             self._day = None
             return False
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
+    def from_yaml(self, yaml):
+        super().from_yaml(yaml)
 
         # Attributes.
-        typeStr = xmlElement.get('type', '0')
+        typeStr = self._get_meta_value('type', '0')
         if typeStr in ('0', '1', '2', '3'):
             self.scType = int(typeStr)
         else:
             self.scType = 1
-        status = xmlElement.get('status', None)
+        status = self._get_meta_value('status', None)
         if status in ('2', '3', '4', '5'):
             self.status = int(status)
         else:
             self.status = 1
-        scene = xmlElement.get('scene', 0)
+        scene = self._get_meta_value('scene', 0)
         if scene in ('1', '2', '3'):
             self.scene = int(scene)
         else:
@@ -462,119 +463,35 @@ class Section(BasicElementTags):
 
         if not self.scene:
             # looking for deprecated attribute from DTD 1.3
-            sceneKind = xmlElement.get('pacing', None)
+            sceneKind = self._get_meta_value('pacing', None)
             if sceneKind in ('1', '2'):
                 self.scene = int(sceneKind) + 1
 
-        self.appendToPrev = xmlElement.get('append', None) == '1'
-
-        # Goal/Conflict/outcome.
-        self.goal = self._xml_element_to_text(xmlElement.find('Goal'))
-        self.conflict = self._xml_element_to_text(xmlElement.find('Conflict'))
-        self.outcome = self._xml_element_to_text(xmlElement.find('Outcome'))
-
-        # Plot notes.
-        xmlPlotNotes = xmlElement.find('PlotNotes')
-        # looking for deprecated element from DTD 1.3
-        if xmlPlotNotes is None:
-            xmlPlotNotes = xmlElement
-        plotNotes = {}
-        for xmlPlotLineNote in xmlPlotNotes.iterfind('PlotlineNotes'):
-            plId = xmlPlotLineNote.get('id', None)
-            plotNotes[plId] = self._xml_element_to_text(xmlPlotLineNote)
-        self.plotlineNotes = plotNotes
+        self.appendToPrev = self._get_meta_value('append', None) == '1'
 
         # Date/Day and Time.
-        if xmlElement.find('Date') is not None:
-            self.date = verified_date(xmlElement.find('Date').text)
-        elif xmlElement.find('Day') is not None:
-            self.day = verified_int_string(xmlElement.find('Day').text)
+        self.date = verified_date(self._get_meta_value('Date'))
+        if not self.date:
+            self.day = verified_int_string(self._get_meta_value('Day'))
 
-        if xmlElement.find('Time') is not None:
-            self.time = verified_time(xmlElement.find('Time').text)
+        self.time = verified_time(self._get_meta_value('Time'))
 
         # Duration.
-        self.lastsDays = verified_int_string(self._get_element_text(xmlElement, 'LastsDays'))
-        self.lastsHours = verified_int_string(self._get_element_text(xmlElement, 'LastsHours'))
-        self.lastsMinutes = verified_int_string(self._get_element_text(xmlElement, 'LastsMinutes'))
+        self.lastsDays = verified_int_string(self._get_meta_value('LastsDays'))
+        self.lastsHours = verified_int_string(self._get_meta_value('LastsHours'))
+        self.lastsMinutes = verified_int_string(self._get_meta_value('LastsMinutes'))
 
         # Characters references.
-        scCharacters = []
-        xmlCharacters = xmlElement.find('Characters')
-        if xmlCharacters is not None:
-            crIds = xmlCharacters.get('ids', None)
-            if crIds is not None:
-                for crId in string_to_list(crIds, divider=' '):
-                    scCharacters.append(crId)
-        self.characters = scCharacters
+        scCharacters = self._get_meta_value('Characters')
+        self.characters = string_to_list(scCharacters)
 
         # Locations references.
-        scLocations = []
-        xmlLocations = xmlElement.find('Locations')
-        if xmlLocations is not None:
-            lcIds = xmlLocations.get('ids', None)
-            if lcIds is not None:
-                for lcId in string_to_list(lcIds, divider=' '):
-                    scLocations.append(lcId)
-        self.locations = scLocations
+        scLocations = self._get_meta_value('Locations')
+        self.locations = string_to_list(scLocations)
 
         # Items references.
-        scItems = []
-        xmlItems = xmlElement.find('Items')
-        if xmlItems is not None:
-            itIds = xmlItems.get('ids', None)
-            if itIds is not None:
-                for itId in string_to_list(itIds, divider=' '):
-                    scItems.append(itId)
-        self.items = scItems
-
-        # Content.
-        xmlContent = xmlElement.find('Content')
-        if xmlContent is not None:
-            text = ET.tostring(
-                xmlContent,
-                encoding='utf-8',
-                short_empty_elements=False
-                ).decode('utf-8')
-
-            MD_REPLACEMENTS = [
-                ('<Content>', ''),
-                ('</Content>', ''),
-                ('<em> ', ' <em>'),
-                ('<strong> ', ' <strong>'),
-                ('<p>', ''),
-                ('<p style="quotations">', ''),
-                ('</p>', '\n'),
-                ('<em>', '*'),
-                ('</em>', '*'),
-                ('<strong>', '**'),
-                ('</strong>', '**'),
-                ('<comment>', '<!---\n'),
-                ('\n\n</comment>', '\n--->'),
-                ('</comment>\n\n', '--->'),
-                ('</comment>', '--->'),
-                ('  ', ' '),
-            ]
-            for novx, md in MD_REPLACEMENTS:
-                text = text.replace(novx, md)
-
-            newlines = []
-            lines = text.split('\n')
-            for line in lines:
-                newlines.append(line.strip())
-            text = '\n'.join(newlines)
-            text = re.sub('<creator>.*?</creator>', '', text)
-            text = re.sub('<date>.*?</date>', '', text)
-            # text = re.sub(r'<.*?>', '', text)
-            # removing the remaining XML tags, if any
-
-            if text:
-                self.sectionContent = f'{text.strip()}\n'
-            else:
-                self.sectionContent = ''
-        elif self.scType < 2:
-            # normal or unused section; not a stage
-            self.sectionContent = ''
+        scItems = self._get_meta_value('Items')
+        self.items = string_to_list(scItems)
 
     def get_end_date_time(self):
         """Return the end (date, time, day) tuple calculated from start and duration."""

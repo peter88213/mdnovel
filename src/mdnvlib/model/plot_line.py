@@ -53,17 +53,11 @@ class PlotLine(BasicElementNotes):
             self._sections = newVal
             self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        self.shortName = self._get_element_text(xmlElement, 'ShortName')
-        plSections = []
-        xmlSections = xmlElement.find('Sections')
-        if xmlSections is not None:
-            scIds = xmlSections.get('ids', None)
-            if scIds is not None:
-                for scId in string_to_list(scIds, divider=' '):
-                    plSections.append(scId)
-        self.sections = plSections
+    def from_yaml(self, yaml):
+        super().from_yaml(yaml)
+        self.shortName = self._get_meta_value('ShortName')
+        plSections = self._get_meta_value('Sections')
+        self.sections = string_to_list(plSections)
 
     def to_yaml(self, yaml):
         yaml = super().to_yaml(yaml)

@@ -79,20 +79,20 @@ class Chapter(BasicElementNotes):
             self._isTrash = newVal
             self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        typeStr = xmlElement.get('type', '0')
+    def from_yaml(self, yaml):
+        super().from_yaml(yaml)
+        typeStr = self._get_meta_value('type', '0')
         if typeStr in ('0', '1'):
             self.chType = int(typeStr)
         else:
             self.chType = 1
-        chLevel = xmlElement.get('level', None)
+        chLevel = self._get_meta_value('level', None)
         if chLevel == '1':
             self.chLevel = 1
         else:
             self.chLevel = 2
-        self.isTrash = xmlElement.get('isTrash', None) == '1'
-        self.noNumber = xmlElement.get('noNumber', None) == '1'
+        self.isTrash = self._get_meta_value('isTrash', None) == '1'
+        self.noNumber = self._get_meta_value('noNumber', None) == '1'
 
     def to_yaml(self, yaml):
         yaml = super().to_yaml(yaml)

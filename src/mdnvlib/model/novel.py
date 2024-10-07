@@ -463,53 +463,55 @@ class Novel(BasicElement):
         self._countryCode = 'none'
         self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        self.renumberChapters = xmlElement.get('renumberChapters', None) == '1'
-        self.renumberParts = xmlElement.get('renumberParts', None) == '1'
-        self.renumberWithinParts = xmlElement.get('renumberWithinParts', None) == '1'
-        self.romanChapterNumbers = xmlElement.get('romanChapterNumbers', None) == '1'
-        self.romanPartNumbers = xmlElement.get('romanPartNumbers', None) == '1'
-        self.saveWordCount = xmlElement.get('saveWordCount', None) == '1'
-        workPhase = xmlElement.get('workPhase', None)
+    def from_yaml(self, yaml):
+        super().from_yaml(yaml)
+        self.renumberChapters = self._get_meta_value('renumberChapters', None) == '1'
+        self.renumberParts = self._get_meta_value('renumberParts', None) == '1'
+        self.renumberWithinParts = self._get_meta_value('renumberWithinParts', None) == '1'
+        self.romanChapterNumbers = self._get_meta_value('romanChapterNumbers', None) == '1'
+        self.romanPartNumbers = self._get_meta_value('romanPartNumbers', None) == '1'
+        self.saveWordCount = self._get_meta_value('saveWordCount', None) == '1'
+        workPhase = self._get_meta_value('workPhase', None)
         if workPhase in ('1', '2', '3', '4', '5'):
             self.workPhase = int(workPhase)
         else:
             self.workPhase = None
 
         # Author.
-        self.authorName = self._get_element_text(xmlElement, 'Author')
+        self.authorName = self._get_meta_value('Author')
 
         # Chapter heading prefix/suffix.
-        self.chapterHeadingPrefix = self._get_element_text(xmlElement, 'ChapterHeadingPrefix')
-        self.chapterHeadingSuffix = self._get_element_text(xmlElement, 'ChapterHeadingSuffix')
+        self.chapterHeadingPrefix = self._get_meta_value('ChapterHeadingPrefix')
+        self.chapterHeadingSuffix = self._get_meta_value('ChapterHeadingSuffix')
 
         # Part heading prefix/suffix.
-        self.partHeadingPrefix = self._get_element_text(xmlElement, 'PartHeadingPrefix')
-        self.partHeadingSuffix = self._get_element_text(xmlElement, 'PartHeadingSuffix')
+        self.partHeadingPrefix = self._get_meta_value('PartHeadingPrefix')
+        self.partHeadingSuffix = self._get_meta_value('PartHeadingSuffix')
 
         # N/A Goal/Conflict/Outcome.
-        self.customPlotProgress = self._get_element_text(xmlElement, 'CustomPlotProgress')
-        self.customCharacterization = self._get_element_text(xmlElement, 'CustomCharacterization')
-        self.customWorldBuilding = self._get_element_text(xmlElement, 'CustomWorldBuilding')
+        self.customPlotProgress = self._get_meta_value('CustomPlotProgress')
+        self.customCharacterization = self._get_meta_value('CustomCharacterization')
+        self.customWorldBuilding = self._get_meta_value('CustomWorldBuilding')
 
         # Custom Goal/Conflict/Outcome.
-        self.customGoal = self._get_element_text(xmlElement, 'CustomGoal')
-        self.customConflict = self._get_element_text(xmlElement, 'CustomConflict')
-        self.customOutcome = self._get_element_text(xmlElement, 'CustomOutcome')
+        self.customGoal = self._get_meta_value('CustomGoal')
+        self.customConflict = self._get_meta_value('CustomConflict')
+        self.customOutcome = self._get_meta_value('CustomOutcome')
 
         # Custom Character Bio/Goals.
-        self.customChrBio = self._get_element_text(xmlElement, 'CustomChrBio')
-        self.customChrGoals = self._get_element_text(xmlElement, 'CustomChrGoals')
+        self.customChrBio = self._get_meta_value('CustomChrBio')
+        self.customChrGoals = self._get_meta_value('CustomChrGoals')
 
         # Word count start/Word target.
-        if xmlElement.find('WordCountStart') is not None:
-            self.wordCountStart = int(xmlElement.find('WordCountStart').text)
-        if xmlElement.find('WordTarget') is not None:
-            self.wordTarget = int(xmlElement.find('WordTarget').text)
+        ws = self._get_meta_value('WordCountStart')
+        if ws is not None:
+            self.wordCountStart = int(ws)
+        wt = self._get_meta_value('WordTarget')
+        if wt is not None:
+            self.wordCountStart = int(wt)
 
         # Reference date.
-        self.referenceDate = verified_date(self._get_element_text(xmlElement, 'ReferenceDate'))
+        self.referenceDate = verified_date(self._get_meta_value('ReferenceDate'))
 
     def get_languages(self):
         """Determine the languages used in the document.

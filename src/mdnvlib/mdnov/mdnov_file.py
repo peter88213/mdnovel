@@ -196,25 +196,119 @@ $Desc
         
         Overrides the superclass method.
         """
-        xmlRoot = get_xml_root(self.filePath)
-        try:
-            locale = xmlRoot.attrib['{http://www.w3.org/XML/1998/namespace}lang']
-            self.novel.languageCode, self.novel.countryCode = locale.split('-')
-        except:
-            pass
+        with open(self.filePath, 'r', encoding='utf-8') as f:
+            lines = f.read().split('\n')
+        processor = None
+        elemId = None
+        chId = None
+        self._yaml = None
         self.novel.tree.reset()
-        try:
-            self._read_project(xmlRoot)
-            self._read_locations(xmlRoot)
-            self._read_items(xmlRoot)
-            self._read_characters(xmlRoot)
-            self._read_chapters_and_sections(xmlRoot)
-            self._read_plot_lines_and_points(xmlRoot)
-            self._read_project_notes(xmlRoot)
-            self.adjust_section_types()
-            self._read_word_count_log(xmlRoot)
-        except Exception as ex:
-            raise Error(f"{_('Corrupt project data')} ({str(ex)})")
+        for self._line in lines:
+            if self._line.startswith('@@book'):
+                processor = self._read_project
+                elemId = None
+                element = self.novel
+                continue
+
+            if self._line.startswith(f'@@{CHAPTER_PREFIX}'):
+                processor = self._read_chapter
+                elemId = self._line.split('@@')[1].strip()
+                self.novel.chapters[elemId] = Chapter(on_element_change=self.on_element_change)
+                self.novel.tree.append(CH_ROOT, elemId)
+                element = self.novel.chapters[elemId]
+                chId = elemId
+                continue
+
+            if self._line.startswith(f'@@{CHARACTER_PREFIX}'):
+                processor = self._read_character
+                elemId = self._line.split('@@')[1].strip()
+                self.novel.characters[elemId] = Character(on_element_change=self.on_element_change)
+                self.novel.tree.append(CR_ROOT, elemId)
+                element = self.novel.characters[elemId]
+                continue
+
+            if self._line.startswith(f'@@{ITEM_PREFIX}'):
+                processor = self._read_item
+                elemId = self._line.split('@@')[1].strip()
+                self.novel.items[elemId] = WorldElement(on_element_change=self.on_element_change)
+                self.novel.tree.append(IT_ROOT, elemId)
+                element = self.novel.items[elemId]
+                continue
+
+            if self._line.startswith(f'@@{LOCATION_PREFIX}'):
+                processor = self._read_location
+                elemId = self._line.split('@@')[1].strip()
+                self.novel.locations[elemId] = WorldElement(on_element_change=self.on_element_change)
+                self.novel.tree.append(LC_ROOT, elemId)
+                element = self.novel.locations[elemId]
+                continue
+
+            if self._line.startswith(f'@@{PLOT_LINE_PREFIX}'):
+                processor = self._read_plot_line
+                elemId = self._line.split('@@')[1].strip()
+                self.novel.plotLines[elemId] = PlotLine(on_element_change=self.on_element_change)
+                self.novel.tree.append(PL_ROOT, elemId)
+                element = self.novel.plotLines[elemId]
+                plId = elemId
+                continue
+
+            if self._line.startswith(f'@@{PLOT_POINT_PREFIX}'):
+                processor = self._read_plot_point
+                elemId = self._line.split('@@')[1].strip()
+                self.novel.plotPoints[elemId] = PlotPoint(on_element_change=self.on_element_change)
+                self.novel.tree.append(plId, elemId)
+                element = (self.novel.plotPoints[elemId])
+                continue
+
+            if self._line.startswith(f'@@{PRJ_NOTE_PREFIX}'):
+                processor = self._read_project_note
+                elemId = self._line.split('@@')[1].strip()
+                self.novel.projectNotes[elemId] = BasicElement()
+                self.novel.tree.append(PN_ROOT, elemId)
+                element = self.novel.projectNotes[elemId]
+                continue
+
+            if self._line.startswith(f'@@{SECTION_PREFIX}'):
+                processor = self._read_section
+                elemId = self._line.split('@@')[1].strip()
+                self.novel.sections[elemId] = Section(on_element_change=self.on_element_change)
+                self.novel.tree.append(chId, elemId)
+                element = self.novel.sections[elemId]
+                continue
+
+            if self._line.startswith(f'@@Progress'):
+                processor = self._read_word_count_log
+                elemId = None
+                continue
+
+            if processor is not None:
+                processor(element)
+
+        for scId in self.novel.sections:
+
+            # Remove dead references.
+            self.novel.sections[scId].characters = intersection(self.novel.sections[scId].characters, self.novel.characters)
+            self.novel.sections[scId].locations = intersection(self.novel.sections[scId].locations, self.novel.locations)
+            self.novel.sections[scId].items = intersection(self.novel.sections[scId].items, self.novel.items)
+
+        for ppId in self.novel.plotPoints:
+
+            # Verify section and create back reference.
+            scId = self.novel.plotPoints[ppId].sectionAssoc
+            if scId in self.novel.sections:
+                self.novel.sections[scId].scPlotPoints[ppId] = plId
+            else:
+                self.novel.plotPoints[ppId].sectionAssoc = None
+
+        for plId in self.novel.plotLines:
+
+            # Remove dead references.
+            self.novel.plotLines[plId].sections = intersection(self.novel.plotLines[plId].sections, self.novel.sections)
+
+            # Create back references.
+            for scId in self.novel.plotLines[plId].sections:
+                self.novel.sections[scId].scPlotLines.append(plId)
+
         self._get_timestamp()
         self._keep_word_count()
 
@@ -265,11 +359,6 @@ $Desc
         yaml = element.to_yaml([])
         mapping['YAML'] = '\n'.join(yaml)
         return mapping
-
-    def _check_id(self, elemId, elemPrefix):
-        """Raise an exception if elemId does not start with the correct prefix."""
-        if not elemId.startswith(elemPrefix):
-            raise Error(f"bad ID: '{elemId}'")
 
     def _get_arcMapping(self, plId):
         mapping = super()._get_arcMapping(plId)
@@ -391,145 +480,51 @@ $Desc
                 fileDateIso = date.today().isoformat()
             self.wcLogUpdate[fileDateIso] = [actualCount, actualTotalCount]
 
-    def _read_chapters_and_sections(self, root):
-        """Read data at chapter level from the xml element tree."""
-        xmlChapters = root.find('CHAPTERS')
-        if xmlChapters is None:
+    def _read_yaml(self, element):
+        if self._line.startswith('---'):
+            if self._yaml is None:
+                self._yaml = []
+            else:
+                element.from_yaml(self._yaml)
+                self._yaml = None
             return
 
-        for xmlChapter in xmlChapters.iterfind('CHAPTER'):
-            chId = xmlChapter.attrib['id']
-            self._check_id(chId, CHAPTER_PREFIX)
-            self.novel.chapters[chId] = Chapter(on_element_change=self.on_element_change)
-            self.novel.chapters[chId].from_xml(xmlChapter)
-            self.novel.tree.append(CH_ROOT, chId)
+        if self._yaml is not None:
+            self._yaml.append(self._line)
 
-            for xmlSection in xmlChapter.iterfind('SECTION'):
-                scId = xmlSection.attrib['id']
-                self._check_id(scId, SECTION_PREFIX)
-                self._read_section(xmlSection, scId)
-                self.novel.tree.append(chId, scId)
+    def _read_chapter(self, element):
+        self._read_yaml(element)
 
-    def _read_characters(self, root):
-        """Read characters from the xml element tree."""
-        xmlCharacters = root.find('CHARACTERS')
-        if xmlCharacters is None:
-            return
+    def _read_section(self, element):
+        self._read_yaml(element)
 
-        for xmlCharacter in xmlCharacters.iterfind('CHARACTER'):
-            crId = xmlCharacter.attrib['id']
-            self._check_id(crId, CHARACTER_PREFIX)
-            self.novel.characters[crId] = Character(on_element_change=self.on_element_change)
-            self.novel.characters[crId].from_xml(xmlCharacter)
-            self.novel.tree.append(CR_ROOT, crId)
+    def _read_character(self, element):
+        self._read_yaml(element)
 
-    def _read_items(self, root):
-        """Read items from the xml element tree."""
-        xmlItems = root.find('ITEMS')
-        if xmlItems is None:
-            return
+    def _read_item(self, element):
+        self._read_yaml(element)
 
-        for xmlItem in xmlItems.iterfind('ITEM'):
-            itId = xmlItem.attrib['id']
-            self._check_id(itId, ITEM_PREFIX)
-            self.novel.items[itId] = WorldElement(on_element_change=self.on_element_change)
-            self.novel.items[itId].from_xml(xmlItem)
-            self.novel.tree.append(IT_ROOT, itId)
+    def _read_location(self, element):
+        self._read_yaml(element)
 
-    def _read_locations(self, root):
-        """Read locations from the xml element tree."""
-        xmlLocations = root.find('LOCATIONS')
-        if xmlLocations is None:
-            return
+    def _read_plot_line(self, element):
+        self._read_yaml(element)
 
-        for xmlLocation in xmlLocations.iterfind('LOCATION'):
-            lcId = xmlLocation.attrib['id']
-            self._check_id(lcId, LOCATION_PREFIX)
-            self.novel.locations[lcId] = WorldElement(on_element_change=self.on_element_change)
-            self.novel.locations[lcId].from_xml(xmlLocation)
-            self.novel.tree.append(LC_ROOT, lcId)
+    def _read_plot_point(self, element):
+        self._read_yaml(element)
 
-    def _read_plot_lines_and_points(self, root):
-        """Read plot lines and plot points from the xml element tree."""
-        xmlPlotLines = root.find('ARCS')
-        if xmlPlotLines is None:
-            return
+    def _read_project(self, element):
+        self._read_yaml(element)
 
-        for xmlPlotLine in xmlPlotLines.iterfind('ARC'):
-            plId = xmlPlotLine.attrib['id']
-            self._check_id(plId, PLOT_LINE_PREFIX)
-            self.novel.plotLines[plId] = PlotLine(on_element_change=self.on_element_change)
-            self.novel.plotLines[plId].from_xml(xmlPlotLine)
-            self.novel.tree.append(PL_ROOT, plId)
+    def _read_project_note(self, element):
+        self._read_yaml(element)
 
-            # Remove dead references.
-            self.novel.plotLines[plId].sections = intersection(self.novel.plotLines[plId].sections, self.novel.sections)
-
-            # Create back references.
-            for scId in self.novel.plotLines[plId].sections:
-                self.novel.sections[scId].scPlotLines.append(plId)
-
-            for xmlPlotPoint in xmlPlotLine.iterfind('POINT'):
-                ppId = xmlPlotPoint.attrib['id']
-                self._check_id(ppId, PLOT_POINT_PREFIX)
-                self._read_plot_point(xmlPlotPoint, ppId, plId)
-                self.novel.tree.append(plId, ppId)
-
-    def _read_plot_point(self, xmlPlotPoint, ppId, plId):
-        """Read a plot point from the xml element tree."""
-        self.novel.plotPoints[ppId] = PlotPoint(on_element_change=self.on_element_change)
-        self.novel.plotPoints[ppId].from_xml(xmlPlotPoint)
-
-        # Verify section and create back reference.
-        scId = self.novel.plotPoints[ppId].sectionAssoc
-        if scId in self.novel.sections:
-            self.novel.sections[scId].scPlotPoints[ppId] = plId
-        else:
-            self.novel.plotPoints[ppId].sectionAssoc = None
-
-    def _read_project(self, root):
-        """Read data at project level from the xml element tree."""
-        xmlProject = root.find('PROJECT')
-        if xmlProject is None:
-            return
-
-        self.novel.from_xml(xmlProject)
-
-    def _read_project_notes(self, root):
-        """Read project notes from the xml element tree."""
-        xmlProjectNotes = root.find('PROJECTNOTES')
-        if xmlProjectNotes is None:
-            return
-
-        for xmlProjectNote in xmlProjectNotes.iterfind('PROJECTNOTE'):
-            pnId = xmlProjectNote.attrib['id']
-            self._check_id(pnId, PRJ_NOTE_PREFIX)
-            self.novel.projectNotes[pnId] = BasicElement()
-            self.novel.projectNotes[pnId].from_xml(xmlProjectNote)
-            self.novel.tree.append(PN_ROOT, pnId)
-
-    def _read_section(self, xmlSection, scId):
-        """Read data at section level from the xml element tree."""
-        self.novel.sections[scId] = Section(on_element_change=self.on_element_change)
-        self.novel.sections[scId].from_xml(xmlSection)
-
-        # Remove dead references.
-        self.novel.sections[scId].characters = intersection(self.novel.sections[scId].characters, self.novel.characters)
-        self.novel.sections[scId].locations = intersection(self.novel.sections[scId].locations, self.novel.locations)
-        self.novel.sections[scId].items = intersection(self.novel.sections[scId].items, self.novel.items)
+    def _read_section_data(self, element):
+        self._read_yaml(element)
 
     def _read_word_count_log(self, xmlRoot):
         """Read the word count log from the xml element tree."""
-        xmlWclog = xmlRoot.find('PROGRESS')
-        if xmlWclog is None:
-            return
-
-        for xmlWc in xmlWclog.iterfind('WC'):
-            wcDate = verified_date(xmlWc.find('Date').text)
-            wcCount = verified_int_string(xmlWc.find('Count').text)
-            wcTotalCount = verified_int_string(xmlWc.find('WithUnused').text)
-            if wcDate and wcCount and wcTotalCount:
-                self.wcLog[wcDate] = [wcCount, wcTotalCount]
+        return
 
     def _update_word_count_log(self):
         """Add today's word count and word count when reading, if not logged."""

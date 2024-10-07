@@ -104,14 +104,12 @@ class Character(WorldElement):
             self._deathDate = newVal
             self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        self.isMajor = xmlElement.get('major', None) == '1'
-        self.fullName = self._get_element_text(xmlElement, 'FullName')
-        self.bio = self._xml_element_to_text(xmlElement.find('Bio'))
-        self.goals = self._xml_element_to_text(xmlElement.find('Goals'))
-        self.birthDate = verified_date(self._get_element_text(xmlElement, 'BirthDate'))
-        self.deathDate = verified_date(self._get_element_text(xmlElement, 'DeathDate'))
+    def from_yaml(self, yaml):
+        super().from_yaml(yaml)
+        self.isMajor = self._get_meta_value('major', None) == '1'
+        self.fullName = self._get_meta_value('FullName')
+        self.birthDate = verified_date(self._get_meta_value('BirthDate'))
+        self.deathDate = verified_date(self._get_meta_value('DeathDate'))
 
     def to_yaml(self, yaml):
         yaml = super().to_yaml(yaml)

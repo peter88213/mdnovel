@@ -34,9 +34,9 @@ class BasicElementTags(BasicElementNotes):
             self._tags = newVal
             self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        tags = string_to_list(self._get_element_text(xmlElement, 'Tags'))
+    def from_yaml(self, yaml):
+        super().from_yaml(yaml)
+        tags = string_to_list(self._get_meta_value('Tags'))
         strippedTags = []
         for tag in tags:
             strippedTags.append(tag.strip())

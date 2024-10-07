@@ -29,9 +29,9 @@ class WorldElement(BasicElementTags):
             self._aka = newVal
             self.on_element_change()
 
-    def from_xml(self, xmlElement):
-        super().from_xml(xmlElement)
-        self.aka = self._get_element_text(xmlElement, 'Aka')
+    def from_yaml(self, yaml):
+        super().from_yaml(yaml)
+        self.aka = self._get_meta_value('Aka')
 
     def to_yaml(self, yaml):
         yaml = super().to_yaml(yaml)
