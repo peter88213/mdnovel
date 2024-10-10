@@ -261,11 +261,8 @@ class EditorWindow(tk.Toplevel):
         nextNode = self._ui.tv.next_node(self._scId)
         if nextNode:
             self._ui.tv.go_to_node(nextNode)
-            self._scId = nextNode
-            self._section = self._mdl.novel.sections[nextNode]
-            self._sectionEditor.clear()
-            self._load_section()
-        self.lift()
+            self._plugin.close_editor_window(self._scId)
+            self._plugin.open_editor_window()
 
     def _load_prev(self, event=None):
         """Load the previous section in the tree."""
@@ -275,11 +272,8 @@ class EditorWindow(tk.Toplevel):
         prevNode = self._ui.tv.prev_node(self._scId)
         if prevNode:
             self._ui.tv.go_to_node(prevNode)
-            self._scId = prevNode
-            self._section = self._mdl.novel.sections[prevNode]
-            self._sectionEditor.clear()
-            self._load_section()
-        self.lift()
+            self._plugin.close_editor_window(self._scId)
+            self._plugin.open_editor_window()
 
     def _load_section(self):
         """Load the section content into the text editor."""
