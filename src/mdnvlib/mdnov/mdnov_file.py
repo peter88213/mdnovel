@@ -73,7 +73,8 @@ $YAML
 $Links
 
 '''
-    _chapterTemplate = '''@@$ID
+    _chapterTemplate = '''
+@@$ID
     
 ---
 $YAML
@@ -82,10 +83,12 @@ $YAML
 $Links
 
 $Desc$Notes
+%%
 '''
     _partTemplate = _chapterTemplate
     _unusedChapterTemplate = _chapterTemplate
-    _sectionTemplate = '''@@$ID
+    _sectionTemplate = '''
+@@$ID
     
 ---
 $YAML
@@ -93,7 +96,7 @@ $YAML
 
 $Links
 
-$Desc$Notes$Goal$Conflict$Outcome$Plotlines$SectionContent
+$Desc$Notes$Goal$Conflict$Outcome$Plotlines$SectionContent%%
 '''
     _unusedSectionTemplate = _sectionTemplate
     _stage1Template = _sectionTemplate
@@ -102,7 +105,8 @@ $Desc$Notes$Goal$Conflict$Outcome$Plotlines$SectionContent
     _chapterEndTemplate = ''
     _unusedChapterEndTemplate = ''
     _characterSectionHeading = ''
-    _characterTemplate = '''@@$ID
+    _characterTemplate = '''
+@@$ID
     
 ---
 $YAML
@@ -111,9 +115,11 @@ $YAML
 $Links
 
 $Desc$Bio$Goals
+%%
 '''
     _locationSectionHeading = ''
-    _locationTemplate = '''@@$ID
+    _locationTemplate = '''
+@@$ID
     
 ---
 $YAML
@@ -122,11 +128,13 @@ $YAML
 $Links
 
 $Desc
+%%
 '''
     _itemSectionHeading = ''
     _itemTemplate = _locationTemplate
     _projectNoteTemplate = _locationTemplate
-    _arcTemplate = '''@@$ID
+    _arcTemplate = '''
+@@$ID
     
 ---
 $YAML
@@ -135,6 +143,7 @@ $YAML
 $Links
 
 $Desc
+%%
 '''
     _fileFooter = '\n$Wordcountlog\n'
 
@@ -499,13 +508,15 @@ $Desc
             if self._range is not None:
                 # write collected lines
                 text = '\n'.join(self._collectedLines).strip()
+                text = f'{text}\n'
                 classProperty = self._properties.get(self._range, None)
                 if classProperty is not None:
                     classProperty.fset(element, text)
 
             self._collectedLines = []
             tag = self._line.strip('%: ')
-            self._range = tag
+            if tag:
+                self._range = tag
 
         elif self._range is not None:
             self._collectedLines.append(self._line)
@@ -517,17 +528,12 @@ $Desc
         }
         self._read_element(element)
 
-    def _read_section(self, element):
-        self._properties = {
-            'Desc':Section.desc,
-            'Notes':Section.notes,
-        }
-        self._read_element(element)
-
     def _read_character(self, element):
         self._properties = {
             'Desc':Character.desc,
             'Notes':Character.notes,
+            'Bio':Character.bio,
+            'Goals':Character.goals,
         }
         self._read_element(element)
 
@@ -561,6 +567,17 @@ $Desc
     def _read_project_note(self, element):
         self._properties = {
             'Desc':BasicElement.desc,
+        }
+        self._read_element(element)
+
+    def _read_section(self, element):
+        self._properties = {
+            'Desc':Section.desc,
+            'Notes':Section.notes,
+            'Goal':Section.goal,
+            'Conflict':Section.conflict,
+            'Outcome':Section.outcome,
+            'Content':Section.sectionContent,
         }
         self._read_element(element)
 
