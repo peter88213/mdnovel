@@ -55,7 +55,7 @@ class EditorWindow(tk.Toplevel):
                 manager.kwargs['ed_color_bg_dark'],
                 ),
             ]
-        # (name, background, foreground) tuples for color modes.
+        # (name, foreground, background) tuples for color modes.
 
         # Create an independent editor window.
         super().__init__()

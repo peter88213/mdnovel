@@ -140,6 +140,17 @@ def extract_tree(sourceDir, targetDir):
                 z.extract(file, targetDir)
 
 
+def fix_ini(iniFile):
+    if not os.path.isfile(iniFile):
+        return
+
+    with open(iniFile, 'r') as f:
+        text = f.read()
+    if 'ed_color_bg_bright = black' in text:
+        output('Removing outdated configuration file ...')
+        os.remove(iniFile)
+
+
 def cp_tree(sourceDir, targetDir):
     copytree(sourceDir, f'{targetDir}/{sourceDir}', dirs_exist_ok=True)
 
@@ -231,9 +242,8 @@ def install(installDir, zipped):
     output('Copying icons ...')
     copy_tree('icons', installDir)
 
-    # Install the css files.
-    output('Copying css stylesheet ...')
-    copy_tree('css', installDir)
+    # Remove the editor configuration file, if outdated.
+    fix_ini(f'{installDir}/config/editor.ini')
 
     #--- Make the scripts executable under Linux.
     st = os.stat(f'{installDir}/{APP}')
