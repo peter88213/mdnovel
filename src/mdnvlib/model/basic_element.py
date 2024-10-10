@@ -94,7 +94,7 @@ class BasicElement:
         self._metaDict = {}
         for entry in yaml:
             try:
-                metaData = entry.split(':')
+                metaData = entry.split(':', maxsplit=1)
                 metaKey = metaData[0].strip()
                 metaValue = metaData[1].strip()
                 self._metaDict[metaKey] = metaValue
@@ -150,18 +150,4 @@ class BasicElement:
             if path:
                 links[path] = fullPath
         return links
-
-    def _xml_element_to_text(self, xmlElement):
-        """Return plain text, converted from ElementTree paragraph subelements.
-        
-        Positional arguments:
-            xmlElement -- ElementTree element.        
-        
-        Each <p> subelement of xmlElement creates a line. Formatting is discarded.
-        """
-        lines = []
-        if xmlElement is not None:
-            for paragraph in xmlElement.iterfind('p'):
-                lines.append(''.join(t for t in paragraph.itertext()))
-        return '\n'.join(lines)
 

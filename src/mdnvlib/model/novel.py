@@ -481,12 +481,12 @@ class Novel(BasicElement):
         self.authorName = self._get_meta_value('Author')
 
         # Chapter heading prefix/suffix.
-        self.chapterHeadingPrefix = self._get_meta_value('ChapterHeadingPrefix')
-        self.chapterHeadingSuffix = self._get_meta_value('ChapterHeadingSuffix')
+        self.chapterHeadingPrefix = self._get_meta_value('ChapterHeadingPrefix', default='""')[1:-1]
+        self.chapterHeadingSuffix = self._get_meta_value('ChapterHeadingSuffix', default='""')[1:-1]
 
         # Part heading prefix/suffix.
-        self.partHeadingPrefix = self._get_meta_value('PartHeadingPrefix')
-        self.partHeadingSuffix = self._get_meta_value('PartHeadingSuffix')
+        self.partHeadingPrefix = self._get_meta_value('PartHeadingPrefix', default='""')[1:-1]
+        self.partHeadingSuffix = self._get_meta_value('PartHeadingSuffix', default='""')[1:-1]
 
         # N/A Goal/Conflict/Outcome.
         self.customPlotProgress = self._get_meta_value('CustomPlotProgress')
@@ -570,15 +570,15 @@ class Novel(BasicElement):
 
         # Chapter heading prefix/suffix.
         if self.chapterHeadingPrefix:
-            yaml.append(f'ChapterHeadingPrefix: {self.chapterHeadingPrefix}')
+            yaml.append(f'ChapterHeadingPrefix: "{self.chapterHeadingPrefix}"')
         if self.chapterHeadingSuffix:
-            yaml.append(f'ChapterHeadingSuffix: {self.chapterHeadingSuffix}')
+            yaml.append(f'ChapterHeadingSuffix: "{self.chapterHeadingSuffix}"')
 
         # Part heading prefix/suffix.
         if self.partHeadingPrefix:
-            yaml.append(f'PartHeadingPrefix: {self.partHeadingPrefix}')
+            yaml.append(f'PartHeadingPrefix: "{self.partHeadingPrefix}"')
         if self.partHeadingSuffix:
-            yaml.append(f'PartHeadingSuffix: {self.partHeadingSuffix}')
+            yaml.append(f'PartHeadingSuffix: "{self.partHeadingSuffix}"')
 
         # Custom Plot progress/Characterization/World building.
         if self.customPlotProgress:
