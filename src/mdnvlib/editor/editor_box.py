@@ -19,7 +19,7 @@ NO_WORD_LIMITS = re.compile(r'')
 
 
 class EditorBox(tk.Text):
-    """A text editor widget for novelibre raw markup."""
+    """A text editor widget for Markdown."""
     _TAGS = ('**', '*')
     # Supported tags.
 
@@ -92,7 +92,7 @@ class EditorBox(tk.Text):
         return 'break'
 
     def _set_format(self, event=None, tag=''):
-        """Insert an opening/closing pair of novelibre markup tags."""
+        """Insert an opening/closing pair of Markdown tags."""
         if tag:
             # Toggle format as specified by tag.
             if self.tag_ranges('sel'):

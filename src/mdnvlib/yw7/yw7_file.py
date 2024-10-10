@@ -919,7 +919,7 @@ class Yw7File(File):
                 for scId in scenes:
                     self.novel.tree.append(plId, f'{PLOT_POINT_PREFIX}{scId}')
                     self._ywApIds.append(scId)
-                    # this is necessary for turning yWriter scenes into novelibre turning points
+                    # this is necessary for turning yWriter scenes into mdnovel turning points
             else:
                 chId = f"{CHAPTER_PREFIX}{xmlChapter.find('ID').text}"
                 self.novel.chapters[chId] = prjChapter

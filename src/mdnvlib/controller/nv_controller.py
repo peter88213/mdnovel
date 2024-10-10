@@ -36,7 +36,7 @@ from mdnvlib.nv_globals import prefs
 from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.plugin.plugin_manager import PluginManager
 from mdnvlib.view.nv_view import NvView
-from mdnvlib.editor.section_editor import SectionEditor
+from mdnvlib.editor.edit_manager import EditManager
 from mdnvlib.yw7.yw7_converter import Yw7Converter
 from mdnvlib.novx.novx_converter import NovxConverter
 
@@ -89,7 +89,7 @@ class NvController:
         self._mdl.tree = self._ui.tv.tree
 
         #--- Initialize the section sectionEditor.
-        self.sectionEditor = SectionEditor(self._mdl, self._ui, self)
+        self.sectionEditor = EditManager(self._mdl, self._ui, self)
 
         #--- Initialize the yWriter converter.
         self.yw7Converter = Yw7Converter(self._mdl, self._ui, self)

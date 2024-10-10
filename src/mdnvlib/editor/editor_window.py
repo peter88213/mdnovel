@@ -15,13 +15,6 @@ from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.platform.platform_settings import PLATFORM
 import tkinter as tk
 
-COLOR_MODES = [
-    (_('Bright mode'), 'black', 'white'),
-    (_('Light mode'), 'black', 'antique white'),
-    (_('Dark mode'), 'light grey', 'gray20'),
-    ]
-# (name, foreground, background) tuples for color modes.
-
 
 class EditorWindow(tk.Toplevel):
     """A separate section editor window with a menu bar, a text box, and a status bar.
@@ -37,13 +30,32 @@ class EditorWindow(tk.Toplevel):
     colorMode = None
     # to be overwritten by the client with tk.IntVar()
 
-    def __init__(self, plugin, model, view, controller, scId, size, icon=None):
+    def __init__(self, manager, model, view, controller, scId, size, icon=None):
         self._mdl = model
         self._ui = view
         self._ctrl = controller
-        self._plugin = plugin
+        self._manager = manager
         self._section = self._mdl.novel.sections[scId]
         self._scId = scId
+
+        self.colorModes = [
+            (
+                _('Bright mode'),
+                manager.kwargs['ed_color_fg_bright'],
+                manager.kwargs['ed_color_bg_bright'],
+                ),
+            (
+                _('Light mode'),
+                manager.kwargs['ed_color_fg_light'],
+                manager.kwargs['ed_color_bg_light'],
+                ),
+            (
+                _('Dark mode'),
+                manager.kwargs['ed_color_fg_dark'],
+                manager.kwargs['ed_color_bg_dark'],
+                ),
+            ]
+        # (name, background, foreground) tuples for color modes.
 
         # Create an independent editor window.
         super().__init__()
@@ -67,12 +79,12 @@ class EditorWindow(tk.Toplevel):
             wrap='word',
             undo=True,
             autoseparators=True,
-            spacing1=self._plugin.kwargs['ed_paragraph_spacing'],
-            spacing2=self._plugin.kwargs['ed_line_spacing'],
+            spacing1=self._manager.kwargs['ed_paragraph_spacing'],
+            spacing2=self._manager.kwargs['ed_line_spacing'],
             maxundo=-1,
-            padx=self._plugin.kwargs['ed_margin_x'],
-            pady=self._plugin.kwargs['ed_margin_y'],
-            font=(self._plugin.kwargs['ed_font_family'], self._plugin.kwargs['ed_font_size']),
+            padx=self._manager.kwargs['ed_margin_x'],
+            pady=self._manager.kwargs['ed_margin_y'],
+            font=(self._manager.kwargs['ed_font_family'], self._manager.kwargs['ed_font_size']),
             )
         self._sectionEditor.pack(expand=True, fill='both')
         self._sectionEditor.pack_propagate(0)
@@ -114,7 +126,7 @@ class EditorWindow(tk.Toplevel):
         # Add a "View" Submenu to the editor window.
         self._viewMenu = tk.Menu(self._mainMenu, tearoff=0)
         self._mainMenu.add_cascade(label=_('View'), menu=self._viewMenu)
-        for i, cm in enumerate(COLOR_MODES):
+        for i, cm in enumerate(self.colorModes):
             self._viewMenu.add_radiobutton(label=cm[0], variable=EditorWindow.colorMode, command=self._set_editor_colors, value=i)
 
         # Add an "Edit" Submenu to the editor window.
@@ -178,7 +190,7 @@ class EditorWindow(tk.Toplevel):
             return 'break'
             # keeping the editor window open due to an XML error to be fixed before saving
 
-        self._plugin.kwargs['ed_win_geometry'] = self.winfo_geometry()
+        self._manager.kwargs['ed_win_geometry'] = self.winfo_geometry()
         self.destroy()
         self.isOpen = False
 
@@ -261,8 +273,8 @@ class EditorWindow(tk.Toplevel):
         nextNode = self._ui.tv.next_node(self._scId)
         if nextNode:
             self._ui.tv.go_to_node(nextNode)
-            self._plugin.close_editor_window(self._scId)
-            self._plugin.open_editor_window()
+            self._manager.close_editor_window(self._scId)
+            self._manager.open_editor_window()
 
     def _load_prev(self, event=None):
         """Load the previous section in the tree."""
@@ -272,8 +284,8 @@ class EditorWindow(tk.Toplevel):
         prevNode = self._ui.tv.prev_node(self._scId)
         if prevNode:
             self._ui.tv.go_to_node(prevNode)
-            self._plugin.close_editor_window(self._scId)
-            self._plugin.open_editor_window()
+            self._manager.close_editor_window(self._scId)
+            self._manager.open_editor_window()
 
     def _load_section(self):
         """Load the section content into the text editor."""
@@ -287,9 +299,9 @@ class EditorWindow(tk.Toplevel):
 
     def _set_editor_colors(self):
         cm = EditorWindow.colorMode.get()
-        self._sectionEditor['fg'] = COLOR_MODES[cm][1]
-        self._sectionEditor['bg'] = COLOR_MODES[cm][2]
-        self._sectionEditor['insertbackground'] = COLOR_MODES[cm][1]
+        self._sectionEditor['fg'] = self.colorModes[cm][1]
+        self._sectionEditor['bg'] = self.colorModes[cm][2]
+        self._sectionEditor['insertbackground'] = self.colorModes[cm][1]
 
     def _set_wc_mode(self, *args):
         if EditorWindow.liveWordCount.get():

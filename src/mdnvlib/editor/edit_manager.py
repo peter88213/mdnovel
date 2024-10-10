@@ -1,4 +1,9 @@
-"""A multi-section "plain text" editor class for mdnovel."""
+"""A multi-section "plain text" editor class for mdnovel.
+
+Copyright (c) 2024 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+"""
 import os
 from pathlib import Path
 import sys
@@ -14,12 +19,12 @@ import tkinter as tk
 ED_SETTINGS = dict(
         ed_win_geometry='600x800',
         ed_color_mode=0,
-        ed_color_fg_bright='white',
-        ed_color_bg_bright='black',
-        ed_color_fg_light='antique white',
-        ed_color_bg_light='black',
-        ed_color_fg_dark='light grey',
+        ed_color_bg_bright='white',
+        ed_color_fg_bright='black',
+        ed_color_bg_light='antique white',
+        ed_color_fg_light='black',
         ed_color_bg_dark='gray20',
+        ed_color_fg_dark='light grey',
         ed_font_family='Courier',
         ed_font_size=12,
         ed_line_spacing=4,
@@ -32,8 +37,8 @@ ED_OPTIONS = dict(
 )
 
 
-class SectionEditor:
-    """novelibre multi-section "plain text" editor class."""
+class EditManager:
+    """mdnovel multi-section "plain text" editor class."""
 
     def __init__(self, model, view, controller):
         """Add a submenu to the main menu.
@@ -65,7 +70,7 @@ class SectionEditor:
         self.kwargs.update(self.configuration.settings)
         self.kwargs.update(self.configuration.options)
 
-        # Add the "Edit" command to novelibre's "Section" menu.
+        # Add the "Edit" command to mdnovel's "Section" menu.
         self._ui.sectionMenu.add_separator()
         self._ui.sectionMenu.add_command(label=_('Edit'), underline=0, command=self.open_editor_window)
 
@@ -107,7 +112,7 @@ class SectionEditor:
                 self.sectionEditors[scId].on_quit()
 
     def on_quit(self, event=None):
-        """Actions to be performed when novelibre is closed.
+        """Actions to be performed when mdnovel is closed.
         
         Overrides the superclass method.
         """

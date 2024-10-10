@@ -1,6 +1,6 @@
 """Provide a class for Markdown part descriptions export.
 
-Parts are chapters marked `This chapter  begins a new section` in novelibre.
+Parts are chapters marked `This chapter  begins a new section` in mdnovel.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel

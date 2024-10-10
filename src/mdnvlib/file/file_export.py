@@ -32,7 +32,7 @@ from mdnvlib.novx_globals import norm_path
 
 
 class FileExport(File):
-    """Abstract novelibre project file exporter representation.
+    """Abstract mdnovel project file exporter representation.
     
     This class is generic and contains no conversion algorithm and no templates.
     """
