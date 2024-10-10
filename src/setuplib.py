@@ -42,7 +42,7 @@ except:
         return message
 
 APPNAME = 'mdnovel'
-VERSION = ' 0.1.0'
+VERSION = ' @release'
 APP = f'{APPNAME}.py'
 START_UP_SCRIPT = 'run.pyw'
 INI_FILE = f'{APPNAME}.ini'
