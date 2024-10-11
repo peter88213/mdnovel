@@ -135,26 +135,3 @@ class BasicElement:
         else:
             return default
 
-    def _get_link_dict(self, xmlElement):
-        """Return a dictionary of links.
-        
-        If the element doesn't exist, return an empty dictionary.
-        """
-        links = {}
-        for xmlLink in xmlElement.iterfind('Link'):
-            xmlPath = xmlLink.find('Path')
-            if xmlPath is not None:
-                path = xmlPath.text
-                xmlFullPath = xmlLink.find('FullPath')
-                if xmlFullPath is not None:
-                    fullPath = xmlFullPath.text
-                else:
-                    fullPath = None
-            else:
-                # Read deprecated attributes from DTD 1.3.
-                path = xmlLink.attrib.get('path', None)
-                fullPath = xmlLink.attrib.get('fullPath', None)
-            if path:
-                links[path] = fullPath
-        return links
-

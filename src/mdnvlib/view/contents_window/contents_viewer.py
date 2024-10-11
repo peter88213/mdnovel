@@ -5,13 +5,11 @@ For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import re
-from tkinter import ttk
 
-from mdnvlib.nv_globals import prefs
-from mdnvlib.view.contents_window.content_view_parser import ContentViewParser
-from mdnvlib.view.contents_window.rich_text_nv import RichTextNv
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import _
+from mdnvlib.nv_globals import prefs
+from mdnvlib.view.contents_window.rich_text_nv import RichTextNv
 import tkinter as tk
 
 
@@ -46,14 +44,6 @@ class ContentsViewer(RichTextNv):
         self._textMarks = {}
         self._index = '1.0'
         self._parent = parent
-        self._contentParser = ContentViewParser()
-        self._contentParser.xmlTag = self.XML_TAG
-        self._contentParser.emTag = self.EM_TAG
-        self._contentParser.strongTag = self.STRONG_TAG
-        self._contentParser.commentTag = self.COMMENT_TAG
-        self._contentParser.commentXmlTag = self.COMMENT_XML_TAG
-        self._contentParser.noteTag = self.NOTE_TAG
-        self._contentParser.noteXmlTag = self.NOTE_XML_TAG
 
     def reset_view(self):
         """Clear the text box."""

@@ -115,7 +115,6 @@ class FileExport(File):
             quick: bool -- if True, apply a conversion mode for one-liners without formatting.
             append: bool -- if True, indent the first paragraph.
             firstInChapter: bool: -- if True, the section begins a chapter.
-            xml: bool -- if True, parse XML content. 
         
         Overrides the superclass method.
         """
@@ -621,7 +620,6 @@ class FileExport(File):
                         self.novel.sections[scId].sectionContent,
                         append=self.novel.sections[scId].appendToPrev,
                         firstInChapter=firstInChapter,
-                        xml=True
                         ),
             Date=isoDate,
             Time=scTime,

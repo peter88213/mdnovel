@@ -20,21 +20,13 @@ class RichTextNv(RichTextTk):
     H3_TODO_TAG = 'h3Todo'
     H3_UNUSED_TAG = 'h3Unused'
     TODO_TAG = 'todo'
-    NOTES_TAG = 'notes'
     UNUSED_TAG = 'unused'
     STAGE1_TAG = 'stage1'
     STAGE2_TAG = 'stage2'
-    XML_TAG = 'xmlTag'
-    COMMENT_TAG = 'commentTag'
-    COMMENT_XML_TAG = 'commentXmlTag'
-    NOTE_TAG = 'noteTag'
-    NOTE_XML_TAG = 'noteXmlTag'
     EM_TAG = 'emTag'
     STRONG_TAG = 'strongTag'
 
     COLOR_MD_TAG = 'black'
-    COLOR_COMMENT_TAG = 'lemon chiffon'
-    COLOR_NOTE_TAG = 'bisque'
 
     def __init__(self, *args, **kwargs):
         """Define some tags for mdnovel-specific colors.
@@ -71,28 +63,11 @@ class RichTextNv(RichTextTk):
         h3Font.configure(size=int(defaultSize * self.H3_SIZE),
                          slant='italic',
                          )
-        self.tag_configure(self.XML_TAG,
-                           foreground=self.COLOR_MD_TAG,
-                           )
         self.tag_configure(self.EM_TAG,
                            font=italicFont,
                            )
         self.tag_configure(self.STRONG_TAG,
                            font=boldFont,
-                           )
-        self.tag_configure(self.COMMENT_TAG,
-                           background=self.COLOR_COMMENT_TAG,
-                           )
-        self.tag_configure(self.COMMENT_XML_TAG,
-                           foreground=self.COLOR_MD_TAG,
-                           background=self.COLOR_COMMENT_TAG,
-                           )
-        self.tag_configure(self.NOTE_TAG,
-                           background=self.COLOR_NOTE_TAG,
-                           )
-        self.tag_configure(self.NOTE_XML_TAG,
-                           foreground=self.COLOR_MD_TAG,
-                           background=self.COLOR_NOTE_TAG,
                            )
         self.tag_configure(self.H1_TAG,
                            font=h1Font,

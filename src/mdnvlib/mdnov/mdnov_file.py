@@ -143,7 +143,6 @@ $Links$Desc
         """
         super().__init__(filePath)
         self.on_element_change = None
-        self.xmlTree = None
 
         self.wcLog = {}
         # key: str -- date (iso formatted)
@@ -576,8 +575,8 @@ $Links$Desc
         }
         self._read_element(element)
 
-    def _read_word_count_log(self, xmlRoot):
-        """Read the word count log from the xml element tree."""
+    def _read_word_count_log(self):
+        """Read the word count log."""
         return
 
     def _set_links(self, element, text):

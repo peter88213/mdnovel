@@ -6,12 +6,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
 import locale
-import re
 
-from mdnvlib.novx_globals import verified_date
 from mdnvlib.model.basic_element import BasicElement
-
-LANGUAGE_TAG = re.compile(r'\<span xml\:lang=\"(.*?)\"\>')
+from mdnvlib.novx_globals import verified_date
 
 
 class Novel(BasicElement):
@@ -512,40 +509,6 @@ class Novel(BasicElement):
 
         # Reference date.
         self.referenceDate = verified_date(self._get_meta_value('ReferenceDate'))
-
-    def get_languages(self):
-        """Determine the languages used in the document.
-        
-        Populate the self.languages list with all language codes found in the section contents.        
-        Example:
-        - language markup: 'Standard text <span xml:lang="en-AU"]Australian text</span>.'
-        - language code: 'en-AU'
-        """
-
-        def languages(text):
-            """Yield the language codes appearing in text.
-            
-            Positional arguments:
-                text -- novx-formatted string to scan for language codes.
-            """
-            if not text:
-                return
-
-            m = LANGUAGE_TAG.search(text)
-            while m:
-                text = text[m.span()[1]:]
-                yield m.group(1)
-                m = LANGUAGE_TAG.search(text)
-
-        self.languages = []
-        for scId in self.sections:
-            text = self.sections[scId].sectionContent
-            if not text:
-                continue
-
-            for language in languages(text):
-                if not language in self.languages:
-                    self.languages.append(language)
 
     def to_yaml(self, yaml):
         yaml = super().to_yaml(yaml)
