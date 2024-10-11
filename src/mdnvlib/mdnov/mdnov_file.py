@@ -84,6 +84,7 @@ $Links
 
 $Desc$Notes
 %%
+
 '''
     _partTemplate = _chapterTemplate
     _unusedChapterTemplate = _chapterTemplate
@@ -116,6 +117,7 @@ $Links
 
 $Desc$Bio$Goals
 %%
+
 '''
     _locationSectionHeading = ''
     _locationTemplate = '''
@@ -129,6 +131,7 @@ $Links
 
 $Desc
 %%
+
 '''
     _itemSectionHeading = ''
     _itemTemplate = _locationTemplate
@@ -144,6 +147,7 @@ $Links
 
 $Desc
 %%
+
 '''
     _fileFooter = '\n$Wordcountlog\n'
 
@@ -174,6 +178,7 @@ $Desc
         self._range = None
         self._collectedLines = None
         self._properties = {}
+        self._plId = None
 
     def adjust_section_types(self):
         """Make sure that nodes with "Unused" parents inherit the type."""
@@ -508,10 +513,18 @@ $Desc
             if self._range is not None:
                 # write collected lines
                 text = '\n'.join(self._collectedLines).strip()
-                text = f'{text}\n'
                 classProperty = self._properties.get(self._range, None)
                 if classProperty is not None:
-                    classProperty.fset(element, text)
+                    classProperty.fset(element, f'{text}\n')
+                    self._plId = None
+                elif self._range == 'Plotline':
+                    self._plId = text
+                elif self._range == 'Plotline note':
+                    if self._plId is not None:
+                        plNotes = element.plotlineNotes
+                        plNotes[self._plId] = text
+                        element.plotlineNotes = plNotes
+                        self._plId = None
 
             self._collectedLines = []
             tag = self._line.strip('%: ')
@@ -571,6 +584,8 @@ $Desc
         self._read_element(element)
 
     def _read_section(self, element):
+        if element.plotlineNotes is None:
+            element.plotlineNotes = {}
         self._properties = {
             'Desc':Section.desc,
             'Notes':Section.notes,
