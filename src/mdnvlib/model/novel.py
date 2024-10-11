@@ -478,12 +478,26 @@ class Novel(BasicElement):
         self.authorName = self._get_meta_value('Author')
 
         # Chapter heading prefix/suffix.
-        self.chapterHeadingPrefix = self._get_meta_value('ChapterHeadingPrefix', default='""')[1:-1]
-        self.chapterHeadingSuffix = self._get_meta_value('ChapterHeadingSuffix', default='""')[1:-1]
+        chapterHeadingPrefix = self._get_meta_value('ChapterHeadingPrefix')
+        if chapterHeadingPrefix:
+            chapterHeadingPrefix = chapterHeadingPrefix[1:-1]
+        self.chapterHeadingPrefix = chapterHeadingPrefix
+
+        chapterHeadingSuffix = self._get_meta_value('ChapterHeadingSuffix')
+        if chapterHeadingSuffix:
+            chapterHeadingSuffix = chapterHeadingSuffix[1:-1]
+        self.chapterHeadingSuffix = chapterHeadingSuffix
 
         # Part heading prefix/suffix.
-        self.partHeadingPrefix = self._get_meta_value('PartHeadingPrefix', default='""')[1:-1]
-        self.partHeadingSuffix = self._get_meta_value('PartHeadingSuffix', default='""')[1:-1]
+        partHeadingPrefix = self._get_meta_value('PartHeadingPrefix')
+        if partHeadingPrefix:
+            partHeadingPrefix = partHeadingPrefix[1:-1]
+        self.partHeadingPrefix = partHeadingPrefix
+
+        partHeadingSuffix = self._get_meta_value('PartHeadingSuffix')
+        if partHeadingSuffix:
+            partHeadingSuffix = partHeadingSuffix[1:-1]
+        self.partHeadingSuffix = partHeadingSuffix
 
         # N/A Goal/Conflict/Outcome.
         self.customPlotProgress = self._get_meta_value('CustomPlotProgress')
