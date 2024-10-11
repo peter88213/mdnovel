@@ -575,7 +575,7 @@ $Links$Desc
         }
         self._read_element(element)
 
-    def _read_word_count_log(self):
+    def _read_word_count_log(self, element):
         """Read the word count log."""
         return
 

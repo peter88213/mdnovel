@@ -198,7 +198,6 @@ class Yw7File(File):
         self._read_locations(root)
         self._read_items(root)
         self._read_characters(root)
-        self._read_projectvars(root)
         self._read_chapters(root)
         self._read_scenes(root)
         self._read_project_notes(root)
@@ -225,9 +224,6 @@ class Yw7File(File):
             if self.novel.sections[scId].status is None:
                 self.novel.sections[scId].status = 1
 
-        #--- If no reasonable looking locale is set, set the system locale.
-        self.novel.check_locale()
-
     def write(self):
         """Write instance variables to the yWriter xml file.
         
@@ -241,8 +237,6 @@ class Yw7File(File):
 
         self._noteCounter = 0
         self._noteNumber = 0
-        if self.novel.languages is None:
-            self.novel.get_languages()
         self._build_element_tree()
         self._write_element_tree(self)
         self._postprocess_xml_file(self.filePath)
@@ -436,18 +430,6 @@ class Yw7File(File):
             if prjLoc.tags:
                 ET.SubElement(xmlLoc, 'Tags').text = list_to_string(prjLoc.tags)
 
-        def add_projectvariable(title, desc, tags):
-            # Note:
-            # prjVars, xmlProjectvars are caller's variables
-            pvId = create_id(prjVars)
-            prjVars.append(pvId)
-            # side effect
-            xmlProjectvar = ET.SubElement(xmlProjectvars, 'PROJECTVAR')
-            ET.SubElement(xmlProjectvar, 'ID').text = pvId
-            ET.SubElement(xmlProjectvar, 'Title').text = title
-            ET.SubElement(xmlProjectvar, 'Desc').text = desc
-            ET.SubElement(xmlProjectvar, 'Tags').text = tags
-
         def build_item_subtree(xmlItm, prjItm):
             if prjItm.title:
                 ET.SubElement(xmlItm, 'Title').text = prjItm.title
@@ -546,7 +528,6 @@ class Yw7File(File):
         xmlLocations = ET.SubElement(root, 'LOCATIONS')
         xmlItems = ET.SubElement(root, 'ITEMS')
         xmlCharacters = ET.SubElement(root, 'CHARACTERS')
-        xmlProjectvars = ET.SubElement(root, 'PROJECTVARS')
         xmlScenes = ET.SubElement(root, 'SCENES')
         xmlChapters = ET.SubElement(root, 'CHAPTERS')
 
@@ -570,30 +551,6 @@ class Yw7File(File):
             xmlCrt = ET.SubElement(xmlCharacters, 'CHARACTER')
             ET.SubElement(xmlCrt, 'ID').text = crId[2:]
             build_character_subtree(xmlCrt, self.novel.characters[crId])
-
-        #--- Process project variables.
-        if self.novel.languages or self.novel.languageCode or self.novel.countryCode:
-            self.novel.check_locale()
-            prjVars = []
-
-            # Define project variables for the locale.
-            add_projectvariable('Language',
-                                self.novel.languageCode,
-                                '0')
-
-            add_projectvariable('Country',
-                                self.novel.countryCode,
-                                '0')
-
-            # Define project variables for the language code tags.
-            for langCode in self.novel.languages:
-                add_projectvariable(f'lang={langCode}',
-                                    f'<HTM <SPAN LANG="{langCode}"> /HTM>',
-                                    '0')
-                add_projectvariable(f'/lang={langCode}',
-                                    f'<HTM </SPAN> /HTM>',
-                                    '0')
-                # adding new IDs to the prjVars list
 
         #--- Process scenes.
         xmlSceneFields = {}
@@ -1035,14 +992,6 @@ class Yw7File(File):
         self.novel.customChrGoals = kwVarYw7.get('Field_CustomChrGoals', '')
         self.novel.saveWordCount = kwVarYw7.get('Field_SaveWordCount', False) == '1'
 
-        # This is for projects written with novxlib v7.6 - v7.10:
-        field = kwVarYw7.get('Field_LanguageCode', None)
-        if field is not None:
-            self.novel.languageCode = field
-        field = kwVarYw7.get('Field_CountryCode', None)
-        if field is not None:
-            self.novel.countryCode = field
-
     def _read_project_notes(self, root):
         """Read project notes from the xml element tree.
         
@@ -1058,31 +1007,6 @@ class Yw7File(File):
                         self.novel.projectNotes[pnId].title = xmlProjectnote.find('Title').text
                     if xmlProjectnote.find('Desc') is not None:
                         self.novel.projectNotes[pnId].desc = xmlProjectnote.find('Desc').text
-
-    def _read_projectvars(self, root):
-        """Read relevant project variables from the xml element tree."""
-        try:
-            for xmlProjectvar in root.find('PROJECTVARS'):
-                if xmlProjectvar.find('Title') is not None:
-                    title = xmlProjectvar.find('Title').text
-                    if title == 'Language':
-                        if xmlProjectvar.find('Desc') is not None:
-                            self.novel.languageCode = xmlProjectvar.find('Desc').text
-
-                    elif title == 'Country':
-                        if xmlProjectvar.find('Desc') is not None:
-                            self.novel.countryCode = xmlProjectvar.find('Desc').text
-
-                    elif title.startswith('lang='):
-                        try:
-                            __, langCode = title.split('=')
-                            if self.novel.languages is None:
-                                self.novel.languages = []
-                            self.novel.languages.append(langCode)
-                        except:
-                            pass
-        except:
-            pass
 
     def _read_scenes(self, root):
         """ Read attributes at scene level from the xml element tree."""
@@ -1302,20 +1226,21 @@ class Yw7File(File):
         
         Return a yw7 markup string.
         """
-        if text:
-            while '\n\n' in text:
-                text = text.replace('\n\n', '@%&').strip()
-            while '***' in text:
-                text = text.replace('***', '§%§')
-            text = re.sub(r'([^\*])\*\*(.+?)\*\*', '\\1[b]\\2[/b]', text)
-            text = re.sub(r'([^\*])\*(.+?)\*', '\\1[i]\\2[/i]', text)
-            while '§%§' in text:
-                text = text.replace('§%§', '***')
-            newlines = []
-            for line in text.split('@%&'):
-                line = f'<p>{line}</p>'
-                newlines.append(line)
-            text = '\n'.join(newlines)
+        if not text:
+            return ''
+
+        while '\n\n' in text:
+            text = text.replace('\n\n', '@%&').strip()
+        while '***' in text:
+            text = text.replace('***', '§%§')
+        text = re.sub(r'([^\*])\*\*(.+?)\*\*', '\\1[b]\\2[/b]', text)
+        text = re.sub(r'([^\*])\*(.+?)\*', '\\1[i]\\2[/i]', text)
+        while '§%§' in text:
+            text = text.replace('§%§', '***')
+        newlines = []
+        for line in text.split('@%&'):
+            newlines.append(line)
+        text = '\n'.join(newlines)
         text = re.sub(r'\*\*(.+?)\*\*', '[b]\\1[/b]', text)
         text = re.sub(r'\*([^ ].+?[^ ])\*', '[i]\\1[/i]', text)
         MD_REPLACEMENTS = [

@@ -174,7 +174,6 @@ class NovxFile(File):
                 self.wcLog[wcDate] = self.wcLogUpdate[wcDate]
         self.wcLogUpdate = {}
         self.adjust_section_types()
-        self.novel.get_languages()
         attrib = {'version':f'{self.MAJOR_VERSION}.{self.MINOR_VERSION}',
                 'xml:lang':f'{self.novel.languageCode}-{self.novel.countryCode}',
                 }
