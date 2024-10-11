@@ -5,6 +5,7 @@ For further information see https://github.com/peter88213/mdnvlib
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from urllib.parse import quote
+from urllib.parse import unquote
 
 
 class BasicElement:
@@ -103,11 +104,6 @@ class BasicElement:
 
         self.title = self._get_meta_value('Title')
 
-    def to_yaml(self, yaml):
-        if self.title:
-            yaml.append(f'Title: {self.title}')
-        return yaml
-
     def get_links(self):
         """Return a list of (relative link, absolute link) tuples."""
         linkList = []
@@ -120,6 +116,17 @@ class BasicElement:
                     absoluteLink = ''
                 linkList.append((relativeLink, absoluteLink))
         return linkList
+
+    def set_links(self, linkList):
+        links = self.links
+        for relativeLink, absoluteLink in linkList:
+            links[unquote(relativeLink)] = unquote(absoluteLink).split('file:///')[1]
+        self.links = links
+
+    def to_yaml(self, yaml):
+        if self.title:
+            yaml.append(f'Title: {self.title}')
+        return yaml
 
     def _get_meta_value(self, key, default=None):
         text = self._metaDict.get(key, None)

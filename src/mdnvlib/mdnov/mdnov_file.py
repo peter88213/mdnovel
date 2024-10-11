@@ -21,7 +21,6 @@ from mdnvlib.novx_globals import CHAPTER_PREFIX
 from mdnvlib.novx_globals import CHARACTER_PREFIX
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import CR_ROOT
-from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import ITEM_PREFIX
 from mdnvlib.novx_globals import IT_ROOT
 from mdnvlib.novx_globals import LC_ROOT
@@ -35,19 +34,8 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import intersection
 from mdnvlib.novx_globals import list_to_string
-from mdnvlib.novx_globals import norm_path
 from mdnvlib.novx_globals import verified_date
 from mdnvlib.novx_globals import verified_int_string
-import xml.etree.ElementTree as ET
-
-
-def get_xml_root(filePath):
-    try:
-        xmlTree = ET.parse(filePath)
-    except Exception as ex:
-        raise Error(f'{_("Cannot process file")}: "{norm_path(filePath)}" - {str(ex)}')
-
-    return xmlTree.getroot()
 
 
 class MdnovFile(MdFile):
@@ -71,6 +59,7 @@ $YAML
 
 
 $Links
+%%
 
 '''
     _chapterTemplate = '''
@@ -80,9 +69,7 @@ $Links
 $YAML
 ---
 
-$Links
-
-$Desc$Notes
+$Links$Desc$Notes
 %%
 
 '''
@@ -95,9 +82,7 @@ $Desc$Notes
 $YAML
 ---
 
-$Links
-
-$Desc$Notes$Goal$Conflict$Outcome$Plotlines$SectionContent%%
+$Links$Desc$Notes$Goal$Conflict$Outcome$Plotlines$SectionContent%%
 '''
     _unusedSectionTemplate = _sectionTemplate
     _stage1Template = _sectionTemplate
@@ -113,9 +98,7 @@ $Desc$Notes$Goal$Conflict$Outcome$Plotlines$SectionContent%%
 $YAML
 ---
 
-$Links
-
-$Desc$Bio$Goals
+$Links$Desc$Bio$Goals
 %%
 
 '''
@@ -127,9 +110,7 @@ $Desc$Bio$Goals
 $YAML
 ---
 
-$Links
-
-$Desc
+$Links$Desc
 %%
 
 '''
@@ -143,9 +124,7 @@ $Desc
 $YAML
 ---
 
-$Links
-
-$Desc
+$Links$Desc
 %%
 
 '''
@@ -351,7 +330,8 @@ $Desc
                 linkRepr.append('%%Link:')
                 linkRepr.append(relativeLink)
                 linkRepr.append(absoluteLink)
-        mapping['Links'] = '\n\n'.join(linkRepr)
+        links = '\n\n'.join(linkRepr)
+        mapping['Links'] = f'{links}\n'
         return mapping
 
     def _add_plotline_notes(self, prjScn, mapping):
@@ -519,13 +499,13 @@ $Desc
                     self._plId = None
                 elif self._range == 'Plotline':
                     self._plId = text
-                elif self._range == 'Plotline note':
-                    if self._plId is not None:
-                        plNotes = element.plotlineNotes
-                        plNotes[self._plId] = text
-                        element.plotlineNotes = plNotes
-                        self._plId = None
-
+                elif self._range == 'Plotline note'and self._plId is not None:
+                    plNotes = element.plotlineNotes
+                    plNotes[self._plId] = text
+                    element.plotlineNotes = plNotes
+                    self._plId = None
+                elif self._range == 'Link':
+                    self._set_links(element, text)
             self._collectedLines = []
             tag = self._line.strip('%: ')
             if tag:
@@ -599,6 +579,25 @@ $Desc
     def _read_word_count_log(self, xmlRoot):
         """Read the word count log from the xml element tree."""
         return
+
+    def _set_links(self, element, text):
+        linkList = []
+        relativeLink = ''
+        absoluteLink = ''
+        for line in text.split('\n'):
+            if not line:
+                continue
+
+            linkType, link = line.split('](')
+            if linkType == '[LinkPath':
+                relativeLink = link.strip(') ')
+            elif linkType == '[FullPath':
+                absoluteLink = link.strip(') ')
+                if relativeLink:
+                    linkList.append((relativeLink, absoluteLink))
+                relativeLink = ''
+                absoluteLink = ''
+        element.set_links(linkList)
 
     def _update_word_count_log(self):
         """Add today's word count and word count when reading, if not logged."""
