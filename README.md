@@ -1,3 +1,7 @@
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.4.1.pyzw)
+[![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
+[![Online help](docs/img/help-button.png)](https://peter88213.github.io/mdnovel/help/)
+
 # ![N](docs/img/nLogo32.png) mdnovel
 
 A novel writing application using markdown.
