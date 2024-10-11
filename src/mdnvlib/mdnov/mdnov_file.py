@@ -17,7 +17,7 @@ from mdnvlib.model.plot_line import PlotLine
 from mdnvlib.model.plot_point import PlotPoint
 from mdnvlib.model.section import Section
 from mdnvlib.model.world_element import WorldElement
-from mdnvlib.novx_globals import CHAPTER_PREFIX
+from mdnvlib.novx_globals import CHAPTER_PREFIX, string_to_list
 from mdnvlib.novx_globals import CHARACTER_PREFIX
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import CR_ROOT
@@ -128,7 +128,7 @@ $Links$Desc
 %%
 
 '''
-    _fileFooter = '\n$Wordcountlog\n'
+    _fileFooter = '\n$Wordcountlog\n\n%%'
 
     def __init__(self, filePath, **kwargs):
         """Initialize instance variables.
@@ -388,6 +388,7 @@ $Links$Desc
     def _get_fileFooterMapping(self):
         mapping = {}
         if not self.wcLog:
+            mapping['Wordcountlog'] = ''
             return mapping
 
         lines = ['@@Progress']
@@ -505,6 +506,8 @@ $Links$Desc
                     self._plId = None
                 elif self._range == 'Link':
                     self._set_links(element, text)
+                elif self._range == 'Progress':
+                    self._set_word_count(text)
             self._collectedLines = []
             tag = self._line.strip('%: ')
             if tag:
@@ -576,8 +579,8 @@ $Links$Desc
         self._read_element(element)
 
     def _read_word_count_log(self, element):
-        """Read the word count log."""
-        return
+        self._range = 'Progress'
+        self._read_element(element)
 
     def _set_links(self, element, text):
         linkList = []
@@ -597,6 +600,14 @@ $Links$Desc
                 relativeLink = ''
                 absoluteLink = ''
         element.set_links(linkList)
+
+    def _set_word_count(self, text):
+        for line in text.split('\n'):
+            if not line:
+                continue
+
+            wc = (line.strip('- ').split(';'))
+            self.wcLog[wc[0]] = [wc[1], wc[2]]
 
     def _update_word_count_log(self):
         """Add today's word count and word count when reading, if not logged."""
