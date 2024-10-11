@@ -508,7 +508,7 @@ class Novel(BasicElement):
             self.wordCountStart = int(ws)
         wt = self._get_meta_value('WordTarget')
         if wt is not None:
-            self.wordCountStart = int(wt)
+            self.wordTarget = int(wt)
 
         # Reference date.
         self.referenceDate = verified_date(self._get_meta_value('ReferenceDate'))
