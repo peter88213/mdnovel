@@ -5,6 +5,11 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 0.4.1
+
+- Fix chapter/part heading prefix/suffix reading.
+- Closing an editor window when the corresponding section is deleted.
+
 ### Version 0.4.0
 
 - Reading and writing the mdnov file format, whis is now the standard file format.
