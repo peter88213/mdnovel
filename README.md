@@ -13,7 +13,7 @@ This program is intended only as a proof of concept. It is still in Alpha status
 See the development details in the [mdnovel features project](https://github.com/users/peter88213/projects/17/views/2).
 
 
-## Features (to come)
+## Features
 
 - With *mdnovel*, extensive novels can be broken down into **parts, chapters, and sections**. 
 - You can store data on **characters, locations, and items** that are important for the story. 
