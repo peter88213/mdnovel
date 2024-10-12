@@ -10,29 +10,27 @@ from mdnvlib.novx_globals import _
 from mdnvlib.progress.progress_viewer import ProgressViewer
 from mdnvlib.view.icons.set_icon_tk import set_icon
 
-APPLICATION = _('Daily progress log')
-
-WC_SETTINGS = dict(
-    wc_win_geomety='510x440',
-    wc_date_width=100,
-    wc_wordcount_width=100,
-    wc_wordcount_delta_width=100,
-    wc_totalcount_width=100,
-    wc_totalcount_delta_width=100,
-)
-WC_OPTIONS = {}
-
 
 class ProgressViewManager:
     """mdnovel daily progress log view manager class."""
+    APPLICATION = _('Daily progress log')
+    SETTINGS = dict(
+        wc_win_geomety='510x440',
+        wc_date_width=100,
+        wc_wordcount_width=100,
+        wc_wordcount_delta_width=100,
+        wc_totalcount_width=100,
+        wc_totalcount_delta_width=100,
+    )
+    OPTIONS = {}
 
     def disable_menu(self):
         """Disable menu entries when no project is open."""
-        self._ui.toolsMenu.entryconfig(APPLICATION, state='disabled')
+        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
-        self._ui.toolsMenu.entryconfig(APPLICATION, state='normal')
+        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
 
     def __init__(self, model, view, controller, prefs=None):
         """Add a submenu to the 'Tools' menu.
@@ -58,8 +56,8 @@ class ProgressViewManager:
             configDir = '.'
         self.iniFile = f'{configDir}/progress.ini'
         self.configuration = self._mdl.nvService.make_configuration(
-            settings=WC_SETTINGS,
-            options=WC_OPTIONS
+            settings=self.SETTINGS,
+            options=self.OPTIONS
             )
         self.configuration.read(self.iniFile)
         self.kwargs = {}
@@ -67,8 +65,8 @@ class ProgressViewManager:
         self.kwargs.update(self.configuration.options)
 
         # Create an entry in the Tools menu.
-        self._ui.toolsMenu.add_command(label=APPLICATION, command=self._start_viewer)
-        self._ui.toolsMenu.entryconfig(APPLICATION, state='disabled')
+        self._ui.toolsMenu.add_command(label=self.APPLICATION, command=self._start_viewer)
+        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
 
     def on_close(self):
         """Close the window."""
@@ -99,6 +97,6 @@ class ProgressViewManager:
                 return
 
         self._progress_viewer = ProgressViewer(self, self._mdl)
-        self._progress_viewer.title(f'{self._mdl.novel.title} - {APPLICATION}')
+        self._progress_viewer.title(f'{self._mdl.novel.title} - {self.APPLICATION}')
         set_icon(self._progress_viewer, icon='wLogo32', default=False)
 

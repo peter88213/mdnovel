@@ -4,6 +4,10 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.7.0
+
+- Add a relationship matrix.
+
 ### Version 0.6.0
 
 - Add a daily progress viewer.

@@ -10,3 +10,4 @@ from mdnvlib.view.platform.generic_mouse import GenericMouse
 class MacMouse(GenericMouse):
 
     RIGHT_CLICK = '<Button-2>'
+    TOGGLE_STATE = '<Command-Button-1>'

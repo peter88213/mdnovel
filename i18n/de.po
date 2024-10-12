@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.6.0\n"
-"POT-Creation-Date: 2024-10-12 15:31:26\n"
-"PO-Revision-Date: 2024-10-12 15:31:26\n"
+"Project-Id-Version: 0.7.0\n"
+"POT-Creation-Date: 2024-10-12 16:43:44\n"
+"PO-Revision-Date: 2024-10-12 16:43:44\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -580,6 +580,9 @@ msgstr "Manuskript"
 msgid "Markdown document"
 msgstr "Markdown-Dokument"
 
+msgid "Matrix"
+msgstr "Matrix"
+
 msgid "Minor Character"
 msgstr "Nebenfigur"
 
@@ -918,6 +921,9 @@ msgstr "Abschnittsmarke"
 
 msgid "Section_20_mark_20_unused"
 msgstr "Abschnittsmarke_20_unbenutzt"
+
+msgid "Sections"
+msgstr "Abschnitte"
 
 msgid "Sections belonging to plot line"
 msgstr "Abschnitte gehören zur Plotlinie"

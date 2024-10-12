@@ -16,29 +16,28 @@ from mdnvlib.nv_globals import SC_EDITOR_ICON
 from mdnvlib.nv_globals import _
 import tkinter as tk
 
-ED_SETTINGS = dict(
-    ed_win_geometry='600x800',
-    ed_color_mode=0,
-    ed_color_bg_bright='white',
-    ed_color_fg_bright='black',
-    ed_color_bg_light='antique white',
-    ed_color_fg_light='black',
-    ed_color_bg_dark='gray20',
-    ed_color_fg_dark='light grey',
-    ed_font_family='Courier',
-    ed_font_size=12,
-    ed_line_spacing=4,
-    ed_paragraph_spacing=4,
-    ed_margin_x=40,
-    ed_margin_y=20,
-)
-ED_OPTIONS = dict(
-    ed_live_wordcount=False,
-)
-
 
 class EditManager:
     """mdnovel multi-section "plain text" editor class."""
+    SETTINGS = dict(
+        ed_win_geometry='600x800',
+        ed_color_mode=0,
+        ed_color_bg_bright='white',
+        ed_color_fg_bright='black',
+        ed_color_bg_light='antique white',
+        ed_color_fg_light='black',
+        ed_color_bg_dark='gray20',
+        ed_color_fg_dark='light grey',
+        ed_font_family='Courier',
+        ed_font_size=12,
+        ed_line_spacing=4,
+        ed_paragraph_spacing=4,
+        ed_margin_x=40,
+        ed_margin_y=20,
+    )
+    OPTIONS = dict(
+        ed_live_wordcount=False,
+    )
 
     def __init__(self, model, view, controller):
         """Add a submenu to the main menu.
@@ -62,8 +61,8 @@ class EditManager:
             configDir = '.'
         self.iniFile = f'{configDir}/editor.ini'
         self.configuration = self._mdl.nvService.make_configuration(
-            settings=ED_SETTINGS,
-            options=ED_OPTIONS
+            settings=self.SETTINGS,
+            options=self.OPTIONS
             )
         self.configuration.read(self.iniFile)
         self.kwargs = {}
