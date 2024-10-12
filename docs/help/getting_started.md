@@ -244,7 +244,7 @@ sections, indicating their titles. If *novelibre* finds third-level
 headings, it considers all body text to be description. In this case,
 formatting doesn't matter.
 
->---
+---
 >
 > **Important**
 >
@@ -265,7 +265,7 @@ formatting doesn't matter.
 > optional.</figcaption>
 > </figure>
 >
->---
+---
 
 When your outline is ready, create your new project with **File \> New
 \> Create from ODT...**.
