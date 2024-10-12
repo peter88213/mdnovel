@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.7.0\n"
-"POT-Creation-Date: 2024-10-12 16:43:44\n"
+"Project-Id-Version: 0.8.0\n"
+"POT-Creation-Date: 2024-10-12 19:08:08\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -189,6 +189,9 @@ msgid "Change Level"
 msgstr ""
 
 msgid "Change icon size"
+msgstr ""
+
+msgid "Change theme"
 msgstr ""
 
 msgid "Chapter"
@@ -486,6 +489,9 @@ msgid "Forward"
 msgstr ""
 
 msgid "Full name"
+msgstr ""
+
+msgid "GUI Theme"
 msgstr ""
 
 msgid "Generate"
@@ -1047,6 +1053,9 @@ msgid "The sections are not of the same type"
 msgstr ""
 
 msgid "The sections have different viewpoints"
+msgstr ""
+
+msgid "Theme Changer"
 msgstr ""
 
 msgid "There is no previous section"

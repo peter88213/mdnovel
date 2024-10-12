@@ -35,17 +35,7 @@ class MatrixViewManager:
     )
     OPTIONS = {}
 
-    def disable_menu(self):
-        """Disable menu entries when no project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
-        self._matrixButton.config(state='disabled')
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
-        self._matrixButton.config(state='normal')
-
-    def __init__(self, model, view, controller, prefs=None):
+    def __init__(self, model, view, controller):
         """Add a submenu to the 'Tools' menu.
         
         Positional arguments:
@@ -53,9 +43,6 @@ class MatrixViewManager:
             view -- Reference to the main view instance of the application.
             controller -- Reference to the main controller instance of the application.
 
-        Optional arguments:
-            prefs -- deprecated. Please use controller.get_preferences() instead.
-        
         """
         self._mdl = model
         self._ui = view
@@ -84,6 +71,16 @@ class MatrixViewManager:
 
         #--- Configure the toolbar.
         self._configure_toolbar()
+
+    def disable_menu(self):
+        """Disable menu entries when no project is open."""
+        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._matrixButton.config(state='disabled')
+
+    def enable_menu(self):
+        """Enable menu entries when a project is open."""
+        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
+        self._matrixButton.config(state='normal')
 
     def lock(self):
         """Inhibit changes on the model."""

@@ -4,6 +4,11 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+
+### Version 0.8.0
+
+- Add a theme changer.
+
 ### Version 0.7.0
 
 - Add a relationship matrix.

@@ -97,7 +97,7 @@ class NvController:
         self.matrixView = MatrixViewManager(self._mdl, self._ui, self)
 
         #--- Initialize the word count log view.
-        self.wcLogView = ProgressViewManager(self._mdl, self._ui, self)
+        self.wcLogView = ProgressViewManager(self._mdl, self._ui)
 
         #--- Initialize the yWriter converter.
         self.yw7Converter = Yw7Converter(self._mdl, self._ui, self)

@@ -24,25 +24,12 @@ class ProgressViewManager:
     )
     OPTIONS = {}
 
-    def disable_menu(self):
-        """Disable menu entries when no project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
-
-    def __init__(self, model, view, controller, prefs=None):
+    def __init__(self, model, view):
         """Add a submenu to the 'Tools' menu.
         
         Positional arguments:
             model -- reference to the main model instance of the application.
             view -- reference to the main view instance of the application.
-            controller -- reference to the main controller instance of the application.
-
-        Optional arguments:
-            prefs -- deprecated. Please use controller.get_preferences() instead.
-        
         """
         self._mdl = model
         self._ui = view
@@ -67,6 +54,14 @@ class ProgressViewManager:
         # Create an entry in the Tools menu.
         self._ui.toolsMenu.add_command(label=self.APPLICATION, command=self._start_viewer)
         self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+
+    def disable_menu(self):
+        """Disable menu entries when no project is open."""
+        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+
+    def enable_menu(self):
+        """Enable menu entries when a project is open."""
+        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
 
     def on_close(self):
         """Close the window."""

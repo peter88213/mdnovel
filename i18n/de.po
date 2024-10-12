@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.7.0\n"
-"POT-Creation-Date: 2024-10-12 16:43:44\n"
-"PO-Revision-Date: 2024-10-12 16:43:44\n"
+"Project-Id-Version: 0.8.0\n"
+"POT-Creation-Date: 2024-10-12 19:08:08\n"
+"PO-Revision-Date: 2024-10-12 19:08:08\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -183,6 +183,9 @@ msgstr "Ebene ändern"
 
 msgid "Change icon size"
 msgstr "Symbolgröße ändern"
+
+msgid "Change theme"
+msgstr "Designtheme wechseln"
 
 msgid "Chapter"
 msgstr "Kapitel"
@@ -480,6 +483,9 @@ msgstr "Vor"
 
 msgid "Full name"
 msgstr "Vollst. Name"
+
+msgid "GUI Theme"
+msgstr "GUI-Theme"
 
 msgid "Generate"
 msgstr "Erzeugen"
@@ -1041,6 +1047,9 @@ msgstr "Die Abschnitte sind nicht vom selben Typ"
 
 msgid "The sections have different viewpoints"
 msgstr "Die Abschnitte haben unterschiedliche Perspektiven"
+
+msgid "Theme Changer"
+msgstr "Theme-Wechsler"
 
 msgid "There is no previous section"
 msgstr "Es gibt keinen vorhergehenden Abschnitt"
