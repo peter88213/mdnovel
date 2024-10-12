@@ -47,15 +47,15 @@ the chapter or part number.
 
 ---
 
-Use Roman chapter numbers  
+Use Roman chapter numbers
 
-   By default, arabic numbers, like "1", "2", "3" ... are used for
+:  By default, arabic numbers, like "1", "2", "3" ... are used for
    auto-numbering. If this checkbox is ticked, Roman numbers, like "I",
    "II", "III", "IV" ... are used instead.
 
-Restart chapter numbering at part beginning  
+Restart chapter numbering at part beginning
 
-   By default, the chapters are numbered consistently across the parts. If
+:  By default, the chapters are numbered consistently across the parts. If
    this checkbox is ticked, the chapter numbering starts again with "1" in
    each part.
 
@@ -69,24 +69,24 @@ categories do not fit into your individual story planning concept, you
 can rename these fields. Editing the categories can be completed by
 pressing the `Enter` key.
 
-"Not a scene" fields  
+"Not a scene" fields
 
-   The heading replacements for *Plot progress*, *Characterization*, and
+:  The heading replacements for *Plot progress*, *Characterization*, and
    *World building* are used when you set the [Scene
    frame](section_view.html#scene) to **Not a scene**. These categories
    then apply to all sections that don't represent scenes.
 
-"Other Scene" fields  
+"Other Scene" fields
 
-   The heading replacements for *Opening*, *Peak emotional monent*, and
+:  The heading replacements for *Opening*, *Peak emotional monent*, and
    *Ending* are used when you set the [Scene
    frame](section_view.html#scene) to **Other**. These categories then
    apply to all sections that represent scenes other than "Action" and
    "Reaction".
 
-"Character" fields  
+"Character" fields
 
-   If you want other categories than [Bio](character_view.html#bio) and
+:  If you want other categories than [Bio](character_view.html#bio) and
    [Goals](character_view.html#goals) for your characters, you can enter
    them here. They will then apply to all characters.
 
@@ -109,9 +109,9 @@ date/time information [for each section](section_view.html#date-time).
 The date can be specific *(YYYY-MM-DD)* or unspecific (number of days,
 e.g. from the beginning of the story).
 
-Reference date  
+Reference date
 
-   The reference date is optional. It can be used to convert relative dates
+:  The reference date is optional. It can be used to convert relative dates
    into absolute dates, or vice versa. The timeline software plugins may
    use the reference date for creating events from sections that have no
    date or an unspecific one.
@@ -131,14 +131,14 @@ Reference date
    
    ---
 
-Convert dates to days  
+Convert dates to days
 
-   This transforms specific section dates into days, related to the
+:  This transforms specific section dates into days, related to the
    reference date.
 
-Convert days to dates  
+Convert days to dates
 
-   This transforms unspecific section dates into specific ones, using the
+:  This transforms unspecific section dates into specific ones, using the
    reference date.
 
 ---
@@ -180,37 +180,37 @@ status bar at any time.
 
 ---
 
-Log writing progress  
+Log writing progress
 
-   By default, *mdnovel* stores a log entry with the word counts for each
+:  By default, *mdnovel* stores a log entry with the word counts for each
    day on which you edit the project. You can prevent this by unticking the
    **Log writing progress** checkbox.
 
-Words to write  
+Words to write
 
-   Here you can enter a number (without decimal points or separators)
+:  Here you can enter a number (without decimal points or separators)
    indicating your writing goal in words. The entry can be completed by
    pressing the `Enter` key.
 
-Starting count  
+Starting count
 
-   Here you can enter a number (without decimal points or separators)
+:  Here you can enter a number (without decimal points or separators)
    indicating the word count you want to start from. The entry can be
    completed by pressing the `Enter` key.
 
-Set actual wordcount as start  
+Set actual wordcount as start
 
-   Click this button to enter your current word count in the **Starting
+:  Click this button to enter your current word count in the **Starting
    count** field.
 
-Words written  
+Words written
 
-   Here the difference between your actual word count and the starting
+:  Here the difference between your actual word count and the starting
    count is displayed. The percentage refers to the words to write.
 
-Work phase  
+Work phase
 
-   This setting is for the tree viewer ["Work phase" coloring
+:  This setting is for the tree viewer ["Work phase" coloring
    mode](view_menu.html#coloring-mode).
    
    - Sections with the same completion status as the selected work phase
@@ -247,9 +247,9 @@ image file is sufficient.
 
 The links are displayed in a list in the order they are entered.
 
-Add Link  
+Add Link
 
-   When clicking on ![Add](images/add.png), a file selection dialog opens.
+:  When clicking on ![Add](images/add.png), a file selection dialog opens.
    The selected file will be added to the link list.
 
    ---
@@ -265,14 +265,14 @@ Add Link
    
    ---
 
-Remove Link  
+Remove Link
 
-   When clicking on ![Remove](images/remove.png) or pressing the `Del`
+:  When clicking on ![Remove](images/remove.png) or pressing the `Del`
    key, the selected link is removed from the list.
 
-Open Link  
+Open Link
 
-   When double-clicking on a link, or clicking on
+:  When double-clicking on a link, or clicking on
    ![Goto](images/goto.png), the link is opened with the standard
    application for the link's file type.
 
