@@ -1,7 +1,7 @@
 # Book properties
 
 The Book properties view opens in the right pane when you select "Book"
-in the tree, or when you click on the ![Show Book](_images/viewBook.png)
+in the tree, or when you click on the ![Show Book](images/viewBook.png)
 toolbar icon. It is the initial view after opening a *mdnovel*
 project.
 
@@ -244,7 +244,7 @@ image file is sufficient.
 The links are displayed in a list in the order they are entered.
 
 Add Link  
-When clicking on ![Add](_images/add.png), a file selection dialog opens.
+When clicking on ![Add](images/add.png), a file selection dialog opens.
 The selected file will be added to the link list.
 
 ---
@@ -255,19 +255,19 @@ The selected file will be added to the link list.
 By default, the dialog shows image files. For other file types, change
 the selector in the lower right corner.
 
-![Screenshot](_images/filePicker01.png")
+![Screenshot](images/filePicker01.png")
 
 Windows Explorer Screenshot
 
 --
 
 Remove Link  
-When clicking on ![Remove](_images/remove.png) or pressing the `Del`
+When clicking on ![Remove](images/remove.png) or pressing the `Del`
 key, the selected link is removed from the list.
 
 Open Link  
 When double-clicking on a link, or clicking on
-![Goto](_images/goto.png), the link is opened with the standard
+![Goto](images/goto.png), the link is opened with the standard
 application for the link's file type.
 
 ---
@@ -293,7 +293,7 @@ the *Zim Desktop Wiki* application instead of the standard text editor:
 .zim = C:/Program Files (x86)/Zim Desktop Wiki/zim.exe 
 
 ```
-![Screenshot](_images/launchers.png)
+![Screenshot](images/launchers.png)
 
 Windows Explorer Screenshot
 
@@ -305,10 +305,10 @@ A cover thumbnail is displayed with the book properties if you provide a
 PNG image file with the project name along with the *.novx* file. The
 recommended image width is 100 to 200 pixels.
 
-![Screenshot](_images/book_view12.png)
+![Screenshot](images/book_view12.png)
 
 Windows Explorer Screenshot
 
-![Screenshot](_images/book_view07.jpg)
+![Screenshot](images/book_view07.jpg)
 
 mdnovel screenshot
