@@ -13,14 +13,14 @@ Work-in-progress nor an outline of any kind. First of all, we create a
 new empty project with **File \> New \> Empty project**.
 
 <figure>
-<img src="_images/getting_started01.png"
-alt="_images/getting_started01.png" />
+<img src="images/getting_started01.png"
+alt="images/getting_started01.png" />
 </figure>
 
 A file selection dialog opens and asks for the file name and location of
 the new project.
 
-> [!TIP]
+> **Tip**
 > It is advantageous to create a separate folder for the project, as all
 > exported documents are also stored here. This also includes auxiliary
 > files such as timelines or project-related configuration files for
@@ -31,8 +31,8 @@ name. Perhaps also a description of our idea. To get started right away,
 we will postpone the remaining project settings until later.
 
 <figure>
-<img src="_images/getting_started02.png"
-alt="_images/getting_started02.png" />
+<img src="images/getting_started02.png"
+alt="images/getting_started02.png" />
 </figure>
 
 We need at least one section in order to get space to begin writing. And
@@ -40,8 +40,8 @@ this must belong to a chapter. So we now create the first chapter with
 **Chapter \> Add**.
 
 <figure>
-<img src="_images/getting_started03.png"
-alt="_images/getting_started03.png" />
+<img src="images/getting_started03.png"
+alt="images/getting_started03.png" />
 </figure>
 
 After the chapter is created, *novelibre* sets the focus on the chapter
@@ -49,8 +49,8 @@ title entry at the top of the right pane. Let's overwrite the default
 title.
 
 <figure>
-<img src="_images/getting_started04.png"
-alt="_images/getting_started04.png" />
+<img src="images/getting_started04.png"
+alt="images/getting_started04.png" />
 </figure>
 
 <div class="hint">
@@ -71,33 +71,33 @@ There are several ways to add a section now. In this example, we
 right-click on the chapter, and select **Add section**.
 
 <figure>
-<img src="_images/getting_started05.png"
-alt="_images/getting_started05.png" />
+<img src="images/getting_started05.png"
+alt="images/getting_started05.png" />
 </figure>
 
 ### Starting the manuscript immediately
 
 As soon as the new section appears in the tree view, we can export a
 manuscript. Just click on the ![Export
-manuscript](_images/manuscript.png) toolbar icon.
+manuscript](images/manuscript.png) toolbar icon.
 
 <figure>
-<img src="_images/getting_started06.png"
-alt="_images/getting_started06.png" />
+<img src="images/getting_started06.png"
+alt="images/getting_started06.png" />
 </figure>
 
 Done! *Writer* should now appear with the manuscript open. Just start
 writing your novel within the text boundary.
 
 <figure>
-<img src="_images/getting_started07.png"
-alt="_images/getting_started07.png" />
+<img src="images/getting_started07.png"
+alt="images/getting_started07.png" />
 </figure>
 
 We can now continue working with *Writer* [as described on the next
 page](writing.html), creating new sections and chapters as we write.
 
-> [!TIP]
+> **Tip**
 > You can now work on the manuscript document "on the seat of your
 > pants" until it makes sense for you to transfer the whole thing back
 > to *novelibre* in order to create an overview and set up your project
@@ -130,15 +130,15 @@ sections as scenes. For this, you first create at least one chapter.
 Then create your stages.
 
 <figure>
-<img src="_images/getting_started08.png"
-alt="_images/getting_started08.png" />
+<img src="images/getting_started08.png"
+alt="images/getting_started08.png" />
 </figure>
 
 The system is described on the [Plotting with novelibre](plotting.html)
 page. There you also can learn how to set up multiple strands or
 character arcs.
 
-> [!TIP]
+> **Tip**
 > With the [nv_templates
 > plugin](https://github.com/peter88213/nv_templates/) you can have
 > *novelibre* set up your new project with a pre-made structure like the
@@ -184,14 +184,15 @@ parts, chapters, and sections.
 > - All other text is considered section content.
 >
 > <figure>
-> <img src="_images/getting_started10.png"
-> alt="_images/getting_started10.png" />
+> <img src="images/getting_started10.png"
+> alt="images/getting_started10.png" />
 > <figcaption>Work-in-progress example: Note the blanks between the
 > asterisks of the section divider. It is not necessary to center the
 > section dividers.</figcaption>
 > </figure>
 
-> [!CAUTION]
+> **Caution**
+>
 > Formatting that is not [supported with
 > novelibre](basic_concepts.html#formatting-text) is lost. The same
 > applies to images. So if your work depends on a sophisticated layout
@@ -201,7 +202,7 @@ parts, chapters, and sections.
 > publication. If this is not enough, *novelibre* may not be the right
 > tool for you.
 
-> [!TIP]
+> **Tip**
 > The easiest way to create the right section dividers is by using a
 > macro that comes with the
 > [novelibre-tools](https://github.com/peter88213/novelibre-tools/)
@@ -211,22 +212,24 @@ When your manuscript is ready, create your new project with **File \>
 New \> Create from ODT...**.
 
 <figure>
-<img src="_images/getting_started09.png"
-alt="_images/getting_started09.png" />
+<img src="images/getting_started09.png"
+alt="images/getting_started09.png" />
 </figure>
 
 A file selection dialog opens and asks for the *ODT* document. The new
 project will be created in the same directory and named after the
 manuscript file, but with the *.novx* extension.
 
-> [!CAUTION]
+> **Caution**
+>
 > Once your novel is imported into *novelibre*, your initial *ODT*
 > document is no longer needed. So if you want to keep it, you best move
 > it elsewhere, so that it is not overwritten by an [exported
 > document](export_menu.html#manuscript-for-printing-export-only) later
 > on.
 
-> [!TIP]
+> **Tip**
+>
 > After importing an extensive piece of work, you may have a whole lot
 > of sections that need to be named and described. A [plot
 > grid](plotting.html#plot-grid) might be a great help for doing this.
@@ -241,7 +244,10 @@ sections, indicating their titles. If *novelibre* finds third-level
 headings, it considers all body text to be description. In this case,
 formatting doesn't matter.
 
-> [!IMPORTANT]
+>---
+>
+> **Important**
+>
 > How to set up an outline for import An outline has at least one third
 > level heading.
 >
@@ -251,27 +257,30 @@ formatting doesn't matter.
 > - All other text is considered to be chapter/section description.
 >
 > <figure>
-> <img src="_images/getting_started11.png"
-> alt="_images/getting_started11.png" />
+> <img src="images/getting_started11.png"
+> alt="images/getting_started11.png" />
 > <figcaption>Outline example: The body text just below the chapter
 > heading is the chapter description; the body text just below the section
 > heading is the section description. However, the descriptions are
 > optional.</figcaption>
 > </figure>
+>
+>---
 
 When your outline is ready, create your new project with **File \> New
 \> Create from ODT...**.
 
 <figure>
-<img src="_images/getting_started09.png"
-alt="_images/getting_started09.png" />
+<img src="images/getting_started09.png"
+alt="images/getting_started09.png" />
 </figure>
 
 A file selection dialog opens and asks for the *ODT* document. The new
 project will be created in the same directory and named after the
 outline file, but with the *.novx* extension.
 
-> [!CAUTION]
+> **Caution**
+>
 > Once your outline is imported into *novelibre*, your initial *ODT*
 > document is no longer needed. So if you want to keep it, you best move
 > it elsewhere, so that it is not overwritten by an [exported

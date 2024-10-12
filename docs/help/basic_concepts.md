@@ -14,14 +14,14 @@ optional; technically they are first level chapters. However, in the
 they produce a heading one level above. Thus, parts are mainly for
 inserting first level headings between the chapters, if needed.
 
----
-
-**Hint**
-
-You can convert chapters into parts and vice versa by simply [changing
-the level](tree_context_menu#change-level).
-
----
+>---
+>
+>**Hint**
+>
+>You can convert chapters into parts and vice versa by simply [changing
+>the level](tree_context_menu#change-level).
+>
+>---
 
 ### Chapters
 
@@ -101,25 +101,25 @@ to sections to keep track of their place in the story. There is also
 some metadata stored with *mdnovel*, mainly as a quick reference that
 might come in handy when writing or editing.
 
----
+>---
+>
+>**Note**
+>
+>*mdnovel* is not meant as a tool for extensive world building. For
+>this, there is a plethora of dedicated applications, online and offline
+>wikis, and notetaking software. However, *mdnovel* offers the option
+>of linking images and files with the characters, locations, and items to
+>facilitate access if your external application allows this.
+>
+>---
 
-**Note**
-
-*mdnovel* is not meant as a tool for extensive world building. For
-this, there is a plethora of dedicated applications, online and offline
-wikis, and notetaking software. However, *mdnovel* offers the option
-of linking images and files with the characters, locations, and items to
-facilitate access if your external application allows this.
-
----
-
----
-
-**Important**
-
-If you want to assign **viewpoint characters** to your sections, you
-first have to [create](characters_menu#add) the characters that
-come into question.
-
----
+>---
+>
+>**Important**
+>
+>If you want to assign **viewpoint characters** to your sections, you
+>first have to [create](characters_menu#add) the characters that
+>come into question.
+>
+>---
 
