@@ -5,6 +5,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+
+### Version 0.5.0
+
+- Remove document language processing.
+- Update novx export: writing links according to DTD 1.4.
+
 ### Version 0.4.1
 
 - Fix chapter/part heading prefix/suffix reading.
