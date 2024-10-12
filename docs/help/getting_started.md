@@ -245,7 +245,7 @@ headings, it considers all body text to be description. In this case,
 formatting doesn't matter.
 
 ---
->
+
 > **Important**
 >
 > How to set up an outline for import An outline has at least one third
@@ -264,7 +264,7 @@ formatting doesn't matter.
 > heading is the section description. However, the descriptions are
 > optional.</figcaption>
 > </figure>
->
+
 ---
 
 When your outline is ready, create your new project with **File \> New
@@ -278,6 +278,8 @@ alt="images/getting_started09.png" />
 A file selection dialog opens and asks for the *ODT* document. The new
 project will be created in the same directory and named after the
 outline file, but with the *.novx* extension.
+
+---
 
 > **Caution**
 >
