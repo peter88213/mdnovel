@@ -9,6 +9,15 @@ from shutil import copy2
 import sys
 from tkinter import filedialog
 
+from mdnvlib.controller.link_processor import LinkProcessor
+from mdnvlib.editor.edit_manager import EditManager
+from mdnvlib.exporter.nv_doc_exporter import NvDocExporter
+from mdnvlib.exporter.nv_html_reporter import NvHtmlReporter
+from mdnvlib.importer.nv_doc_importer import NvDocImporter
+from mdnvlib.matrix.matrix_view_manager import MatrixViewManager
+from mdnvlib.model.nv_model import NvModel
+from mdnvlib.model.nv_work_file import NvWorkFile
+from mdnvlib.novx.novx_converter import NovxConverter
 from mdnvlib.novx_globals import CHAPTER_PREFIX
 from mdnvlib.novx_globals import CHARACTER_PREFIX
 from mdnvlib.novx_globals import CH_ROOT
@@ -26,21 +35,12 @@ from mdnvlib.novx_globals import PRJ_NOTE_PREFIX
 from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.controller.link_processor import LinkProcessor
-from mdnvlib.exporter.nv_doc_exporter import NvDocExporter
-from mdnvlib.exporter.nv_html_reporter import NvHtmlReporter
-from mdnvlib.importer.nv_doc_importer import NvDocImporter
-from mdnvlib.model.nv_model import NvModel
-from mdnvlib.model.nv_work_file import NvWorkFile
 from mdnvlib.nv_globals import prefs
 from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.plugin.plugin_manager import PluginManager
-from mdnvlib.view.nv_view import NvView
-from mdnvlib.editor.edit_manager import EditManager
 from mdnvlib.progress.progress_view_manager import ProgressViewManager
-from mdnvlib.matrix.matrix_view_manager import MatrixViewManager
+from mdnvlib.view.nv_view import NvView
 from mdnvlib.yw7.yw7_converter import Yw7Converter
-from mdnvlib.novx.novx_converter import NovxConverter
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 

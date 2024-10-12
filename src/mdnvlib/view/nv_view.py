@@ -8,6 +8,7 @@ from tkinter import messagebox
 from tkinter import ttk
 import webbrowser
 
+from mdnvlib.exporter.export_options_window import ExportOptionsWindow
 from mdnvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from mdnvlib.novx_globals import CHAPTERS_SUFFIX
 from mdnvlib.novx_globals import CHARACTERS_SUFFIX
@@ -34,20 +35,20 @@ from mdnvlib.novx_globals import SECTIONS_SUFFIX
 from mdnvlib.novx_globals import STAGES_SUFFIX
 from mdnvlib.novx_globals import XREF_SUFFIX
 from mdnvlib.novx_globals import _
-from mdnvlib.view.icons.set_icon_tk import set_icon
-from mdnvlib.exporter.export_options_window import ExportOptionsWindow
 from mdnvlib.nv_globals import HOME_URL
 from mdnvlib.nv_globals import open_help
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.contents_window.contents_viewer import ContentsViewer
 from mdnvlib.view.icons.icons import Icons
+from mdnvlib.view.icons.set_icon_tk import set_icon
+from mdnvlib.view.options.view_options_window import ViewOptionsWindow
 from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.platform.platform_settings import MOUSE
 from mdnvlib.view.platform.platform_settings import PLATFORM
 from mdnvlib.view.properties_window.properties_viewer import PropertiesViewer
+from mdnvlib.view.themes.theme_manager import ThemeManager
 from mdnvlib.view.toolbar.toolbar import Toolbar
 from mdnvlib.view.tree_window.tree_viewer import TreeViewer
-from mdnvlib.view.options.view_options_window import ViewOptionsWindow
 from mdnvlib.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 
@@ -169,6 +170,9 @@ class NvView:
 
         #--- tk root event bindings.
         self._bind_events()
+
+        #--- Initialize the theme manager.
+        self.themeManager = ThemeManager(self, self._ctrl)
 
     def ask_yes_no(self, text, title=None):
         """Query yes or no with a pop-up box.
