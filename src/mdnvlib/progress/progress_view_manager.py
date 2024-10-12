@@ -1,4 +1,4 @@
-"""A daily progress log viewer for m.
+"""A daily progress log view manager class for mdnovel.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
@@ -7,8 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from pathlib import Path
 
 from mdnvlib.novx_globals import _
-from mdnvlib.view.icons.set_icon_tk import set_icon
 from mdnvlib.progress.progress_viewer import ProgressViewer
+from mdnvlib.view.icons.set_icon_tk import set_icon
 
 APPLICATION = _('Daily progress log')
 
@@ -23,21 +23,15 @@ WC_SETTINGS = dict(
 WC_OPTIONS = {}
 
 
-class WordcountLogView:
-    """novelibre daily progress log viewer plugin class."""
+class ProgressViewManager:
+    """mdnovel daily progress log view manager class."""
 
     def disable_menu(self):
-        """Disable menu entries when no project is open.
-        
-        Overrides the superclass method.
-        """
+        """Disable menu entries when no project is open."""
         self._ui.toolsMenu.entryconfig(APPLICATION, state='disabled')
 
     def enable_menu(self):
-        """Enable menu entries when a project is open.
-        
-        Overrides the superclass method.
-        """
+        """Enable menu entries when a project is open."""
         self._ui.toolsMenu.entryconfig(APPLICATION, state='normal')
 
     def __init__(self, model, view, controller, prefs=None):
@@ -51,7 +45,6 @@ class WordcountLogView:
         Optional arguments:
             prefs -- deprecated. Please use controller.get_preferences() instead.
         
-        Overrides the superclass method.
         """
         self._mdl = model
         self._ui = view
@@ -78,17 +71,11 @@ class WordcountLogView:
         self._ui.toolsMenu.entryconfig(APPLICATION, state='disabled')
 
     def on_close(self):
-        """Close the window.
-        
-        Overrides the superclass method.
-        """
+        """Close the window."""
         self.on_quit()
 
     def on_quit(self):
-        """Write back the configuration file.
-        
-        Overrides the superclass method.
-        """
+        """Write back the configuration file."""
         if self._progress_viewer:
             if self._progress_viewer.isOpen:
                 self._progress_viewer.on_quit()
