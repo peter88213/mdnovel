@@ -729,8 +729,6 @@ class NvModel:
             authorName='',
             wordTarget=0,
             wordCountStart=0,
-            languageCode='',
-            countryCode='',
             renumberChapters=False,
             renumberParts=False,
             renumberWithinParts=False,
@@ -751,8 +749,6 @@ class NvModel:
             tree=tree,
             on_element_change=self.on_element_change,
             )
-        self.novel.check_locale()
-        # setting the the system locale as document language/country
         self.prjFile = NvWorkFile('')
         self.prjFile.novel = self.novel
         self._initialize_tree(self.on_element_change)

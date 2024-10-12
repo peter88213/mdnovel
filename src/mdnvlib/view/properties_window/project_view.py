@@ -46,34 +46,6 @@ class ProjectView(BasicView):
 
         ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
 
-        #--- "Language settings" frame.
-        self._languageFrame = FoldingFrame(self._elementInfoWindow, _('Document language'), self._toggle_language_frame)
-
-        ttk.Separator(self._elementInfoWindow, orient='horizontal').pack(fill='x')
-
-        # Language and country code.
-        self._languageCode = MyStringVar()
-        self._languageCodeEntry = LabelEntry(
-            self._languageFrame,
-            text=_('Language code'),
-            textvariable=self._languageCode,
-            command=self.apply_changes,
-            lblWidth=20
-            )
-        self._languageCodeEntry.pack(anchor='w')
-        inputWidgets.append(self._languageCodeEntry)
-
-        self._countryCode = MyStringVar()
-        self._countryCodeEntry = LabelEntry(
-            self._languageFrame,
-            text=_('Country code'),
-            textvariable=self._countryCode,
-            command=self.apply_changes,
-            lblWidth=20
-            )
-        self._countryCodeEntry.pack(anchor='w')
-        inputWidgets.append(self._countryCodeEntry)
-
         #--- "Auto numbering" frame.
         self._numberingFrame = FoldingFrame(self._elementInfoWindow, _('Auto numbering'), self._toggle_numbering_frame)
 
@@ -437,10 +409,6 @@ class ProjectView(BasicView):
             authorName = authorName.strip()
         self._element.authorName = authorName
 
-        #--- "Language settings" frame.
-        self._element.languageCode = self._languageCode.get()
-        self._element.countryCode = self._countryCode.get()
-
         #--- "Auto numbering" frame.
         self._element.renumberChapters = self._renumberChapters.get()
         self._element.renumberParts = self._renumberParts.get()
@@ -523,18 +491,6 @@ class ProjectView(BasicView):
 
         #--- Author entry.
         self._authorName.set(self._element.authorName)
-
-        #--- "Language settings" frame.
-        if prefs['show_language_settings']:
-            self._languageFrame.show()
-        else:
-            self._languageFrame.hide()
-
-        # 'Language code' entry.
-        self._languageCode.set(self._element.languageCode)
-
-        # 'Country code' entry.
-        self._countryCode.set(self._element.countryCode)
 
         #--- "Auto numbering" frame.
         if prefs['show_auto_numbering']:
@@ -700,18 +656,6 @@ class ProjectView(BasicView):
         self._create_links_window()
         self._add_separator()
         self._create_cover_window()
-
-    def _toggle_language_frame(self, event=None):
-        """Hide/show the "Document language" frame.
-        
-        Callback procedure for the FoldingFrame's button.
-        """
-        if prefs['show_language_settings']:
-            self._languageFrame.hide()
-            prefs['show_language_settings'] = False
-        else:
-            self._languageFrame.show()
-            prefs['show_language_settings'] = True
 
     def _dates_to_days(self):
         """Convert specific section dates to days."""

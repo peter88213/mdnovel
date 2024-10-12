@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.4.1\n"
-"POT-Creation-Date: 2024-10-11 20:44:49\n"
-"PO-Revision-Date: 2024-10-11 20:44:49\n"
+"Project-Id-Version: 0.5.0\n"
+"POT-Creation-Date: 2024-10-12 08:12:14\n"
+"PO-Revision-Date: 2024-10-12 08:12:14\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -283,9 +283,6 @@ msgstr "Kopieren"
 msgid "Copy style sheet"
 msgstr "Style sheet kopieren"
 
-msgid "Country code"
-msgstr "Ländercode"
-
 msgid "Create from Markdown..."
 msgstr "Aus Markdown erzeugen..."
 
@@ -369,9 +366,6 @@ msgstr "Dieses Kapitel nicht automatisch nummerieren"
 
 msgid "Do not auto-number this part"
 msgstr "Diesen Teil nicht automatisch nummerieren"
-
-msgid "Document language"
-msgstr "Sprache des Dokuments"
 
 msgid "Done"
 msgstr "Fertiggestellt"
@@ -540,9 +534,6 @@ msgstr "Gegenstände"
 
 msgid "Join with previous"
 msgstr "Mit dem vorhergehenden zusammenfassen"
-
-msgid "Language code"
-msgstr "Sprachencode"
 
 msgid "Large toolbar icons"
 msgstr "Große Symbole in der Werkzeugleiste"

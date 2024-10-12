@@ -129,11 +129,6 @@ class NovxFile(File):
         elif minorVersion > self.MINOR_VERSION:
             raise Error(_('The project "{}" was created with a newer novelibre version.').format(norm_path(self.filePath)))
 
-        try:
-            locale = xmlRoot.attrib['{http://www.w3.org/XML/1998/namespace}lang']
-            self.novel.languageCode, self.novel.countryCode = locale.split('-')
-        except:
-            pass
         self.novel.tree.reset()
         self._read_project(xmlRoot)
         self._read_locations(xmlRoot)
@@ -175,7 +170,6 @@ class NovxFile(File):
         self.wcLogUpdate = {}
         self.adjust_section_types()
         attrib = {'version':f'{self.MAJOR_VERSION}.{self.MINOR_VERSION}',
-                'xml:lang':f'{self.novel.languageCode}-{self.novel.countryCode}',
                 }
         xmlRoot = ET.Element('novx', attrib=attrib)
         self._build_element_tree(xmlRoot)
@@ -985,9 +979,9 @@ class NovxFile(File):
         if prjElement.links:
             for path in prjElement.links:
                 xmlLink = ET.SubElement(xmlElement, 'Link')
-                xmlLink.set('path', path)
+                ET.SubElement(xmlLink, 'Path').text = path
                 if prjElement.links[path]:
-                    xmlLink.set('fullPath', prjElement.links[path])
+                    ET.SubElement(xmlLink, 'FullPath').text = prjElement.links[path]
 
     def _set_notes(self, xmlElement, prjElement):
         if prjElement.notes:

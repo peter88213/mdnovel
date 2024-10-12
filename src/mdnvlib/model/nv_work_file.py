@@ -76,15 +76,6 @@ class NvWorkFile(MdnovFile):
             with open(lockfilePath, 'w') as f:
                 f.write('')
 
-    def read(self):
-        """Read file and make sure a locale is set.
-        
-        Extends the superclass method.
-        """
-        super().read()
-        self.novel.check_locale()
-        # using the system locale if no reasonable looking locale is set
-
     def unlock(self):
         """Delete the project lockfile, if any."""
         if not self.filePath:

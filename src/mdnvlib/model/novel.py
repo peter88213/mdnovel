@@ -18,8 +18,6 @@ class Novel(BasicElement):
             authorName=None,
             wordTarget=None,
             wordCountStart=None,
-            languageCode=None,
-            countryCode=None,
             renumberChapters=None,
             renumberParts=None,
             renumberWithinParts=None,
@@ -47,8 +45,6 @@ class Novel(BasicElement):
         self._authorName = authorName
         self._wordTarget = wordTarget
         self._wordCountStart = wordCountStart
-        self._languageCode = languageCode
-        self._countryCode = countryCode
         self._renumberChapters = renumberChapters
         self._renumberParts = renumberParts
         self._renumberWithinParts = renumberWithinParts
@@ -131,32 +127,6 @@ class Novel(BasicElement):
             assert type(newVal) == int
         if self._wordCountStart != newVal:
             self._wordCountStart = newVal
-            self.on_element_change()
-
-    @property
-    def languageCode(self):
-        # Language code acc. to ISO 639-1.
-        return self._languageCode
-
-    @languageCode.setter
-    def languageCode(self, newVal):
-        if newVal is not None:
-            assert type(newVal) == str
-        if self._languageCode != newVal:
-            self._languageCode = newVal
-            self.on_element_change()
-
-    @property
-    def countryCode(self):
-        # Country code acc. to ISO 3166-2.
-        return self._countryCode
-
-    @countryCode.setter
-    def countryCode(self, newVal):
-        if newVal is not None:
-            assert type(newVal) == str
-        if self._countryCode != newVal:
-            self._countryCode = newVal
             self.on_element_change()
 
     @property
@@ -427,38 +397,6 @@ class Novel(BasicElement):
                 else:
                     self._referenceDate = newVal
                     self.on_element_change()
-
-    def check_locale(self):
-        """Check the document's locale (language code and country code).
-        
-        If the locale is missing, set the system locale.  
-        If the locale doesn't look plausible, set "no language".      
-        """
-        if not self._languageCode or self._languageCode == 'None':
-            # Language isn't set.
-            try:
-                sysLng, sysCtr = locale.getlocale()[0].split('_')
-            except:
-                # Fallback for old Windows versions.
-                sysLng, sysCtr = locale.getdefaultlocale()[0].split('_')
-            self._languageCode = sysLng
-            self._countryCode = sysCtr
-            self.on_element_change()
-            return
-
-        try:
-            # Plausibility check: code must have two characters.
-            if len(self._languageCode) == 2:
-                if len(self._countryCode) == 2:
-                    return
-                    # keep the setting
-        except:
-            # code isn't a string
-            pass
-        # Existing language or country field looks not plausible
-        self._languageCode = 'zxx'
-        self._countryCode = 'none'
-        self.on_element_change()
 
     def from_yaml(self, yaml):
         super().from_yaml(yaml)

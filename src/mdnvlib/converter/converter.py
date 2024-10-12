@@ -94,7 +94,6 @@ class Converter:
             try:
                 self.check(source, target)
                 source.novel = Novel(tree=NvTree())
-                source.novel.check_locale()
                 source.read()
                 target.novel = source.novel
                 target.write()

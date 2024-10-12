@@ -137,8 +137,6 @@ class FileExport(File):
             Notes=self._convert_from_novx(self.novel.plotLines[plId].notes),
             ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
-            Language=self.novel.languageCode,
-            Country=self.novel.countryCode,
         )
         return arcMapping
 
@@ -179,8 +177,6 @@ class FileExport(File):
             Notes=self._convert_from_novx(self.novel.chapters[chId].notes),
             ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
-            Language=self.novel.languageCode,
-            Country=self.novel.countryCode,
         )
         return chapterMapping
 
@@ -353,8 +349,6 @@ class FileExport(File):
             Filters=filters,
             Desc=self._convert_from_novx(self.novel.desc),
             AuthorName=self._convert_from_novx(self.novel.authorName, quick=True),
-            Language=self.novel.languageCode,
-            Country=self.novel.countryCode,
             CustomPlotProgress=pltPrgs,
             CustomCharacterization=chrczn,
             CustomWorldBuilding=wrldbld,
@@ -647,8 +641,6 @@ class FileExport(File):
             Notes=self._convert_from_novx(self.novel.sections[scId].notes),
             ProjectName=self._convert_from_novx(self.projectName, quick=True),
             ProjectPath=self.projectPath,
-            Language=self.novel.languageCode,
-            Country=self.novel.countryCode,
             SectionsSuffix=SECTIONS_SUFFIX,
             CustomPlotProgress=pltPrgs,
             CustomCharacterization=chrczn,

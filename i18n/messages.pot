@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.4.1\n"
-"POT-Creation-Date: 2024-10-11 20:44:49\n"
+"Project-Id-Version: 0.5.0\n"
+"POT-Creation-Date: 2024-10-12 08:12:14\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -290,9 +290,6 @@ msgstr ""
 msgid "Copy style sheet"
 msgstr ""
 
-msgid "Country code"
-msgstr ""
-
 msgid "Create from Markdown..."
 msgstr ""
 
@@ -375,9 +372,6 @@ msgid "Do not auto-number this chapter"
 msgstr ""
 
 msgid "Do not auto-number this part"
-msgstr ""
-
-msgid "Document language"
 msgstr ""
 
 msgid "Done"
@@ -546,9 +540,6 @@ msgid "Items"
 msgstr ""
 
 msgid "Join with previous"
-msgstr ""
-
-msgid "Language code"
 msgstr ""
 
 msgid "Large toolbar icons"
