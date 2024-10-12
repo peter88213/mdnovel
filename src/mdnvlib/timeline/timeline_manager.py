@@ -239,7 +239,7 @@ class TimelineManager:
         kwargs = self._get_configuration(timelinePath)
         kwargs['nv_service'] = self._mdl.nvService
         source = TlFile(timelinePath, **kwargs)
-        target = self._mdl.nvService.make_novx_file(self._mdl.prjFile.filePath, **kwargs)
+        target = self._mdl.nvService.make_prj_file(self._mdl.prjFile.filePath, **kwargs)
         message = ''
         try:
             target.novel = self._mdl.nvService.make_novel()
