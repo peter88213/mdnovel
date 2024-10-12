@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.5.0\n"
-"POT-Creation-Date: 2024-10-12 08:12:14\n"
-"PO-Revision-Date: 2024-10-12 08:12:14\n"
+"Project-Id-Version: 0.6.0\n"
+"POT-Creation-Date: 2024-10-12 15:31:26\n"
+"PO-Revision-Date: 2024-10-12 15:31:26\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -309,6 +309,12 @@ msgstr "Strg"
 
 msgid "Cut"
 msgstr "Ausschneiden"
+
+msgid "Daily"
+msgstr "Täglich"
+
+msgid "Daily progress log"
+msgstr "Täglicher Schreibfortschritt"
 
 msgid "Dark mode"
 msgstr "Dunkler Modus"
@@ -1101,6 +1107,9 @@ msgstr "Ansicht"
 
 msgid "Viewpoint"
 msgstr "Perspektive"
+
+msgid "With unused"
+msgstr "Mit unbenutzten"
 
 msgid "Word count"
 msgstr "Wortzählung"

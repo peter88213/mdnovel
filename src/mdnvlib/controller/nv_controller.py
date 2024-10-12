@@ -37,6 +37,7 @@ from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.plugin.plugin_manager import PluginManager
 from mdnvlib.view.nv_view import NvView
 from mdnvlib.editor.edit_manager import EditManager
+from mdnvlib.progress.wordcount_log_view import WordcountLogView
 from mdnvlib.yw7.yw7_converter import Yw7Converter
 from mdnvlib.novx.novx_converter import NovxConverter
 
@@ -88,8 +89,11 @@ class NvController:
         # model depends on a data structure defined by the GUI framework.
         self._mdl.tree = self._ui.tv.tree
 
-        #--- Initialize the section sectionEditor.
+        #--- Initialize the section editor.
         self.sectionEditor = EditManager(self._mdl, self._ui, self)
+
+        #--- Initialize the word count log view.
+        self.wcLogView = WordcountLogView(self._mdl, self._ui, self)
 
         #--- Initialize the yWriter converter.
         self.yw7Converter = Yw7Converter(self._mdl, self._ui, self)
@@ -488,6 +492,7 @@ class NvController:
         """
         self._ui.propertiesView.apply_changes()
         self.sectionEditor.on_close()
+        self.wcLogView.on_close()
         self.plugins.on_close()
         # closing the current element _view after checking for modifications
         if self._mdl.isModified and not doNotSave:
@@ -569,11 +574,13 @@ class NvController:
         """Disable menu entries when no project is open."""
         self._ui.disable_menu()
         self.plugins.disable_menu()
+        self.wcLogView.disable_menu()
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
         self._ui.enable_menu()
         self.plugins.enable_menu()
+        self.wcLogView.enable_menu()
 
     def export_document(self, suffix, **kwargs):
         """Export a document.
@@ -749,6 +756,7 @@ class NvController:
             if self._mdl.prjFile is not None:
                 self.close_project()
             self.sectionEditor.on_quit()
+            self.wcLogView.on_quit()
             self.plugins.on_quit()
             self._ui.on_quit()
         except Exception as ex:
