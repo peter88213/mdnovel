@@ -4,7 +4,7 @@
 
 # Properties reference
 
-- Book properties
+- [Book properties](book_view)
 - Chapter/part properties
 - Stage properties
 - Section properties
