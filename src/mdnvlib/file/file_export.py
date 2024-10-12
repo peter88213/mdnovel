@@ -546,7 +546,12 @@ class FileExport(File):
             cmbDate = self.novel.sections[scId].localeDate
             yearStr, monthStr, dayStr = isoDate.split('-')
             dtMonth = MONTHS[int(monthStr) - 1]
-            dtWeekday = WEEKDAYS[self.novel.sections[scId].weekDay]
+            try:
+                dtWeekday = WEEKDAYS[self.novel.sections[scId].weekDay]
+            except TypeError:
+                dtWeekday = ''
+            # this is for Timeline conversion
+
         else:
             isoDate = ''
             yearStr = ''

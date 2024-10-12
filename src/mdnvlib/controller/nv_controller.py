@@ -39,6 +39,7 @@ from mdnvlib.nv_globals import prefs
 from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.plugin.plugin_manager import PluginManager
 from mdnvlib.progress.progress_view_manager import ProgressViewManager
+from mdnvlib.timeline.timeline_manager import TimelineManager
 from mdnvlib.view.nv_view import NvView
 from mdnvlib.yw7.yw7_converter import Yw7Converter
 
@@ -92,6 +93,9 @@ class NvController:
 
         #--- Initialize the section editor.
         self.sectionEditor = EditManager(self._mdl, self._ui, self)
+
+        #--- Initialize the Timeline manager.
+        self.timelineManager = TimelineManager(self._mdl, self._ui, self)
 
         #--- Initialize the matrix view.
         self.matrixView = MatrixViewManager(self._mdl, self._ui, self)
@@ -580,12 +584,14 @@ class NvController:
         self._ui.disable_menu()
         self.plugins.disable_menu()
         self.matrixView.disable_menu()
+        self.timelineManager.disable_menu()
         self.wcLogView.disable_menu()
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
         self._ui.enable_menu()
         self.plugins.enable_menu()
+        self.timelineManager.enable_menu()
         self.matrixView.enable_menu()
         self.wcLogView.enable_menu()
 
