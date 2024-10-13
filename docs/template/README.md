@@ -1,6 +1,6 @@
 [![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.99.0.pyzw)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
-[![Online help](docs/img/help-button.png)](https://peter88213.github.io/mdnovel/help/)
+[![Online help](docs/img/help-button.png)](https://peter88213.github.io/mdnovhelp-en/)
 
 # ![N](docs/img/nLogo32.png) mdnovel
 
@@ -100,7 +100,7 @@ The package is also available in zip format: [mdnovel_v0.99.0.zip](https://githu
 
 ## Usage
 
-See the [help pages](https://peter88213.github.io/mdnovel/help/)
+See the [online manual](https://peter88213.github.io/mdnovhelp-en/)
 
 ---
 

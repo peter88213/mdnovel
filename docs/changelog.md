@@ -4,6 +4,10 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.9.0
+
+- Provide links to the online manual.
+- Remove the local help pages.
 
 ### Version 0.8.0
 
