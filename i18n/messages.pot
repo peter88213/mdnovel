@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.9.0\n"
-"POT-Creation-Date: 2024-10-13 12:23:55\n"
+"Project-Id-Version: 0.9.1\n"
+"POT-Creation-Date: 2024-10-13 17:28:35\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -288,9 +288,6 @@ msgid "Convert days to dates"
 msgstr ""
 
 msgid "Copy"
-msgstr ""
-
-msgid "Copy style sheet"
 msgstr ""
 
 msgid "Create from Markdown..."
@@ -1008,9 +1005,6 @@ msgid "Story structure"
 msgstr ""
 
 msgid "Strong emphasis"
-msgstr ""
-
-msgid "Style sheet copied into the project folder."
 msgstr ""
 
 msgid "Tags"

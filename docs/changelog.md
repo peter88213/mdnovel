@@ -4,6 +4,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+
+### Version 0.9.1
+
+- Remove the "css" entry from the File menu.
+- Change the wording in the Section menu. 
+
 ### Version 0.9.0
 
 - Provide links to the online manual.
