@@ -1,2 +1,0 @@
-- [Changelog](changelog)
-- [Help pages](help/)
