@@ -233,7 +233,6 @@ class NvView:
         # self.fileMenu.entryconfig(_('Lock'), state='disabled')
         # self.fileMenu.entryconfig(_('Unlock'), state='disabled')
         self.fileMenu.entryconfig(_('Open Project folder'), state='disabled')
-        self.fileMenu.entryconfig(_('Copy style sheet'), state='disabled')
         self.fileMenu.entryconfig(_('Save'), state='disabled')
         self.fileMenu.entryconfig(_('Save as...'), state='disabled')
         self.viewMenu.entryconfig(_('Chapter level'), state='disabled')
@@ -298,7 +297,6 @@ class NvView:
         self.fileMenu.entryconfig(_('Refresh Tree'), state='normal')
         # self.fileMenu.entryconfig(_('Lock'), state='normal')
         self.fileMenu.entryconfig(_('Open Project folder'), state='normal')
-        self.fileMenu.entryconfig(_('Copy style sheet'), state='normal')
         self.fileMenu.entryconfig(_('Save'), state='normal')
         self.fileMenu.entryconfig(_('Save as...'), state='normal')
         self.viewMenu.entryconfig(_('Chapter level'), state='normal')
@@ -601,7 +599,6 @@ class NvView:
         # self.fileMenu.add_command(label=_('Unlock'), accelerator=KEYS.UNLOCK_PROJECT[1], command=self._ctrl.unlock)
         self.fileMenu.add_separator()
         self.fileMenu.add_command(label=_('Open Project folder'), accelerator=KEYS.FOLDER[1], command=self._ctrl.open_project_folder)
-        self.fileMenu.add_command(label=_('Copy style sheet'), command=self._ctrl.copy_css)
         self.fileMenu.add_separator()
         self.fileMenu.add_command(label=_('Save'), accelerator=KEYS.SAVE_PROJECT[1], command=self._ctrl.save_project)
         self.fileMenu.add_command(label=_('Save as...'), accelerator=KEYS.SAVE_AS[1], command=self._ctrl.save_as)
@@ -660,7 +657,7 @@ class NvView:
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_command(label=_('Export section descriptions'), command=lambda: self._ctrl.export_document(SECTIONS_SUFFIX))
-        # self.sectionMenu.add_command(label=_('Section list'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
+        # self.sectionMenu.add_command(label=_('Export section list'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
 
         # Character
         self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)

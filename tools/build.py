@@ -11,7 +11,7 @@ import sys
 sys.path.insert(0, f'{os.getcwd()}/../../mdnovel/tools')
 from package_builder import PackageBuilder
 
-VERSION = '0.9.0'
+VERSION = '0.9.1'
 
 
 class ApplicationBuilder(PackageBuilder):
