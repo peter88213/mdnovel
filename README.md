@@ -67,7 +67,7 @@ See the development details in the [mdnovel features project](https://github.com
      - Linux users: Make sure you have the *python3-tk* package installed. 
        To see the tooltips, make sure that you have the *idle3* package installed.
 - Users may want to install [pandoc](https://pandoc.org/) for processing the exported documents.
-- To have a [wider choice](https://ttkthemes.readthedocs.io/en/latest/themes.html), you can 
+- To have a [wider choice of design themes](https://ttkthemes.readthedocs.io/en/latest/themes.html), you can 
   [install the ttkthemes package](https://ttkthemes.readthedocs.io/en/latest/installation.html).
 
 
