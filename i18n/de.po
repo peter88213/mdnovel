@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.9.0\n"
-"POT-Creation-Date: 2024-10-13 12:23:55\n"
-"PO-Revision-Date: 2024-10-13 12:23:55\n"
+"Project-Id-Version: 0.9.1\n"
+"POT-Creation-Date: 2024-10-13 17:28:35\n"
+"PO-Revision-Date: 2024-10-13 17:28:35\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -282,9 +282,6 @@ msgstr "Tage in Datum umwandeln"
 
 msgid "Copy"
 msgstr "Kopieren"
-
-msgid "Copy style sheet"
-msgstr "Style sheet kopieren"
 
 msgid "Create from Markdown..."
 msgstr "Aus Markdown erzeugen..."
@@ -1002,9 +999,6 @@ msgstr "Erzählstruktur"
 
 msgid "Strong emphasis"
 msgstr "Stark betont"
-
-msgid "Style sheet copied into the project folder."
-msgstr "Style sheet in den Projektordner kopiert."
 
 msgid "Tags"
 msgstr "Tags"
