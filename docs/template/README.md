@@ -52,6 +52,8 @@ See the development details in the [mdnovel features project](https://github.com
 - There is no connection with OpenOffice/LibreOffice. 
 - Document export is in Markdown or csv format. 
 - New project can be created from Markdown-formatted Work-in-progress or outline.
+- Features like the matrix view, the daily progress log viewer, and Timeline synchronisation, 
+  which are available as plugins for novelibre, are built-in in mdnovel.  
 
 
 ## Requirements
@@ -63,6 +65,8 @@ See the development details in the [mdnovel features project](https://github.com
      - Linux users: Make sure you have the *python3-tk* package installed. 
        To see the tooltips, make sure that you have the *idle3* package installed.
 - Users may want to install [pandoc](https://pandoc.org/) for processing the exported documents.
+- To have a [wider choice](https://ttkthemes.readthedocs.io/en/latest/themes.html), you can 
+  [install the ttkthemes package](https://ttkthemes.readthedocs.io/en/latest/installation.html).
 
 
 ## Download and install
