@@ -52,8 +52,10 @@ See the development details in the [mdnovel features project](https://github.com
 - There is no connection with OpenOffice/LibreOffice. 
 - Document export is in Markdown or csv format. 
 - New project can be created from Markdown-formatted Work-in-progress or outline.
-- Features like the matrix view, the daily progress log viewer, and Timeline synchronisation, 
-  which are available as plugins for novelibre, are built-in in mdnovel.  
+- Features available as plugins for *novelibre*, such as the theme changer, the matrix view, 
+  the daily progress log viewer, 
+  and [Timeline](http://thetimelineproj.sourceforge.net/) synchronisation, 
+  are built-in in *mdnovel*.  
 
 
 ## Requirements
