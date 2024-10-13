@@ -12,8 +12,7 @@ This is a variant of the [novelibre](https://github.com/peter88213/novelibre) no
 
 ## Note
 
-This program is intended only as a proof of concept. It is still in Alpha status.
-
+This program is primarily a proof of concept. 
 See the development details in the [mdnovel features project](https://github.com/users/peter88213/projects/17/views/2).
 
 
