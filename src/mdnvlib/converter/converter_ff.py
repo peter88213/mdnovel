@@ -80,7 +80,7 @@ class ConverterFf(Converter):
                 except Error as ex:
                     self.ui.set_status(f'!{str(ex)}')
                 else:
-                    self.create_novx(source, target)
+                    self.create_mdnov(source, target)
             else:
                 # Try to update an existing mdnovel project.
                 kwargs['suffix'] = source.SUFFIX
@@ -89,7 +89,7 @@ class ConverterFf(Converter):
                 except Error as ex:
                     self.ui.set_status(f'!{str(ex)}')
                 else:
-                    self.import_to_novx(source, target)
+                    self.import_to_mdnov(source, target)
         else:
             # The source file is a mdnovel project.
             try:
@@ -97,4 +97,4 @@ class ConverterFf(Converter):
             except Error as ex:
                 self.ui.set_status(f'!{str(ex)}')
             else:
-                self.export_from_novx(source, target)
+                self.export_from_mdnov(source, target)

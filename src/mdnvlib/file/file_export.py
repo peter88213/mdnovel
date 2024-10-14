@@ -105,7 +105,7 @@ class FileExport(File):
                 os.replace(f'{self.filePath}.bak', self.filePath)
             raise Error(f'{_("Cannot write file")}: "{norm_path(self.filePath)}".')
 
-    def _convert_from_novx(self, text, **kwargs):
+    def _convert_from_mdnov(self, text, **kwargs):
         """Return text without markup, converted to target format.
         
         Positional arguments:
@@ -132,10 +132,10 @@ class FileExport(File):
         """
         arcMapping = dict(
             ID=plId,
-            Title=self._convert_from_novx(self.novel.plotLines[plId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.plotLines[plId].desc),
-            Notes=self._convert_from_novx(self.novel.plotLines[plId].notes),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_mdnov(self.novel.plotLines[plId].title, quick=True),
+            Desc=self._convert_from_mdnov(self.novel.plotLines[plId].desc),
+            Notes=self._convert_from_mdnov(self.novel.plotLines[plId].notes),
+            ProjectName=self._convert_from_mdnov(self.projectName, quick=True),
             ProjectPath=self.projectPath,
         )
         return arcMapping
@@ -172,10 +172,10 @@ class FileExport(File):
         chapterMapping = dict(
             ID=chId,
             ChapterNumber=chapterNumber,
-            Title=self._convert_from_novx(self.novel.chapters[chId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.chapters[chId].desc),
-            Notes=self._convert_from_novx(self.novel.chapters[chId].notes),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_mdnov(self.novel.chapters[chId].title, quick=True),
+            Desc=self._convert_from_mdnov(self.novel.chapters[chId].desc),
+            Notes=self._convert_from_mdnov(self.novel.chapters[chId].notes),
+            ProjectName=self._convert_from_mdnov(self.projectName, quick=True),
             ProjectPath=self.projectPath,
         )
         return chapterMapping
@@ -252,16 +252,16 @@ class FileExport(File):
 
         characterMapping = dict(
             ID=crId,
-            Title=self._convert_from_novx(self.novel.characters[crId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.characters[crId].desc),
-            Tags=self._convert_from_novx(tags),
-            AKA=self._convert_from_novx(self.novel.characters[crId].aka, quick=True),
-            Notes=self._convert_from_novx(self.novel.characters[crId].notes),
-            Bio=self._convert_from_novx(self.novel.characters[crId].bio),
-            Goals=self._convert_from_novx(self.novel.characters[crId].goals),
-            FullName=self._convert_from_novx(self.novel.characters[crId].fullName, quick=True),
+            Title=self._convert_from_mdnov(self.novel.characters[crId].title, quick=True),
+            Desc=self._convert_from_mdnov(self.novel.characters[crId].desc),
+            Tags=self._convert_from_mdnov(tags),
+            AKA=self._convert_from_mdnov(self.novel.characters[crId].aka, quick=True),
+            Notes=self._convert_from_mdnov(self.novel.characters[crId].notes),
+            Bio=self._convert_from_mdnov(self.novel.characters[crId].bio),
+            Goals=self._convert_from_mdnov(self.novel.characters[crId].goals),
+            FullName=self._convert_from_mdnov(self.novel.characters[crId].fullName, quick=True),
             Status=characterStatus,
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            ProjectName=self._convert_from_mdnov(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             CharactersSuffix=CHARACTERS_SUFFIX,
             CustomChrBio=chrBio,
@@ -339,16 +339,16 @@ class FileExport(File):
             if message:
                 filterMessages.append(message)
             if filterMessages:
-                filters = self._convert_from_novx('\n'.join(filterMessages))
+                filters = self._convert_from_mdnov('\n'.join(filterMessages))
             else:
                 filters = ''
             pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls = self._get_renamings()
 
         fileHeaderMapping = dict(
-            Title=self._convert_from_novx(self.novel.title, quick=True),
+            Title=self._convert_from_mdnov(self.novel.title, quick=True),
             Filters=filters,
-            Desc=self._convert_from_novx(self.novel.desc),
-            AuthorName=self._convert_from_novx(self.novel.authorName, quick=True),
+            Desc=self._convert_from_mdnov(self.novel.desc),
+            AuthorName=self._convert_from_mdnov(self.novel.authorName, quick=True),
             CustomPlotProgress=pltPrgs,
             CustomCharacterization=chrczn,
             CustomWorldBuilding=wrldbld,
@@ -375,12 +375,12 @@ class FileExport(File):
 
         itemMapping = dict(
             ID=itId,
-            Title=self._convert_from_novx(self.novel.items[itId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.items[itId].desc),
-            Notes=self._convert_from_novx(self.novel.items[itId].notes),
-            Tags=self._convert_from_novx(tags, quick=True),
-            AKA=self._convert_from_novx(self.novel.items[itId].aka, quick=True),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_mdnov(self.novel.items[itId].title, quick=True),
+            Desc=self._convert_from_mdnov(self.novel.items[itId].desc),
+            Notes=self._convert_from_mdnov(self.novel.items[itId].notes),
+            Tags=self._convert_from_mdnov(tags, quick=True),
+            AKA=self._convert_from_mdnov(self.novel.items[itId].aka, quick=True),
+            ProjectName=self._convert_from_mdnov(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             ItemsSuffix=ITEMS_SUFFIX,
         )
@@ -420,12 +420,12 @@ class FileExport(File):
 
         locationMapping = dict(
             ID=lcId,
-            Title=self._convert_from_novx(self.novel.locations[lcId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.locations[lcId].desc),
-            Notes=self._convert_from_novx(self.novel.locations[lcId].notes),
-            Tags=self._convert_from_novx(tags, quick=True),
-            AKA=self._convert_from_novx(self.novel.locations[lcId].aka, quick=True),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_mdnov(self.novel.locations[lcId].title, quick=True),
+            Desc=self._convert_from_mdnov(self.novel.locations[lcId].desc),
+            Notes=self._convert_from_mdnov(self.novel.locations[lcId].notes),
+            Tags=self._convert_from_mdnov(tags, quick=True),
+            AKA=self._convert_from_mdnov(self.novel.locations[lcId].aka, quick=True),
+            ProjectName=self._convert_from_mdnov(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             LocationsSuffix=LOCATIONS_SUFFIX,
         )
@@ -546,7 +546,12 @@ class FileExport(File):
             cmbDate = self.novel.sections[scId].localeDate
             yearStr, monthStr, dayStr = isoDate.split('-')
             dtMonth = MONTHS[int(monthStr) - 1]
-            dtWeekday = WEEKDAYS[self.novel.sections[scId].weekDay]
+            try:
+                dtWeekday = WEEKDAYS[self.novel.sections[scId].weekDay]
+            except TypeError:
+                dtWeekday = ''
+            # this is for Timeline conversion
+
         else:
             isoDate = ''
             yearStr = ''
@@ -599,18 +604,18 @@ class FileExport(File):
         sectionMapping = dict(
             ID=scId,
             SectionNumber=sectionNumber,
-            Title=self._convert_from_novx(
+            Title=self._convert_from_mdnov(
                 self.novel.sections[scId].title,
                 quick=True
                 ),
-            Desc=self._convert_from_novx(
+            Desc=self._convert_from_mdnov(
                 self.novel.sections[scId].desc,
                 append=self.novel.sections[scId].appendToPrev
                 ),
             WordCount=str(self.novel.sections[scId].wordCount),
             WordsTotal=wordsTotal,
             Status=int(self.novel.sections[scId].status),
-            SectionContent=self._convert_from_novx(
+            SectionContent=self._convert_from_mdnov(
                         self.novel.sections[scId].sectionContent,
                         append=self.novel.sections[scId].appendToPrev,
                         firstInChapter=firstInChapter,
@@ -630,16 +635,16 @@ class FileExport(File):
             LastsMinutes=lastsMinutes,
             Duration=duration,
             Scene=Section.SCENE[self.novel.sections[scId].scene],
-            Goal=self._convert_from_novx(self.novel.sections[scId].goal),
-            Conflict=self._convert_from_novx(self.novel.sections[scId].conflict),
-            Outcome=self._convert_from_novx(self.novel.sections[scId].outcome),
-            Tags=self._convert_from_novx(tags, quick=True),
+            Goal=self._convert_from_mdnov(self.novel.sections[scId].goal),
+            Conflict=self._convert_from_mdnov(self.novel.sections[scId].conflict),
+            Outcome=self._convert_from_mdnov(self.novel.sections[scId].outcome),
+            Tags=self._convert_from_mdnov(tags, quick=True),
             Characters=sectionChars,
             Viewpoint=viewpointChar,
             Locations=sectionLocs,
             Items=sectionItems,
-            Notes=self._convert_from_novx(self.novel.sections[scId].notes),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Notes=self._convert_from_mdnov(self.novel.sections[scId].notes),
+            ProjectName=self._convert_from_mdnov(self.projectName, quick=True),
             ProjectPath=self.projectPath,
             SectionsSuffix=SECTIONS_SUFFIX,
             CustomPlotProgress=pltPrgs,
@@ -733,9 +738,9 @@ class FileExport(File):
         """
         noteMapping = dict(
             ID=pnId,
-            Title=self._convert_from_novx(self.novel.projectNotes[pnId].title, quick=True),
-            Desc=self._convert_from_novx(self.novel.projectNotes[pnId].desc),
-            ProjectName=self._convert_from_novx(self.projectName, quick=True),
+            Title=self._convert_from_mdnov(self.novel.projectNotes[pnId].title, quick=True),
+            Desc=self._convert_from_mdnov(self.novel.projectNotes[pnId].desc),
+            ProjectName=self._convert_from_mdnov(self.projectName, quick=True),
             ProjectPath=self.projectPath,
         )
         return noteMapping

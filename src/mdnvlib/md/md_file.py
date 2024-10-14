@@ -24,7 +24,7 @@ class MdFile(FileExport):
   
 '''
 
-    def _convert_from_novx(self, text, quick=False, append=False, firstInChapter=False):
+    def _convert_from_mdnov(self, text, quick=False, append=False, firstInChapter=False):
         """Return text, converted to Markdown.
         
         Positional arguments:
