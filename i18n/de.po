@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.9.1\n"
-"POT-Creation-Date: 2024-10-13 17:28:35\n"
-"PO-Revision-Date: 2024-10-13 17:28:35\n"
+"Project-Id-Version: 0.10.0\n"
+"POT-Creation-Date: 2024-10-14 08:52:58\n"
+"PO-Revision-Date: 2024-10-14 08:52:58\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -526,9 +526,6 @@ msgstr "Eingabe abgelehnt"
 msgid "Insert Stage"
 msgstr "Stadium einfügen"
 
-msgid "Installed plugins"
-msgstr "Installierte Plugins"
-
 msgid "Item"
 msgstr "Gegenstand"
 
@@ -592,9 +589,6 @@ msgstr "Nebenfigur"
 msgid "Minutes"
 msgstr "Minuten"
 
-msgid "Module"
-msgstr "Modul"
-
 msgid "Moon phase"
 msgstr "Mondphase"
 
@@ -654,9 +648,6 @@ msgstr "Vor"
 
 msgid "No backup available"
 msgstr "Keine Sicherungskopie verfügbar"
-
-msgid "No description"
-msgstr "Keine Beschreibung"
 
 msgid "No mdnovel project to write"
 msgstr "Kein mdnovel-Projekt zum Schreiben"
@@ -810,9 +801,6 @@ msgstr "Plotpunkte"
 
 msgid "Plot progress"
 msgstr "Handlungsfortschritt"
-
-msgid "Plugin Manager"
-msgstr "Plugin-Manager"
 
 msgid "Position"
 msgstr "Position"
@@ -1021,9 +1009,6 @@ msgstr "Die Änderung wird beim nächsten Programmstart wirksam"
 msgid "The next section has no time set."
 msgstr "Der nachfolgende Abschnitt hat keine Zeitangabe"
 
-msgid "The plugin remains active until next start."
-msgstr "Das Plugin bleibt bis zum nächsten Start aktiv."
-
 msgid "The previous section has no time set."
 msgstr "Der vorhergehende Abschnitt hat keine Zeitangabe"
 
@@ -1108,9 +1093,6 @@ msgstr "Römische Teilenummern"
 msgid "Used"
 msgstr "Benutzt"
 
-msgid "Version"
-msgstr "Version"
-
 msgid "View"
 msgstr "Ansicht"
 
@@ -1171,17 +1153,11 @@ msgstr "von"
 msgid "csv Plot list"
 msgstr "csv Plotliste"
 
-msgid "deleted"
-msgstr "gelöscht"
-
 msgid "hh:mm"
 msgstr "hh:mm"
 
 msgid "last saved on"
 msgstr "zuletzt gespeichert:"
-
-msgid "mdnovel API"
-msgstr "mdnovel API"
 
 msgid "mdnovel project"
 msgstr "mdnovel-Projekt"
@@ -1194,9 +1170,6 @@ msgstr "keine Daten"
 
 msgid "novelibre project"
 msgstr "novelibre-Projekt"
-
-msgid "unknown"
-msgstr "unbekannt"
 
 msgid "words"
 msgstr "Wörter"

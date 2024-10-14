@@ -723,7 +723,6 @@ class NvView:
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Tools'), menu=self.toolsMenu)
-        self.toolsMenu.add_command(label=_('Plugin Manager'), command=self._ctrl.manage_plugins)
         self.toolsMenu.add_command(label=_('Open installation folder'), command=self._ctrl.open_installationFolder)
         self.toolsMenu.add_separator()
 

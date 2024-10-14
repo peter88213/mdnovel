@@ -10,7 +10,6 @@ import os
 import sys
 
 from mdnvlib.nv_globals import prefs
-from mdnvlib.plugin.rejected_plugin import RejectedPlugin
 from mdnvlib.novx_globals import _
 
 
@@ -86,47 +85,42 @@ class PluginCollection(dict):
 
         Return True on success, otherwise return False. 
         """
+        moduleName = os.path.split(filePath)[1][:-3]
+
+        # Import the module.
+        module = importlib.import_module(moduleName)
+
+        # Check API compatibility.
+        pluginObject = module.Plugin()
         try:
-            moduleName = os.path.split(filePath)[1][:-3]
+            apiVerStr = pluginObject.API_VERSION
+            isCompatible = True
+        except AttributeError:
+            # might be a 1.x API plugin
+            apiVerStr = pluginObject.NOVELTREE_API
+            isCompatible = False
+        majorStr, minorStr = apiVerStr.split('.')
+        apiMajorVersion = int(majorStr)
+        apiMinorVersion = int(minorStr)
+        if apiMajorVersion != self.majorVersion:
+            isCompatible = False
+        if apiMinorVersion > self.minorVersion:
+            isCompatible = False
+        if isCompatible:
+            # Install the plugin by calling its constructor substitute.
+            pluginObject.install(self._mdl, self._ui, self._ctrl, prefs)
 
-            # Import the module.
-            module = importlib.import_module(moduleName)
+        # Change flags to indicate the installation.
+        # Plugin classes that don't inherit from PluginBase may be monkey-patched.
+        pluginObject.isActive = isCompatible
+        pluginObject.isRejected = False
 
-            # Check API compatibility.
-            pluginObject = module.Plugin()
-            try:
-                apiVerStr = pluginObject.API_VERSION
-                isCompatible = True
-            except AttributeError:
-                # might be a 1.x API plugin
-                apiVerStr = pluginObject.NOVELTREE_API
-                isCompatible = False
-            majorStr, minorStr = apiVerStr.split('.')
-            apiMajorVersion = int(majorStr)
-            apiMinorVersion = int(minorStr)
-            if apiMajorVersion != self.majorVersion:
-                isCompatible = False
-            if apiMinorVersion > self.minorVersion:
-                isCompatible = False
-            if isCompatible:
-                # Install the plugin by calling its constructor substitute.
-                pluginObject.install(self._mdl, self._ui, self._ctrl, prefs)
+        # Register the module.
+        self[moduleName] = pluginObject
 
-            # Change flags to indicate the installation.
-            # Plugin classes that don't inherit from PluginBase may be monkey-patched.
-            pluginObject.isActive = isCompatible
-            pluginObject.isRejected = False
-
-            # Register the module.
-            self[moduleName] = pluginObject
-
-            # Locate the module.
-            pluginObject.filePath = filePath
-            return True
-
-        except Exception as ex:
-            self[moduleName] = RejectedPlugin(filePath, str(ex))
-            return False
+        # Locate the module.
+        pluginObject.filePath = filePath
+        return True
 
     def load_plugins(self, pluginPath):
         """Load and register the plugins.

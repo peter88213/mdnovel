@@ -37,7 +37,6 @@ from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.nv_globals import prefs
 from mdnvlib.plugin.plugin_collection import PluginCollection
-from mdnvlib.plugin.plugin_manager import PluginManager
 from mdnvlib.progress.progress_view_manager import ProgressViewManager
 from mdnvlib.view.nv_view import NvView
 from mdnvlib.yw7.yw7_converter import Yw7Converter
@@ -709,14 +708,6 @@ class NvController:
             return True
         else:
             return False
-
-    def manage_plugins(self, event=None):
-        """Open a toplevel window to manage the plugins."""
-        offset = 300
-        __, x, y = self._ui.root.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        PluginManager(windowGeometry, self._ui, self)
-        return 'break'
 
     def move_node(self, node, targetNode):
         """Move a node to another position.

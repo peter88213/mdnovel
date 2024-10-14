@@ -5,6 +5,11 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 0.10.0
+
+- Remove the plugin manager (#3).
+- No longer handle exceptions when loading plugins.
+
 ### Version 0.9.1
 
 - Remove the "css" entry from the File menu.

@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.9.1\n"
-"POT-Creation-Date: 2024-10-13 17:28:35\n"
+"Project-Id-Version: 0.10.0\n"
+"POT-Creation-Date: 2024-10-14 08:52:58\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -533,9 +533,6 @@ msgstr ""
 msgid "Insert Stage"
 msgstr ""
 
-msgid "Installed plugins"
-msgstr ""
-
 msgid "Item"
 msgstr ""
 
@@ -599,9 +596,6 @@ msgstr ""
 msgid "Minutes"
 msgstr ""
 
-msgid "Module"
-msgstr ""
-
 msgid "Moon phase"
 msgstr ""
 
@@ -660,9 +654,6 @@ msgid "Next"
 msgstr ""
 
 msgid "No backup available"
-msgstr ""
-
-msgid "No description"
 msgstr ""
 
 msgid "No mdnovel project to write"
@@ -816,9 +807,6 @@ msgid "Plot points"
 msgstr ""
 
 msgid "Plot progress"
-msgstr ""
-
-msgid "Plugin Manager"
 msgstr ""
 
 msgid "Position"
@@ -1028,9 +1016,6 @@ msgstr ""
 msgid "The next section has no time set."
 msgstr ""
 
-msgid "The plugin remains active until next start."
-msgstr ""
-
 msgid "The previous section has no time set."
 msgstr ""
 
@@ -1115,9 +1100,6 @@ msgstr ""
 msgid "Used"
 msgstr ""
 
-msgid "Version"
-msgstr ""
-
 msgid "View"
 msgstr ""
 
@@ -1172,16 +1154,10 @@ msgstr ""
 msgid "csv Plot list"
 msgstr ""
 
-msgid "deleted"
-msgstr ""
-
 msgid "hh:mm"
 msgstr ""
 
 msgid "last saved on"
-msgstr ""
-
-msgid "mdnovel API"
 msgstr ""
 
 msgid "mdnovel project"
@@ -1194,9 +1170,6 @@ msgid "no data"
 msgstr ""
 
 msgid "novelibre project"
-msgstr ""
-
-msgid "unknown"
 msgstr ""
 
 msgid "words"
