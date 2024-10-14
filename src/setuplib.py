@@ -8,11 +8,11 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from shutil import copytree
 from shutil import copy2
+from shutil import rmtree
 import zipfile
 import os
 import sys
 import stat
-import glob
 from pathlib import Path
 from string import Template
 import gettext
@@ -23,8 +23,6 @@ try:
 except ModuleNotFoundError:
     print('The tkinter module is missing. Please install the tk support package for your python3 version.')
     sys.exit(1)
-
-from tkinter import messagebox
 
 # Initialize localization.
 LOCALE_PATH = f'{os.path.dirname(sys.argv[0])}/locale/'
@@ -47,6 +45,9 @@ APP = f'{APPNAME}.py'
 START_UP_SCRIPT = 'run.pyw'
 INI_FILE = f'{APPNAME}.ini'
 INI_PATH = '/config/'
+TEMPLATE_PATH = 'templates/'
+SAMPLE_PATH = 'sample'
+
 SUCCESS_MESSAGE = '''
 
 $Appname is installed here:
@@ -65,10 +66,6 @@ python3 '$Apppath' %f
 
 ADD_TO_REGISTRY = f'''Windows Registry Editor Version 5.00
 
-[-HKEY_CURRENT_USER\Software\Classes\\noveltree]
-[-HKEY_CURRENT_USER\Software\Classes\\mdnovel]
-[-HKEY_CURRENT_USER\Software\Classes\\mdnovel]
-[-HKEY_CURRENT_USER\Software\Classes\\mdnovelCollection]
 [-HKEY_CURRENT_USER\Software\Classes\\.mdnovel]
 [HKEY_CURRENT_USER\Software\Classes\\.mdnovel]
 "Content Type"="text/xml"
@@ -79,32 +76,14 @@ ADD_TO_REGISTRY = f'''Windows Registry Editor Version 5.00
 @="$INSTALL\\\\icons\\\\nLogo64.ico"
 [HKEY_CURRENT_USER\Software\Classes\\mdnovel\shell\open\command]
 @="\\"$PYTHON\\" \\"$SCRIPT\\" \\"%1\\""
-[HKEY_CURRENT_USER\Software\Classes\\.nvcx]
-"Content Type"="text/xml"
-@="mdnovelCollection"
-[HKEY_CURRENT_USER\Software\Classes\\mdnovelCollection]
-@="mdnovel Collection"
-[HKEY_CURRENT_USER\Software\Classes\\mdnovelCollection\DefaultIcon]
-@="$INSTALL\\\\icons\\\\cLogo64.ico"
 
 '''
 
 REMOVE_FROM_REGISTRY = f'''Windows Registry Editor Version 5.00
 
-[-HKEY_CURRENT_USER\Software\Classes\\noveltree]
-[-HKEY_CURRENT_USER\Software\Classes\\nv5Collection]
 [-HKEY_CURRENT_USER\Software\Classes\\mdnovel]
 [-HKEY_CURRENT_USER\Software\Classes\\.mdnovel]
 
-'''
-
-PLUGIN_OUTDATED = '''There are outdated plugins installed, which will be ignored by mdnovel from now on. 
-Please update your plugins.
-'''
-
-PLUGIN_WARNING = '''
-There are plugins installed. 
-You may want to run the Plugin Manager for compatibility check.
 '''
 
 START_UP_CODE = f'''import {APPNAME}
@@ -126,6 +105,34 @@ processInfo = tk.Label(root, text='')
 message = []
 
 pyz = os.path.dirname(__file__)
+
+
+def extract_templates(templateDir):
+    with zipfile.ZipFile(pyz) as z:
+        for file in z.namelist():
+            if file.startswith(TEMPLATE_PATH):
+                targetFile = file.replace(TEMPLATE_PATH, '')
+                if not targetFile:
+                    continue
+                if not os.path.isfile(f'{templateDir}/{targetFile}'):
+                    output(f'Copying "{templateDir}/{targetFile}" ...')
+                    with open(f'{templateDir}/{targetFile}', 'wb') as f:
+                        f.write(z.read(file))
+                else:
+                    output(f'Keeping "{templateDir}/{targetFile}"')
+
+
+def cp_templates(templateDir):
+    try:
+        with os.scandir(TEMPLATE_PATH) as files:
+            for file in files:
+                if not os.path.isfile(f'{templateDir}/{file.name}'):
+                    output(f'Copying "{file.name}" ...')
+                    copy2(f'{TEMPLATE_PATH}/{file.name}', f'{templateDir}/{file.name}')
+                else:
+                    output(f'Keeping "{file.name}"')
+    except:
+        pass
 
 
 def extract_file(sourceFile, targetDir):
@@ -200,9 +207,11 @@ def install(installDir, zipped):
     if zipped:
         copy_file = extract_file
         copy_tree = extract_tree
+        copy_templates = extract_templates
     else:
         copy_file = copy2
         copy_tree = cp_tree
+        copy_templates = cp_templates
 
     #--- Create a general mdnovel installation directory, if necessary.
     os.makedirs(installDir, exist_ok=True)
@@ -245,27 +254,21 @@ def install(installDir, zipped):
     # Remove the editor configuration file, if outdated.
     fix_ini(f'{installDir}/config/editor.ini')
 
+    # Install the sample templates.
+    templateDir = f'{installDir}/templates'
+    os.makedirs(templateDir, exist_ok=True)
+    copy_templates(templateDir)
+
+    # Provide the sample files.
+    output('Copying/replacing sample files ...')
+    rmtree(f'{installDir}/{SAMPLE_PATH}', ignore_errors=True)
+    copy_tree(SAMPLE_PATH, installDir)
+
     #--- Make the scripts executable under Linux.
     st = os.stat(f'{installDir}/{APP}')
     os.chmod(f'{installDir}/{APP}', st.st_mode | stat.S_IEXEC)
     st = os.stat(f'{installDir}/{START_UP_SCRIPT}')
     os.chmod(f'{installDir}/{START_UP_SCRIPT}', st.st_mode | stat.S_IEXEC)
-
-    #--- Create a plugin directory.
-
-    pluginDir = f'{installDir}/plugin'
-    output(f'Creating "{os.path.normpath(pluginDir)}" ...')
-    os.makedirs(pluginDir, exist_ok=True)
-
-    #--- Check plugins.
-    files = glob.glob(f'{pluginDir}/*.py')
-    if files:
-        output(PLUGIN_WARNING)
-    for filePath in files:
-        moduleName = os.path.split(filePath)[1][:-3]
-        if not moduleName.startswith('nv_'):
-            messagebox.showwarning('Plugin check', PLUGIN_OUTDATED)
-            break
 
     #--- Generate registry entries for the context menu (Windows only).
     if platform.system() == 'Windows':

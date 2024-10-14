@@ -71,7 +71,6 @@ See the development details in the [mdnovel features project](https://github.com
 - If you want to visualize the course of narrative time, you can optionally install
   [Timeline version 2.4+](http://thetimelineproj.sourceforge.net/).
 
-
 ## Download and install
 
 ### Default: Executable Python zip archive
