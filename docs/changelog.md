@@ -5,9 +5,13 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 0.11.0
+
+- Supporting Timeline synchronisation.
+
 ### Version 0.10.0
 
-- Remove the plugin manager (#3).
+- Remove the plugin manager.
 - No longer handle exceptions when loading plugins.
 
 ### Version 0.9.1

@@ -3,15 +3,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.10.0\n"
-"POT-Creation-Date: 2024-10-14 08:52:58\n"
-"PO-Revision-Date: 2024-10-14 08:52:58\n"
+"Project-Id-Version: 0.11.0\n"
+"POT-Creation-Date: 2024-10-14 11:09:24\n"
+"PO-Revision-Date: 2024-10-14 11:09:24\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
+msgid "!No {} file available for this project."
+msgstr "!Keine {}-Datei für dieses Projekt vorhanden."
 
 msgid "1st Edit"
 msgstr "1. Überarbeitung"
@@ -144,6 +147,9 @@ msgstr "Abschnitte können nicht erzeugt werden werden, weil das Projekt gesperr
 
 msgid "Cannot create the element at this position"
 msgstr "Kann das Element nicht an dieser Position erzeugen"
+
+msgid "Cannot determine file date."
+msgstr "Das Dateidatum ist nicht zu ermitteln."
 
 msgid "Cannot edit sections, because the project is locked."
 msgstr "Abschnitte können nicht bearbeitet werden werden, weil das Projekt gesperrt ist."
@@ -286,11 +292,17 @@ msgstr "Kopieren"
 msgid "Create from Markdown..."
 msgstr "Aus Markdown erzeugen..."
 
+msgid "Create from Timeline..."
+msgstr "Aus Timeline erzeugen..."
+
 msgid "Create from novx..."
 msgstr "Aus novx erzeugen..."
 
 msgid "Create from yw7..."
 msgstr "Aus yw7 erzeugen..."
+
+msgid "Create or update the timeline"
+msgstr "Den Zeitstrahl erzeugen oder aktualisieren"
 
 msgid "Create section"
 msgstr "Abschnitt erzeugen"
@@ -520,6 +532,9 @@ msgstr "Unzulässiger Wert"
 msgid "Image file"
 msgstr "Bilddatei"
 
+msgid "Information"
+msgstr "Information"
+
 msgid "Input rejected"
 msgstr "Eingabe abgelehnt"
 
@@ -658,6 +673,9 @@ msgstr "Kein Text vorhanden"
 msgid "No valid version found in file"
 msgstr "Keine gültige Versionsangabe in der Datei gefunden"
 
+msgid "No {} file available for this project."
+msgstr "Keine {}-Datei für dieses Projekt vorhanden."
+
 msgid "None"
 msgstr "Keiner"
 
@@ -699,6 +717,9 @@ msgstr "Öffnen"
 
 msgid "Open Project folder"
 msgstr "Projektordner öffnen"
+
+msgid "Open Timeline"
+msgstr "Timeline öffnen"
 
 msgid "Open existing"
 msgstr "Bestehendes öffnen"
@@ -885,6 +906,12 @@ msgstr "Speichern unter..."
 
 msgid "Save changes?"
 msgstr "Änderungen speichern?"
+
+msgid "Save the project and update it?"
+msgstr "Projekt speichern und aktualisieren?"
+
+msgid "Save the project and {} the timeline?"
+msgstr "Projekt sichern und den Zeitstrahl {}?"
 
 msgid "Scene"
 msgstr "Szene"
@@ -1081,8 +1108,14 @@ msgstr "Unbenutzt"
 msgid "Update"
 msgstr "Aktualisieren"
 
+msgid "Update the project"
+msgstr "Das Projekt aktualisieren"
+
 msgid "Update the project?"
 msgstr "Das Projekt aktualisieren?"
+
+msgid "Update the timeline?"
+msgstr "Den Zeitstrahl aktualisieren?"
 
 msgid "Use Roman chapter numbers"
 msgstr "Römische Kapitelnummern"
@@ -1150,6 +1183,9 @@ msgstr "\"Ansicht\"-Optionen"
 msgid "by"
 msgstr "von"
 
+msgid "create"
+msgstr "erzeugen"
+
 msgid "csv Plot list"
 msgstr "csv Plotliste"
 
@@ -1165,11 +1201,20 @@ msgstr "mdnovel-Projekt"
 msgid "new"
 msgstr "neu"
 
+msgid "newer"
+msgstr "neuer"
+
 msgid "no data"
 msgstr "keine Daten"
 
 msgid "novelibre project"
 msgstr "novelibre-Projekt"
+
+msgid "older"
+msgstr "älter"
+
+msgid "update"
+msgstr "aktualisieren"
 
 msgid "words"
 msgstr "Wörter"
@@ -1191,6 +1236,9 @@ msgstr "{0} (zuletzt gespeichert: {1})"
 
 msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
 msgstr "{0} gibt es schon.\n(zuletzt gespeichert: {2})\n{1}.\n\nDieses Dokument öffnen, statt es zu überschreiben?"
+
+msgid "{0} file is {1} than the mdnovel project.\n (last saved on {2})"
+msgstr "{0}-Datei ist {1} als das mdnovel-Projekt.\n (zuletzt gespeichert: {2})"
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"
 msgstr "{0} Teile, {1} Kapitel, {2} Abschnitte, {3} Wörter"

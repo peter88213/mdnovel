@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.10.0\n"
-"POT-Creation-Date: 2024-10-14 08:52:58\n"
+"Project-Id-Version: 0.11.0\n"
+"POT-Creation-Date: 2024-10-14 11:09:24\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -13,6 +13,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: novxlib pgettext.py 0.3\n"
 
+
+msgid "!No {} file available for this project."
+msgstr ""
 
 msgid "\"Export\" options"
 msgstr ""
@@ -150,6 +153,9 @@ msgid "Cannot create sections, because the project is locked."
 msgstr ""
 
 msgid "Cannot create the element at this position"
+msgstr ""
+
+msgid "Cannot determine file date."
 msgstr ""
 
 msgid "Cannot edit sections, because the project is locked."
@@ -293,10 +299,16 @@ msgstr ""
 msgid "Create from Markdown..."
 msgstr ""
 
+msgid "Create from Timeline..."
+msgstr ""
+
 msgid "Create from novx..."
 msgstr ""
 
 msgid "Create from yw7..."
+msgstr ""
+
+msgid "Create or update the timeline"
 msgstr ""
 
 msgid "Create section"
@@ -527,6 +539,9 @@ msgstr ""
 msgid "Image file"
 msgstr ""
 
+msgid "Information"
+msgstr ""
+
 msgid "Input rejected"
 msgstr ""
 
@@ -665,6 +680,9 @@ msgstr ""
 msgid "No valid version found in file"
 msgstr ""
 
+msgid "No {} file available for this project."
+msgstr ""
+
 msgid "None"
 msgstr ""
 
@@ -705,6 +723,9 @@ msgid "Open"
 msgstr ""
 
 msgid "Open Project folder"
+msgstr ""
+
+msgid "Open Timeline"
 msgstr ""
 
 msgid "Open existing"
@@ -891,6 +912,12 @@ msgid "Save as..."
 msgstr ""
 
 msgid "Save changes?"
+msgstr ""
+
+msgid "Save the project and update it?"
+msgstr ""
+
+msgid "Save the project and {} the timeline?"
 msgstr ""
 
 msgid "Scene"
@@ -1088,7 +1115,13 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
+msgid "Update the project"
+msgstr ""
+
 msgid "Update the project?"
+msgstr ""
+
+msgid "Update the timeline?"
 msgstr ""
 
 msgid "Use Roman chapter numbers"
@@ -1151,6 +1184,9 @@ msgstr ""
 msgid "by"
 msgstr ""
 
+msgid "create"
+msgstr ""
+
 msgid "csv Plot list"
 msgstr ""
 
@@ -1166,10 +1202,19 @@ msgstr ""
 msgid "new"
 msgstr ""
 
+msgid "newer"
+msgstr ""
+
 msgid "no data"
 msgstr ""
 
 msgid "novelibre project"
+msgstr ""
+
+msgid "older"
+msgstr ""
+
+msgid "update"
 msgstr ""
 
 msgid "words"
@@ -1191,6 +1236,9 @@ msgid "{0} (last saved on {1})"
 msgstr ""
 
 msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
+msgstr ""
+
+msgid "{0} file is {1} than the mdnovel project.\n (last saved on {2})"
 msgstr ""
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"
