@@ -37,7 +37,7 @@ class Converter:
         """Convert from mdnovel project to other file format.
 
         Positional arguments:
-            source -- NovxFile subclass instance.
+            source -- MdnovFile subclass instance.
             target -- Any Novel subclass instance.
 
         Operation:
@@ -72,7 +72,7 @@ class Converter:
 
         Positional arguments:
             source -- Any Novel subclass instance.
-            target -- NovxFile subclass instance.
+            target -- MdnovFile subclass instance.
 
         Operation:
         1. Send specific information about the conversion to the UI.
@@ -111,7 +111,7 @@ class Converter:
 
         Positional arguments:
             source -- Any Novel subclass instance.
-            target -- NovxFile subclass instance.
+            target -- MdnovFile subclass instance.
 
         Operation:
         1. Send specific information about the conversion to the UI.

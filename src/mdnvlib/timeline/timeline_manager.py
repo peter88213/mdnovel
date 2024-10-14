@@ -11,7 +11,6 @@ import sys
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
-import webbrowser
 
 from mdnvlib.file.doc_open import open_document
 from mdnvlib.novx_globals import Error
