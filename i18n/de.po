@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.11.0\n"
-"POT-Creation-Date: 2024-10-14 14:58:37\n"
-"PO-Revision-Date: 2024-10-14 14:58:37\n"
+"Project-Id-Version: 0.12.0\n"
+"POT-Creation-Date: 2024-10-14 15:33:30\n"
+"PO-Revision-Date: 2024-10-14 15:33:30\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -172,6 +172,9 @@ msgstr "Kann Datei nicht überschreiben"
 msgid "Cannot read file"
 msgstr "Kann Datei nicht lesen"
 
+msgid "Cannot save template"
+msgstr "Kann Vorlage nicht speichern"
+
 msgid "Cannot save the project"
 msgstr "Kann das Projekt nicht abspeichern"
 
@@ -297,6 +300,9 @@ msgstr "Aus Timeline erzeugen..."
 
 msgid "Create from novx..."
 msgstr "Aus novx erzeugen..."
+
+msgid "Create from template..."
+msgstr "Aus Vorlage erzeugen..."
 
 msgid "Create from yw7..."
 msgstr "Aus yw7 erzeugen..."
@@ -571,6 +577,9 @@ msgstr "Links"
 msgid "Live update"
 msgstr "Laufende Aktualisierung"
 
+msgid "Load"
+msgstr "Laden"
+
 msgid "Location"
 msgstr "Schauplatz"
 
@@ -723,6 +732,9 @@ msgstr "Timeline öffnen"
 
 msgid "Open existing"
 msgstr "Bestehendes öffnen"
+
+msgid "Open folder"
+msgstr "Ordner öffnen"
 
 msgid "Open installation folder"
 msgstr "Installationsordner öffnen"
@@ -1000,6 +1012,9 @@ msgstr "An der Cursorposition teilen"
 msgid "Stage"
 msgstr "Stadium"
 
+msgid "Stages"
+msgstr "Stadien"
+
 msgid "Start"
 msgstr "Beginn"
 
@@ -1009,6 +1024,12 @@ msgstr "Anfangswert"
 msgid "Status"
 msgstr "Status"
 
+msgid "Story Template"
+msgstr "Erzählstruktur-Vorlage"
+
+msgid "Story Templates"
+msgstr "Erzählstruktur-Vorlagen"
+
 msgid "Story structure"
 msgstr "Erzählstruktur"
 
@@ -1017,6 +1038,12 @@ msgstr "Stark betont"
 
 msgid "Tags"
 msgstr "Tags"
+
+msgid "Template loading aborted"
+msgstr "Laden der Vorlage abgebrochen"
+
+msgid "Template saved."
+msgstr "Vorlage gespeichert"
 
 msgid "Text"
 msgstr "Text"

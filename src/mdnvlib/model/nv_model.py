@@ -357,7 +357,7 @@ class NvModel:
             links={},
             on_element_change=self.on_element_change,
             )
-        self.novel.sections[scId].sectionContent = '<p></p>'
+        self.novel.sections[scId].sectionContent = ''
         self.tree.insert(parent, index, scId)
         return scId
 

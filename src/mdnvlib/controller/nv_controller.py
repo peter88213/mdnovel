@@ -37,9 +37,10 @@ from mdnvlib.novx_globals import norm_path
 from mdnvlib.nv_globals import prefs
 from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.progress.progress_view_manager import ProgressViewManager
+from mdnvlib.templates.template_manager import TemplateManager
+from mdnvlib.timeline.timeline_manager import TimelineManager
 from mdnvlib.view.nv_view import NvView
 from mdnvlib.yw7.yw7_converter import Yw7Converter
-from mdnvlib.timeline.timeline_manager import TimelineManager
 
 PLUGIN_PATH = f'{sys.path[0]}/plugin'
 
@@ -91,6 +92,9 @@ class NvController:
 
         #--- Initialize the section editor.
         self.sectionEditor = EditManager(self._mdl, self._ui, self)
+
+        #--- Initialize the Template manager.
+        self.templateManager = TemplateManager(self._mdl, self._ui, self)
 
         #--- Initialize the Timeline manager.
         self.timelineManager = TimelineManager(self._mdl, self._ui, self)
@@ -573,6 +577,7 @@ class NvController:
         self.plugins.disable_menu()
         self.matrixView.disable_menu()
         self.wcLogView.disable_menu()
+        self.templateManager.disable_menu()
         self.timelineManager.disable_menu()
 
     def enable_menu(self):
@@ -581,6 +586,7 @@ class NvController:
         self.plugins.enable_menu()
         self.matrixView.enable_menu()
         self.wcLogView.enable_menu()
+        self.templateManager.enable_menu()
         self.timelineManager.enable_menu()
 
     def export_document(self, suffix, **kwargs):

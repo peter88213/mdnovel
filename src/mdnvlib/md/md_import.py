@@ -30,12 +30,7 @@ class MdImport(MdFile):
 
         def write_section_content(scId, lines):
             if scId is not None:
-                # text = '\n\n'.join(lines)
-                newlines = []
-                for line in lines:
-                    newlines.append(f'<p>{line}</p>')
-                text = ''.join(newlines)
-                text = text.replace('\n', '')
+                text = '\n\n'.join(lines)
                 self.novel.sections[scId].sectionContent = text
                 if self.novel.sections[scId].wordCount < LOW_WORDCOUNT:
                     self.novel.sections[scId].status = 1

@@ -5,6 +5,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+
+### Version 0.12.0
+
+- Add Story structure template manager.
+- Fix a bug where novx paragraph tags appear in markdown import.
+
 ### Version 0.11.0
 
 - Supporting Timeline synchronisation.
