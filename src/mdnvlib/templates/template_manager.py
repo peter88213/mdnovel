@@ -25,18 +25,12 @@ class TemplateManager:
     APPLICATION = _('Story Templates')
 
     def disable_menu(self):
-        """Disable menu entries when no project is open.
-        
-        Overrides the superclass method.
-        """
+        """Disable menu entries when no project is open."""
         self._templatesMenu.entryconfig(f"{_('Load')}...", state='disabled')
         self._templatesMenu.entryconfig(f"{_('Save')}...", state='disabled')
 
     def enable_menu(self):
-        """Enable menu entries when a project is open.
-        
-        Overrides the superclass method.
-        """
+        """Enable menu entries when a project is open."""
         self._templatesMenu.entryconfig(f"{_('Load')}...", state='normal')
         self._templatesMenu.entryconfig(f"{_('Save')}...", state='normal')
 
@@ -51,7 +45,6 @@ class TemplateManager:
         Optional arguments:
             prefs -- deprecated. Please use controller.get_preferences() instead.
         
-        Overrides the superclass method.
         """
         self._mdl = model
         self._ui = view
