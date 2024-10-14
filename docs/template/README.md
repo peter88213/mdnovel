@@ -68,8 +68,8 @@ See the development details in the [mdnovel features project](https://github.com
 - Users may want to install [pandoc](https://pandoc.org/) for processing the exported documents.
 - To have a [wider choice of design themes](https://ttkthemes.readthedocs.io/en/latest/themes.html), you can 
   [install the ttkthemes package](https://ttkthemes.readthedocs.io/en/latest/installation.html).
-- If you want to visualize the course of narrative time, you can optionally install the
-  free [Timeline](http://thetimelineproj.sourceforge.net/) application.
+- If you want to visualize the course of narrative time, you can optionally install
+  [Timeline version 2.4+](http://thetimelineproj.sourceforge.net/).
 
 ## Download and install
 
