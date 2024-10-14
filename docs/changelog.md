@@ -5,6 +5,9 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 0.12.1
+
+- Update "Story templates" submenu entries.
 
 ### Version 0.12.0
 
