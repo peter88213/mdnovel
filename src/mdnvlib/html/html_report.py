@@ -35,7 +35,7 @@ td.chtitle {font-weight: bold}
 </html>
 '''
 
-    def _convert_from_novx(self, text, **kwargs):
+    def _convert_from_mdnov(self, text, **kwargs):
         """Return text, converted from *mdnovel* markup to target format.
         
         Positional arguments:

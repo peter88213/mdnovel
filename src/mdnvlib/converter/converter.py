@@ -3,7 +3,7 @@
 All converters with a user interface inherit from this class. 
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mdnvlib
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -33,7 +33,7 @@ class Converter:
         self.newFile = None
         # Also indicates successful conversion.
 
-    def export_from_novx(self, source, target):
+    def export_from_mdnov(self, source, target):
         """Convert from mdnovel project to other file format.
 
         Positional arguments:
@@ -67,7 +67,7 @@ class Converter:
         finally:
             self.ui.set_status(message)
 
-    def create_novx(self, source, target):
+    def create_mdnov(self, source, target):
         """Create target from source.
 
         Positional arguments:
@@ -106,7 +106,7 @@ class Converter:
             finally:
                 self.ui.set_status(message)
 
-    def import_to_novx(self, source, target):
+    def import_to_mdnov(self, source, target):
         """Convert from any file format to mdnovel project.
 
         Positional arguments:

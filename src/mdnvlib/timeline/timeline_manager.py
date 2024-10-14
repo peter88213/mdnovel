@@ -47,15 +47,15 @@ class TimelineManager:
         self._ctrl = controller
 
         # Create a submenu in the Tools menu.
-        self._pluginMenu = tk.Menu(self._ui.toolsMenu, tearoff=0)
-        self._ui.toolsMenu.add_cascade(label=self.APPLICATION, menu=self._pluginMenu)
+        self._timelineMenu = tk.Menu(self._ui.toolsMenu, tearoff=0)
+        self._ui.toolsMenu.add_cascade(label=self.APPLICATION, menu=self._timelineMenu)
         self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
-        self._pluginMenu.add_command(label=_('Information'), command=self._info)
-        self._pluginMenu.add_separator()
-        self._pluginMenu.add_command(label=_('Create or update the timeline'), command=self._export_from_mdnov)
-        self._pluginMenu.add_command(label=_('Update the project'), command=self._import_to_mdnov)
-        self._pluginMenu.add_separator()
-        self._pluginMenu.add_command(label=_('Open Timeline'), command=self._launch_application)
+        self._timelineMenu.add_command(label=_('Information'), command=self._info)
+        self._timelineMenu.add_separator()
+        self._timelineMenu.add_command(label=_('Create or update the timeline'), command=self._export_from_mdnov)
+        self._timelineMenu.add_command(label=_('Update the project'), command=self._import_to_mdnov)
+        self._timelineMenu.add_separator()
+        self._timelineMenu.add_command(label=_('Open Timeline'), command=self._launch_application)
 
         # Add an entry to the "File > New" menu.
         self._ui.newMenu.add_command(label=_('Create from Timeline...'), command=self._create_mdnov)

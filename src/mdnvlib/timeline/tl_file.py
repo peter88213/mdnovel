@@ -1,7 +1,7 @@
 """Provide a class for Timeline project file representation.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/nv-timeline
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import datetime
@@ -120,11 +120,12 @@ class TlFile(File):
                 scId = f'{SECTION_PREFIX}{sectionCount}'
                 event.find('labels').text = labels.replace(sectionMarker, scId)
                 self.novel.sections[scId] = SectionEvent(
-                    self._nvSvc.make_section(
-                    status=1,
-                    scType=0,
-                    scene=0,
-                    ))
+                        self._nvSvc.make_section(
+                            status=1,
+                            scType=0,
+                            scene=0,
+                        )
+                    )
 
             else:
                 try:
@@ -136,7 +137,7 @@ class TlFile(File):
             try:
                 title = event.find('text').text
                 title = remove_contId(self.novel.sections[scId], title)
-                title = self._convert_to_novx(title)
+                title = self._convert_to_mdnov(title)
                 self.novel.sections[scId].title = title
             except:
                 self.novel.sections[scId].title = f'Section {scId}'
@@ -269,7 +270,7 @@ class TlFile(File):
                 self.novel.tree.append(chId, scId)
                 if source.sections[scId].title:
                     title = source.sections[scId].title
-                    title = self._convert_from_novx(title)
+                    title = self._convert_from_mdnov(title)
                     title = add_contId(self.novel.sections[scId], title)
                     self.novel.sections[scId].title = title
                 self.novel.sections[scId].desc = source.sections[scId].desc
@@ -366,7 +367,7 @@ class TlFile(File):
                 os.replace(f'{self.filePath}.bak', self.filePath)
             raise Error(f'{_("Cannot write file")}: "{norm_path(self.filePath)}".')
 
-    def _convert_to_novx(self, text):
+    def _convert_to_mdnov(self, text):
         """Unmask brackets in novx section titles.
         
         Positional arguments:
@@ -382,7 +383,7 @@ class TlFile(File):
                 text = text.lstrip()
         return text
 
-    def _convert_from_novx(self, text, **kwargs):
+    def _convert_from_mdnov(self, text, **kwargs):
         """Mask brackets in novx section titles.
         
         Positional arguments:

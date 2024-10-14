@@ -1,7 +1,7 @@
 """Provide a converter class for test_mdnovel.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/nv-timeline
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -40,20 +40,20 @@ class TlConverter(Converter):
             targetFile = nvService.make_novx_file(f'{fileName}{nvService.get_novx_file_extension()}', **kwargs)
             if os.path.isfile(f'{fileName}{nvService.get_novx_file_extension()}'):
                 # Update existing mdnovel project from timeline
-                self.import_to_novx(sourceFile, targetFile)
+                self.import_to_mdnov(sourceFile, targetFile)
             else:
                 # Create new mdnovel project from timeline
-                self.create_novx(sourceFile, targetFile)
+                self.create_mdnov(sourceFile, targetFile)
         elif fileExtension == nvService.get_novx_file_extension():
             # Update existing timeline from mdnovel project
             sourceFile = nvService.make_novx_file(sourcePath, **kwargs)
             targetFile = TlFile(f'{fileName}{TlFile.EXTENSION}', **kwargs)
-            self.export_from_novx(sourceFile, targetFile)
+            self.export_from_mdnov(sourceFile, targetFile)
         else:
             # Source file format is not supported
             self.ui.set_status(f'!{_("File type is not supported")}: "{norm_path(sourcePath)}".')
 
-    def export_from_novx(self, source, target):
+    def export_from_mdnov(self, source, target):
         """Convert from mdnovel project to other file format.
 
         Positional arguments:

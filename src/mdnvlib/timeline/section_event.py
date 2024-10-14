@@ -1,16 +1,15 @@
 """Provide a class for Timeline section event representation.
 
 Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/nv-timeline
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date, datetime, timedelta, MINYEAR
-
+from mdnvlib.model.section import Section
 import xml.etree.ElementTree as ET
-from pickle import NONE
 
 
-class SectionEvent:
+class SectionEvent(Section):
     """Timeline section event representation.
 
     Public instance variables:
@@ -20,37 +19,30 @@ class SectionEvent:
     sectionColor = '170,240,160'
 
     def __init__(self, section):
-        """Initialize instance variables from the delegate.
-        
-        Positional arguments:
-            section: Section instance -- delegate.        
-        """
-        self._section = section
-        # delegate
-
-        self.title = section.title
-        self.desc = section.desc
-        self.sectionContent = section.sectionContent
+        super().__init__()
         self.scType = section.scType
         self.scene = section.scene
         self.status = section.status
-        self.notes = section.notes
-        self.tags = section.tags
         self.appendToPrev = section.appendToPrev
         self.goal = section.goal
         self.conflict = section.conflict
         self.outcome = section.outcome
+        self.plotlineNotes = section.plotlineNotes
         self.date = section.date
         self.time = section.time
         self.day = section.day
-        self.weekDay = section.weekDay
-        self.localeDate = section.localeDate
         self.lastsMinutes = section.lastsMinutes
         self.lastsHours = section.lastsHours
         self.lastsDays = section.lastsDays
         self.characters = section.characters
         self.locations = section.locations
         self.items = section.items
+
+        self.title = section.title
+        self.desc = section.desc
+        self.sectionContent = section.sectionContent
+        self.notes = section.notes
+        self.tags = section.tags,
         self.wordCount = section.wordCount
 
         self.contId = None
@@ -254,32 +246,3 @@ class SectionEvent:
             ET.SubElement(xmlEvent, 'default_color').text = self.sectionColor
         return dtMin, dtMax
 
-    def to_xml(self, xmlElement):
-        """Use the delegate to build a novx section branch."""
-
-        # Write back the instance variables to the delegate.
-        self._section.title = self.title
-        self._section.desc = self.desc
-        self._section.sectionContent = self.sectionContent
-        self._section.scType = self.scType
-        self._section.scene = self.scene
-        self._section.status = self.status
-        self._section.notes = self.notes
-        self._section.tags = self.tags
-        self._section.appendToPrev = self.appendToPrev
-        self._section.goal = self.goal
-        self._section.conflict = self.conflict
-        self._section.outcome = self.outcome
-        self._section.date = self.date
-        self._section.time = self.time
-        self._section.day = self.day
-        self._section.lastsMinutes = self.lastsMinutes
-        self._section.lastsHours = self.lastsHours
-        self._section.lastsDays = self.lastsDays
-        self._section.characters = self.characters
-        self._section.locations = self.locations
-        self._section.items = self.items
-        self._section.wordCount = self.wordCount
-
-        # Call the delegate method.
-        self._section.to_xml(xmlElement)

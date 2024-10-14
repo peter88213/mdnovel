@@ -52,7 +52,7 @@ class MdPlotlines(MdFile):
             plotPointMapping = dict(
                 ID=ppId,
                 Title=self.novel.plotPoints[ppId].title,
-                Desc=self._convert_from_novx(self.novel.plotPoints[ppId].desc),
+                Desc=self._convert_from_mdnov(self.novel.plotPoints[ppId].desc),
             )
             template = Template(self._plotPointTemplate)
             plotPoints.append(template.safe_substitute(plotPointMapping))
@@ -60,7 +60,7 @@ class MdPlotlines(MdFile):
             if scId:
                 sectionAssocMapping = dict(
                     SectionTitle=self.novel.sections[scId].title,
-                    ProjectName=self._convert_from_novx(self.projectName, True),
+                    ProjectName=self._convert_from_mdnov(self.projectName, True),
                     Section=_('Section'),
                     Description=_('Description'),
                     Manuscript=_('Manuscript'),
