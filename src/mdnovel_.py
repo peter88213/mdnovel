@@ -81,7 +81,6 @@ OPTIONS = dict(
     enable_hovertips=True,
     large_icons=False,
     localize_date=True,
-    lock_on_export=False,
     show_auto_numbering=False,
     show_ch_links=False,
     show_contents=True,

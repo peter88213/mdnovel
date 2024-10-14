@@ -45,17 +45,6 @@ class ExportOptionsWindow(tk.Toplevel):
             ).pack(padx=5, pady=5, anchor='w')
         self._askDocOpen.trace('w', self._change_ask_doc_open)
 
-        """
-        # Checkbox: Lock the project after document export.
-        self._lockOnExport = tk.BooleanVar(frame1, value=prefs['lock_on_export'])
-        ttk.Checkbutton(
-            frame1,
-            text=_('Lock the project after document export for editing'),
-            variable=self._lockOnExport
-            ).pack(padx=5, pady=5, anchor='w')
-        self._lockOnExport.trace('w', self._change_lock_on_export)
-        """
-
         ttk.Separator(self, orient='horizontal').pack(fill='x')
 
         # "Close" button.
@@ -77,9 +66,6 @@ class ExportOptionsWindow(tk.Toplevel):
 
     def _change_ask_doc_open(self, *args):
         prefs['ask_doc_open'] = self._askDocOpen.get()
-
-    def _change_lock_on_export(self, *args):
-        prefs['lock_on_export'] = self._lockOnExport.get()
 
     def _open_help(self, event=None):
         open_help('export_menu#options')

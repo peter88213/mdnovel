@@ -29,9 +29,7 @@ class TimelineManager:
         section_color='170,240,160',
         new_event_spacing='1'
     )
-    OPTIONS = dict(
-        lock_on_export=False,
-    )
+    OPTIONS = {}
 
     def __init__(self, model, view, controller):
         """Add a submenu to the main menu.
@@ -276,8 +274,6 @@ class TimelineManager:
         if self._mdl.prjFile:
             timelinePath = f'{os.path.splitext(self._mdl.prjFile.filePath)[0]}{TlFile.EXTENSION}'
             if os.path.isfile(timelinePath):
-                if self.OPTIONS['lock_on_export']:
-                    self._ctrl.lock()
                 open_document(timelinePath)
             else:
                 self._ui.set_status(_('!No {} file available for this project.').format(self.APPLICATION))
