@@ -71,7 +71,7 @@ class Yw7Converter:
         return True
 
     def _import_yw7(self, yw7Path=''):
-        """Convert a yw7 file to novx and open the novx file.
+        """Convert a yw7 file to mdnov and open the mdnov file.
         
         Return True on success, otherwise return False.
         """
