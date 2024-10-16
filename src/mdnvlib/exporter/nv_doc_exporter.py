@@ -27,7 +27,6 @@ from mdnvlib.md.md_partdesc import MdPartDesc
 from mdnvlib.md.md_plotlines import MdPlotlines
 from mdnvlib.md.md_sectiondesc import MdSectionDesc
 from mdnvlib.md.md_stages import MdStages
-from mdnvlib.md.md_xref import MdXref
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
@@ -54,7 +53,6 @@ class NvDocExporter:
         MdPlotlines,
         MdSectionDesc,
         MdStages,
-        MdXref,
         ]
 
     def __init__(self):

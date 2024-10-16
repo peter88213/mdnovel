@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.12.1\n"
-"POT-Creation-Date: 2024-10-14 15:54:31\n"
-"PO-Revision-Date: 2024-10-14 15:54:31\n"
+"Project-Id-Version: 0.13.0\n"
+"POT-Creation-Date: 2024-10-16 09:01:57\n"
+"PO-Revision-Date: 2024-10-16 09:01:57\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -453,6 +453,9 @@ msgstr "Plotlinienbeschreibungen exportieren"
 
 msgid "Export section descriptions"
 msgstr "Abschnittsbeschreibungen exportieren"
+
+msgid "Export section list"
+msgstr "Abschnittsliste exportieren"
 
 msgid "Export story structure description"
 msgstr "Erzählstruktur-Beschreibung exportieren"
@@ -939,12 +942,6 @@ msgstr "Abschnittsbeschreibungen"
 
 msgid "Section list"
 msgstr "Abschnittsliste"
-
-msgid "Section notes"
-msgstr "Abschnittsnotizen"
-
-msgid "Section word count"
-msgstr "Wörter Abschnitt"
 
 msgid "Section_20_mark"
 msgstr "Abschnittsmarke"

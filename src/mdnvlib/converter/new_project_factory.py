@@ -9,9 +9,7 @@ import os
 from mdnvlib.converter.file_factory import FileFactory
 from mdnvlib.md.md_import import MdImport
 from mdnvlib.md.md_outline import MdOutline
-from mdnvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from mdnvlib.novx_globals import Error
-from mdnvlib.novx_globals import XREF_SUFFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.mdnov.mdnov_file import MdnovFile
@@ -24,7 +22,7 @@ class NewProjectFactory(FileFactory):
     Class constant:
         DO_NOT_IMPORT -- list of suffixes from file classes not meant to be imported.    
     """
-    DO_NOT_IMPORT = [XREF_SUFFIX, BRF_SYNOPSIS_SUFFIX]
+    DO_NOT_IMPORT = []
 
     def make_file_objects(self, sourcePath, **kwargs):
         """Instantiate a source and a target object for creation of a new mdnovel project.

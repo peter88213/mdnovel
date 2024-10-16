@@ -118,7 +118,7 @@ class CsvFile(FileExport):
             csvRows.append(csvColumns)
         return csvRows
 
-    def _get_section_columns(self, scId, scNumber):
+    def _get_section_columns(self, scId, scNumber, wordsTotal):
         """Return a list with all column records of a section row."""
         return []
 
@@ -126,13 +126,15 @@ class CsvFile(FileExport):
         """Return a list with a row per section."""
         csvRows = [self._get_header_columns()]
         scNumber = 0
+        wordsTotal = 0
         for chId in self.novel.tree.get_children(CH_ROOT):
             for scId in self.novel.tree.get_children(chId):
                 if self.novel.sections[scId].scType > 0:
                     continue
 
                 scNumber += 1
-                csvColumns = self._get_section_columns(scId, scNumber)
+                wordsTotal += self.novel.sections[scId].wordCount
+                csvColumns = self._get_section_columns(scId, scNumber, wordsTotal)
                 csvRows.append(csvColumns)
         return csvRows
 

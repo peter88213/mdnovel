@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.12.1\n"
-"POT-Creation-Date: 2024-10-14 15:54:31\n"
+"Project-Id-Version: 0.13.0\n"
+"POT-Creation-Date: 2024-10-16 09:01:57\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -459,6 +459,9 @@ msgid "Export plot line descriptions"
 msgstr ""
 
 msgid "Export section descriptions"
+msgstr ""
+
+msgid "Export section list"
 msgstr ""
 
 msgid "Export story structure description"
@@ -945,12 +948,6 @@ msgid "Section descriptions"
 msgstr ""
 
 msgid "Section list"
-msgstr ""
-
-msgid "Section notes"
-msgstr ""
-
-msgid "Section word count"
 msgstr ""
 
 msgid "Section_20_mark"

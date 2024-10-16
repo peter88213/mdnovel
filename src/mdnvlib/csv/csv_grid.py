@@ -40,7 +40,7 @@ class CsvGrid(CsvFile):
         columns.append(_("Notes"))
         return columns
 
-    def _get_section_columns(self, scId, scNumber):
+    def _get_section_columns(self, scId, scNumber, wordsTotal):
         """Return a list with all column records of a section row.
         
         Overrides the superclass method

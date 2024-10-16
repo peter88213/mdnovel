@@ -33,7 +33,6 @@ from mdnvlib.novx_globals import PN_ROOT
 from mdnvlib.novx_globals import SECTIONLIST_SUFFIX
 from mdnvlib.novx_globals import SECTIONS_SUFFIX
 from mdnvlib.novx_globals import STAGES_SUFFIX
-from mdnvlib.novx_globals import XREF_SUFFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import HOME_URL
 from mdnvlib.nv_globals import open_help
@@ -657,7 +656,7 @@ class NvView:
         self.sectionMenu.add_cascade(label=_('Set Status'), menu=self.tv.scStatusMenu)
         self.sectionMenu.add_separator()
         self.sectionMenu.add_command(label=_('Export section descriptions'), command=lambda: self._ctrl.export_document(SECTIONS_SUFFIX))
-        # self.sectionMenu.add_command(label=_('Export section list'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
+        self.sectionMenu.add_command(label=_('Export section list'), command=lambda: self._ctrl.export_document(SECTIONLIST_SUFFIX))
 
         # Character
         self.characterMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -716,7 +715,6 @@ class NvView:
         self.mainMenu.add_cascade(label=_('Export'), menu=self.exportMenu)
         self.exportMenu.add_command(label=_('Manuscript'), command=lambda: self._ctrl.export_document('', lock=False))
         self.exportMenu.add_command(label=_('Brief synopsis'), command=lambda: self._ctrl.export_document(BRF_SYNOPSIS_SUFFIX, lock=False))
-        # self.exportMenu.add_command(label=_('Cross references'), command=lambda: self._ctrl.export_document(XREF_SUFFIX, lock=False))
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Options'), command=self._export_options)
 

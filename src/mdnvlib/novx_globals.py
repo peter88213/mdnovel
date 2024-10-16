@@ -49,7 +49,6 @@ PROJECTNOTES_SUFFIX = '_projectnote_report'
 SECTIONLIST_SUFFIX = '_sectionlist'
 SECTIONS_SUFFIX = '_sections'
 STAGES_SUFFIX = '_structure'
-XREF_SUFFIX = '_xref'
 
 
 class Error(Exception):
