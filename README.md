@@ -10,12 +10,6 @@ A novel writing application using markdown.
 
 This is a variant of the [novelibre](https://github.com/peter88213/novelibre) novel writing application. 
 
-## Note
-
-This program is primarily a proof of concept. 
-See the development details in the [mdnovel features project](https://github.com/users/peter88213/projects/17/views/2).
-
-
 ## Features
 
 - With *mdnovel*, extensive novels can be broken down into **parts, chapters, and sections**. 
@@ -31,11 +25,14 @@ See the development details in the [mdnovel features project](https://github.com
   to the sections of the novel text.
 - *mdnovel* provides a **plot grid** with plot line notes for each section. This allows you to 
   see the big picture and keep track of multiple subplots.   
+- The section relationships to plot lines, characters, locations, and items 
+  can also be displayed and edited with a spreadsheet-like matrix.
 - To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
+  *mdnovel* dan display a list of daily word count log entries.
 - Individual chapters and sections can be flagged as "unused" to exclude them from document export.
 - You can add information about the **narrative time** and duration to each section. If you enter a date, 
   the day of the week is displayed. You can also call up the age of characters that are assigned to
-  a section. The date and time information can be synchronised with dedicated timeline software.
+  a section. The date and time information can be synchronised with the [Timeline](http://thetimelineproj.sourceforge.net/) application.
 - For **printing**, *mdnovel* exports a neatly designed novel manuscript that can be converted with *pandoc*
   into several document and ebook formats. 
 - *mdnovel* saves its data in a single, easy-to-understand Markdown/YAML-formatted text file.
@@ -53,7 +50,7 @@ See the development details in the [mdnovel features project](https://github.com
 - New project can be created from Markdown-formatted Work-in-progress or outline.
 - Features available as plugins for *novelibre*, such as the theme changer, the matrix view, 
   the daily progress log viewer, 
-  and [Timeline](http://thetimelineproj.sourceforge.net/) synchronisation, 
+  and [Timeline](http://thetimelineproj.sourceforge.net/) support, 
   are built-in in *mdnovel*.  
 
 
