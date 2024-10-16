@@ -35,21 +35,18 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.nv_globals import prefs
-from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.progress.progress_view_manager import ProgressViewManager
 from mdnvlib.templates.template_manager import TemplateManager
 from mdnvlib.timeline.timeline_manager import TimelineManager
 from mdnvlib.view.nv_view import NvView
 from mdnvlib.yw7.yw7_converter import Yw7Converter
 
-PLUGIN_PATH = f'{sys.path[0]}/plugin'
-
 
 class NvController:
     """Controller for the mdnovel application."""
 
     def __init__(self, title, tempDir):
-        """Initialize the model, set up the application's user interface, and load plugins.
+        """Initialize the model, and, set up the application's user interface.
     
         Positional arguments:
             title: str -- Application title to be displayed at the window frame.
@@ -111,13 +108,7 @@ class NvController:
         #--- Initialize the novelibre converter.
         self.novxConverter = NovxConverter(self._mdl, self._ui, self)
 
-        #--- Load the plugins.
-        self.plugins = PluginCollection(self._mdl, self._ui, self)
-        # Dict-like Container for registered plugin objects.
-
-        self.plugins.load_plugins(PLUGIN_PATH)
         self.disable_menu()
-
         self._ui.tv.reset_view()
 
     @property
@@ -498,13 +489,11 @@ class NvController:
         - Save changes
         - clear all views
         - reset flags
-        - trigger plugins.
         """
         self._ui.propertiesView.apply_changes()
         self.sectionEditor.on_close()
         self.matrixView.on_close()
         self.wcLogView.on_close()
-        self.plugins.on_close()
         # closing the current element _view after checking for modifications
         if self._mdl.isModified and not doNotSave:
             if self._ui.ask_yes_no(_('Save changes?')):
@@ -574,7 +563,6 @@ class NvController:
     def disable_menu(self):
         """Disable menu entries when no project is open."""
         self._ui.disable_menu()
-        self.plugins.disable_menu()
         self.matrixView.disable_menu()
         self.wcLogView.disable_menu()
         self.templateManager.disable_menu()
@@ -583,7 +571,6 @@ class NvController:
     def enable_menu(self):
         """Enable menu entries when a project is open."""
         self._ui.enable_menu()
-        self.plugins.enable_menu()
         self.matrixView.enable_menu()
         self.wcLogView.enable_menu()
         self.templateManager.enable_menu()
@@ -710,7 +697,6 @@ class NvController:
         if self._mdl.prjFile.filePath is not None:
             self._internalLockFlag = True
             self._ui.lock()
-            self.plugins.lock()
             self._mdl.prjFile.lock()
             # make it persistent
             return True
@@ -754,7 +740,6 @@ class NvController:
             self.sectionEditor.on_quit()
             self.matrixView.on_quit()
             self.wcLogView.on_quit()
-            self.plugins.on_quit()
             self._ui.on_quit()
         except Exception as ex:
             self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')
@@ -790,8 +775,6 @@ class NvController:
         If this fails, try to open it using the "full" path. 
         On success, fix the link. 
         Otherwise, show an error message. 
-        
-        The linkProcessor strategy can be overridden e.g. by plugins.
         """
         linkPath = list(element.links)[linkIndex]
         fullPath = element.links[linkPath]
@@ -1163,7 +1146,6 @@ class NvController:
         """
         self._internalLockFlag = False
         self._ui.unlock()
-        self.plugins.unlock()
         self._mdl.prjFile.unlock()
         # make it persistent
         if self._mdl.prjFile.has_changed_on_disk():
