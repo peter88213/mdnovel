@@ -35,7 +35,7 @@ td.chtitle {font-weight: bold}
 </html>
 '''
 
-    def _convert_from_mdnov(self, text, **kwargs):
+    def _convert_from_mdnov(self, text, quick=False, **kwargs):
         """Return text, converted from *mdnovel* markup to target format.
         
         Positional arguments:
@@ -47,6 +47,9 @@ td.chtitle {font-weight: bold}
             return ''
 
         text = escape(text.rstrip())
+        if quick:
+            return text.replace('\n', ' ')
+
         newlines = []
         for line in text.split('\n'):
             newlines.append(f'<p>{line}</p>')
