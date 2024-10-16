@@ -16,6 +16,44 @@ class CsvCharList(CsvFile):
     DESCRIPTION = _('Character list')
     SUFFIX = CHARLIST_SUFFIX
 
-    _fileHeader = ''
-    _characterTemplate = ''
+    def _get_header_columns(self):
+        """Return a list with all column records of a headline.
+        
+        Overrides the superclass method
+        """
+        pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls = self._get_renamings()
+        columns = []
+        columns.append('ID')
+        columns.append(_("Title"))
+        columns.append(_("Full name"))
+        columns.append(_("Aka"))
+        columns.append(_("Description"))
+        columns.append(chrBio)
+        columns.append(chrGls)
+        columns.append(_("Status"))
+        columns.append(_("Tags"))
+        columns.append(_("Notes"))
+        return columns
+
+    def _get_character_columns(self, crId):
+        """Return a list with all column records of a charcter row.
+        
+        Overrides the superclass method
+        """
+        columns = []
+        mapping = self._get_characterMapping(crId)
+        columns.append(mapping['ID'])
+        columns.append(mapping['Title'])
+        columns.append(mapping['FullName'])
+        columns.append(mapping['AKA'])
+        columns.append(mapping['Desc'])
+        columns.append(mapping['Bio'])
+        columns.append(mapping['Goals'])
+        columns.append(mapping['Status'])
+        columns.append(mapping['Tags'])
+        columns.append(mapping['Notes'])
+        return columns
+
+    def _get_text(self):
+        return self._get_characters()
 

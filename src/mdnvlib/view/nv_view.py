@@ -666,7 +666,7 @@ class NvView:
         self.characterMenu.add_cascade(label=_('Set Status'), menu=self.tv.crStatusMenu)
         self.characterMenu.add_separator()
         self.characterMenu.add_command(label=_('Export character descriptions'), command=lambda: self._ctrl.export_document(CHARACTERS_SUFFIX))
-        # self.characterMenu.add_command(label=_('Export character list'), command=lambda: self._ctrl.export_document(CHARLIST_SUFFIX))
+        self.characterMenu.add_command(label=_('Export character list'), command=lambda: self._ctrl.export_document(CHARLIST_SUFFIX))
         self.characterMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(CHARACTER_REPORT_SUFFIX))
 
         # Location

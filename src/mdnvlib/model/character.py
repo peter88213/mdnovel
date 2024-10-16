@@ -5,13 +5,14 @@ For further information see https://github.com/peter88213/mdnvlib
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mdnvlib.model.world_element import WorldElement
+from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import verified_date
 
 
 class Character(WorldElement):
     """mdnovel character representation."""
-    MAJOR_MARKER = 'Major'
-    MINOR_MARKER = 'Minor'
+    MAJOR_MARKER = _('Major Character')
+    MINOR_MARKER = _('Minor Character')
 
     def __init__(self,
             bio=None,
