@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.13.0\n"
-"POT-Creation-Date: 2024-10-16 10:17:18\n"
-"PO-Revision-Date: 2024-10-16 10:17:18\n"
+"POT-Creation-Date: 2024-10-16 10:18:42\n"
+"PO-Revision-Date: 2024-10-16 10:18:42\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -441,6 +441,9 @@ msgstr "Dokument exportieren"
 
 msgid "Export item descriptions"
 msgstr "Gegenstandsbeschreibungen exportieren"
+
+msgid "Export item list"
+msgstr "Gegenstandsliste exportieren"
 
 msgid "Export location descriptions"
 msgstr "Schauplatzbeschreibungen exportieren"

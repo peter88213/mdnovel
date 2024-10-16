@@ -684,7 +684,7 @@ class NvView:
         self.itemMenu.add_command(label=_('Add'), command=self._ctrl.add_item)
         self.itemMenu.add_separator()
         self.itemMenu.add_command(label=_('Export item descriptions'), command=lambda: self._ctrl.export_document(ITEMS_SUFFIX))
-        # self.itemMenu.add_command(label=_('Export item list'), command=lambda: self._ctrl.export_document(ITEMLIST_SUFFIX))
+        self.itemMenu.add_command(label=_('Export item list'), command=lambda: self._ctrl.export_document(ITEMLIST_SUFFIX))
         self.itemMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(ITEM_REPORT_SUFFIX))
 
         # "Plot" menu.
