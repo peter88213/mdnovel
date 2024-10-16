@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.13.0\n"
-"POT-Creation-Date: 2024-10-16 09:01:57\n"
-"PO-Revision-Date: 2024-10-16 09:01:57\n"
+"POT-Creation-Date: 2024-10-16 10:17:18\n"
+"PO-Revision-Date: 2024-10-16 10:17:18\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -69,6 +69,9 @@ msgstr "Mehrere Abschnitte hinzufügen"
 
 msgid "Add parent"
 msgstr "Elternelement hinzufügen"
+
+msgid "Aka"
+msgstr "alias"
 
 msgid "All"
 msgstr "Alle"
@@ -319,9 +322,6 @@ msgstr "{0} erzeugt am {1}."
 msgid "Critical Error"
 msgstr "Programmfehler"
 
-msgid "Cross reference"
-msgstr "Querverweise"
-
 msgid "Ctrl"
 msgstr "Strg"
 
@@ -433,6 +433,9 @@ msgstr "Kapitelbeschreibungen exportieren"
 msgid "Export character descriptions"
 msgstr "Figurenbeschreibungen exportieren"
 
+msgid "Export character list"
+msgstr "Figurenliste exportieren"
+
 msgid "Export document"
 msgstr "Dokument exportieren"
 
@@ -441,6 +444,9 @@ msgstr "Gegenstandsbeschreibungen exportieren"
 
 msgid "Export location descriptions"
 msgstr "Schauplatzbeschreibungen exportieren"
+
+msgid "Export location list"
+msgstr "Schauplatzliste exportieren"
 
 msgid "Export part descriptions"
 msgstr "Teilebeschreibungen exportieren"
@@ -942,12 +948,6 @@ msgstr "Abschnittsbeschreibungen"
 
 msgid "Section list"
 msgstr "Abschnittsliste"
-
-msgid "Section_20_mark"
-msgstr "Abschnittsmarke"
-
-msgid "Section_20_mark_20_unused"
-msgstr "Abschnittsmarke_20_unbenutzt"
 
 msgid "Sections"
 msgstr "Abschnitte"

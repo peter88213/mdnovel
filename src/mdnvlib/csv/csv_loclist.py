@@ -14,5 +14,36 @@ class CsvLocList(CsvFile):
     DESCRIPTION = _('Location list')
     SUFFIX = LOCLIST_SUFFIX
 
-    _fileHeader = f''
-    _locationTemplate = ''
+    def _get_header_columns(self):
+        """Return a list with all column records of a headline.
+        
+        Overrides the superclass method
+        """
+        pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls = self._get_renamings()
+        columns = []
+        columns.append('ID')
+        columns.append(_("Title"))
+        columns.append(_("Aka"))
+        columns.append(_("Description"))
+        columns.append(_("Tags"))
+        columns.append(_("Notes"))
+        return columns
+
+    def _get_location_columns(self, crId):
+        """Return a list with all column records of a charcter row.
+        
+        Overrides the superclass method
+        """
+        columns = []
+        mapping = self._get_locationMapping(crId)
+        columns.append(mapping['ID'])
+        columns.append(mapping['Title'])
+        columns.append(mapping['AKA'])
+        columns.append(mapping['Desc'])
+        columns.append(mapping['Tags'])
+        columns.append(mapping['Notes'])
+        return columns
+
+    def _get_text(self):
+        return self._get_locations()
+

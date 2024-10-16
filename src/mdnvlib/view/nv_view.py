@@ -675,7 +675,7 @@ class NvView:
         self.locationMenu.add_command(label=_('Add'), command=self._ctrl.add_location)
         self.locationMenu.add_separator()
         self.locationMenu.add_command(label=_('Export location descriptions'), command=lambda: self._ctrl.export_document(LOCATIONS_SUFFIX))
-        # self.locationMenu.add_command(label=_('Export location list'), command=lambda: self._ctrl.export_document(LOCLIST_SUFFIX))
+        self.locationMenu.add_command(label=_('Export location list'), command=lambda: self._ctrl.export_document(LOCLIST_SUFFIX))
         self.locationMenu.add_command(label=_('Show list'), command=lambda: self._ctrl.show_report(LOCATION_REPORT_SUFFIX))
 
         # "Item" menu.

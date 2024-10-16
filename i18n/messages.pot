@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.13.0\n"
-"POT-Creation-Date: 2024-10-16 09:01:57\n"
+"POT-Creation-Date: 2024-10-16 10:17:18\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -75,6 +75,9 @@ msgid "Add multiple sections"
 msgstr ""
 
 msgid "Add parent"
+msgstr ""
+
+msgid "Aka"
 msgstr ""
 
 msgid "All"
@@ -326,9 +329,6 @@ msgstr ""
 msgid "Critical Error"
 msgstr ""
 
-msgid "Cross reference"
-msgstr ""
-
 msgid "Ctrl"
 msgstr ""
 
@@ -440,6 +440,9 @@ msgstr ""
 msgid "Export character descriptions"
 msgstr ""
 
+msgid "Export character list"
+msgstr ""
+
 msgid "Export document"
 msgstr ""
 
@@ -447,6 +450,9 @@ msgid "Export item descriptions"
 msgstr ""
 
 msgid "Export location descriptions"
+msgstr ""
+
+msgid "Export location list"
 msgstr ""
 
 msgid "Export part descriptions"
@@ -948,12 +954,6 @@ msgid "Section descriptions"
 msgstr ""
 
 msgid "Section list"
-msgstr ""
-
-msgid "Section_20_mark"
-msgstr ""
-
-msgid "Section_20_mark_20_unused"
 msgstr ""
 
 msgid "Sections"
