@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.13.0\n"
-"POT-Creation-Date: 2024-10-16 10:18:42\n"
+"POT-Creation-Date: 2024-10-16 10:44:48\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -366,9 +366,6 @@ msgid "Del"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
-
-msgid "Delete file"
 msgstr ""
 
 msgid "Delete {}?"

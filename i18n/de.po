@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.13.0\n"
-"POT-Creation-Date: 2024-10-16 10:18:42\n"
-"PO-Revision-Date: 2024-10-16 10:18:42\n"
+"POT-Creation-Date: 2024-10-16 10:44:48\n"
+"PO-Revision-Date: 2024-10-16 10:44:48\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -360,9 +360,6 @@ msgstr "Entf"
 
 msgid "Delete"
 msgstr "Löschen"
-
-msgid "Delete file"
-msgstr "Lösche Datei"
 
 msgid "Delete {}?"
 msgstr "{} löschen?"
