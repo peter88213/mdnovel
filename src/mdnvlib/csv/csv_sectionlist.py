@@ -37,6 +37,7 @@ class CsvSectionList(CsvFile):
         """
         pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls = self._get_renamings()
         columns = []
+        columns.append('ID')
         columns.append(_("Section"))
         columns.append(_("Title"))
         columns.append(_("Description"))
@@ -66,6 +67,7 @@ class CsvSectionList(CsvFile):
         """
         columns = []
         mapping = self._get_sectionMapping(scId, scNumber, wordsTotal)
+        columns.append(mapping['ID'])
         columns.append(mapping['SectionNumber'])
         columns.append(mapping['Title'])
         columns.append(mapping['Desc'])

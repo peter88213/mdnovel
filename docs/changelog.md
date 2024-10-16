@@ -5,7 +5,11 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
-### Versin 0.13.0
+### Version 0.13.1
+
+- Add ID to the section list.
+
+### Version 0.13.0
 
 - Fix HTML report title display.
 - Exporting item list.
