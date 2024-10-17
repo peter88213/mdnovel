@@ -23,7 +23,6 @@ class CollectionBox(ttk.Frame):
         btnRemove: ttk.Button -- Activatable input widget.
         inputWidgets -- List with references to the input widgets.
         
-    The inputWidgets list can be used to lock the application, deactivating the input widgets.
     The enable_buttons() and disable_buttons() methods are intended for setting the 
     buttons' status from outsides, dependent on the list content and selection. So "Add" is always 
     meant to be active, whereas "Open" and "Remove" is only to be active when a list item is selected.

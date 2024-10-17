@@ -982,18 +982,7 @@ class TreeViewer(ttk.Frame):
                 prefix = row[:2]
             if prefix in (CH_ROOT, CHAPTER_PREFIX, SECTION_PREFIX):
                 # Context is within the "Book" branch.
-                if self._ctrl.isLocked:
-                    # No changes allowed.
-                    self._nvCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    self._nvCtxtMenu.entryconfig(_('Set Type'), state='disabled')
-                    self._nvCtxtMenu.entryconfig(_('Set Status'), state='disabled')
-                    self._nvCtxtMenu.entryconfig(_('Add Section'), state='disabled')
-                    self._nvCtxtMenu.entryconfig(_('Add Chapter'), state='disabled')
-                    self._nvCtxtMenu.entryconfig(_('Add Part'), state='disabled')
-                    self._nvCtxtMenu.entryconfig(_('Insert Stage'), state='disabled')
-                    self._nvCtxtMenu.entryconfig(_('Change Level'), state='disabled')
-                    self._nvCtxtMenu.entryconfig(_('Join with previous'), state='disabled')
-                elif prefix.startswith(CH_ROOT):
+                if prefix.startswith(CH_ROOT):
                     # Context is the "Book" branch.
                     self._nvCtxtMenu.entryconfig(_('Delete'), state='disabled')
                     self._nvCtxtMenu.entryconfig(_('Set Type'), state='disabled')
@@ -1042,37 +1031,26 @@ class TreeViewer(ttk.Frame):
                     self._nvCtxtMenu.grab_release()
             elif prefix in (CR_ROOT, CHARACTER_PREFIX, LC_ROOT, LOCATION_PREFIX, IT_ROOT, ITEM_PREFIX):
                 # Context is character/location/item.
-                if self._ctrl.isLocked:
-                    # No changes allowed.
-                    self._wrCtxtMenu.entryconfig(_('Add'), state='disabled')
+                self._wrCtxtMenu.entryconfig(_('Add'), state='normal')
+                if prefix.startswith('wr'):
+                    # Context is the root of a world element type branch.
                     self._wrCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
                 else:
-                    self._wrCtxtMenu.entryconfig(_('Add'), state='normal')
-                    if prefix.startswith('wr'):
-                        # Context is the root of a world element type branch.
-                        self._wrCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                    else:
-                        # Context is a world element.
-                        self._wrCtxtMenu.entryconfig(_('Delete'), state='normal')
-                    if prefix.startswith(CHARACTER_PREFIX) or  row.endswith(CHARACTER_PREFIX):
-                        # Context is a character.
-                        self._wrCtxtMenu.entryconfig(_('Set Status'), state='normal')
-                    else:
-                        # Context is not a character.
-                        self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
+                    # Context is a world element.
+                    self._wrCtxtMenu.entryconfig(_('Delete'), state='normal')
+                if prefix.startswith(CHARACTER_PREFIX) or  row.endswith(CHARACTER_PREFIX):
+                    # Context is a character.
+                    self._wrCtxtMenu.entryconfig(_('Set Status'), state='normal')
+                else:
+                    # Context is not a character.
+                    self._wrCtxtMenu.entryconfig(_('Set Status'), state='disabled')
                 try:
                     self._wrCtxtMenu.tk_popup(event.x_root, event.y_root, 0)
                 finally:
                     self._wrCtxtMenu.grab_release()
             elif prefix in (PL_ROOT, PLOT_LINE_PREFIX, PLOT_POINT_PREFIX):
                 # Context is Plot line/Plot point.
-                if self._ctrl.isLocked:
-                    # No changes allowed.
-                    self._plCtxtMenu.entryconfig(_('Add Plot line'), state='disabled')
-                    self._plCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
-                    self._plCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                elif prefix.startswith(PL_ROOT):
+                if prefix.startswith(PL_ROOT):
                     self._plCtxtMenu.entryconfig(_('Add Plot line'), state='normal')
                     self._plCtxtMenu.entryconfig(_('Add Plot point'), state='disabled')
                     self._plCtxtMenu.entryconfig(_('Delete'), state='disabled')
@@ -1086,11 +1064,7 @@ class TreeViewer(ttk.Frame):
                     self._plCtxtMenu.grab_release()
             elif prefix in (PN_ROOT, PRJ_NOTE_PREFIX):
                 # Context is Project note.
-                if self._ctrl.isLocked:
-                    # No changes allowed.
-                    self._pnCtxtMenu.entryconfig(_('Add Project note'), state='disabled')
-                    self._pnCtxtMenu.entryconfig(_('Delete'), state='disabled')
-                elif prefix.startswith(PN_ROOT):
+                if prefix.startswith(PN_ROOT):
                     self._pnCtxtMenu.entryconfig(_('Add Project note'), state='normal')
                     self._pnCtxtMenu.entryconfig(_('Delete'), state='normal')
                 try:

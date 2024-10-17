@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.14.0\n"
-"POT-Creation-Date: 2024-10-17 10:22:40\n"
-"PO-Revision-Date: 2024-10-17 10:22:40\n"
+"Project-Id-Version: 0.14.1\n"
+"POT-Creation-Date: 2024-10-17 15:56:47\n"
+"PO-Revision-Date: 2024-10-17 15:56:47\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -130,32 +130,20 @@ msgstr "Heller Modus"
 msgid "Broken link fixed"
 msgstr "Defekten Link korrigiert"
 
-msgid "Can not do"
-msgstr "Geht nicht"
-
 msgid "Can not process file"
 msgstr "Kann Datei nicht verarbeiten"
 
 msgid "Cancel"
 msgstr "Abbrechen"
 
-msgid "Cannot apply section changes, because the project is locked.\nUnlock and apply changes?"
-msgstr "Das Projekt ist gesperrt.\nEntsperren und Änderungen übernehmen.?"
-
 msgid "Cannot convert date/days"
 msgstr "Kann Datum/Tage nicht umwandeln"
-
-msgid "Cannot create sections, because the project is locked."
-msgstr "Abschnitte können nicht erzeugt werden werden, weil das Projekt gesperrt ist."
 
 msgid "Cannot create the element at this position"
 msgstr "Kann das Element nicht an dieser Position erzeugen"
 
 msgid "Cannot determine file date."
 msgstr "Das Dateidatum ist nicht zu ermitteln."
-
-msgid "Cannot edit sections, because the project is locked."
-msgstr "Abschnitte können nicht bearbeitet werden werden, weil das Projekt gesperrt ist."
 
 msgid "Cannot generate date/time"
 msgstr "Kann Datum/Zeit nicht erzeugen"
@@ -180,12 +168,6 @@ msgstr "Kann Vorlage nicht speichern"
 
 msgid "Cannot save the project"
 msgstr "Kann das Projekt nicht abspeichern"
-
-msgid "Cannot save: The project is locked"
-msgstr "Speichern nicht möglich: Das Projekt ist gesperrt"
-
-msgid "Cannot split the section, because the project is locked."
-msgstr "Der Abschnitt kann nicht geteilt werden, weil das Projekt gesperrt ist."
 
 msgid "Cannot write file"
 msgstr "Kann Datei nicht schreiben"
@@ -471,9 +453,6 @@ msgstr "Datei existiert bereits"
 
 msgid "File has changed on disk. Reload anyway?"
 msgstr "Die Datei wurde auf der Festplatte geändert. Trotzdem laden?"
-
-msgid "File has changed on disk. Reload?"
-msgstr "Die Datei wurde auf der Festplatte geändert. Neu laden?"
 
 msgid "File has changed on disk. Save anyway?"
 msgstr "Die Datei wurde auf der Festplatte geändert. Trotzdem speichern?"
@@ -790,9 +769,6 @@ msgstr "Auswahlmodus (zum Verlassen hier klicken oder Esc drücken)"
 msgid "Plain"
 msgstr "Unformatiert"
 
-msgid "Please close the document first"
-msgstr "Bitte zuerst das Dokument schließen"
-
 msgid "Please enter a reference date."
 msgstr "Geben Sie bitte ein Bezugsdatum ein."
 
@@ -900,9 +876,6 @@ msgstr "Die letzte Sicherungskopie wiederherstellen?"
 
 msgid "Save"
 msgstr "Speichern"
-
-msgid "Save and lock?"
-msgstr "Speichern und sperren?"
 
 msgid "Save as..."
 msgstr "Speichern unter..."
@@ -1044,9 +1017,6 @@ msgstr "Der nachfolgende Abschnitt hat keine Zeitangabe"
 
 msgid "The previous section has no time set."
 msgstr "Der vorhergehende Abschnitt hat keine Zeitangabe"
-
-msgid "The project is locked.\nUnlock?"
-msgstr "Das Projekt is gesperrt.\nEntsperren?"
 
 msgid "The sections are not of the same type"
 msgstr "Die Abschnitte sind nicht vom selben Typ"

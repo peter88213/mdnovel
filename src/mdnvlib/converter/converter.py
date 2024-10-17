@@ -167,7 +167,6 @@ class Converter:
         
         - Check if source and target are correctly initialized.
         - Ask for permission to overwrite target.
-        - Check whether a source or target document is locked by tis application.
         - Raise the "Error" exception in case of error. 
         """
         if source.filePath is None:
@@ -175,12 +174,6 @@ class Converter:
 
         if not os.path.isfile(source.filePath):
             raise Error(f'{_("File not found")}: "{norm_path(source.filePath)}".')
-
-        if source.is_locked():
-            raise Error(f'{_("Please close the document first")}".')
-
-        if target.is_locked():
-            raise Error(f'{_("Please close the document first")}.')
 
         if target.filePath is None:
             raise Error(f'{_("File type is not supported")}.')

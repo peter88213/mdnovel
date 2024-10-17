@@ -61,10 +61,6 @@ class TableManager(tk.Toplevel):
         # "Close" button.
         ttk.Button(self, text=_('Close'), command=self.on_quit).pack(side='right', padx=5, pady=5)
 
-    def lock(self):
-        """Inhibit element change."""
-        Node.isLocked = True
-
     def on_quit(self, event=None):
         self.isOpen = False
         self._manager.kwargs['window_geometry'] = self.winfo_geometry()
@@ -72,10 +68,6 @@ class TableManager(tk.Toplevel):
         # this is necessary for deleting the event bindings
         self._ui.unregister_view(self)
         self.destroy()
-
-    def unlock(self):
-        """Enable element change."""
-        Node.isLocked = False
 
     def refresh(self):
         """Refresh the view after changes have been made "outsides"."""

@@ -229,8 +229,6 @@ class NvView:
         self.fileMenu.entryconfig(_('Reload'), state='disabled')
         self.fileMenu.entryconfig(_('Restore backup'), state='disabled')
         self.fileMenu.entryconfig(_('Refresh Tree'), state='disabled')
-        # self.fileMenu.entryconfig(_('Lock'), state='disabled')
-        # self.fileMenu.entryconfig(_('Unlock'), state='disabled')
         self.fileMenu.entryconfig(_('Open Project folder'), state='disabled')
         self.fileMenu.entryconfig(_('Save'), state='disabled')
         self.fileMenu.entryconfig(_('Save as...'), state='disabled')
@@ -294,7 +292,6 @@ class NvView:
         self.fileMenu.entryconfig(_('Reload'), state='normal')
         self.fileMenu.entryconfig(_('Restore backup'), state='normal')
         self.fileMenu.entryconfig(_('Refresh Tree'), state='normal')
-        # self.fileMenu.entryconfig(_('Lock'), state='normal')
         self.fileMenu.entryconfig(_('Open Project folder'), state='normal')
         self.fileMenu.entryconfig(_('Save'), state='normal')
         self.fileMenu.entryconfig(_('Save as...'), state='normal')
@@ -312,28 +309,6 @@ class NvView:
         for view in self.views:
             try:
                 view.enable_menu()
-            except AttributeError:
-                pass
-
-    def lock(self):
-        """Make the "locked" state visible."""
-        self.pathBar.config(bg=prefs['color_locked_bg'])
-        self.pathBar.config(fg=prefs['color_locked_fg'])
-        self.fileMenu.entryconfig(_('Save'), state='disabled')
-        # self.fileMenu.entryconfig(_('Lock'), state='disabled')
-        # self.fileMenu.entryconfig(_('Unlock'), state='normal')
-        self.mainMenu.entryconfig(_('Part'), state='disabled')
-        self.mainMenu.entryconfig(_('Chapter'), state='disabled')
-        self.mainMenu.entryconfig(_('Section'), state='disabled')
-        self.mainMenu.entryconfig(_('Characters'), state='disabled')
-        self.mainMenu.entryconfig(_('Locations'), state='disabled')
-        self.mainMenu.entryconfig(_('Items'), state='disabled')
-        self.mainMenu.entryconfig(_('Plot'), state='disabled')
-        self.mainMenu.entryconfig(_('Project notes'), state='disabled')
-        self.mainMenu.entryconfig(_('Export'), state='disabled')
-        for view in self.views:
-            try:
-                view.lock()
             except AttributeError:
                 pass
 
@@ -511,28 +486,6 @@ class NvView:
             self.detach_properties_frame()
         return 'break'
 
-    def unlock(self):
-        """Make the "unlocked" state visible."""
-        self.pathBar.config(bg=self.root.cget('background'))
-        self.pathBar.config(fg='black')
-        self.fileMenu.entryconfig(_('Save'), state='normal')
-        # self.fileMenu.entryconfig(_('Lock'), state='normal')
-        # self.fileMenu.entryconfig(_('Unlock'), state='disabled')
-        self.mainMenu.entryconfig(_('Part'), state='normal')
-        self.mainMenu.entryconfig(_('Chapter'), state='normal')
-        self.mainMenu.entryconfig(_('Section'), state='normal')
-        self.mainMenu.entryconfig(_('Characters'), state='normal')
-        self.mainMenu.entryconfig(_('Locations'), state='normal')
-        self.mainMenu.entryconfig(_('Items'), state='normal')
-        self.mainMenu.entryconfig(_('Plot'), state='normal')
-        self.mainMenu.entryconfig(_('Project notes'), state='normal')
-        self.mainMenu.entryconfig(_('Export'), state='normal')
-        for view in self.views:
-            try:
-                view.unlock()
-            except AttributeError:
-                pass
-
     def unregister_view(self, view):
         try:
             self.views.remove(view)
@@ -554,9 +507,6 @@ class NvView:
     def _bind_events(self):
         self.root.bind(KEYS.RESTORE_STATUS[0], self.restore_status)
         self.root.bind(KEYS.OPEN_PROJECT[0], self._ctrl.open_project)
-
-        # self.root.bind(KEYS.LOCK_PROJECT[0], self._ctrl.lock)
-        # self.root.bind(KEYS.UNLOCK_PROJECT[0], self._ctrl.unlock)
         self.root.bind(KEYS.RELOAD_PROJECT[0], self._ctrl.reload_project)
         self.root.bind(KEYS.RESTORE_BACKUP[0], self._ctrl.restore_backup)
         self.root.bind(KEYS.FOLDER[0], self._ctrl.open_project_folder)
@@ -594,8 +544,6 @@ class NvView:
         self.fileMenu.add_command(label=_('Restore backup'), accelerator=KEYS.RESTORE_BACKUP[1], command=self._ctrl.restore_backup)
         self.fileMenu.add_separator()
         self.fileMenu.add_command(label=_('Refresh Tree'), accelerator=KEYS.REFRESH_TREE[1], command=self._ctrl.refresh_views)
-        # self.fileMenu.add_command(label=_('Lock'), accelerator=KEYS.LOCK_PROJECT[1], command=self._ctrl.lock)
-        # self.fileMenu.add_command(label=_('Unlock'), accelerator=KEYS.UNLOCK_PROJECT[1], command=self._ctrl.unlock)
         self.fileMenu.add_separator()
         self.fileMenu.add_command(label=_('Open Project folder'), accelerator=KEYS.FOLDER[1], command=self._ctrl.open_project_folder)
         self.fileMenu.add_separator()
@@ -698,7 +646,7 @@ class NvView:
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Export plot grid'), command=lambda:self._ctrl.export_document(GRID_SUFFIX))
         self.plotMenu.add_command(label=_('Export story structure description'), command=lambda:self._ctrl.export_document(STAGES_SUFFIX))
-        self.plotMenu.add_command(label=_('Export plot line descriptions'), command=lambda: self._ctrl.export_document(PLOTLINES_SUFFIX, lock=False))
+        self.plotMenu.add_command(label=_('Export plot line descriptions'), command=lambda: self._ctrl.export_document(PLOTLINES_SUFFIX))
         self.plotMenu.add_separator()
         self.plotMenu.add_command(label=_('Show Plot list'), command=lambda: self._ctrl.show_report(PLOTLIST_SUFFIX))
 
@@ -712,8 +660,8 @@ class NvView:
         # "Export" menu.
         self.exportMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Export'), menu=self.exportMenu)
-        self.exportMenu.add_command(label=_('Manuscript'), command=lambda: self._ctrl.export_document('', lock=False))
-        self.exportMenu.add_command(label=_('Brief synopsis'), command=lambda: self._ctrl.export_document(BRF_SYNOPSIS_SUFFIX, lock=False))
+        self.exportMenu.add_command(label=_('Manuscript'), command=lambda: self._ctrl.export_document(''))
+        self.exportMenu.add_command(label=_('Brief synopsis'), command=lambda: self._ctrl.export_document(BRF_SYNOPSIS_SUFFIX))
         self.exportMenu.add_separator()
         self.exportMenu.add_command(label=_('Options'), command=self._export_options)
 

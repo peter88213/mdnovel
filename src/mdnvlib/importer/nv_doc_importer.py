@@ -75,9 +75,6 @@ class NvDocImporter:
             target.read()
             source.novel = target.novel
             source.read()
-            if source.sectionsSplit and source.is_locked():
-                raise Error(f'{_("Please close the document first")}.')
-
             if os.path.isfile(target.filePath):
                 if not messagebox.askyesno(
                     title=source.DESCRIPTION,
@@ -103,9 +100,4 @@ class NvDocImporter:
         if not os.path.isfile(source.filePath):
             # the source document does not exist
             raise Error(f'{_("File not found")}: "{norm_path(source.filePath)}".')
-
-        if source.is_locked():
-            # the document might be open in the Office application
-            if not prefs['import_mode'] == '2':
-                raise Error(f'{_("Please close the document first")}.')
 

@@ -66,19 +66,13 @@ class PropertiesViewer(ttk.Frame):
     def apply_changes(self, event=None):
         # This is called by the controller to make sure changes take effect
         # e.g. when starting an export while a property entry still has the focus.
-        if not self._ctrl.isLocked:
-            self._elementView.doNotUpdate = True
-            self._elementView.apply_changes()
-            self._elementView.doNotUpdate = False
+        self._elementView.doNotUpdate = True
+        self._elementView.apply_changes()
+        self._elementView.doNotUpdate = False
 
     def focus_title(self):
         """Prepare the current element's title entry for manual input."""
         self._elementView.focus_title()
-
-    def lock(self):
-        """Inhibit element change."""
-        for view in self._allViews:
-            view.lock()
 
     def show_properties(self, nodeId):
         """Show the properties of the selected element."""
@@ -108,11 +102,6 @@ class PropertiesViewer(ttk.Frame):
             self._view_nothing()
         self._elementView.doNotUpdate = False
 
-    def unlock(self):
-        """enable element change."""
-        for view in self._allViews:
-            view.unlock()
-
     def refresh(self):
         """Refresh the view after changes have been made "outsides"."""
         if not self._elementView.doNotUpdate:
@@ -123,12 +112,7 @@ class PropertiesViewer(ttk.Frame):
 
     def _set_data(self, elemId):
         """Fill the widgets with the data of the element to view and change."""
-        if self._ctrl.isLocked:
-            self._elementView.unlock()
-            self._elementView.set_data(elemId)
-            self._elementView.lock()
-        else:
-            self._elementView.set_data(elemId)
+        self._elementView.set_data(elemId)
 
     def _view_arc(self, plId):
         """Show the selected plot line.

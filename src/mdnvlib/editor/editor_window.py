@@ -209,15 +209,6 @@ class EditorWindow(tk.Toplevel):
         
         On success, return the ID of the new section, otherwise return None.
         """
-        if self._ctrl.isLocked:
-            messagebox.showinfo(
-                SC_EDITOR,
-                _('Cannot create sections, because the project is locked.'),
-                parent=self
-                )
-            self.lift()
-            return
-
         self.lift()
         # Add a section after the currently edited section.
         thisNode = self._scId
@@ -320,15 +311,6 @@ class EditorWindow(tk.Toplevel):
             self.lift()
             return
 
-        if self._ctrl.isLocked:
-            messagebox.showinfo(
-                SC_EDITOR,
-                _('Cannot split the section, because the project is locked.'),
-                parent=self
-                )
-            self.lift()
-            return
-
         if messagebox.askyesno(
             SC_EDITOR,
             f'{_("Move the text from the cursor position to the end into a new section")}?',
@@ -382,15 +364,5 @@ class EditorWindow(tk.Toplevel):
             self.lift()
             return
 
-        if self._ctrl.isLocked:
-            if messagebox.askyesno(
-                SC_EDITOR,
-                _('Cannot apply section changes, because the project is locked.\nUnlock and apply changes?'),
-                parent=self
-                ):
-                self._ctrl.unlock()
-                self._section.sectionContent = sectionText
-            self.lift()
-        else:
-            self._section.sectionContent = sectionText
+        self._section.sectionContent = sectionText
 

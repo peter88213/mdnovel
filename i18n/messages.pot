@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.14.0\n"
-"POT-Creation-Date: 2024-10-17 10:22:40\n"
+"Project-Id-Version: 0.14.1\n"
+"POT-Creation-Date: 2024-10-17 15:56:47\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -137,31 +137,19 @@ msgstr ""
 msgid "Broken link fixed"
 msgstr ""
 
-msgid "Can not do"
-msgstr ""
-
 msgid "Can not process file"
 msgstr ""
 
 msgid "Cancel"
 msgstr ""
 
-msgid "Cannot apply section changes, because the project is locked.\nUnlock and apply changes?"
-msgstr ""
-
 msgid "Cannot convert date/days"
-msgstr ""
-
-msgid "Cannot create sections, because the project is locked."
 msgstr ""
 
 msgid "Cannot create the element at this position"
 msgstr ""
 
 msgid "Cannot determine file date."
-msgstr ""
-
-msgid "Cannot edit sections, because the project is locked."
 msgstr ""
 
 msgid "Cannot generate date/time"
@@ -186,12 +174,6 @@ msgid "Cannot save template"
 msgstr ""
 
 msgid "Cannot save the project"
-msgstr ""
-
-msgid "Cannot save: The project is locked"
-msgstr ""
-
-msgid "Cannot split the section, because the project is locked."
 msgstr ""
 
 msgid "Cannot write file"
@@ -477,9 +459,6 @@ msgid "File already exists"
 msgstr ""
 
 msgid "File has changed on disk. Reload anyway?"
-msgstr ""
-
-msgid "File has changed on disk. Reload?"
 msgstr ""
 
 msgid "File has changed on disk. Save anyway?"
@@ -797,9 +776,6 @@ msgstr ""
 msgid "Plain"
 msgstr ""
 
-msgid "Please close the document first"
-msgstr ""
-
 msgid "Please enter a reference date."
 msgstr ""
 
@@ -906,9 +882,6 @@ msgid "Restore the latest backup?"
 msgstr ""
 
 msgid "Save"
-msgstr ""
-
-msgid "Save and lock?"
 msgstr ""
 
 msgid "Save as..."
@@ -1050,9 +1023,6 @@ msgid "The next section has no time set."
 msgstr ""
 
 msgid "The previous section has no time set."
-msgstr ""
-
-msgid "The project is locked.\nUnlock?"
 msgstr ""
 
 msgid "The sections are not of the same type"

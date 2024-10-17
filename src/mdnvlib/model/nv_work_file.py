@@ -54,41 +54,6 @@ class NvWorkFile(MdnovFile):
             # this is for newly created projects
             return False
 
-    def has_lockfile(self):
-        """Return True if a project lockfile exists."""
-        if not self.filePath:
-            return
-
-        head, tail = self._split_file_path()
-        lockfilePath = f'{head}{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
-        # This cannot be done by the constructor,because filePath might change
-        return os.path.isfile(lockfilePath)
-
-    def lock(self):
-        """Create a project lockfile."""
-        if not self.filePath:
-            return
-
-        head, tail = self._split_file_path()
-        lockfilePath = f'{head}{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
-        # This cannot be done by the constructor,because filePath might change
-        if not os.path.isfile(lockfilePath):
-            with open(lockfilePath, 'w') as f:
-                f.write('')
-
-    def unlock(self):
-        """Delete the project lockfile, if any."""
-        if not self.filePath:
-            return
-
-        head, tail = self._split_file_path()
-        lockfilePath = f'{head}{self._LOCKFILE_PREFIX}{tail}{self._LOCKFILE_SUFFIX}'
-        # This cannot be done by the constructor,because filePath might change
-        try:
-            os.remove(lockfilePath)
-        except:
-            pass
-
     def _split_file_path(self):
         head, tail = os.path.split(self.filePath)
         if head:

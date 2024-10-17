@@ -60,7 +60,6 @@ class BasicView(ttk.Frame, ABC):
         self._uiBtn1Binding = ''
 
         self.doNotUpdate = False
-        self._isLocked = False
 
         # Frame for element specific informations.
         self._propertiesFrame = ttk.Frame(self)
@@ -104,17 +103,6 @@ class BasicView(ttk.Frame, ABC):
         """Hide the view."""
         self.pack_forget()
 
-    def lock(self):
-        """Inhibit element change."""
-        self._indexCard.lock()
-        try:
-            self._notesWindow.config(state='disabled')
-        except:
-            pass
-        for widget in self._inputWidgets:
-            widget.config(state='disabled')
-        self._isLocked = True
-
     @abstractmethod
     def set_data(self, elementId):
         """Update the view with element's data.
@@ -157,17 +145,6 @@ class BasicView(ttk.Frame, ABC):
     def show(self):
         """Make the view visible."""
         self.pack(expand=True, fill='both')
-
-    def unlock(self):
-        """Enable element change."""
-        self._indexCard.unlock()
-        try:
-            self._notesWindow.config(state='normal')
-        except:
-            pass
-        for widget in self._inputWidgets:
-            widget.config(state='normal')
-        self._isLocked = False
 
     def _add_link(self):
         """Select a link and add it to the list."""

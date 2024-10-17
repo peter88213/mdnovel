@@ -4,6 +4,9 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.14.1
+
+- Refactor: Remove the locking mechanism code. 
 
 ### Version 0.14.0
 

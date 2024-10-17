@@ -47,10 +47,6 @@ class Icons:
         except:
             self.gotoIcon = None
         try:
-            self.lockIcon = tk.PhotoImage(file=f'{iconPath}/lock.png')
-        except:
-            self.lockIcon = None
-        try:
             self.manuscriptIcon = tk.PhotoImage(file=f'{iconPath}/manuscript.png')
         except:
             self.manuscriptIcon = None

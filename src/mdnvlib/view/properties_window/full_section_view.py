@@ -418,12 +418,6 @@ class FullSectionView(DatedSectionView):
         else:
             self._set_not_applicable()
 
-    def unlock(self):
-        """Enable plot line notes only if a plot line is selected."""
-        super().unlock()
-        if self._selectedPlotline is None:
-            self._plotNotesWindow.config(state='disabled')
-
     def _activate_arc_buttons(self, event=None):
         if self._element.scPlotLines:
             self._plotlineCollection.enable_buttons()
@@ -495,8 +489,6 @@ class FullSectionView(DatedSectionView):
             self._plotNotesWindow.set_text(self._element.plotlineNotes.get(self._selectedPlotline, ''))
         else:
             self._plotNotesWindow.clear()
-        if self._isLocked:
-            self._plotNotesWindow.config(state='disabled')
         self._plotNotesWindow.config(bg='white')
 
     def _pick_plotline(self, event=None):

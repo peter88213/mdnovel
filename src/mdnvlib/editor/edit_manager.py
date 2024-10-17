@@ -142,10 +142,6 @@ class EditManager:
                     return
 
                 # A section is selected
-                if self._ctrl.isLocked:
-                    messagebox.showinfo(SC_EDITOR, _('Cannot edit sections, because the project is locked.'))
-                    return
-
                 if nodeId in self.sectionEditors and self.sectionEditors[nodeId].isOpen:
                     self.sectionEditors[nodeId].lift()
                     return

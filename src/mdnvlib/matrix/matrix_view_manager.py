@@ -82,13 +82,6 @@ class MatrixViewManager:
         self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
         self._matrixButton.config(state='normal')
 
-    def lock(self):
-        """Inhibit changes on the model."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
-        self._matrixButton.disable()
-        if self._matrixViewer:
-            self._matrixViewer.lock()
-
     def on_close(self):
         """Apply changes and close the window."""
         self.on_quit()
@@ -106,13 +99,6 @@ class MatrixViewManager:
             elif keyword in self.configuration.settings:
                 self.configuration.settings[keyword] = self.kwargs[keyword]
         self.configuration.write(self.iniFile)
-
-    def unlock(self):
-        """Enable changes on the model."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
-        self._matrixButton.enable()
-        if self._matrixViewer:
-            self._matrixViewer.unlock()
 
     def _configure_toolbar(self):
 

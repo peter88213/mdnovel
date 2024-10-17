@@ -70,10 +70,6 @@ class File(ABC):
             self.projectPath = quote(head.replace('\\', '/'), '/:')
             self.projectName = quote(tail.replace(f'{suffix}{self.EXTENSION}', ''))
 
-    def is_locked(self):
-        """Return True if the file is locked by its application."""
-        return False
-
     def read(self):
         """Parse the file and get the instance variables.
         

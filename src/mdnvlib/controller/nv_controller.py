@@ -62,7 +62,6 @@ class NvController:
         - Create a path bar for the project file path.
         """
         self.tempDir = tempDir
-        self._internalLockFlag = False
 
         #--- Create the model
         self._mdl = NvModel()
@@ -103,15 +102,6 @@ class NvController:
         self.disable_menu()
         self._ui.tv.reset_view()
 
-    @property
-    def isLocked(self):
-        # Boolean -- True if a lock file exists for the current project.
-        return self._internalLockFlag
-
-    @isLocked.setter
-    def isLocked(self, setFlag):
-        raise NotImplementedError
-
     def add_chapter(self, **kwargs):
         """Add a chapter to the novel.
              
@@ -123,9 +113,6 @@ class NvController:
             
         Return the chapter ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -146,9 +133,6 @@ class NvController:
             
         Return the element's ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -165,9 +149,6 @@ class NvController:
         What kind of element is added, depends on the selection's prefix.
         """
         if self._mdl.prjFile is None:
-            return
-
-        if self.check_lock():
             return
 
         try:
@@ -212,9 +193,6 @@ class NvController:
         What kind of element is added, depends on the selection's prefix.
         """
         if self._mdl.prjFile is None:
-            return
-
-        if self.check_lock():
             return
 
         try:
@@ -266,9 +244,6 @@ class NvController:
             
         Return the element's ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -288,9 +263,6 @@ class NvController:
             
         Return the element's ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -309,11 +281,10 @@ class NvController:
         if self._mdl.prjFile is None:
             return
 
-        if not self.check_lock():
-            try:
-                selection = self._ui.tv.tree.selection()[0]
-            except:
-                return
+        try:
+            selection = self._ui.tv.tree.selection()[0]
+        except:
+            return
 
         if selection.startswith(SECTION_PREFIX):
             self.add_chapter(targetNode=selection)
@@ -331,9 +302,6 @@ class NvController:
            
         Return the chapter ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -353,9 +321,6 @@ class NvController:
             
         Return the plot line ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -375,9 +340,6 @@ class NvController:
             
         Return the plot point ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -424,9 +386,6 @@ class NvController:
         
         Return the section ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -448,9 +407,6 @@ class NvController:
             
         Return the section ID, if successful.
         """
-        if self.check_lock():
-            return
-
         targetNode = kwargs.get('targetNode', None)
         if targetNode is None:
             try:
@@ -460,20 +416,6 @@ class NvController:
         newNode = self._mdl.add_stage(**kwargs)
         self._view_new_element(newNode)
         return newNode
-
-    def check_lock(self):
-        """If the project is locked, unlock it on demand.
-
-        Return True, if the project remains locked, otherwise return False.
-        """
-        if self.isLocked:
-            if self._ui.ask_yes_no(_('The project is locked.\nUnlock?'), title=_('Can not do')):
-                self.unlock()
-                return False
-            else:
-                return True
-        else:
-            return False
 
     def close_project(self, event=None, doNotSave=False):
         """Close the current project.
@@ -496,9 +438,6 @@ class NvController:
         self._mdl.close_project()
         self._ui.tv.reset_view()
         self._ui.contentsView.reset_view()
-        self._internalLockFlag = False
-        # CAUTION: calling self.unlock() here would clear the lockfile.
-        self._ui.unlock()
         self._ui.root.title(self._ui.title)
         self.show_status('')
         self._ui.show_path('')
@@ -511,9 +450,6 @@ class NvController:
         Optional arguments:
             elements: list of IDs of the elements to delete.        
         """
-        if self.check_lock():
-            return
-
         if elements is None:
             try:
                 elements = self._ui.tv.tree.selection()
@@ -621,7 +557,6 @@ class NvController:
         if self._mdl.prjFile is not None:
             self.show_status()
             self.refresh_views()
-            self.unlock()
             if self._mdl.isModified:
                 if self._ui.ask_yes_no(_('Save changes?')):
                     self.save_project()
@@ -649,9 +584,6 @@ class NvController:
             
         If not both arguments are given, determine them from the tree selection.
         """
-        if self.check_lock():
-            return
-
         if scId0 is None or scId1 is None:
             try:
                 scId1 = self._ui.tv.tree.selection()[0]
@@ -675,26 +607,6 @@ class NvController:
 
             self._view_new_element(scId0)
 
-    def lock(self, event=None):
-        """Lock the project.
-        
-        Return True on success, otherwise return False.
-        """
-        if self._mdl.isModified and not self._internalLockFlag:
-            if self._ui.ask_yes_no(_('Save and lock?')):
-                self.save_project()
-            else:
-                return False
-
-        if self._mdl.prjFile.filePath is not None:
-            self._internalLockFlag = True
-            self._ui.lock()
-            self._mdl.prjFile.lock()
-            # make it persistent
-            return True
-        else:
-            return False
-
     def move_node(self, node, targetNode):
         """Move a node to another position.
         
@@ -702,12 +614,11 @@ class NvController:
             node: str - ID of the node to move.
             targetNode: str -- ID of the new parent/predecessor of the node.
         """
-        if not self.isLocked:
-            if (node.startswith(SECTION_PREFIX) and targetNode.startswith(CHAPTER_PREFIX)
-                ) or (node.startswith(PLOT_POINT_PREFIX) and targetNode.startswith(PLOT_LINE_PREFIX)):
-                self._ui.tv.open_children(targetNode)
-            self._ui.tv.skipUpdate = True
-            self._mdl.move_node(node, targetNode)
+        if (node.startswith(SECTION_PREFIX) and targetNode.startswith(CHAPTER_PREFIX)
+            ) or (node.startswith(PLOT_POINT_PREFIX) and targetNode.startswith(PLOT_LINE_PREFIX)):
+            self._ui.tv.open_children(targetNode)
+        self._ui.tv.skipUpdate = True
+        self._mdl.move_node(node, targetNode)
 
     def new_project(self, event=None):
         """Create a mdnovel project instance."""
@@ -840,8 +751,6 @@ class NvController:
         self._ui.show_path(_('{0} (last saved on {1})').format(norm_path(self._mdl.prjFile.filePath), self._mdl.prjFile.fileDate))
         self.show_status()
         self._ui.contentsView.view_text()
-        if self._mdl.prjFile.has_lockfile():
-            self.lock()
         self._ui.tv.show_branch(CH_ROOT)
         return True
 
@@ -959,7 +868,6 @@ class NvController:
                 except Error as ex:
                     self._ui.set_status(f'!{str(ex)}')
                 else:
-                    self.unlock()
                     self._ui.show_path(f'{norm_path(self._mdl.prjFile.filePath)} ({_("last saved on")} {self._mdl.prjFile.fileDate})')
                     self._ui.restore_status()
                     prefs['last_open'] = self._mdl.prjFile.filePath
@@ -973,10 +881,6 @@ class NvController:
         Return True on success, otherwise return False.
         """
         if self._mdl.prjFile is None:
-            return False
-
-        if self.check_lock():
-            self._ui.set_status(f'!{_("Cannot save: The project is locked")}.')
             return False
 
         if self._mdl.prjFile.filePath is None:
@@ -1033,15 +937,14 @@ class NvController:
             isMajor: bool -- If True, make the characters major. Otherwise, make them minor.
             elemIds: list of character IDs to process.
         """
-        if not self.check_lock():
-            if elemIds is None:
-                try:
-                    elemIds = self._ui.tv.tree.selection()
-                except:
-                    return
+        if elemIds is None:
+            try:
+                elemIds = self._ui.tv.tree.selection()
+            except:
+                return
 
-            self._ui.tv.open_children(CR_ROOT)
-            self._mdl.set_character_status(isMajor, elemIds)
+        self._ui.tv.open_children(CR_ROOT)
+        self._mdl.set_character_status(isMajor, elemIds)
 
     def set_level(self, newLevel, elemIds=None):
         """Set chapter or stage level.
@@ -1050,14 +953,13 @@ class NvController:
             newLevel: int -- New level to be set.
             elemIds: list of IDs to process.
         """
-        if not self.check_lock():
-            if elemIds is None:
-                try:
-                    elemIds = self._ui.tv.tree.selection()
-                except:
-                    return
+        if elemIds is None:
+            try:
+                elemIds = self._ui.tv.tree.selection()
+            except:
+                return
 
-            self._mdl.set_level(newLevel, elemIds)
+        self._mdl.set_level(newLevel, elemIds)
 
     def set_completion_status(self, newStatus, elemIds=None):
         """Set section completion status (Outline/Draft..).
@@ -1066,15 +968,14 @@ class NvController:
             newStatus: int -- New section status to be set.        
             elemIds: list of IDs to process.            
         """
-        if not self.check_lock():
-            if elemIds is None:
-                try:
-                    elemIds = self._ui.tv.tree.selection()
-                except:
-                    return
+        if elemIds is None:
+            try:
+                elemIds = self._ui.tv.tree.selection()
+            except:
+                return
 
-            self._ui.tv.open_children(elemIds[0])
-            self._mdl.set_completion_status(newStatus, elemIds)
+        self._ui.tv.open_children(elemIds[0])
+        self._mdl.set_completion_status(newStatus, elemIds)
 
     def set_type(self, newType, elemIds=None):
         """Set section or chapter type Normal).
@@ -1083,15 +984,14 @@ class NvController:
             newType: int -- New type to be set.
             elemIds: list of IDs to process.
         """
-        if not self.check_lock():
-            if elemIds is None:
-                try:
-                    elemIds = self._ui.tv.tree.selection()
-                except:
-                    return
+        if elemIds is None:
+            try:
+                elemIds = self._ui.tv.tree.selection()
+            except:
+                return
 
-            self._ui.tv.open_children(elemIds[0])
-            self._mdl.set_type(newType, elemIds)
+        self._ui.tv.open_children(elemIds[0])
+        self._mdl.set_type(newType, elemIds)
 
     def show_report(self, suffix):
         """Create HTML report for the web browser.
@@ -1121,29 +1021,6 @@ class NvController:
             message = _('{0} parts, {1} chapters, {2} sections, {3} words').format(partCount, chapterCount, sectionCount, wordCount)
             self.wordCount = wordCount
         self._ui.show_status(message)
-
-    def toggle_lock(self, event=None):
-        """Toggle the 'locked' status."""
-        if self.isLocked:
-            self.unlock()
-        else:
-            self.lock()
-        return 'break'
-
-    def unlock(self, event=None):
-        """Unlock the project.
-        
-        If the project file was modified from the outside while it was 
-        locked in the application, reload it after confirmation.
-        """
-        self._internalLockFlag = False
-        self._ui.unlock()
-        self._mdl.prjFile.unlock()
-        # make it persistent
-        if self._mdl.prjFile.has_changed_on_disk():
-            if self._ui.ask_yes_no(_('File has changed on disk. Reload?')):
-                self.open_project(filePath=self._mdl.prjFile.filePath)
-        return 'break'
 
     def _view_new_element(self, newNode):
         """View the element with ID newNode.

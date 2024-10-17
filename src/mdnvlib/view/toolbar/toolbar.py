@@ -131,18 +131,6 @@ class Toolbar:
         self._saveButton.pack(side='left')
         self._saveButton.image = self._ui.icons.saveIcon
 
-        """
-        # "Lock/Unlock" button.
-        self._lockButton = ttk.Button(
-            self.buttonBar,
-            text=_('Lock/unlock'),
-            image=self._ui.icons.lockIcon,
-            command=self._ctrl.toggle_lock
-            )
-        self._lockButton.pack(side='left')
-        self._lockButton.image = self._ui.icons.lockIcon
-        """
-
         # Separator.
         tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
 
@@ -218,11 +206,8 @@ class Toolbar:
         self._addParentButton.config(state='disabled')
         self._goBackButton.config(state='disabled')
         self._goForwardButton.config(state='disabled')
-        # self._lockButton.config(state='disabled')
-        # self._manuscriptButton.config(state='disabled')
         self._deleteElementButton.config(state='disabled')
         self._saveButton.config(state='disabled')
-        # self._updateButton.config(state='disabled')
         self._viewBookButton.config(state='disabled')
         self._viewCharactersButton.config(state='disabled')
         self._viewItemsButton.config(state='disabled')
@@ -237,31 +222,14 @@ class Toolbar:
         self._addParentButton.config(state='normal')
         self._goBackButton.config(state='normal')
         self._goForwardButton.config(state='normal')
-        # self._lockButton.config(state='normal')
-        # self._manuscriptButton.config(state='normal')
         self._deleteElementButton.config(state='normal')
         self._saveButton.config(state='normal')
-        # self._updateButton.config(state='normal')
         self._viewBookButton.config(state='normal')
         self._viewCharactersButton.config(state='normal')
         self._viewItemsButton.config(state='normal')
         self._viewLocationsButton.config(state='normal')
         self._viewPlotLinesButton.config(state='normal')
         self._viewProjectnotesButton.config(state='normal')
-
-    def lock(self):
-        # self._manuscriptButton.config(state='disabled')
-        self._addElementButton.config(state='disabled')
-        self._addChildButton.config(state='disabled')
-        self._addParentButton.config(state='disabled')
-        self._deleteElementButton.config(state='disabled')
-
-    def unlock(self):
-        self._manuscriptButton.config(state='normal')
-        self._addElementButton.config(state='normal')
-        self._addChildButton.config(state='normal')
-        self._addParentButton.config(state='normal')
-        self._deleteElementButton.config(state='normal')
 
     def _set_hovertips(self):
         if not prefs['enable_hovertips']:
@@ -277,12 +245,9 @@ class Toolbar:
         Hovertip(self._addParentButton, f"{self._addParentButton['text']} ({KEYS.ADD_PARENT[1]})")
         Hovertip(self._goBackButton, self._goBackButton['text'])
         Hovertip(self._goForwardButton, self._goForwardButton['text'])
-        # Hovertip(self._lockButton, self._lockButton['text'])
-        # Hovertip(self._manuscriptButton, self._manuscriptButton['text'])
         Hovertip(self._propertiesButton, f"{self._propertiesButton['text']} ({KEYS.TOGGLE_PROPERTIES[1]})")
         Hovertip(self._saveButton, f"{self._saveButton['text']} ({KEYS.SAVE_PROJECT[1]})")
         Hovertip(self._deleteElementButton, f"{self._deleteElementButton['text']} ({KEYS.DELETE[1]})")
-        # Hovertip(self._updateButton, self._updateButton['text'])
         Hovertip(self._viewBookButton, self._viewBookButton['text'])
         Hovertip(self._viewCharactersButton, self._viewCharactersButton['text'])
         Hovertip(self._viewItemsButton, self._viewItemsButton['text'])
