@@ -16,7 +16,6 @@ from mdnvlib.importer.nv_doc_importer import NvDocImporter
 from mdnvlib.matrix.matrix_view_manager import MatrixViewManager
 from mdnvlib.model.nv_model import NvModel
 from mdnvlib.model.nv_work_file import NvWorkFile
-from mdnvlib.novx.novx_converter import NovxConverter
 from mdnvlib.novx_globals import CHAPTER_PREFIX
 from mdnvlib.novx_globals import CHARACTER_PREFIX
 from mdnvlib.novx_globals import CH_ROOT
@@ -39,7 +38,6 @@ from mdnvlib.progress.progress_view_manager import ProgressViewManager
 from mdnvlib.templates.template_manager import TemplateManager
 from mdnvlib.timeline.timeline_manager import TimelineManager
 from mdnvlib.view.nv_view import NvView
-from mdnvlib.yw7.yw7_converter import Yw7Converter
 
 
 class NvController:
@@ -101,12 +99,6 @@ class NvController:
 
         #--- Initialize the word count log view.
         self.wcLogView = ProgressViewManager(self._mdl, self._ui)
-
-        #--- Initialize the yWriter converter.
-        self.yw7Converter = Yw7Converter(self._mdl, self._ui, self)
-
-        #--- Initialize the novelibre converter.
-        self.novxConverter = NovxConverter(self._mdl, self._ui, self)
 
         self.disable_menu()
         self._ui.tv.reset_view()

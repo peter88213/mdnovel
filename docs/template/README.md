@@ -107,6 +107,13 @@ See the [online manual](https://peter88213.github.io/mdnovhelp-en/)
 
 ---
 
+## Tools
+
+- [mdnov_novx](https://github.com/peter88213/mdnov_novx) -- Converter between .mdnov and .novx file format.
+- [mdnov_yw7](https://github.com/peter88213/mdnov_yw7) -- Converter between .mdnov and .yw7 file format.
+
+---
+
 ## Credits
 
 - The logo is made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).

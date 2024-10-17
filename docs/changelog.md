@@ -5,6 +5,11 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 0.14.0
+
+- Remove .yw7 support (replaced by the external [mdnov_yw7](https://github.com/peter88213/mdnov_yw7) tool.
+- Remove .novx support (replaced by the external [mdnov_novx](https://github.com/peter88213/mdnov_novx) tool.
+
 ### Version 0.13.1
 
 - Add ID to the section list.

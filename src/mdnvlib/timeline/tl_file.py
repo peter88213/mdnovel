@@ -14,11 +14,11 @@ from mdnvlib.novx_globals import CHAPTER_PREFIX
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import SECTION_PREFIX
-from mdnvlib.novx_globals import norm_path
-from mdnvlib.xml.xml_indent import indent
-from mdnvlib.timeline.dt_helper import fix_iso_dt
 from mdnvlib.novx_globals import _
+from mdnvlib.novx_globals import norm_path
+from mdnvlib.timeline.dt_helper import fix_iso_dt
 from mdnvlib.timeline.section_event import SectionEvent
+from mdnvlib.timeline.xml_indent import indent
 import xml.etree.ElementTree as ET
 
 

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.13.1\n"
-"POT-Creation-Date: 2024-10-16 10:51:39\n"
-"PO-Revision-Date: 2024-10-16 10:51:39\n"
+"Project-Id-Version: 0.14.0\n"
+"POT-Creation-Date: 2024-10-17 10:22:40\n"
+"PO-Revision-Date: 2024-10-17 10:22:40\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -301,14 +301,8 @@ msgstr "Aus Markdown erzeugen..."
 msgid "Create from Timeline..."
 msgstr "Aus Timeline erzeugen..."
 
-msgid "Create from novx..."
-msgstr "Aus novx erzeugen..."
-
 msgid "Create from template..."
 msgstr "Aus Vorlage erzeugen..."
-
-msgid "Create from yw7..."
-msgstr "Aus yw7 erzeugen..."
 
 msgid "Create or update the timeline"
 msgstr "Den Zeitstrahl erzeugen oder aktualisieren"
@@ -475,9 +469,6 @@ msgstr "Datei"
 msgid "File already exists"
 msgstr "Datei existiert bereits"
 
-msgid "File exported"
-msgstr "Datei exportiert"
-
 msgid "File has changed on disk. Reload anyway?"
 msgstr "Die Datei wurde auf der Festplatte geändert. Trotzdem laden?"
 
@@ -486,9 +477,6 @@ msgstr "Die Datei wurde auf der Festplatte geändert. Neu laden?"
 
 msgid "File has changed on disk. Save anyway?"
 msgstr "Die Datei wurde auf der Festplatte geändert. Trotzdem speichern?"
-
-msgid "File imported"
-msgstr "Datei importiert"
 
 msgid "File not found"
 msgstr "Datei nicht gefunden"
@@ -688,9 +676,6 @@ msgstr "Kein mdnovel-Projekt zum Schreiben"
 msgid "No text available"
 msgstr "Kein Text vorhanden"
 
-msgid "No valid version found in file"
-msgstr "Keine gültige Versionsangabe in der Datei gefunden"
-
 msgid "No {} file available for this project."
 msgstr "Keine {}-Datei für dieses Projekt vorhanden."
 
@@ -777,9 +762,6 @@ msgstr "Gliederung"
 
 msgid "Overwrite"
 msgstr "Überschreiben"
-
-msgid "Overwrite existing file \"{}\"?"
-msgstr "Bestehende Datei \"{}\" überschreiben?"
 
 msgid "Part"
 msgstr "Teil"
@@ -1063,12 +1045,6 @@ msgstr "Der nachfolgende Abschnitt hat keine Zeitangabe"
 msgid "The previous section has no time set."
 msgstr "Der vorhergehende Abschnitt hat keine Zeitangabe"
 
-msgid "The project \"{}\" was created with a newer novelibre version."
-msgstr "Das Projekt \"{}\" wurde mit einer neueren Version von novelibre erzeugt."
-
-msgid "The project \"{}\" was created with an outdated novelibre version."
-msgstr "Das Projekt \"{}\" wurde mit einer veralteten Version von novelibre erzeugt."
-
 msgid "The project is locked.\nUnlock?"
 msgstr "Das Projekt is gesperrt.\nEntsperren?"
 
@@ -1210,9 +1186,6 @@ msgstr "von"
 msgid "create"
 msgstr "erzeugen"
 
-msgid "csv Plot list"
-msgstr "csv Plotliste"
-
 msgid "hh:mm"
 msgstr "hh:mm"
 
@@ -1231,9 +1204,6 @@ msgstr "neuer"
 msgid "no data"
 msgstr "keine Daten"
 
-msgid "novelibre project"
-msgstr "novelibre-Projekt"
-
 msgid "older"
 msgstr "älter"
 
@@ -1242,12 +1212,6 @@ msgstr "aktualisieren"
 
 msgid "words"
 msgstr "Wörter"
-
-msgid "yWriter 7 project"
-msgstr "yWriter 7-Projekt"
-
-msgid "yWriter seems to be open. Please close first"
-msgstr "yWriter scheint offen zu sein. Bitte schließen"
 
 msgid "years after death"
 msgstr "Jahre seit dem Todesfall"

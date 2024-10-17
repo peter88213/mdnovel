@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.13.1\n"
-"POT-Creation-Date: 2024-10-16 10:51:39\n"
+"Project-Id-Version: 0.14.0\n"
+"POT-Creation-Date: 2024-10-17 10:22:40\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -308,13 +308,7 @@ msgstr ""
 msgid "Create from Timeline..."
 msgstr ""
 
-msgid "Create from novx..."
-msgstr ""
-
 msgid "Create from template..."
-msgstr ""
-
-msgid "Create from yw7..."
 msgstr ""
 
 msgid "Create or update the timeline"
@@ -482,9 +476,6 @@ msgstr ""
 msgid "File already exists"
 msgstr ""
 
-msgid "File exported"
-msgstr ""
-
 msgid "File has changed on disk. Reload anyway?"
 msgstr ""
 
@@ -492,9 +483,6 @@ msgid "File has changed on disk. Reload?"
 msgstr ""
 
 msgid "File has changed on disk. Save anyway?"
-msgstr ""
-
-msgid "File imported"
 msgstr ""
 
 msgid "File not found"
@@ -695,9 +683,6 @@ msgstr ""
 msgid "No text available"
 msgstr ""
 
-msgid "No valid version found in file"
-msgstr ""
-
 msgid "No {} file available for this project."
 msgstr ""
 
@@ -783,9 +768,6 @@ msgid "Outline"
 msgstr ""
 
 msgid "Overwrite"
-msgstr ""
-
-msgid "Overwrite existing file \"{}\"?"
 msgstr ""
 
 msgid "Part"
@@ -1070,12 +1052,6 @@ msgstr ""
 msgid "The previous section has no time set."
 msgstr ""
 
-msgid "The project \"{}\" was created with a newer novelibre version."
-msgstr ""
-
-msgid "The project \"{}\" was created with an outdated novelibre version."
-msgstr ""
-
 msgid "The project is locked.\nUnlock?"
 msgstr ""
 
@@ -1211,9 +1187,6 @@ msgstr ""
 msgid "create"
 msgstr ""
 
-msgid "csv Plot list"
-msgstr ""
-
 msgid "hh:mm"
 msgstr ""
 
@@ -1232,9 +1205,6 @@ msgstr ""
 msgid "no data"
 msgstr ""
 
-msgid "novelibre project"
-msgstr ""
-
 msgid "older"
 msgstr ""
 
@@ -1242,12 +1212,6 @@ msgid "update"
 msgstr ""
 
 msgid "words"
-msgstr ""
-
-msgid "yWriter 7 project"
-msgstr ""
-
-msgid "yWriter seems to be open. Please close first"
 msgstr ""
 
 msgid "years after death"
