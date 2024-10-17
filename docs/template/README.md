@@ -1,6 +1,7 @@
 [![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.99.0.pyzw)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/mdnovhelp-en/)
+[![Feedback](docs/img/feedback-button.png)](https://github.com/peter88213/mdnovel/discussions/)
 
 # ![N](docs/img/nLogo32.png) mdnovel
 
