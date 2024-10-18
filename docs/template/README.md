@@ -53,6 +53,19 @@ A novel writing application using markdown.
 - If you want to visualize the course of narrative time, you can optionally install
   [Timeline version 2.4+](http://thetimelineproj.sourceforge.net/).
 
+
+## General note about the fitness for use
+
+This program is primarily a proof of concept. I do not use it for my own writing. 
+For me, it is now feature complete and I do not intend to develop it further except to fix bugs.   
+
+As far as I can tell, the program is stable and reliable. However, the section editor is rather rudimentary; 
+it has neither a search function nor a spell checker. 
+
+Also, I don't know any writers who write novels in Markdown and create their manuscripts with the help of *Pandoc*. 
+But perhaps you are the exception. In any case, I hope you enjoy playing around and experimenting with *mdnovel*.
+
+
 ## Download and install
 
 ### Default: Executable Python zip archive
