@@ -7,11 +7,9 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 import os
 from pathlib import Path
 import sys
-from tkinter import messagebox
 
 from mdnvlib.editor.editor_window import EditorWindow
 from mdnvlib.novx_globals import SECTION_PREFIX
-from mdnvlib.nv_globals import SC_EDITOR
 from mdnvlib.nv_globals import SC_EDITOR_ICON
 from mdnvlib.nv_globals import _
 import tkinter as tk
@@ -31,11 +29,13 @@ class EditManager:
         ed_font_family='Courier',
         ed_font_size=12,
         ed_line_spacing=4,
+        ed_line_width=600,
         ed_paragraph_spacing=4,
         ed_margin_x=40,
         ed_margin_y=20,
     )
     OPTIONS = dict(
+        ed_fullscreen=False,
         ed_live_wordcount=False,
     )
 

@@ -12,6 +12,7 @@ A novel writing application using markdown.
 ## Features
 
 - With *mdnovel*, extensive novels can be broken down into **parts, chapters, and sections**. 
+- *mdnovel* provides a section text editor with an optional distraction-free mode. 
 - You can store data on **characters, locations, and items** that are important for the story. 
   This includes the optional definition of a **viewpoint character** for each section. 
 - All of this appears as a clear and editable **tree** structure with listed information. 

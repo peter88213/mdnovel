@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.14.1\n"
-"POT-Creation-Date: 2024-10-17 15:56:47\n"
-"PO-Revision-Date: 2024-10-17 15:56:47\n"
+"Project-Id-Version: 0.15.0\n"
+"POT-Creation-Date: 2024-10-19 18:23:37\n"
+"PO-Revision-Date: 2024-10-19 18:23:37\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1047,6 +1047,9 @@ msgstr "Eigenschaften anzeigen/verbergen"
 
 msgid "Toggle Text viewer"
 msgstr "Textbetrachter anzeigen/verbergen"
+
+msgid "Toggle full screen mode"
+msgstr "Vollbildmodus ein-/ausschalten"
 
 msgid "Too large"
 msgstr "Zu hoch"

@@ -128,6 +128,8 @@ class EditorWindow(tk.Toplevel):
         self._mainMenu.add_cascade(label=_('View'), menu=self._viewMenu)
         for i, cm in enumerate(self.colorModes):
             self._viewMenu.add_radiobutton(label=cm[0], variable=EditorWindow.colorMode, command=self._set_editor_colors, value=i)
+        self._viewMenu.add_separator()
+        self._viewMenu.add_command(label=_('Toggle full screen mode'), accelerator=KEYS.TOGGLE_FULLSCREEN[1], command=self._toggle_fullscreen)
 
         # Add an "Edit" Submenu to the editor window.
         self._editMenu = tk.Menu(self._mainMenu, tearoff=0)
@@ -174,6 +176,13 @@ class EditorWindow(tk.Toplevel):
         self.lift()
         self.isOpen = True
 
+        # Initialize the fullscreen mode.
+        # Toggle with F11, finish with Esc.
+        if self._manager.kwargs['ed_fullscreen']:
+            self._start_fullscreen()
+        self.bind(KEYS.TOGGLE_FULLSCREEN[0], self._toggle_fullscreen)
+        self.bind(KEYS.END_FULLSCREEN[0], self._end_fullscreen)
+
     def lift(self):
         """Bring window to the foreground and set the focus to the editor box.
         
@@ -190,7 +199,8 @@ class EditorWindow(tk.Toplevel):
             return 'break'
             # keeping the editor window open due to an XML error to be fixed before saving
 
-        self._manager.kwargs['ed_win_geometry'] = self.winfo_geometry()
+        if not self.attributes('-fullscreen'):
+            self._manager.kwargs['ed_win_geometry'] = self.winfo_geometry()
         self.destroy()
         self.isOpen = False
 
@@ -203,28 +213,6 @@ class EditorWindow(tk.Toplevel):
         wc = self._sectionEditor.count_words()
         diff = wc - self._initialWc
         self._statusBar.config(text=f'{wc} {_("words")} ({diff} {_("new")})')
-
-    def _create_section(self, event=None):
-        """Create a new section after the currently edited section.
-        
-        On success, return the ID of the new section, otherwise return None.
-        """
-        self.lift()
-        # Add a section after the currently edited section.
-        thisNode = self._scId
-        sceneKind = self._mdl.novel.sections[self._scId].scene
-        if sceneKind == 1:
-            sceneKind = 2
-        elif sceneKind == 2:
-            sceneKind = 1
-        newId = self._ctrl.add_section(
-            targetNode=thisNode,
-            scType=self._mdl.novel.sections[self._scId].scType,
-            scene=sceneKind,
-            )
-        # Go to the new section.
-        self._load_next()
-        return newId
 
     def _apply_changes(self, event=None):
         """Transfer the editor content to the project, if modified."""
@@ -255,6 +243,36 @@ class EditorWindow(tk.Toplevel):
 
                     self._transfer_text(sectionText)
         return True
+
+    def _create_section(self, event=None):
+        """Create a new section after the currently edited section.
+        
+        On success, return the ID of the new section, otherwise return None.
+        """
+        self.lift()
+        # Add a section after the currently edited section.
+        thisNode = self._scId
+        sceneKind = self._mdl.novel.sections[self._scId].scene
+        if sceneKind == 1:
+            sceneKind = 2
+        elif sceneKind == 2:
+            sceneKind = 1
+        newId = self._ctrl.add_section(
+            targetNode=thisNode,
+            scType=self._mdl.novel.sections[self._scId].scType,
+            scene=sceneKind,
+            )
+        # Go to the new section.
+        self._load_next()
+        return newId
+
+    def _end_fullscreen(self, event=None):
+        self._manager.kwargs['ed_fullscreen'] = False
+        self.attributes('-fullscreen', False)
+
+        # Reset the editor margins.
+        self._sectionEditor['padx'] = self._manager.kwargs['ed_margin_x']
+        return "break"
 
     def _load_next(self, event=None):
         """Load the next section in the tree."""
@@ -353,6 +371,18 @@ class EditorWindow(tk.Toplevel):
             # Go to the new section.
             self._load_next()
 
+    def _start_fullscreen(self, event=None):
+        self._manager.kwargs['ed_fullscreen'] = True
+        self.attributes('-fullscreen', True)
+
+        # Set editor margins.
+        screenwidth = self.winfo_screenwidth()
+        linewidth = int(self._manager.kwargs['ed_line_width'])
+        padx = (screenwidth - linewidth) // 2
+        if padx > int(self._manager.kwargs['ed_margin_x']):
+            self._sectionEditor['padx'] = padx
+        return "break"
+
     def _transfer_text(self, sectionText):
         """Transfer the changed editor content to the section, if possible.
         
@@ -365,4 +395,11 @@ class EditorWindow(tk.Toplevel):
             return
 
         self._section.sectionContent = sectionText
+
+    def _toggle_fullscreen(self, event=None):
+        if self.attributes('-fullscreen'):
+            self._end_fullscreen()
+        else:
+            self._start_fullscreen()
+        return "break"
 
