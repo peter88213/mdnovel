@@ -5,6 +5,10 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 0.15.2
+
+- Fix a bug where the word count is not logged when saving the project.
+
 ### Version 0.15.1
 
 - Fix the editor's word counter.

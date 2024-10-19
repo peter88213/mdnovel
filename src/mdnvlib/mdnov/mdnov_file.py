@@ -17,7 +17,7 @@ from mdnvlib.model.plot_line import PlotLine
 from mdnvlib.model.plot_point import PlotPoint
 from mdnvlib.model.section import Section
 from mdnvlib.model.world_element import WorldElement
-from mdnvlib.novx_globals import CHAPTER_PREFIX, string_to_list
+from mdnvlib.novx_globals import CHAPTER_PREFIX
 from mdnvlib.novx_globals import CHARACTER_PREFIX
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import CR_ROOT
@@ -34,8 +34,6 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import intersection
 from mdnvlib.novx_globals import list_to_string
-from mdnvlib.novx_globals import verified_date
-from mdnvlib.novx_globals import verified_int_string
 
 
 class MdnovFile(MdFile):
@@ -309,6 +307,8 @@ $Links$Desc
         self._keep_word_count()
 
     def write(self):
+        self._update_word_count_log()
+        self.adjust_section_types()
         super().write()
         self._get_timestamp()
 
