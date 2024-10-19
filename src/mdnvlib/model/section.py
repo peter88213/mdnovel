@@ -120,8 +120,7 @@ class Section(BasicElementTags):
             if text is not None:
                 text = ADDITIONAL_WORD_LIMITS.sub(' ', text)
                 text = NO_WORD_LIMITS.sub('', text)
-                wordList = text.split()
-                self.wordCount = len(wordList)
+                self.wordCount = len(text.split())
             else:
                 self.wordCount = 0
             self.on_element_change()

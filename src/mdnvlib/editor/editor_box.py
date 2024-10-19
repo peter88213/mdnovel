@@ -71,7 +71,7 @@ class EditorBox(tk.Text):
 
     def count_words(self):
         """Return the word count."""
-        text = self.get('1.0', 'end').replace('\n', '')
+        text = self.get('1.0', 'end')
         text = ADDITIONAL_WORD_LIMITS.sub(' ', text)
         text = NO_WORD_LIMITS.sub('', text)
         return len(text.split())
