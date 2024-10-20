@@ -39,6 +39,7 @@ A novel writing application using markdown.
 - *mdnovel* is written in Python and should run on several **operating systems**, like Windows and Linux.
 - The application is ready for internationalization with GNU gettext. German translations are provided. 
 
+[Screenshots](Screenshots/)
 
 ## Requirements
 

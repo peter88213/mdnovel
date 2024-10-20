@@ -5,6 +5,10 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 0.15.3
+
+- Saving the editor window geometry before starting full screen mode.
+
 ### Version 0.15.2
 
 - Fix a bug where the word count is not logged when saving the project.

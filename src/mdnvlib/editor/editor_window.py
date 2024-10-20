@@ -372,6 +372,7 @@ class EditorWindow(tk.Toplevel):
             self._load_next()
 
     def _start_fullscreen(self, event=None):
+        self._manager.kwargs['ed_win_geometry'] = self.winfo_geometry()
         self._manager.kwargs['ed_fullscreen'] = True
         self.attributes('-fullscreen', True)
 
