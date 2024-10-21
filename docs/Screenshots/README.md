@@ -44,6 +44,12 @@ Relationship matrix.
 
 ---
 
+![Screenshot](progress01.png)
+
+Daily progress log.
+
+---
+
 ![Screenshot](timeline01.png)
 
 Timeline viewed with the free *Timeline* application.
