@@ -15,7 +15,7 @@ from mdnvlib.plugin.editor.editor_window import EditorWindow
 import tkinter as tk
 
 
-class EditManager:
+class Editor:
     """mdnovel multi-section "plain text" editor class."""
     SETTINGS = dict(
         ed_win_geometry='600x800',

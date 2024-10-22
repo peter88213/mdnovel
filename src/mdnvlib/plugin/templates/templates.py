@@ -20,7 +20,7 @@ from mdnvlib.plugin.templates.md_template import MdTemplate
 import tkinter as tk
 
 
-class TemplateManager:
+class Templates:
     """A 'Story Templates' manager class."""
     APPLICATION = _('Story Templates')
 

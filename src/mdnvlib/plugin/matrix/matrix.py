@@ -15,7 +15,7 @@ from mdnvlib.view.icons.set_icon_tk import set_icon
 import tkinter as tk
 
 
-class MatrixViewManager:
+class Matrix:
     """mdnovel relationship matrix view class."""
     APPLICATION = _('Matrix')
     SETTINGS = dict(

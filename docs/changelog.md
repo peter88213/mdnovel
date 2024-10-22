@@ -5,6 +5,10 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 0.16.1
+
+- Refactor the plugin system.
+
 ### Version 0.16.0
 
 - Refactor, reintroduce a plugin system.

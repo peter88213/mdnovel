@@ -11,7 +11,7 @@ from mdnvlib.plugin.progress.progress_viewer import ProgressViewer
 from mdnvlib.view.icons.set_icon_tk import set_icon
 
 
-class ProgressViewManager:
+class Progress:
     """mdnovel daily progress log view manager class."""
     APPLICATION = _('Daily progress log')
     SETTINGS = dict(

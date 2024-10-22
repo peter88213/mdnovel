@@ -20,7 +20,7 @@ from mdnvlib.plugin.timeline.tl_file import TlFile
 import tkinter as tk
 
 
-class TimelineManager:
+class Timeline:
     """Class for synchronization with Timeline."""
 
     APPLICATION = 'Timeline'

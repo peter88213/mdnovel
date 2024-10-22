@@ -18,7 +18,6 @@ from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.plugin.timeline.dt_helper import fix_iso_dt
 from mdnvlib.plugin.timeline.section_event import SectionEvent
-from mdnvlib.plugin.timeline.xml_indent import indent
 import xml.etree.ElementTree as ET
 
 
@@ -196,6 +195,26 @@ class TlFile(File):
             if event.contId is not None:
                 return f'{event.contId}{text}'
             return text
+
+        def indent(elem, level=0):
+            """xml pretty printer based on a code example by Fredrik Lundh.
+            
+            Although there is an ElementTree.indent() method from Python 3.9 on,
+            this routine is needed to be compatible with Python 3.6.
+            """
+            i = f'\n{level * "  "}'
+            if len(elem):
+                if not elem.text or not elem.text.strip():
+                    elem.text = f'{i}  '
+                if not elem.tail or not elem.tail.strip():
+                    elem.tail = i
+                for elem in elem:
+                    indent(elem, level + 1)
+                if not elem.tail or not elem.tail.strip():
+                    elem.tail = i
+            else:
+                if level and (not elem.tail or not elem.tail.strip()):
+                    elem.tail = i
 
         def set_view_range(dtMin, dtMax):
             """Return maximum/minimum timestamp defining the view range in Timeline.
@@ -401,3 +420,4 @@ class TlFile(File):
             elif text.startswith('['):
                 text = f' {text}'
         return text
+
