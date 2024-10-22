@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from pathlib import Path
 
 from mdnvlib.novx_globals import _
-from mdnvlib.progress.progress_viewer import ProgressViewer
+from mdnvlib.plugin.progress.progress_viewer import ProgressViewer
 from mdnvlib.view.icons.set_icon_tk import set_icon
 
 
@@ -24,7 +24,7 @@ class ProgressViewManager:
     )
     OPTIONS = {}
 
-    def __init__(self, model, view):
+    def __init__(self, model, view, controller):
         """Add a submenu to the 'Tools' menu.
         
         Positional arguments:

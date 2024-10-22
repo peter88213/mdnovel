@@ -9,8 +9,8 @@ from pathlib import Path
 import sys
 from tkinter import ttk
 
-from mdnvlib.matrix.table_manager import TableManager
 from mdnvlib.novx_globals import _
+from mdnvlib.plugin.matrix.table_manager import TableManager
 from mdnvlib.view.icons.set_icon_tk import set_icon
 import tkinter as tk
 

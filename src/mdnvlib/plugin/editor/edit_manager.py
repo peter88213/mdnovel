@@ -8,10 +8,10 @@ import os
 from pathlib import Path
 import sys
 
-from mdnvlib.editor.editor_window import EditorWindow
 from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.nv_globals import SC_EDITOR_ICON
 from mdnvlib.nv_globals import _
+from mdnvlib.plugin.editor.editor_window import EditorWindow
 import tkinter as tk
 
 

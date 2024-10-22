@@ -9,11 +9,9 @@ import sys
 from tkinter import filedialog
 
 from mdnvlib.controller.link_processor import LinkProcessor
-from mdnvlib.editor.edit_manager import EditManager
 from mdnvlib.exporter.nv_doc_exporter import NvDocExporter
 from mdnvlib.exporter.nv_html_reporter import NvHtmlReporter
 from mdnvlib.importer.nv_doc_importer import NvDocImporter
-from mdnvlib.matrix.matrix_view_manager import MatrixViewManager
 from mdnvlib.model.nv_model import NvModel
 from mdnvlib.model.nv_work_file import NvWorkFile
 from mdnvlib.novx_globals import CHAPTER_PREFIX
@@ -34,9 +32,7 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.nv_globals import prefs
-from mdnvlib.progress.progress_view_manager import ProgressViewManager
-from mdnvlib.templates.template_manager import TemplateManager
-from mdnvlib.timeline.timeline_manager import TimelineManager
+from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.view.nv_view import NvView
 
 
@@ -44,7 +40,7 @@ class NvController:
     """Controller for the mdnovel application."""
 
     def __init__(self, title, tempDir):
-        """Initialize the model, and, set up the application's user interface.
+        """Initialize the model, set up the application's user interface, and load plugins.
     
         Positional arguments:
             title: str -- Application title to be displayed at the window frame.
@@ -73,20 +69,8 @@ class NvController:
         # model depends on a data structure defined by the GUI framework.
         self._mdl.tree = self._ui.tv.tree
 
-        #--- Initialize the section editor.
-        self.sectionEditor = EditManager(self._mdl, self._ui, self)
-
-        #--- Initialize the Template manager.
-        self.templateManager = TemplateManager(self._mdl, self._ui, self)
-
-        #--- Initialize the Timeline manager.
-        self.timelineManager = TimelineManager(self._mdl, self._ui, self)
-
-        #--- Initialize the matrix view.
-        self.matrixView = MatrixViewManager(self._mdl, self._ui, self)
-
-        #--- Initialize the word count log view.
-        self.wcLogView = ProgressViewManager(self._mdl, self._ui)
+        #--- Initialize the plugins.
+        self.plugins = PluginCollection(self._mdl, self._ui, self)
 
         self.disable_menu()
         self._ui.tv.reset_view()
@@ -414,10 +398,7 @@ class NvController:
         - reset flags
         """
         self._ui.propertiesView.apply_changes()
-        self.sectionEditor.on_close()
-        self.matrixView.on_close()
-        self.wcLogView.on_close()
-        # closing the current element _view after checking for modifications
+        self.plugins.on_close()
         if self._mdl.isModified and not doNotSave:
             if self._ui.ask_yes_no(_('Save changes?')):
                 if not self.save_project():
@@ -480,18 +461,12 @@ class NvController:
     def disable_menu(self):
         """Disable menu entries when no project is open."""
         self._ui.disable_menu()
-        self.matrixView.disable_menu()
-        self.wcLogView.disable_menu()
-        self.templateManager.disable_menu()
-        self.timelineManager.disable_menu()
+        self.plugins.disable_menu()
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
         self._ui.enable_menu()
-        self.matrixView.enable_menu()
-        self.wcLogView.enable_menu()
-        self.templateManager.enable_menu()
-        self.timelineManager.enable_menu()
+        self.plugins.enable_menu()
 
     def export_document(self, suffix, **kwargs):
         """Export a document.
@@ -629,9 +604,7 @@ class NvController:
         try:
             if self._mdl.prjFile is not None:
                 self.close_project()
-            self.sectionEditor.on_quit()
-            self.matrixView.on_quit()
-            self.wcLogView.on_quit()
+            self.plugins.on_quit()
             self._ui.on_quit()
         except Exception as ex:
             self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')

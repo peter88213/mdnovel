@@ -16,7 +16,7 @@ from mdnvlib.file.doc_open import open_document
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.timeline.tl_file import TlFile
+from mdnvlib.plugin.timeline.tl_file import TlFile
 import tkinter as tk
 
 

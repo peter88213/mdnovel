@@ -7,10 +7,10 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import messagebox
 from tkinter import ttk
 
-from mdnvlib.editor.editor_box import EditorBox
 from mdnvlib.nv_globals import SC_EDITOR
 from mdnvlib.nv_globals import _
 from mdnvlib.nv_globals import open_help
+from mdnvlib.plugin.editor.editor_box import EditorBox
 from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.platform.platform_settings import PLATFORM
 import tkinter as tk

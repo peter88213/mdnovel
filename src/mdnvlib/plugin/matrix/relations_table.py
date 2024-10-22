@@ -4,13 +4,13 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mdnvlib.matrix.node import Node
 from mdnvlib.novx_globals import CH_ROOT
 from mdnvlib.novx_globals import CR_ROOT
 from mdnvlib.novx_globals import IT_ROOT
 from mdnvlib.novx_globals import LC_ROOT
 from mdnvlib.novx_globals import PL_ROOT
 from mdnvlib.novx_globals import _
+from mdnvlib.plugin.matrix.node import Node
 import tkinter as tk
 
 
