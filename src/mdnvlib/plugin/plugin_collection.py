@@ -22,12 +22,8 @@ class PluginCollection(list):
     ]
 
     def __init__(self, model, view, controller):
-        super().__init__()
-        self.load_plugins(model, view, controller)
-
-    def load_plugins(self, model, view, controller):
         """Instantiate the plugin objects and put them on the list."""
-        self.clear()
+        super().__init__()
         for plugin in self.PLUGINS:
             self.append(plugin(model, view, controller))
 
