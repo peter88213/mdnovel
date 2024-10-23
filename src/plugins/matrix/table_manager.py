@@ -7,8 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from mdnvlib.novx_globals import _
-from mdnvlib.plugin.matrix.relations_table import RelationsTable
-from mdnvlib.plugin.matrix.table_frame import TableFrame
+from plugins.matrix.relations_table import RelationsTable
+from plugins.matrix.table_frame import TableFrame
 from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.platform.platform_settings import MOUSE
 from mdnvlib.view.platform.platform_settings import PLATFORM

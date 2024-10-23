@@ -11,32 +11,33 @@ import sys
 from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.nv_globals import SC_EDITOR_ICON
 from mdnvlib.nv_globals import _
-from mdnvlib.plugin.editor.editor_window import EditorWindow
+from plugins.editor.editor_window import EditorWindow
 import tkinter as tk
 
 
 class Editor:
     """mdnovel multi-section "plain text" editor class."""
+    INI_FILENAME = 'editor.ini'
+    INI_FILEPATH = '.mdnovel/config'
     SETTINGS = dict(
-        ed_win_geometry='600x800',
-        ed_color_mode=0,
-        ed_color_bg_bright='white',
-        ed_color_fg_bright='black',
-        ed_color_bg_light='antique white',
-        ed_color_fg_light='black',
-        ed_color_bg_dark='gray20',
-        ed_color_fg_dark='light grey',
-        ed_font_family='Courier',
-        ed_font_size=12,
-        ed_line_spacing=4,
-        ed_line_width=600,
-        ed_paragraph_spacing=4,
-        ed_margin_x=40,
-        ed_margin_y=20,
+        win_geometry='600x800',
+        color_mode=0,
+        color_bg_bright='white',
+        color_fg_bright='black',
+        color_bg_light='antique white',
+        color_fg_light='black',
+        color_bg_dark='gray20',
+        color_fg_dark='light grey',
+        font_family='Courier',
+        font_size=12,
+        line_spacing=4,
+        paragraph_spacing=4,
+        margin_x=40,
+        margin_y=20,
     )
     OPTIONS = dict(
-        ed_fullscreen=False,
-        ed_live_wordcount=False,
+        fullscreen=False,
+        live_wordcount=False,
     )
 
     def __init__(self, model, view, controller):
@@ -56,10 +57,10 @@ class Editor:
         #--- Load configuration.
         try:
             homeDir = str(Path.home()).replace('\\', '/')
-            configDir = f'{homeDir}/.mdnovel/config'
+            configDir = f'{homeDir}/{self.INI_FILEPATH}'
         except:
             configDir = '.'
-        self.iniFile = f'{configDir}/editor.ini'
+        self.iniFile = f'{configDir}/{self.INI_FILENAME}'
         self.configuration = self._mdl.nvService.make_configuration(
             settings=self.SETTINGS,
             options=self.OPTIONS
@@ -85,10 +86,10 @@ class Editor:
 
         # Configure the editor box.
         EditorWindow.colorMode = tk.IntVar(
-            value=int(self.kwargs['ed_color_mode'])
+            value=int(self.kwargs['color_mode'])
             )
         EditorWindow.liveWordCount = tk.BooleanVar(
-            value=self.kwargs['ed_live_wordcount']
+            value=self.kwargs['live_wordcount']
             )
 
         # Set Key bindings.
@@ -121,8 +122,8 @@ class Editor:
         self.on_close()
 
         #--- Save project specific configuration
-        self.kwargs['ed_color_mode'] = EditorWindow.colorMode.get()
-        self.kwargs['ed_live_wordcount'] = EditorWindow.liveWordCount.get()
+        self.kwargs['color_mode'] = EditorWindow.colorMode.get()
+        self.kwargs['live_wordcount'] = EditorWindow.liveWordCount.get()
         for keyword in self.kwargs:
             if keyword in self.configuration.options:
                 self.configuration.options[keyword] = self.kwargs[keyword]
@@ -146,7 +147,7 @@ class Editor:
                     self.sectionEditors[nodeId].lift()
                     return
 
-                self.sectionEditors[nodeId] = EditorWindow(self, self._mdl, self._ui, self._ctrl, nodeId, self.kwargs['ed_win_geometry'], icon=self._icon)
+                self.sectionEditors[nodeId] = EditorWindow(self, self._mdl, self._ui, self._ctrl, nodeId, self.kwargs['win_geometry'], icon=self._icon)
 
         except IndexError:
             # Nothing selected

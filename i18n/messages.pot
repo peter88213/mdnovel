@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.16.1\n"
-"POT-Creation-Date: 2024-10-22 10:19:36\n"
+"Project-Id-Version: 0.17.0\n"
+"POT-Creation-Date: 2024-10-23 09:53:47\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -13,9 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: novxlib pgettext.py 0.3\n"
 
-
-msgid "!No {} file available for this project."
-msgstr ""
 
 msgid "\"Export\" options"
 msgstr ""
@@ -92,12 +89,6 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
-msgid "Apply changes"
-msgstr ""
-
-msgid "Apply section changes?"
-msgstr ""
-
 msgid "Ask before opening exported documents"
 msgstr ""
 
@@ -131,13 +122,7 @@ msgstr ""
 msgid "Brief synopsis"
 msgstr ""
 
-msgid "Bright mode"
-msgstr ""
-
 msgid "Broken link fixed"
-msgstr ""
-
-msgid "Can not process file"
 msgstr ""
 
 msgid "Cancel"
@@ -147,9 +132,6 @@ msgid "Cannot convert date/days"
 msgstr ""
 
 msgid "Cannot create the element at this position"
-msgstr ""
-
-msgid "Cannot determine file date."
 msgstr ""
 
 msgid "Cannot generate date/time"
@@ -170,9 +152,6 @@ msgstr ""
 msgid "Cannot read file"
 msgstr ""
 
-msgid "Cannot save template"
-msgstr ""
-
 msgid "Cannot save the project"
 msgstr ""
 
@@ -183,9 +162,6 @@ msgid "Change Level"
 msgstr ""
 
 msgid "Change icon size"
-msgstr ""
-
-msgid "Change theme"
 msgstr ""
 
 msgid "Chapter"
@@ -281,22 +257,7 @@ msgstr ""
 msgid "Convert days to dates"
 msgstr ""
 
-msgid "Copy"
-msgstr ""
-
 msgid "Create from Markdown..."
-msgstr ""
-
-msgid "Create from Timeline..."
-msgstr ""
-
-msgid "Create from template..."
-msgstr ""
-
-msgid "Create or update the timeline"
-msgstr ""
-
-msgid "Create section"
 msgstr ""
 
 msgid "Created {0} on {1}."
@@ -306,18 +267,6 @@ msgid "Critical Error"
 msgstr ""
 
 msgid "Ctrl"
-msgstr ""
-
-msgid "Cut"
-msgstr ""
-
-msgid "Daily"
-msgstr ""
-
-msgid "Daily progress log"
-msgstr ""
-
-msgid "Dark mode"
 msgstr ""
 
 msgid "Date"
@@ -378,12 +327,6 @@ msgid "Draft"
 msgstr ""
 
 msgid "Duration"
-msgstr ""
-
-msgid "Edit"
-msgstr ""
-
-msgid "Emphasis"
 msgstr ""
 
 msgid "Empty project"
@@ -473,16 +416,10 @@ msgstr ""
 msgid "File written"
 msgstr ""
 
-msgid "Format"
-msgstr ""
-
 msgid "Forward"
 msgstr ""
 
 msgid "Full name"
-msgstr ""
-
-msgid "GUI Theme"
 msgstr ""
 
 msgid "Generate"
@@ -521,9 +458,6 @@ msgstr ""
 msgid "Image file"
 msgstr ""
 
-msgid "Information"
-msgstr ""
-
 msgid "Input rejected"
 msgstr ""
 
@@ -551,16 +485,7 @@ msgstr ""
 msgid "Latest backup successfully restored."
 msgstr ""
 
-msgid "Light mode"
-msgstr ""
-
 msgid "Links"
-msgstr ""
-
-msgid "Live update"
-msgstr ""
-
-msgid "Load"
 msgstr ""
 
 msgid "Location"
@@ -587,9 +512,6 @@ msgstr ""
 msgid "Markdown document"
 msgstr ""
 
-msgid "Matrix"
-msgstr ""
-
 msgid "Minor Character"
 msgstr ""
 
@@ -597,9 +519,6 @@ msgid "Minutes"
 msgstr ""
 
 msgid "Moon phase"
-msgstr ""
-
-msgid "Move the text from the cursor position to the end into a new section"
 msgstr ""
 
 msgid "N"
@@ -662,9 +581,6 @@ msgstr ""
 msgid "No text available"
 msgstr ""
 
-msgid "No {} file available for this project."
-msgstr ""
-
 msgid "None"
 msgstr ""
 
@@ -707,13 +623,7 @@ msgstr ""
 msgid "Open Project folder"
 msgstr ""
 
-msgid "Open Timeline"
-msgstr ""
-
 msgid "Open existing"
-msgstr ""
-
-msgid "Open folder"
 msgstr ""
 
 msgid "Open installation folder"
@@ -761,9 +671,6 @@ msgstr ""
 msgid "Part number suffix"
 msgstr ""
 
-msgid "Paste"
-msgstr ""
-
 msgid "Peak em. moment"
 msgstr ""
 
@@ -771,9 +678,6 @@ msgid "Peak emotional moment"
 msgstr ""
 
 msgid "Pick Mode (click here or press Esc to exit)"
-msgstr ""
-
-msgid "Plain"
 msgstr ""
 
 msgid "Please enter a reference date."
@@ -890,12 +794,6 @@ msgstr ""
 msgid "Save changes?"
 msgstr ""
 
-msgid "Save the project and update it?"
-msgstr ""
-
-msgid "Save the project and {} the timeline?"
-msgstr ""
-
 msgid "Scene"
 msgstr ""
 
@@ -909,9 +807,6 @@ msgid "Section descriptions"
 msgstr ""
 
 msgid "Section list"
-msgstr ""
-
-msgid "Sections"
 msgstr ""
 
 msgid "Sections belonging to plot line"
@@ -965,13 +860,7 @@ msgstr ""
 msgid "Source document deleted"
 msgstr ""
 
-msgid "Split at cursor position"
-msgstr ""
-
 msgid "Stage"
-msgstr ""
-
-msgid "Stages"
 msgstr ""
 
 msgid "Start"
@@ -983,25 +872,10 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-msgid "Story Template"
-msgstr ""
-
-msgid "Story Templates"
-msgstr ""
-
 msgid "Story structure"
 msgstr ""
 
-msgid "Strong emphasis"
-msgstr ""
-
 msgid "Tags"
-msgstr ""
-
-msgid "Template loading aborted"
-msgstr ""
-
-msgid "Template saved."
 msgstr ""
 
 msgid "Text"
@@ -1031,9 +905,6 @@ msgstr ""
 msgid "The sections have different viewpoints"
 msgstr ""
 
-msgid "Theme Changer"
-msgstr ""
-
 msgid "There is no previous section"
 msgstr ""
 
@@ -1053,9 +924,6 @@ msgid "Toggle Properties"
 msgstr ""
 
 msgid "Toggle Text viewer"
-msgstr ""
-
-msgid "Toggle full screen mode"
 msgstr ""
 
 msgid "Too large"
@@ -1085,16 +953,7 @@ msgstr ""
 msgid "Unused"
 msgstr ""
 
-msgid "Update"
-msgstr ""
-
-msgid "Update the project"
-msgstr ""
-
 msgid "Update the project?"
-msgstr ""
-
-msgid "Update the timeline?"
 msgstr ""
 
 msgid "Use Roman chapter numbers"
@@ -1110,9 +969,6 @@ msgid "View"
 msgstr ""
 
 msgid "Viewpoint"
-msgstr ""
-
-msgid "With unused"
 msgstr ""
 
 msgid "Word count"
@@ -1157,9 +1013,6 @@ msgstr ""
 msgid "by"
 msgstr ""
 
-msgid "create"
-msgstr ""
-
 msgid "hh:mm"
 msgstr ""
 
@@ -1169,22 +1022,7 @@ msgstr ""
 msgid "mdnovel project"
 msgstr ""
 
-msgid "new"
-msgstr ""
-
-msgid "newer"
-msgstr ""
-
 msgid "no data"
-msgstr ""
-
-msgid "older"
-msgstr ""
-
-msgid "update"
-msgstr ""
-
-msgid "words"
 msgstr ""
 
 msgid "years after death"
@@ -1197,9 +1035,6 @@ msgid "{0} (last saved on {1})"
 msgstr ""
 
 msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
-msgstr ""
-
-msgid "{0} file is {1} than the mdnovel project.\n (last saved on {2})"
 msgstr ""
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"

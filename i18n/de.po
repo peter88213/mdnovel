@@ -3,18 +3,15 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.16.1\n"
-"POT-Creation-Date: 2024-10-22 10:19:36\n"
-"PO-Revision-Date: 2024-10-22 10:19:36\n"
+"Project-Id-Version: 0.17.0\n"
+"POT-Creation-Date: 2024-10-23 09:53:47\n"
+"PO-Revision-Date: 2024-10-23 09:53:47\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-
-msgid "!No {} file available for this project."
-msgstr "!Keine {}-Datei für dieses Projekt vorhanden."
 
 msgid "1st Edit"
 msgstr "1. Überarbeitung"
@@ -85,12 +82,6 @@ msgstr "An den vorherigen Abschnitt anhängen"
 msgid "Apply"
 msgstr "Anwenden"
 
-msgid "Apply changes"
-msgstr "Änderungen übernehmen"
-
-msgid "Apply section changes?"
-msgstr "Änderungen am Abschnitt übernehmen?"
-
 msgid "Ask before opening exported documents"
 msgstr "Vor dem Öffnen exportierter Dokumente nachfragen"
 
@@ -124,14 +115,8 @@ msgstr "Buch"
 msgid "Brief synopsis"
 msgstr "Kurzzusammenfassung"
 
-msgid "Bright mode"
-msgstr "Heller Modus"
-
 msgid "Broken link fixed"
 msgstr "Defekten Link korrigiert"
-
-msgid "Can not process file"
-msgstr "Kann Datei nicht verarbeiten"
 
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -141,9 +126,6 @@ msgstr "Kann Datum/Tage nicht umwandeln"
 
 msgid "Cannot create the element at this position"
 msgstr "Kann das Element nicht an dieser Position erzeugen"
-
-msgid "Cannot determine file date."
-msgstr "Das Dateidatum ist nicht zu ermitteln."
 
 msgid "Cannot generate date/time"
 msgstr "Kann Datum/Zeit nicht erzeugen"
@@ -163,9 +145,6 @@ msgstr "Kann Datei nicht überschreiben"
 msgid "Cannot read file"
 msgstr "Kann Datei nicht lesen"
 
-msgid "Cannot save template"
-msgstr "Kann Vorlage nicht speichern"
-
 msgid "Cannot save the project"
 msgstr "Kann das Projekt nicht abspeichern"
 
@@ -177,9 +156,6 @@ msgstr "Ebene ändern"
 
 msgid "Change icon size"
 msgstr "Symbolgröße ändern"
-
-msgid "Change theme"
-msgstr "Designtheme wechseln"
 
 msgid "Chapter"
 msgstr "Kapitel"
@@ -274,23 +250,8 @@ msgstr "Datum in Tage umwandeln"
 msgid "Convert days to dates"
 msgstr "Tage in Datum umwandeln"
 
-msgid "Copy"
-msgstr "Kopieren"
-
 msgid "Create from Markdown..."
 msgstr "Aus Markdown erzeugen..."
-
-msgid "Create from Timeline..."
-msgstr "Aus Timeline erzeugen..."
-
-msgid "Create from template..."
-msgstr "Aus Vorlage erzeugen..."
-
-msgid "Create or update the timeline"
-msgstr "Den Zeitstrahl erzeugen oder aktualisieren"
-
-msgid "Create section"
-msgstr "Abschnitt erzeugen"
 
 msgid "Created {0} on {1}."
 msgstr "{0} erzeugt am {1}."
@@ -300,18 +261,6 @@ msgstr "Programmfehler"
 
 msgid "Ctrl"
 msgstr "Strg"
-
-msgid "Cut"
-msgstr "Ausschneiden"
-
-msgid "Daily"
-msgstr "Täglich"
-
-msgid "Daily progress log"
-msgstr "Täglicher Schreibfortschritt"
-
-msgid "Dark mode"
-msgstr "Dunkler Modus"
 
 msgid "Date"
 msgstr "Datum"
@@ -372,12 +321,6 @@ msgstr "Entwurf"
 
 msgid "Duration"
 msgstr "Dauer"
-
-msgid "Edit"
-msgstr "Bearbeiten"
-
-msgid "Emphasis"
-msgstr "Betont"
 
 msgid "Empty project"
 msgstr "Leeres Projekt"
@@ -466,17 +409,11 @@ msgstr "Dateityp wird nicht unterstützt"
 msgid "File written"
 msgstr "Datei gespeichert"
 
-msgid "Format"
-msgstr "Format"
-
 msgid "Forward"
 msgstr "Vor"
 
 msgid "Full name"
 msgstr "Vollst. Name"
-
-msgid "GUI Theme"
-msgstr "GUI-Theme"
 
 msgid "Generate"
 msgstr "Erzeugen"
@@ -514,9 +451,6 @@ msgstr "Unzulässiger Wert"
 msgid "Image file"
 msgstr "Bilddatei"
 
-msgid "Information"
-msgstr "Information"
-
 msgid "Input rejected"
 msgstr "Eingabe abgelehnt"
 
@@ -544,17 +478,8 @@ msgstr "Große Symbole in der Werkzeugleiste"
 msgid "Latest backup successfully restored."
 msgstr "Letzte Sicherung erfolgreich wiederhergestellt."
 
-msgid "Light mode"
-msgstr "Lichter Modus"
-
 msgid "Links"
 msgstr "Links"
-
-msgid "Live update"
-msgstr "Laufende Aktualisierung"
-
-msgid "Load"
-msgstr "Laden"
 
 msgid "Location"
 msgstr "Schauplatz"
@@ -580,9 +505,6 @@ msgstr "Manuskript"
 msgid "Markdown document"
 msgstr "Markdown-Dokument"
 
-msgid "Matrix"
-msgstr "Matrix"
-
 msgid "Minor Character"
 msgstr "Nebenfigur"
 
@@ -591,9 +513,6 @@ msgstr "Minuten"
 
 msgid "Moon phase"
 msgstr "Mondphase"
-
-msgid "Move the text from the cursor position to the end into a new section"
-msgstr "Den Text von der Cursorposition bis zum Ende in einen neuen Abschnitt verschieben"
 
 msgid "N"
 msgstr "N"
@@ -655,9 +574,6 @@ msgstr "Kein mdnovel-Projekt zum Schreiben"
 msgid "No text available"
 msgstr "Kein Text vorhanden"
 
-msgid "No {} file available for this project."
-msgstr "Keine {}-Datei für dieses Projekt vorhanden."
-
 msgid "None"
 msgstr "Keiner"
 
@@ -700,14 +616,8 @@ msgstr "Öffnen"
 msgid "Open Project folder"
 msgstr "Projektordner öffnen"
 
-msgid "Open Timeline"
-msgstr "Timeline öffnen"
-
 msgid "Open existing"
 msgstr "Bestehendes öffnen"
-
-msgid "Open folder"
-msgstr "Ordner öffnen"
 
 msgid "Open installation folder"
 msgstr "Installationsordner öffnen"
@@ -754,9 +664,6 @@ msgstr "Präfix Teilenummer"
 msgid "Part number suffix"
 msgstr "Suffix Teilenummer"
 
-msgid "Paste"
-msgstr "Einfügen"
-
 msgid "Peak em. moment"
 msgstr "Em. Höhepunkt"
 
@@ -765,9 +672,6 @@ msgstr "Emotionaler Höhepunkt"
 
 msgid "Pick Mode (click here or press Esc to exit)"
 msgstr "Auswahlmodus (zum Verlassen hier klicken oder Esc drücken)"
-
-msgid "Plain"
-msgstr "Unformatiert"
 
 msgid "Please enter a reference date."
 msgstr "Geben Sie bitte ein Bezugsdatum ein."
@@ -883,12 +787,6 @@ msgstr "Speichern unter..."
 msgid "Save changes?"
 msgstr "Änderungen speichern?"
 
-msgid "Save the project and update it?"
-msgstr "Projekt speichern und aktualisieren?"
-
-msgid "Save the project and {} the timeline?"
-msgstr "Projekt sichern und den Zeitstrahl {}?"
-
 msgid "Scene"
 msgstr "Szene"
 
@@ -903,9 +801,6 @@ msgstr "Abschnittsbeschreibungen"
 
 msgid "Section list"
 msgstr "Abschnittsliste"
-
-msgid "Sections"
-msgstr "Abschnitte"
 
 msgid "Sections belonging to plot line"
 msgstr "Abschnitte gehören zur Plotlinie"
@@ -958,14 +853,8 @@ msgstr "Liste anzeigen"
 msgid "Source document deleted"
 msgstr "Quelldokument gelöscht"
 
-msgid "Split at cursor position"
-msgstr "An der Cursorposition teilen"
-
 msgid "Stage"
 msgstr "Stadium"
-
-msgid "Stages"
-msgstr "Stadien"
 
 msgid "Start"
 msgstr "Beginn"
@@ -976,26 +865,11 @@ msgstr "Anfangswert"
 msgid "Status"
 msgstr "Status"
 
-msgid "Story Template"
-msgstr "Erzählstruktur-Vorlage"
-
-msgid "Story Templates"
-msgstr "Erzählstruktur-Vorlagen"
-
 msgid "Story structure"
 msgstr "Erzählstruktur"
 
-msgid "Strong emphasis"
-msgstr "Stark betont"
-
 msgid "Tags"
 msgstr "Tags"
-
-msgid "Template loading aborted"
-msgstr "Laden der Vorlage abgebrochen"
-
-msgid "Template saved."
-msgstr "Vorlage gespeichert"
 
 msgid "Text"
 msgstr "Text"
@@ -1024,9 +898,6 @@ msgstr "Die Abschnitte sind nicht vom selben Typ"
 msgid "The sections have different viewpoints"
 msgstr "Die Abschnitte haben unterschiedliche Perspektiven"
 
-msgid "Theme Changer"
-msgstr "Theme-Wechsler"
-
 msgid "There is no previous section"
 msgstr "Es gibt keinen vorhergehenden Abschnitt"
 
@@ -1047,9 +918,6 @@ msgstr "Eigenschaften anzeigen/verbergen"
 
 msgid "Toggle Text viewer"
 msgstr "Textbetrachter anzeigen/verbergen"
-
-msgid "Toggle full screen mode"
-msgstr "Vollbildmodus ein-/ausschalten"
 
 msgid "Too large"
 msgstr "Zu hoch"
@@ -1078,17 +946,8 @@ msgstr "Projekt ohne Titel"
 msgid "Unused"
 msgstr "Unbenutzt"
 
-msgid "Update"
-msgstr "Aktualisieren"
-
-msgid "Update the project"
-msgstr "Das Projekt aktualisieren"
-
 msgid "Update the project?"
 msgstr "Das Projekt aktualisieren?"
-
-msgid "Update the timeline?"
-msgstr "Den Zeitstrahl aktualisieren?"
 
 msgid "Use Roman chapter numbers"
 msgstr "Römische Kapitelnummern"
@@ -1104,9 +963,6 @@ msgstr "Ansicht"
 
 msgid "Viewpoint"
 msgstr "Perspektive"
-
-msgid "With unused"
-msgstr "Mit unbenutzten"
 
 msgid "Word count"
 msgstr "Wortzählung"
@@ -1156,9 +1012,6 @@ msgstr "\"Ansicht\"-Optionen"
 msgid "by"
 msgstr "von"
 
-msgid "create"
-msgstr "erzeugen"
-
 msgid "hh:mm"
 msgstr "hh:mm"
 
@@ -1168,23 +1021,8 @@ msgstr "zuletzt gespeichert:"
 msgid "mdnovel project"
 msgstr "mdnovel-Projekt"
 
-msgid "new"
-msgstr "neu"
-
-msgid "newer"
-msgstr "neuer"
-
 msgid "no data"
 msgstr "keine Daten"
-
-msgid "older"
-msgstr "älter"
-
-msgid "update"
-msgstr "aktualisieren"
-
-msgid "words"
-msgstr "Wörter"
 
 msgid "years after death"
 msgstr "Jahre seit dem Todesfall"
@@ -1197,9 +1035,6 @@ msgstr "{0} (zuletzt gespeichert: {1})"
 
 msgid "{0} already exists.\n(last saved on {2})\n{1}.\n\nOpen this document instead of overwriting it?"
 msgstr "{0} gibt es schon.\n(zuletzt gespeichert: {2})\n{1}.\n\nDieses Dokument öffnen, statt es zu überschreiben?"
-
-msgid "{0} file is {1} than the mdnovel project.\n (last saved on {2})"
-msgstr "{0}-Datei ist {1} als das mdnovel-Projekt.\n (zuletzt gespeichert: {2})"
 
 msgid "{0} parts, {1} chapters, {2} sections, {3} words"
 msgstr "{0} Teile, {1} Kapitel, {2} Abschnitte, {3} Wörter"

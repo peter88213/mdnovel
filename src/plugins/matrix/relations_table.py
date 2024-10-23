@@ -10,7 +10,7 @@ from mdnvlib.novx_globals import IT_ROOT
 from mdnvlib.novx_globals import LC_ROOT
 from mdnvlib.novx_globals import PL_ROOT
 from mdnvlib.novx_globals import _
-from mdnvlib.plugin.matrix.node import Node
+from plugins.matrix.node import Node
 import tkinter as tk
 
 

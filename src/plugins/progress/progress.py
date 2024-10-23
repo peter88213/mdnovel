@@ -7,20 +7,22 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from pathlib import Path
 
 from mdnvlib.novx_globals import _
-from mdnvlib.plugin.progress.progress_viewer import ProgressViewer
+from plugins.progress.progress_viewer import ProgressViewer
 from mdnvlib.view.icons.set_icon_tk import set_icon
 
 
 class Progress:
     """mdnovel daily progress log view manager class."""
-    APPLICATION = _('Daily progress log')
+    FEATURE = _('Daily progress log')
+    INI_FILENAME = 'progress.ini'
+    INI_FILEPATH = '.mdnovel/config'
     SETTINGS = dict(
-        wc_win_geomety='510x440',
-        wc_date_width=100,
-        wc_wordcount_width=100,
-        wc_wordcount_delta_width=100,
-        wc_totalcount_width=100,
-        wc_totalcount_delta_width=100,
+        window_geometry='510x440',
+        date_width=100,
+        wordcount_width=100,
+        wordcount_delta_width=100,
+        totalcount_width=100,
+        totalcount_delta_width=100,
     )
     OPTIONS = {}
 
@@ -38,10 +40,10 @@ class Progress:
         #--- Load configuration.
         try:
             homeDir = str(Path.home()).replace('\\', '/')
-            configDir = f'{homeDir}/.mdnovel/config'
+            configDir = f'{homeDir}/{self.INI_FILEPATH}'
         except:
             configDir = '.'
-        self.iniFile = f'{configDir}/progress.ini'
+        self.iniFile = f'{configDir}/{self.INI_FILENAME}'
         self.configuration = self._mdl.nvService.make_configuration(
             settings=self.SETTINGS,
             options=self.OPTIONS
@@ -52,16 +54,16 @@ class Progress:
         self.kwargs.update(self.configuration.options)
 
         # Create an entry in the Tools menu.
-        self._ui.toolsMenu.add_command(label=self.APPLICATION, command=self._start_viewer)
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._ui.toolsMenu.add_command(label=self.FEATURE, command=self._start_viewer)
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='disabled')
 
     def disable_menu(self):
         """Disable menu entries when no project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='disabled')
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='normal')
 
     def on_close(self):
         """Close the window."""
@@ -92,6 +94,6 @@ class Progress:
                 return
 
         self._progress_viewer = ProgressViewer(self, self._mdl)
-        self._progress_viewer.title(f'{self._mdl.novel.title} - {self.APPLICATION}')
+        self._progress_viewer.title(f'{self._mdl.novel.title} - {self.FEATURE}')
         set_icon(self._progress_viewer, icon='wLogo32', default=False)
 

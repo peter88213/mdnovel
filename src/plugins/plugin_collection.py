@@ -4,11 +4,12 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mdnvlib.plugin.editor.editor import Editor
-from mdnvlib.plugin.matrix.matrix import Matrix
-from mdnvlib.plugin.progress.progress import Progress
-from mdnvlib.plugin.templates.templates import Templates
-from mdnvlib.plugin.timeline.timeline import Timeline
+from plugins.editor.editor import Editor
+from plugins.matrix.matrix import Matrix
+from plugins.progress.progress import Progress
+from plugins.templates.templates import Templates
+from plugins.themes.themes import Themes
+from plugins.timeline.timeline import Timeline
 
 
 class PluginCollection(list):
@@ -19,6 +20,7 @@ class PluginCollection(list):
         Timeline,
         Matrix,
         Progress,
+        Themes,
     ]
 
     def __init__(self, model, view, controller):

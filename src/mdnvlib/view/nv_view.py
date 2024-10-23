@@ -45,7 +45,6 @@ from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.platform.platform_settings import MOUSE
 from mdnvlib.view.platform.platform_settings import PLATFORM
 from mdnvlib.view.properties_window.properties_viewer import PropertiesViewer
-from mdnvlib.view.themes.theme_manager import ThemeManager
 from mdnvlib.view.toolbar.toolbar import Toolbar
 from mdnvlib.view.tree_window.tree_viewer import TreeViewer
 from mdnvlib.widgets.nv_simpledialog import askinteger
@@ -154,9 +153,6 @@ class NvView:
 
         #--- tk root event bindings.
         self._bind_events()
-
-        #--- Initialize the theme manager.
-        self.themeManager = ThemeManager(self, self._ctrl)
 
     def ask_yes_no(self, text, title=None):
         """Query yes or no with a pop-up box.

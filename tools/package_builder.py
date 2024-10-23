@@ -126,6 +126,13 @@ setuplib.main(False)
         inliner.run(
             source,
             target,
+            'plugins',
+            '../../mdnovel/src/',
+            copynovxlib=copynovxlib,
+            )
+        inliner.run(
+            target,
+            target,
             'nvlib',
             '../../mdnovel/src/',
             copynovxlib=copynovxlib,

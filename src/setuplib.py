@@ -153,7 +153,7 @@ def fix_ini(iniFile):
 
     with open(iniFile, 'r') as f:
         text = f.read()
-    if 'ed_color_bg_bright = black' in text:
+    if 'color_bg_bright = black' in text:
         output('Removing outdated configuration file ...')
         os.remove(iniFile)
 

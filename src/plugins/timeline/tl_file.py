@@ -16,8 +16,8 @@ from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.plugin.timeline.dt_helper import fix_iso_dt
-from mdnvlib.plugin.timeline.section_event import SectionEvent
+from plugins.timeline.dt_helper import fix_iso_dt
+from plugins.timeline.section_event import SectionEvent
 import xml.etree.ElementTree as ET
 
 

@@ -16,13 +16,13 @@ from tkinter import messagebox
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.plugin.templates.md_template import MdTemplate
+from plugins.templates.md_template import MdTemplate
 import tkinter as tk
 
 
 class Templates:
     """A 'Story Templates' manager class."""
-    APPLICATION = _('Story Templates')
+    FEATURE = _('Story Templates')
 
     def disable_menu(self):
         """Disable menu entries when no project is open."""
@@ -65,7 +65,7 @@ class Templates:
         self._ui.newMenu.add_command(label=_('Create from template...'), command=self._new_project)
 
         # Create Tools menu entry.
-        self._ui.toolsMenu.add_cascade(label=self.APPLICATION, menu=self._templatesMenu)
+        self._ui.toolsMenu.add_cascade(label=self.FEATURE, menu=self._templatesMenu)
         self._fileTypes = [(MdTemplate.DESCRIPTION, MdTemplate.EXTENSION)]
 
     def _load_template(self):

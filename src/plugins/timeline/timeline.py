@@ -16,14 +16,16 @@ from mdnvlib.file.doc_open import open_document
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.plugin.timeline.tl_file import TlFile
+from plugins.timeline.tl_file import TlFile
 import tkinter as tk
 
 
 class Timeline:
     """Class for synchronization with Timeline."""
 
-    APPLICATION = 'Timeline'
+    FEATURE = 'Timeline'
+    INI_FILENAME = 'timeline.ini'
+    INI_FILEPATH = '.mdnovel/config'
     SETTINGS = dict(
         section_label='Section',
         section_color='170,240,160',
@@ -45,8 +47,8 @@ class Timeline:
 
         # Create a submenu in the Tools menu.
         self._timelineMenu = tk.Menu(self._ui.toolsMenu, tearoff=0)
-        self._ui.toolsMenu.add_cascade(label=self.APPLICATION, menu=self._timelineMenu)
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._ui.toolsMenu.add_cascade(label=self.FEATURE, menu=self._timelineMenu)
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='disabled')
         self._timelineMenu.add_command(label=_('Information'), command=self._info)
         self._timelineMenu.add_separator()
         self._timelineMenu.add_command(label=_('Create or update the timeline'), command=self._export_from_mdnov)
@@ -65,7 +67,7 @@ class Timeline:
         
         Overrides the superclass method.
         """
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='disabled')
         self._timelineButton.config(state='disabled')
 
     def enable_menu(self):
@@ -73,7 +75,7 @@ class Timeline:
         
         Overrides the superclass method.
         """
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='normal')
         self._timelineButton.config(state='normal')
 
     def _configure_toolbar(self):
@@ -199,10 +201,10 @@ class Timeline:
             sourceDir = '.'
         try:
             homeDir = str(Path.home()).replace('\\', '/')
-            pluginCnfDir = f'{homeDir}/.mdnovel/config'
+            pluginCnfDir = f'{homeDir}/{self.INI_FILEPATH}'
         except:
             pluginCnfDir = '.'
-        iniFiles = [f'{pluginCnfDir}/timeline.ini', f'{sourceDir}/timeline.ini']
+        iniFiles = [f'{pluginCnfDir}/{self.INI_FILENAME}', f'{sourceDir}/{self.INI_FILENAME}']
         configuration = self._mdl.nvService.make_configuration(
             settings=self.SETTINGS,
             options=self.OPTIONS
@@ -223,7 +225,7 @@ class Timeline:
         self._ui.propertiesView.apply_changes()
         timelinePath = f'{os.path.splitext(self._mdl.prjFile.filePath)[0]}{TlFile.EXTENSION}'
         if not os.path.isfile(timelinePath):
-            self._ui.set_status(_('!No {} file available for this project.').format(self.APPLICATION))
+            self._ui.set_status(_('!No {} file available for this project.').format(self.FEATURE))
             return
 
         if self._mdl.isModified and not self._ui.ask_yes_no(_('Save the project and update it?')):
@@ -262,12 +264,12 @@ class Timeline:
                 else:
                     cmp = _('older')
                 fileDate = datetime.fromtimestamp(timestamp).strftime('%c')
-                message = _('{0} file is {1} than the mdnovel project.\n (last saved on {2})').format(self.APPLICATION, cmp, fileDate)
+                message = _('{0} file is {1} than the mdnovel project.\n (last saved on {2})').format(self.FEATURE, cmp, fileDate)
             except:
                 message = _('Cannot determine file date.')
         else:
-            message = _('No {} file available for this project.').format(self.APPLICATION)
-        messagebox.showinfo(self.APPLICATION, message)
+            message = _('No {} file available for this project.').format(self.FEATURE)
+        messagebox.showinfo(self.FEATURE, message)
 
     def _launch_application(self):
         """Launch Timeline with the current project."""
@@ -276,5 +278,5 @@ class Timeline:
             if os.path.isfile(timelinePath):
                 open_document(timelinePath)
             else:
-                self._ui.set_status(_('!No {} file available for this project.').format(self.APPLICATION))
+                self._ui.set_status(_('!No {} file available for this project.').format(self.FEATURE))
 

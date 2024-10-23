@@ -32,8 +32,8 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.nv_globals import prefs
-from mdnvlib.plugin.plugin_collection import PluginCollection
 from mdnvlib.view.nv_view import NvView
+from plugins.plugin_collection import PluginCollection
 
 
 class NvController:

@@ -10,7 +10,7 @@ from tkinter import ttk
 from mdnvlib.nv_globals import SC_EDITOR
 from mdnvlib.nv_globals import _
 from mdnvlib.nv_globals import open_help
-from mdnvlib.plugin.editor.editor_box import EditorBox
+from plugins.editor.editor_box import EditorBox
 from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.platform.platform_settings import PLATFORM
 import tkinter as tk
@@ -41,18 +41,18 @@ class EditorWindow(tk.Toplevel):
         self.colorModes = [
             (
                 _('Bright mode'),
-                manager.kwargs['ed_color_fg_bright'],
-                manager.kwargs['ed_color_bg_bright'],
+                manager.kwargs['color_fg_bright'],
+                manager.kwargs['color_bg_bright'],
                 ),
             (
                 _('Light mode'),
-                manager.kwargs['ed_color_fg_light'],
-                manager.kwargs['ed_color_bg_light'],
+                manager.kwargs['color_fg_light'],
+                manager.kwargs['color_bg_light'],
                 ),
             (
                 _('Dark mode'),
-                manager.kwargs['ed_color_fg_dark'],
-                manager.kwargs['ed_color_bg_dark'],
+                manager.kwargs['color_fg_dark'],
+                manager.kwargs['color_bg_dark'],
                 ),
             ]
         # (name, foreground, background) tuples for color modes.
@@ -79,12 +79,12 @@ class EditorWindow(tk.Toplevel):
             wrap='word',
             undo=True,
             autoseparators=True,
-            spacing1=self._manager.kwargs['ed_paragraph_spacing'],
-            spacing2=self._manager.kwargs['ed_line_spacing'],
+            spacing1=self._manager.kwargs['paragraph_spacing'],
+            spacing2=self._manager.kwargs['line_spacing'],
             maxundo=-1,
-            padx=self._manager.kwargs['ed_margin_x'],
-            pady=self._manager.kwargs['ed_margin_y'],
-            font=(self._manager.kwargs['ed_font_family'], self._manager.kwargs['ed_font_size']),
+            padx=self._manager.kwargs['margin_x'],
+            pady=self._manager.kwargs['margin_y'],
+            font=(self._manager.kwargs['font_family'], self._manager.kwargs['font_size']),
             )
         self._sectionEditor.pack(expand=True, fill='both')
         self._sectionEditor.pack_propagate(0)
@@ -178,7 +178,7 @@ class EditorWindow(tk.Toplevel):
 
         # Initialize the fullscreen mode.
         # Toggle with F11, finish with Esc.
-        if self._manager.kwargs['ed_fullscreen']:
+        if self._manager.kwargs['fullscreen']:
             self._start_fullscreen()
         self.bind(KEYS.TOGGLE_FULLSCREEN[0], self._toggle_fullscreen)
         self.bind(KEYS.END_FULLSCREEN[0], self._end_fullscreen)
@@ -200,7 +200,7 @@ class EditorWindow(tk.Toplevel):
             # keeping the editor window open due to an XML error to be fixed before saving
 
         if not self.attributes('-fullscreen'):
-            self._manager.kwargs['ed_win_geometry'] = self.winfo_geometry()
+            self._manager.kwargs['win_geometry'] = self.winfo_geometry()
         self.destroy()
         self.isOpen = False
 
@@ -267,11 +267,11 @@ class EditorWindow(tk.Toplevel):
         return newId
 
     def _end_fullscreen(self, event=None):
-        self._manager.kwargs['ed_fullscreen'] = False
+        self._manager.kwargs['fullscreen'] = False
         self.attributes('-fullscreen', False)
 
         # Reset the editor margins.
-        self._sectionEditor['padx'] = self._manager.kwargs['ed_margin_x']
+        self._sectionEditor['padx'] = self._manager.kwargs['margin_x']
         return "break"
 
     def _load_next(self, event=None):
@@ -372,15 +372,15 @@ class EditorWindow(tk.Toplevel):
             self._load_next()
 
     def _start_fullscreen(self, event=None):
-        self._manager.kwargs['ed_win_geometry'] = self.winfo_geometry()
-        self._manager.kwargs['ed_fullscreen'] = True
+        self._manager.kwargs['win_geometry'] = self.winfo_geometry()
+        self._manager.kwargs['fullscreen'] = True
         self.attributes('-fullscreen', True)
 
         # Set editor margins.
         screenwidth = self.winfo_screenwidth()
-        linewidth = int(self._manager.kwargs['ed_line_width'])
+        linewidth = int(self._manager.kwargs['line_width'])
         padx = (screenwidth - linewidth) // 2
-        if padx > int(self._manager.kwargs['ed_margin_x']):
+        if padx > int(self._manager.kwargs['margin_x']):
             self._sectionEditor['padx'] = padx
         return "break"
 
