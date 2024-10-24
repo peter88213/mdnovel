@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.16.1.pyzw)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.17.1.pyzw)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![Feedback](docs/img/feedback-button.png)](https://github.com/peter88213/mdnovel/discussions/)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/mdnovhelp-en/)
@@ -72,10 +72,10 @@ But perhaps you are the exception. In any case, I hope you enjoy playing around 
 
 ### Default: Executable Python zip archive
 
-Download the latest release [mdnovel_v0.16.1.pyzw](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.16.1.pyzw)
+Download the latest release [mdnovel_v0.17.1.pyzw](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.17.1.pyzw)
 
-- Launch *mdnovel_v0.16.1.pyzw* by double-clicking (Windows/Linux desktop),
-- or execute `python mdnovel_v0.16.1.pyzw` (Windows), resp. `python3 mdnovel_v0.16.1.pyzw` (Linux) on the command line.
+- Launch *mdnovel_v0.17.1.pyzw* by double-clicking (Windows/Linux desktop),
+- or execute `python mdnovel_v0.17.1.pyzw` (Windows), resp. `python3 mdnovel_v0.17.1.pyzw` (Linux) on the command line.
 
 #### Important
 
@@ -91,9 +91,9 @@ the zip file.
 
 ### Alternative: Zip file
 
-The package is also available in zip format: [mdnovel_v0.16.1.zip](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.16.1.zip)
+The package is also available in zip format: [mdnovel_v0.17.1.zip](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.17.1.zip)
 
-- Extract the *mdnovel_v0.16.1* folder from the downloaded zipfile "mdnovel_v0.16.1.zip".
+- Extract the *mdnovel_v0.17.1* folder from the downloaded zipfile "mdnovel_v0.17.1.zip".
 - Move into this new folder and launch *setup.pyw* by double-clicking (Windows/Linux desktop), 
 - or execute `python setup.pyw` (Windows), resp. `python3 setup.pyw` (Linux) on the command line.
 
