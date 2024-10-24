@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import datetime
 import os
-from tkinter import messagebox
 
 from mdnvlib.converter.export_target_factory import ExportTargetFactory
 from mdnvlib.csv.csv_charlist import CsvCharList
@@ -30,7 +29,7 @@ from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.nv_globals import prefs
-from mdnvlib.widgets.nv_simpledialog import SimpleDialog
+from mdnvlib.view.widgets.nv_simpledialog import SimpleDialog
 
 
 class NvDocExporter:
@@ -53,8 +52,9 @@ class NvDocExporter:
         MdStages,
         ]
 
-    def __init__(self):
+    def __init__(self, ui):
         """Create strategy class instances."""
+        self._ui = ui
         self.exportTargetFactory = ExportTargetFactory(self.EXPORT_TARGET_CLASSES)
         self._source = None
         self._target = None
@@ -123,9 +123,9 @@ class NvDocExporter:
         self._targetFileDate = datetime.now().replace(microsecond=0).isoformat(sep=' ')
         if kwargs.get('show', True):
             askOpen = kwargs.get('ask', True) and prefs['ask_doc_open']
-            if not askOpen or messagebox.askyesno(
+            if not askOpen or self._ui.ask_yes_no(
+                _('{} created.\n\nOpen now?').format(norm_path(self._target.DESCRIPTION)),
                 title=self._target.novel.title,
-                message=_('{} created.\n\nOpen now?').format(norm_path(self._target.DESCRIPTION))
                 ):
                 open_document(self._target.filePath)
         return _('Created {0} on {1}.').format(self._target.DESCRIPTION, self._targetFileDate)

@@ -5,7 +5,6 @@ For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
-from tkinter import messagebox
 
 from mdnvlib.converter.import_source_factory import ImportSourceFactory
 from mdnvlib.converter.import_target_factory import ImportTargetFactory
@@ -14,7 +13,6 @@ from mdnvlib.mdnov.mdnov_file import MdnovFile
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.nv_globals import prefs
 
 
 class NvDocImporter:
@@ -24,8 +22,9 @@ class NvDocImporter:
     CREATE_SOURCE_CLASSES = [
     ]
 
-    def __init__(self):
+    def __init__(self, ui):
         """Set up the Factory strategies."""
+        self._ui = ui
         self.importSourceFactory = ImportSourceFactory(self.IMPORT_SOURCE_CLASSES)
         self.newProjectFactory = NewProjectFactory(self.CREATE_SOURCE_CLASSES)
         self.importTargetFactory = ImportTargetFactory([MdnovFile])
@@ -76,9 +75,9 @@ class NvDocImporter:
             source.novel = target.novel
             source.read()
             if os.path.isfile(target.filePath):
-                if not messagebox.askyesno(
+                if not self._ui.ask_yes_no(
+                    _('Update the project?'),
                     title=source.DESCRIPTION,
-                    message=_('Update the project?')
                     ):
                     raise Error(f'{_("Action canceled by user")}.')
 

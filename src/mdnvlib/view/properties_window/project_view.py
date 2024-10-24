@@ -11,11 +11,11 @@ from tkinter import ttk
 from mdnvlib.nv_globals import datestr
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.properties_window.basic_view import BasicView
-from mdnvlib.widgets.folding_frame import FoldingFrame
-from mdnvlib.widgets.label_combo import LabelCombo
-from mdnvlib.widgets.label_disp import LabelDisp
-from mdnvlib.widgets.label_entry import LabelEntry
-from mdnvlib.widgets.my_string_var import MyStringVar
+from mdnvlib.view.widgets.folding_frame import FoldingFrame
+from mdnvlib.view.widgets.label_combo import LabelCombo
+from mdnvlib.view.widgets.label_disp import LabelDisp
+from mdnvlib.view.widgets.label_entry import LabelEntry
+from mdnvlib.view.widgets.my_string_var import MyStringVar
 from mdnvlib.novx_globals import WEEKDAYS
 from mdnvlib.novx_globals import _
 import tkinter as tk

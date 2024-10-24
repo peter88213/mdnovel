@@ -4,6 +4,9 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.17.2
+
+- Refactor: Use the view's API instead of tkinter imports.
 
 ### Version 0.17.1
 

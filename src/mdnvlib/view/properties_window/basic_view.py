@@ -11,10 +11,10 @@ from tkinter import ttk
 
 from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import prefs
-from mdnvlib.widgets.collection_box import CollectionBox
-from mdnvlib.widgets.folding_frame import FoldingFrame
-from mdnvlib.widgets.index_card import IndexCard
-from mdnvlib.widgets.text_box import TextBox
+from mdnvlib.view.widgets.collection_box import CollectionBox
+from mdnvlib.view.widgets.folding_frame import FoldingFrame
+from mdnvlib.view.widgets.index_card import IndexCard
+from mdnvlib.view.widgets.text_box import TextBox
 
 
 class BasicView(ttk.Frame, ABC):

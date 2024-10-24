@@ -5,8 +5,8 @@ For further information see https://github.com/peter88213/mdnovel
 Published under the MIT License (https://opensource.org/licenses/mit-license.php)
 """
 import tkinter as tk
-from mdnvlib.widgets.text_box import TextBox
-from mdnvlib.widgets.my_string_var import MyStringVar
+from mdnvlib.view.widgets.text_box import TextBox
+from mdnvlib.view.widgets.my_string_var import MyStringVar
 
 
 class IndexCard(tk.Frame):

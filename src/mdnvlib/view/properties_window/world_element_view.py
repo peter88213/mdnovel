@@ -11,8 +11,8 @@ from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import list_to_string
 from mdnvlib.novx_globals import string_to_list
 from mdnvlib.view.properties_window.basic_view import BasicView
-from mdnvlib.widgets.label_entry import LabelEntry
-from mdnvlib.widgets.my_string_var import MyStringVar
+from mdnvlib.view.widgets.label_entry import LabelEntry
+from mdnvlib.view.widgets.my_string_var import MyStringVar
 
 
 class WorldElementView(BasicView, ABC):

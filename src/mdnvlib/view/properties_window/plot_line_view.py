@@ -7,8 +7,8 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from tkinter import ttk
 
 from mdnvlib.view.properties_window.basic_view import BasicView
-from mdnvlib.widgets.label_entry import LabelEntry
-from mdnvlib.widgets.my_string_var import MyStringVar
+from mdnvlib.view.widgets.label_entry import LabelEntry
+from mdnvlib.view.widgets.my_string_var import MyStringVar
 from mdnvlib.novx_globals import _
 
 

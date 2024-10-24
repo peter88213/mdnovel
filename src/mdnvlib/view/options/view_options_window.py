@@ -11,7 +11,7 @@ from mdnvlib.novx_globals import list_to_string
 from mdnvlib.nv_globals import open_help
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
-from mdnvlib.widgets.drag_drop_listbox import DragDropListbox
+from mdnvlib.view.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
 

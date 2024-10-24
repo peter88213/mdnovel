@@ -1,4 +1,4 @@
-"""Provide a tkinter GUI framework for mdnovel.
+"""Provide the main controller class for mdnovel.
 
 Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
@@ -484,7 +484,7 @@ class NvController:
                     # Do not export a document from an unsaved project.
                     return
 
-            exporter = NvDocExporter()
+            exporter = NvDocExporter(self._ui)
             try:
                 self._ui.set_status(exporter.run(self._mdl.prjFile, suffix, **kwargs))
             except Error as ex:
@@ -524,7 +524,7 @@ class NvController:
             if self._mdl.isModified:
                 if self._ui.ask_yes_no(_('Save changes?')):
                     self.save_project()
-        importer = NvDocImporter()
+        importer = NvDocImporter(self._ui)
         try:
             message = importer.run(sourcePath, nv_service=self._mdl.nvService)
         except Error as ex:

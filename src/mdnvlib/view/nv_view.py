@@ -8,7 +8,7 @@ from tkinter import messagebox
 from tkinter import ttk
 import webbrowser
 
-from mdnvlib.exporter.export_options_window import ExportOptionsWindow
+from mdnvlib.view.options.export_options_window import ExportOptionsWindow
 from mdnvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from mdnvlib.novx_globals import CHAPTERS_SUFFIX
 from mdnvlib.novx_globals import CHARACTERS_SUFFIX
@@ -47,7 +47,7 @@ from mdnvlib.view.platform.platform_settings import PLATFORM
 from mdnvlib.view.properties_window.properties_viewer import PropertiesViewer
 from mdnvlib.view.toolbar.toolbar import Toolbar
 from mdnvlib.view.tree_window.tree_viewer import TreeViewer
-from mdnvlib.widgets.nv_simpledialog import askinteger
+from mdnvlib.view.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 
 
