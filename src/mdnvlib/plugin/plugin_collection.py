@@ -8,6 +8,7 @@ from mdnvlib.plugin.editor.editor import Editor
 from mdnvlib.plugin.matrix.matrix import Matrix
 from mdnvlib.plugin.progress.progress import Progress
 from mdnvlib.plugin.templates.templates import Templates
+from mdnvlib.plugin.themes.themes import Themes
 from mdnvlib.plugin.timeline.timeline import Timeline
 
 
@@ -19,6 +20,7 @@ class PluginCollection(list):
         Timeline,
         Matrix,
         Progress,
+        Themes,
     ]
 
     def __init__(self, model, view, controller):
