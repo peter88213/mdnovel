@@ -16,6 +16,7 @@ from mdnvlib.novx_globals import PN_ROOT
 from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
+from mdnvlib.view.widgets.tooltip import Hovertip
 import tkinter as tk
 
 
@@ -233,11 +234,6 @@ class Toolbar:
 
     def _set_hovertips(self):
         if not prefs['enable_hovertips']:
-            return
-
-        try:
-            from idlelib.tooltip import Hovertip
-        except ModuleNotFoundError:
             return
 
         Hovertip(self._addChildButton, f"{self._addChildButton['text']} ({KEYS.ADD_CHILD[1]})")
