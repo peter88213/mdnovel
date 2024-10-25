@@ -4,6 +4,10 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.17.4
+
+- Make the application independent of the *idle3* package on Linux.
+
 ### Version 0.17.3
 
 - Make the application independent of the *idle3* package on Linux.

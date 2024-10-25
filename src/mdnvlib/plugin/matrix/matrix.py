@@ -12,6 +12,7 @@ from tkinter import ttk
 from mdnvlib.novx_globals import _
 from mdnvlib.plugin.matrix.table_manager import TableManager
 from mdnvlib.view.icons.set_icon_tk import set_icon
+from mdnvlib.view.widgets.tooltip import Hovertip
 import tkinter as tk
 
 
@@ -132,11 +133,6 @@ class Matrix:
 
         # Initialize tooltip.
         if not prefs['enable_hovertips']:
-            return
-
-        try:
-            from idlelib.tooltip import Hovertip
-        except ModuleNotFoundError:
             return
 
         Hovertip(self._matrixButton, self._matrixButton['text'])

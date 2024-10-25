@@ -9,6 +9,7 @@ from tkinter import ttk
 from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
+from mdnvlib.view.widgets.tooltip import Hovertip
 import tkinter as tk
 
 
@@ -152,11 +153,6 @@ class CollectionBox(ttk.Frame):
 
     def _set_hovertips(self):
         if not prefs['enable_hovertips']:
-            return
-
-        try:
-            from idlelib.tooltip import Hovertip
-        except ModuleNotFoundError:
             return
 
         Hovertip(self.btnAdd, self.btnAdd['text'])

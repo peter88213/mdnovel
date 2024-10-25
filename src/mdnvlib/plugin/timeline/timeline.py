@@ -17,6 +17,7 @@ from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.plugin.timeline.tl_file import TlFile
+from mdnvlib.view.widgets.tooltip import Hovertip
 import tkinter as tk
 
 
@@ -108,11 +109,6 @@ class Timeline:
 
         # Initialize tooltip.
         if not prefs['enable_hovertips']:
-            return
-
-        try:
-            from idlelib.tooltip import Hovertip
-        except ModuleNotFoundError:
             return
 
         Hovertip(self._timelineButton, self._timelineButton['text'])
