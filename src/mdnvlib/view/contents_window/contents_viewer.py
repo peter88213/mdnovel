@@ -11,9 +11,10 @@ from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.contents_window.rich_text_nv import RichTextNv
 import tkinter as tk
+from mdnvlib.view.view_component_base import ViewComponentBase
 
 
-class ContentsViewer(RichTextNv):
+class ContentsViewer(ViewComponentBase, RichTextNv):
     """A tkinter text box class for mdnovel file viewing.
     
     Show the novel contents in a text box.
@@ -30,13 +31,10 @@ class ContentsViewer(RichTextNv):
             controller -- reference to the main controller instance of the application.
         
         Required keyword arguments:
-            show_markdown: bool 
+            show_markup: bool 
         """
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
-
-        super().__init__(parent, **prefs)
+        ViewComponentBase.__init__(self, model, view, controller)
+        RichTextNv.__init__(self, parent, **prefs)
         self.pack(expand=True, fill='both')
         self.showMarkup = tk.BooleanVar(parent, value=prefs['show_markdown'])
         # ttk.Checkbutton(parent, text=_('Show Markdown'), variable=self.showMarkup).pack(anchor='w')

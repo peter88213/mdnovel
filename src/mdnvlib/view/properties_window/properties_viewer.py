@@ -26,16 +26,15 @@ from mdnvlib.novx_globals import ITEM_PREFIX
 from mdnvlib.novx_globals import LOCATION_PREFIX
 from mdnvlib.novx_globals import PRJ_NOTE_PREFIX
 from mdnvlib.novx_globals import SECTION_PREFIX
+from mdnvlib.view.view_component_base import ViewComponentBase
 
 
-class PropertiesViewer(ttk.Frame):
+class PropertiesViewer(ViewComponentBase, ttk.Frame):
     """A window viewing the selected element's properties."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        super().__init__(parent, **kw)
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        ViewComponentBase.__init__(self, model, view, controller)
+        ttk.Frame.__init__(self, parent, **kw)
         self._noView = NoView(self, self._mdl, self._ui, self._ctrl)
         self._projectView = ProjectView(self, self._mdl, self._ui, self._ctrl)
         self._chapterView = ChapterView(self, self._mdl, self._ui, self._ctrl)

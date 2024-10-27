@@ -18,20 +18,21 @@ from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.widgets.tooltip import Hovertip
 import tkinter as tk
+from mdnvlib.view.view_component_base import ViewComponentBase
 
 
-class Toolbar:
-    """Toolbar plugin class."""
+class Toolbar(ViewComponentBase, ttk.Frame):
+    """Toolbar class."""
 
-    def __init__(self, view, controller):
+    def __init__(self, parent, model, view, controller):
         """Add a toolbar.
         
         Positional arguments:
             view -- reference to the main view instance of the application.
             controller -- reference to the main controller instance of the application.
         """
-        self._ctrl = controller
-        self._ui = view
+        ViewComponentBase.__init__(self, model, view, controller)
+        ttk.Frame.__init__(self, parent)
 
         # Add a toolbar to the editor window.
         self.buttonBar = tk.Frame(self._ui.mainWindow)

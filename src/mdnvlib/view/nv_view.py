@@ -67,7 +67,7 @@ class NvView:
         self._mdl = model
         self._ctrl = controller
         self._mdl.register_client(self)
-        self.views = []
+        self._viewComponents = []
 
         #--- Create the tk root window and set the size.
         self.title = title
@@ -148,7 +148,7 @@ class NvView:
         self._build_menu()
 
         #--- Add a toolbar.
-        self.toolbar = Toolbar(self, self._ctrl)
+        self.toolbar = Toolbar(self.mainWindow, self._mdl, self, self._ctrl)
         self.register_view(self.toolbar)
 
         #--- tk root event bindings.
@@ -224,11 +224,8 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Items'), state='disabled')
         self.viewMenu.entryconfig(_('Show Plot lines'), state='disabled')
         self.viewMenu.entryconfig(_('Show Project notes'), state='disabled')
-        for view in self.views:
-            try:
-                view.disable_menu()
-            except AttributeError:
-                pass
+        for viewComponent in self._viewComponents:
+            viewComponent.disable_menu()
 
     def dock_properties_frame(self, event=None):
         """Dock the properties window at the right pane, if detached."""
@@ -287,11 +284,8 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Items'), state='normal')
         self.viewMenu.entryconfig(_('Show Plot lines'), state='normal')
         self.viewMenu.entryconfig(_('Show Project notes'), state='normal')
-        for view in self.views:
-            try:
-                view.enable_menu()
-            except AttributeError:
-                pass
+        for viewComponent in self._viewComponents:
+            viewComponent.enable_menu()
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -322,16 +316,14 @@ class NvView:
         else:
             self.pathBar.config(bg=self.root.cget('background'))
             self.pathBar.config(fg='black')
-        for view in self.views:
-            try:
-                view.refresh()
-            except AttributeError:
-                pass
+        for viewComponent in self._viewComponents:
+            viewComponent.refresh()
         self.set_title()
 
-    def register_view(self, view):
-        if not view in self.views:
-            self.views.append(view)
+    def register_view(self, viewComponent):
+        """Add a view object to the composite list."""
+        if not viewComponent in self._viewComponents:
+            self._viewComponents.append(viewComponent)
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
@@ -467,9 +459,10 @@ class NvView:
             self.detach_properties_frame()
         return 'break'
 
-    def unregister_view(self, view):
+    def unregister_view(self, viewComponent):
+        """Revove a view object from the composite list."""
         try:
-            self.views.remove(view)
+            self._viewComponents.remove(viewComponent)
         except:
             pass
 
