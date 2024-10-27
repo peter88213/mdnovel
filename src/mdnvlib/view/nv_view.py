@@ -653,7 +653,7 @@ class NvView:
 
     def _open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
-        ExportOptionsWindow(self.root, self._mdl, self, self._ctrl)
+        ExportOptionsWindow(self._mdl, self, self._ctrl)
         return 'break'
 
     def _open_help(self, event=None):
@@ -661,6 +661,6 @@ class NvView:
 
     def _open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""
-        ViewOptionsWindow(self.root, self._mdl, self, self._ctrl)
+        ViewOptionsWindow(self._mdl, self, self._ctrl)
         return 'break'
 
