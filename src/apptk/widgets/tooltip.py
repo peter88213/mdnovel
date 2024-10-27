@@ -10,7 +10,8 @@ idlelib code:
 Copyright (c) 2001-2024 Python Software Foundation; All Rights Reserved
 https://github.com/python/cpython/blob/main/LICENSE
 
-Modifications for the use with mdnovel:
+Modifications for the use with apptk:
+For further information see https://github.com/peter88213/apptk
 
 - Change the tkinter import to avoid namespace issues when packaging.
 - Replace some tk constants with simple strings.

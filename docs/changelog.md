@@ -4,6 +4,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.18.0
+
+Refactor the code for better maintainability:
+- Simplify the PopUpBase API.
+- Extract and separate a MVC framework package.
+
 ### Version 0.17.6
 
 Refactor the code for better maintainability:

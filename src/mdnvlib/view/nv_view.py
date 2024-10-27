@@ -465,7 +465,7 @@ class NvView(ViewBase):
 
         # ViewBase
         self.viewMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(label=_('ViewBase'), menu=self.viewMenu)
+        self.mainMenu.add_cascade(label=_('View'), menu=self.viewMenu)
         self.viewMenu.add_command(label=_('Chapter level'), accelerator=KEYS.CHAPTER_LEVEL[1], command=self.tv.show_chapter_level)
         self.viewMenu.add_command(label=_('Expand selected'), command=lambda: self.tv.open_children(self.tv.tree.selection()[0]))
         self.viewMenu.add_command(label=_('Collapse selected'), command=lambda: self.tv.close_children(self.tv.tree.selection()[0]))
