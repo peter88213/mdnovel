@@ -7,13 +7,14 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from pathlib import Path
 
 from mdnvlib.novx_globals import _
+from mdnvlib.plugin.plugin_base import PluginBase
 from mdnvlib.plugin.progress.progress_viewer import ProgressViewer
 from mdnvlib.view.icons.set_icon_tk import set_icon
 
 
-class Progress:
+class Progress(PluginBase):
     """mdnovel daily progress log view manager class."""
-    APPLICATION = _('Daily progress log')
+    FEATURE = _('Daily progress log')
     SETTINGS = dict(
         wc_win_geomety='510x440',
         wc_date_width=100,
@@ -31,8 +32,7 @@ class Progress:
             model -- reference to the main model instance of the application.
             view -- reference to the main view instance of the application.
         """
-        self._mdl = model
-        self._ui = view
+        super().__init__(model, view, controller)
         self._progress_viewer = None
 
         #--- Load configuration.
@@ -52,16 +52,16 @@ class Progress:
         self.kwargs.update(self.configuration.options)
 
         # Create an entry in the Tools menu.
-        self._ui.toolsMenu.add_command(label=self.APPLICATION, command=self._start_viewer)
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._ui.toolsMenu.add_command(label=self.FEATURE, command=self._start_viewer)
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='disabled')
 
     def disable_menu(self):
         """Disable menu entries when no project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='disabled')
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='normal')
 
     def on_close(self):
         """Close the window."""
@@ -92,6 +92,6 @@ class Progress:
                 return
 
         self._progress_viewer = ProgressViewer(self, self._mdl)
-        self._progress_viewer.title(f'{self._mdl.novel.title} - {self.APPLICATION}')
+        self._progress_viewer.title(f'{self._mdl.novel.title} - {self.FEATURE}')
         set_icon(self._progress_viewer, icon='wLogo32', default=False)
 

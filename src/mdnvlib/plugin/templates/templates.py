@@ -16,23 +16,14 @@ from tkinter import messagebox
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
+from mdnvlib.plugin.plugin_base import PluginBase
 from mdnvlib.plugin.templates.md_template import MdTemplate
 import tkinter as tk
 
 
-class Templates:
+class Templates(PluginBase):
     """A 'Story Templates' manager class."""
-    APPLICATION = _('Story Templates')
-
-    def disable_menu(self):
-        """Disable menu entries when no project is open."""
-        self._templatesMenu.entryconfig(f"{_('Load')}...", state='disabled')
-        self._templatesMenu.entryconfig(f"{_('Save')}...", state='disabled')
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open."""
-        self._templatesMenu.entryconfig(f"{_('Load')}...", state='normal')
-        self._templatesMenu.entryconfig(f"{_('Save')}...", state='normal')
+    FEATURE = _('Story Templates')
 
     def __init__(self, model, view, controller):
         """Add a submenu to the 'Tools' menu.
@@ -46,9 +37,7 @@ class Templates:
             prefs -- deprecated. Please use controller.get_preferences() instead.
         
         """
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        super().__init__(model, view, controller)
         try:
             homeDir = str(Path.home()).replace('\\', '/')
             self._templateDir = f'{homeDir}/.mdnovel/templates'
@@ -65,8 +54,18 @@ class Templates:
         self._ui.newMenu.add_command(label=_('Create from template...'), command=self._new_project)
 
         # Create Tools menu entry.
-        self._ui.toolsMenu.add_cascade(label=self.APPLICATION, menu=self._templatesMenu)
+        self._ui.toolsMenu.add_cascade(label=self.FEATURE, menu=self._templatesMenu)
         self._fileTypes = [(MdTemplate.DESCRIPTION, MdTemplate.EXTENSION)]
+
+    def disable_menu(self):
+        """Disable menu entries when no project is open."""
+        self._templatesMenu.entryconfig(f"{_('Load')}...", state='disabled')
+        self._templatesMenu.entryconfig(f"{_('Save')}...", state='disabled')
+
+    def enable_menu(self):
+        """Enable menu entries when a project is open."""
+        self._templatesMenu.entryconfig(f"{_('Load')}...", state='normal')
+        self._templatesMenu.entryconfig(f"{_('Save')}...", state='normal')
 
     def _load_template(self):
         """Create a structure of "Todo" chapters and scenes from a Markdown file."""

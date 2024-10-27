@@ -11,14 +11,15 @@ from tkinter import ttk
 
 from mdnvlib.novx_globals import _
 from mdnvlib.plugin.matrix.table_manager import TableManager
+from mdnvlib.plugin.plugin_base import PluginBase
 from mdnvlib.view.icons.set_icon_tk import set_icon
 from mdnvlib.view.widgets.tooltip import Hovertip
 import tkinter as tk
 
 
-class Matrix:
+class Matrix(PluginBase):
     """mdnovel relationship matrix view class."""
-    APPLICATION = _('Matrix')
+    FEATURE = _('Matrix')
     SETTINGS = dict(
         window_geometry='600x800',
         color_bg_00='gray80',
@@ -45,9 +46,7 @@ class Matrix:
             controller -- Reference to the main controller instance of the application.
 
         """
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        super().__init__(model, view, controller)
         self._matrixViewer = None
 
         #--- Load configuration.
@@ -67,20 +66,20 @@ class Matrix:
         self.kwargs.update(self.configuration.options)
 
         # Create an entry to the Tools menu.
-        self._ui.toolsMenu.add_command(label=self.APPLICATION, command=self._start_viewer)
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._ui.toolsMenu.add_command(label=self.FEATURE, command=self._start_viewer)
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='disabled')
 
         #--- Configure the toolbar.
         self._configure_toolbar()
 
     def disable_menu(self):
         """Disable menu entries when no project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='disabled')
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='disabled')
         self._matrixButton.config(state='disabled')
 
     def enable_menu(self):
         """Enable menu entries when a project is open."""
-        self._ui.toolsMenu.entryconfig(self.APPLICATION, state='normal')
+        self._ui.toolsMenu.entryconfig(self.FEATURE, state='normal')
         self._matrixButton.config(state='normal')
 
     def on_close(self):
@@ -150,6 +149,6 @@ class Matrix:
                 return
 
         self._matrixViewer = TableManager(self._mdl, self._ui, self._ctrl, self, **self.kwargs)
-        self._matrixViewer.title(f'{self._mdl.novel.title} - {self.APPLICATION}')
+        self._matrixViewer.title(f'{self._mdl.novel.title} - {self.FEATURE}')
         set_icon(self._matrixViewer, icon='mLogo32', default=False)
 

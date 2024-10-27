@@ -14,6 +14,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 
 from mdnvlib.novx_globals import _
+from mdnvlib.plugin.plugin_base import PluginBase
 from mdnvlib.plugin.themes.settings_window import SettingsWindow
 
 try:
@@ -23,7 +24,7 @@ except ModuleNotFoundError:
     extraThemes = False
 
 
-class Themes:
+class Themes(PluginBase):
     """A 'Theme Changer' class."""
 
     def __init__(self, model, view, controller):
@@ -34,27 +35,28 @@ class Themes:
             controller -- reference to the main controller instance of the application.
 
         """
-        prefs = controller.get_preferences()
-        __, x, y = view.root.geometry().split('+')
+        super().__init__(model, view, controller)
+        prefs = self._ctrl.get_preferences()
+        __, x, y = self._ui.root.geometry().split('+')
         offset = 300
         windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
         if extraThemes:
-            view.guiStyle = ThemedStyle(view.root)
+            self._ui.guiStyle = ThemedStyle(self._ui.root)
         if not prefs.get('gui_theme', ''):
-            prefs['gui_theme'] = view.guiStyle.theme_use()
+            prefs['gui_theme'] = self._ui.guiStyle.theme_use()
 
-        if not prefs['gui_theme'] in view.guiStyle.theme_names():
-            prefs['gui_theme'] = view.guiStyle.theme_use()
+        if not prefs['gui_theme'] in self._ui.guiStyle.theme_names():
+            prefs['gui_theme'] = self._ui.guiStyle.theme_use()
         if extraThemes:
-            view.guiStyle.set_theme(prefs['gui_theme'])
+            self._ui.guiStyle.set_theme(prefs['gui_theme'])
         else:
-            view.guiStyle.theme_use(prefs['gui_theme'])
+            self._ui.guiStyle.theme_use(prefs['gui_theme'])
 
         # Create a submenu
-        view.viewMenu.insert_command(
+        self._ui.viewMenu.insert_command(
             _('Options'),
             label=_('Change theme'),
             command=lambda: SettingsWindow(view, prefs, extraThemes, windowGeometry)
             )
-        view.viewMenu.insert_separator(_('Options'))
+        self._ui.viewMenu.insert_separator(_('Options'))
 

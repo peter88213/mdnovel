@@ -12,10 +12,11 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.nv_globals import SC_EDITOR_ICON
 from mdnvlib.nv_globals import _
 from mdnvlib.plugin.editor.editor_window import EditorWindow
+from mdnvlib.plugin.plugin_base import PluginBase
 import tkinter as tk
 
 
-class Editor:
+class Editor(PluginBase):
     """mdnovel multi-section "plain text" editor class."""
     SETTINGS = dict(
         ed_win_geometry='600x800',
@@ -49,9 +50,7 @@ class Editor:
 
         Overrides the superclass method.
         """
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        super().__init__(model, view, controller)
 
         #--- Load configuration.
         try:
