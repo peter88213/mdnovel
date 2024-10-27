@@ -4,6 +4,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.17.5
+
+- Provide an abstract base class for the view components.
+- Make the tree viewer, contents viewer, toolbar, and properties viewer ViewComponentBase subclasses.
+- Provide an abstract base class for the plugins.
+- Make the plugins PluginBase subclasses.
+
 ### Version 0.17.4
 
 - Make the application independent of the *idle3* package on Linux.
