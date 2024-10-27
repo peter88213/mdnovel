@@ -32,10 +32,10 @@ from mdnvlib.nv_globals import to_string
 from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.platform.platform_settings import MOUSE
 from mdnvlib.view.tree_window.history_list import HistoryList
-from mdnvlib.view.widgets.context_menu import ContextMenu
+from apptk.widgets.context_menu import ContextMenu
 import tkinter as tk
 import tkinter.font as tkFont
-from mdnvlib.view.view_component_base import ViewComponentBase
+from apptk.view.view_component_base import ViewComponentBase
 
 
 class TreeViewer(ViewComponentBase, ttk.Frame):

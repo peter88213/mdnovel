@@ -10,7 +10,7 @@ from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import open_help
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
-from mdnvlib.view.pop_up.pop_up_base import PopUpBase
+from apptk.view.pop_up_base import PopUpBase
 import tkinter as tk
 
 

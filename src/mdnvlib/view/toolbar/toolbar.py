@@ -16,9 +16,9 @@ from mdnvlib.novx_globals import PN_ROOT
 from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
-from mdnvlib.view.widgets.tooltip import Hovertip
+from apptk.widgets.tooltip import Hovertip
 import tkinter as tk
-from mdnvlib.view.view_component_base import ViewComponentBase
+from apptk.view.view_component_base import ViewComponentBase
 
 
 class Toolbar(ViewComponentBase, ttk.Frame):

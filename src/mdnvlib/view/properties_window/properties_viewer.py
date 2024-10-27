@@ -26,7 +26,7 @@ from mdnvlib.novx_globals import ITEM_PREFIX
 from mdnvlib.novx_globals import LOCATION_PREFIX
 from mdnvlib.novx_globals import PRJ_NOTE_PREFIX
 from mdnvlib.novx_globals import SECTION_PREFIX
-from mdnvlib.view.view_component_base import ViewComponentBase
+from apptk.view.view_component_base import ViewComponentBase
 
 
 class PropertiesViewer(ViewComponentBase, ttk.Frame):

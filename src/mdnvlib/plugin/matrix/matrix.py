@@ -11,9 +11,9 @@ from tkinter import ttk
 
 from mdnvlib.novx_globals import _
 from mdnvlib.plugin.matrix.table_manager import TableManager
-from mdnvlib.plugin.plugin_base import PluginBase
+from apptk.plugin.plugin_base import PluginBase
 from mdnvlib.view.icons.set_icon_tk import set_icon
-from mdnvlib.view.widgets.tooltip import Hovertip
+from apptk.widgets.tooltip import Hovertip
 import tkinter as tk
 
 

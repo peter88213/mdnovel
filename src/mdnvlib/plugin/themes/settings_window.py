@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mdnvlib.view.widgets.label_combo import LabelCombo
+from apptk.widgets.label_combo import LabelCombo
 from mdnvlib.novx_globals import _
 import tkinter as tk
 

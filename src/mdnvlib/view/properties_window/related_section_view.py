@@ -21,9 +21,9 @@ from mdnvlib.nv_globals import datestr
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.properties_window.basic_view import BasicView
 from mdnvlib.view.widgets.collection_box import CollectionBox
-from mdnvlib.view.widgets.folding_frame import FoldingFrame
-from mdnvlib.view.widgets.label_entry import LabelEntry
-from mdnvlib.view.widgets.my_string_var import MyStringVar
+from apptk.widgets.folding_frame import FoldingFrame
+from apptk.widgets.label_entry import LabelEntry
+from apptk.widgets.my_string_var import MyStringVar
 
 
 class RelatedSectionView(BasicView):

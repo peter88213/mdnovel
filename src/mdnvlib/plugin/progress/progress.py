@@ -7,7 +7,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from pathlib import Path
 
 from mdnvlib.novx_globals import _
-from mdnvlib.plugin.plugin_base import PluginBase
+from apptk.plugin.plugin_base import PluginBase
 from mdnvlib.plugin.progress.progress_viewer import ProgressViewer
 from mdnvlib.view.icons.set_icon_tk import set_icon
 

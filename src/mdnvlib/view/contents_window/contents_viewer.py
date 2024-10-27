@@ -11,7 +11,7 @@ from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.contents_window.rich_text_nv import RichTextNv
 import tkinter as tk
-from mdnvlib.view.view_component_base import ViewComponentBase
+from apptk.view.view_component_base import ViewComponentBase
 
 
 class ContentsViewer(ViewComponentBase, RichTextNv):

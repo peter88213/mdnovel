@@ -4,10 +4,10 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from tkinter import messagebox
 from tkinter import ttk
 import webbrowser
 
+from apptk.view.view_base import ViewBase
 from mdnvlib.novx_globals import BRF_SYNOPSIS_SUFFIX
 from mdnvlib.novx_globals import CHAPTERS_SUFFIX
 from mdnvlib.novx_globals import CHARACTERS_SUFFIX
@@ -51,7 +51,7 @@ from mdnvlib.view.widgets.nv_simpledialog import askinteger
 import tkinter as tk
 
 
-class NvView:
+class NvView(ViewBase):
     """Main view of the tkinter GUI framework for mdnovel."""
     _MIN_WINDOW_WIDTH = 400
     _MIN_WINDOW_HEIGHT = 200
@@ -64,17 +64,10 @@ class NvView:
 
     def __init__(self, model, controller, title):
         """Set up the application's user interface."""
-        self._mdl = model
-        self._ctrl = controller
-        self._mdl.register_client(self)
-        self._viewComponents = []
+        super().__init__(model, controller, title)
 
         #--- Create the tk root window and set the size.
-        self.title = title
         self._statusText = ''
-        self.root = tk.Tk()
-        self.root.protocol("WM_DELETE_WINDOW", self._ctrl.on_quit)
-        self.root.title(title)
         if prefs.get('root_geometry', None):
             self.root.geometry(prefs['root_geometry'])
         set_icon(self.root, icon='nLogo32')
@@ -154,21 +147,8 @@ class NvView:
         #--- tk root event bindings.
         self._bind_events()
 
-    def ask_yes_no(self, text, title=None):
-        """Query yes or no with a pop-up box.
-        
-        Positional arguments:
-            text -- question to be asked in the pop-up box. 
-            
-        Optional arguments:
-            title -- title to be displayed on the window frame.            
-        """
-        if title is None:
-            title = self.title
-        return messagebox.askyesno(title, text)
-
     def detach_properties_frame(self, event=None):
-        """View the properties in its own window."""
+        """ViewBase the properties in its own window."""
         self.propertiesView.apply_changes()
         if self._propWinDetached:
             return
@@ -224,8 +204,7 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Items'), state='disabled')
         self.viewMenu.entryconfig(_('Show Plot lines'), state='disabled')
         self.viewMenu.entryconfig(_('Show Project notes'), state='disabled')
-        for viewComponent in self._viewComponents:
-            viewComponent.disable_menu()
+        super().disable_menu()
 
     def dock_properties_frame(self, event=None):
         """Dock the properties window at the right pane, if detached."""
@@ -284,8 +263,7 @@ class NvView:
         self.viewMenu.entryconfig(_('Show Items'), state='normal')
         self.viewMenu.entryconfig(_('Show Plot lines'), state='normal')
         self.viewMenu.entryconfig(_('Show Project notes'), state='normal')
-        for viewComponent in self._viewComponents:
-            viewComponent.enable_menu()
+        super().enable_menu()
 
     def on_change_selection(self, nodeId):
         """Event handler for element selection.
@@ -296,7 +274,10 @@ class NvView:
         self.contentsView.see(nodeId)
 
     def on_quit(self):
-        """Gracefully close the user interface."""
+        """Gracefully close the user interface.
+        
+        Extends the superclass method.
+        """
 
         # Save contents window "show markup" state.
         prefs['show_markup'] = self.contentsView.showMarkup.get()
@@ -306,24 +287,21 @@ class NvView:
             prefs['prop_win_geometry'] = self._propertiesWindow.winfo_geometry()
         self.tv.on_quit()
         prefs['root_geometry'] = self.root.winfo_geometry()
-        self.root.quit()
+        super().on_quit()
 
     def refresh(self):
-        """Update children."""
+        """Update view components and path bar.
+        
+        Extends the superclass method.
+        """
+        super().refresh()
         if self._mdl.isModified:
             self.pathBar.config(bg=prefs['color_modified_bg'])
             self.pathBar.config(fg=prefs['color_modified_fg'])
         else:
             self.pathBar.config(bg=self.root.cget('background'))
             self.pathBar.config(fg='black')
-        for viewComponent in self._viewComponents:
-            viewComponent.refresh()
         self.set_title()
-
-    def register_view(self, viewComponent):
-        """Add a view object to the composite list."""
-        if not viewComponent in self._viewComponents:
-            self._viewComponents.append(viewComponent)
 
     def restore_status(self, event=None):
         """Overwrite error message with the status before."""
@@ -378,36 +356,6 @@ class NvView:
             authorView = _('Unknown author')
         self.root.title(f'{titleView} {_("by")} {authorView} - {self.title}')
 
-    def show_error(self, message, title=None):
-        """Display an error message box.
-        
-        Optional arguments:
-            title -- title to be displayed on the window frame.
-        """
-        if title is None:
-            title = self.title
-        messagebox.showerror(title, message)
-
-    def show_info(self, message, title=None):
-        """Display an informational message box.
-        
-        Optional arguments:
-            title -- title to be displayed on the window frame.
-        """
-        if title is None:
-            title = self.title
-        messagebox.showinfo(title, message)
-
-    def show_warning(self, message, title=None):
-        """Display a warning message box.
-        
-        Optional arguments:
-            title -- title to be displayed on the window frame.
-        """
-        if title is None:
-            title = self.title
-        messagebox.showwarning(title, message)
-
     def show_path(self, message):
         """Put text on the path bar."""
         self.pathBar.config(text=message)
@@ -422,13 +370,6 @@ class NvView:
         self.statusBar.config(bg=self.root.cget('background'))
         self.statusBar.config(fg='black')
         self.statusBar.config(text=message)
-
-    def start(self):
-        """Start the Tk main loop.
-        
-        Note: This can not be done in the constructor method.
-        """
-        self.root.mainloop()
 
     def toggle_contents_view(self, event=None):
         """Show/hide the contents viewer text box."""
@@ -458,13 +399,6 @@ class NvView:
         else:
             self.detach_properties_frame()
         return 'break'
-
-    def unregister_view(self, viewComponent):
-        """Revove a view object from the composite list."""
-        try:
-            self._viewComponents.remove(viewComponent)
-        except:
-            pass
 
     def _add_multiple_sections(self):
         n = askinteger(
@@ -529,9 +463,9 @@ class NvView:
         else:
             self.fileMenu.add_command(label=_('Quit'), accelerator=KEYS.QUIT_PROGRAM[1], command=self._ctrl.on_quit)
 
-        # View
+        # ViewBase
         self.viewMenu = tk.Menu(self.mainMenu, tearoff=0)
-        self.mainMenu.add_cascade(label=_('View'), menu=self.viewMenu)
+        self.mainMenu.add_cascade(label=_('ViewBase'), menu=self.viewMenu)
         self.viewMenu.add_command(label=_('Chapter level'), accelerator=KEYS.CHAPTER_LEVEL[1], command=self.tv.show_chapter_level)
         self.viewMenu.add_command(label=_('Expand selected'), command=lambda: self.tv.open_children(self.tv.tree.selection()[0]))
         self.viewMenu.add_command(label=_('Collapse selected'), command=lambda: self.tv.close_children(self.tv.tree.selection()[0]))

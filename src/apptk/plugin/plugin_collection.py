@@ -4,24 +4,11 @@ Copyright (c) 2024 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from mdnvlib.plugin.editor.editor import Editor
-from mdnvlib.plugin.matrix.matrix import Matrix
-from mdnvlib.plugin.progress.progress import Progress
-from mdnvlib.plugin.templates.templates import Templates
-from mdnvlib.plugin.themes.themes import Themes
-from mdnvlib.plugin.timeline.timeline import Timeline
 
 
 class PluginCollection(list):
 
-    PLUGINS = [
-        Editor,
-        Templates,
-        Timeline,
-        Matrix,
-        Progress,
-        Themes,
-    ]
+    PLUGINS = []
 
     def __init__(self, model, view, controller):
         """Instantiate the plugin objects and put them on the list."""

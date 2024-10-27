@@ -12,7 +12,7 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.nv_globals import SC_EDITOR_ICON
 from mdnvlib.nv_globals import _
 from mdnvlib.plugin.editor.editor_window import EditorWindow
-from mdnvlib.plugin.plugin_base import PluginBase
+from apptk.plugin.plugin_base import PluginBase
 import tkinter as tk
 
 

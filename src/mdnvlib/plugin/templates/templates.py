@@ -16,7 +16,7 @@ from tkinter import messagebox
 from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
-from mdnvlib.plugin.plugin_base import PluginBase
+from apptk.plugin.plugin_base import PluginBase
 from mdnvlib.plugin.templates.md_template import MdTemplate
 import tkinter as tk
 

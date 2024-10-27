@@ -8,6 +8,7 @@ import os
 import sys
 from tkinter import filedialog
 
+from apptk.controller.controller_base import ControllerBase
 from mdnvlib.controller.link_processor import LinkProcessor
 from mdnvlib.exporter.nv_doc_exporter import NvDocExporter
 from mdnvlib.exporter.nv_html_reporter import NvHtmlReporter
@@ -32,11 +33,11 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import norm_path
 from mdnvlib.nv_globals import prefs
-from mdnvlib.plugin.plugin_collection import PluginCollection
+from mdnvlib.plugin.nv_plugin_collection import NvPluginCollection
 from mdnvlib.view.nv_view import NvView
 
 
-class NvController:
+class NvController(ControllerBase):
     """Controller for the mdnovel application."""
 
     def __init__(self, title, tempDir):
@@ -45,12 +46,17 @@ class NvController:
         Positional arguments:
             title: str -- Application title to be displayed at the window frame.
             tempDir: str -- Path of the temporary directory, used for e.g. packing zipfiles. 
+        
+        Overrides the superclass constructor.
         """
         self.tempDir = tempDir
 
-        #--- Create the model
+        #--- Create the model.
         self._mdl = NvModel()
         self._mdl.register_client(self)
+
+        #--- Build the GUI.
+        self._ui = NvView(self._mdl, self, title)
 
         self.launchers = {}
         # launchers for opening linked non-standard filetypes.
@@ -61,16 +67,13 @@ class NvController:
         self._fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
         self.importFiletypes = [(_('Markdown document'), '.md')]
 
-        #--- Build the GUI.
-        self._ui = NvView(self._mdl, self, title)
-
         # Link the model to the view.
         # Strictly speaking, this breaks the MVC pattern, since the
         # model depends on a data structure defined by the GUI framework.
         self._mdl.tree = self._ui.tv.tree
 
         #--- Initialize the plugins.
-        self.plugins = PluginCollection(self._mdl, self._ui, self)
+        self.plugins = NvPluginCollection(self._mdl, self._ui, self)
 
         self.disable_menu()
         self._ui.tv.reset_view()
@@ -458,16 +461,6 @@ class NvController:
                 self._view_new_element(self._ui.tv.tree.parent(elemId))
             self._mdl.delete_element(elemId)
 
-    def disable_menu(self):
-        """Disable menu entries when no project is open."""
-        self._ui.disable_menu()
-        self.plugins.disable_menu()
-
-    def enable_menu(self):
-        """Enable menu entries when a project is open."""
-        self._ui.enable_menu()
-        self.plugins.enable_menu()
-
     def export_document(self, suffix, **kwargs):
         """Export a document.
         
@@ -493,10 +486,6 @@ class NvController:
     def get_preferences(self):
         """Return the global preferences dictionary."""
         return prefs
-
-    def get_view(self):
-        """Return a reference to the application's main view object."""
-        return self._ui
 
     def import_md(self, event=None, sourcePath=None, defaultExtension='.md'):
         """Update or create the project from a Marksown-formatted document.
@@ -600,12 +589,14 @@ class NvController:
         return 'break'
 
     def on_quit(self, event=None):
-        """Save changes and keyword arguments before exiting the program."""
+        """Save changes and keyword arguments before exiting the program.
+        
+        Extends the superclass method.
+        """
         try:
             if self._mdl.prjFile is not None:
                 self.close_project()
-            self.plugins.on_quit()
-            self._ui.on_quit()
+            super().on_quit()
         except Exception as ex:
             self._ui.show_error(str(ex), title='ERROR: Unhandled exception on exit')
             self._ui.root.quit()
@@ -745,7 +736,10 @@ class NvController:
         return 'break'
 
     def refresh(self):
-        """Callback function to report model element modifications."""
+        """Callback function to report model element modifications.
+        
+        Overrides the superclass method.
+        """
         self.show_status()
 
     def refresh_views(self, event=None):
