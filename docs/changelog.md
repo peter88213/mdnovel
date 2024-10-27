@@ -4,6 +4,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.17.6
+
+Refactor the code for better maintainability:
+- Provide an abstract base class for pop-up windows.
+- Make ExportOptionsWindow and ViewOptionsWindow PopUpBase subclasses.
+- Rename the NvView.view_options method.
+
 ### Version 0.17.5
 
 - Provide an abstract base class for the view components.

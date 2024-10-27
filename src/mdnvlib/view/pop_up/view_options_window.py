@@ -11,26 +11,17 @@ from mdnvlib.novx_globals import list_to_string
 from mdnvlib.nv_globals import open_help
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
+from mdnvlib.view.pop_up.pop_up_base import PopUpBase
 from mdnvlib.view.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
 
-class ViewOptionsWindow(tk.Toplevel):
+class ViewOptionsWindow(PopUpBase):
     """A pop-up window with view preference settings."""
 
-    def __init__(self, size, view, **kw):
-        """Open a pop-up window to edit the view options.
-        
-        Positional arguments:
-            size -- str: Window size and coordinates.
-            view -- Reference to the application's main view.
-        """
-        self._ui = view
-        super().__init__(**kw)
+    def __init__(self, parent, model, view, controller, **kw):
+        PopUpBase.__init__(self, parent, model, view, controller, **kw)
         self.title(_('"View" options'))
-        self.geometry(size)
-        self.grab_set()
-        self.focus()
         window = ttk.Frame(self)
         window.pack(
             fill='both',

@@ -549,7 +549,7 @@ class NvView:
         self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=KEYS.TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
         self.viewMenu.add_command(label=_('Detach/Dock Properties'), accelerator=KEYS.DETACH_PROPERTIES[1], command=self.toggle_properties_window)
         self.viewMenu.add_separator()
-        self.viewMenu.add_command(label=_('Options'), command=self._view_options)
+        self.viewMenu.add_command(label=_('Options'), command=self._open_view_options)
 
         # Part
         self.partMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -637,7 +637,7 @@ class NvView:
         self.exportMenu.add_command(label=_('Manuscript'), command=lambda: self._ctrl.export_document(''))
         self.exportMenu.add_command(label=_('Brief synopsis'), command=lambda: self._ctrl.export_document(BRF_SYNOPSIS_SUFFIX))
         self.exportMenu.add_separator()
-        self.exportMenu.add_command(label=_('Options'), command=self._export_options)
+        self.exportMenu.add_command(label=_('Options'), command=self._open_export_options)
 
         # "Tools" menu.
         self.toolsMenu = tk.Menu(self.mainMenu, tearoff=0)
@@ -651,22 +651,16 @@ class NvView:
         self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._open_help)
         self.helpMenu.add_command(label=f"mdnovel {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
-    def _export_options(self, event=None):
+    def _open_export_options(self, event=None):
         """Open a toplevel window to edit the export options."""
-        offset = 300
-        __, x, y = self.root.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        ExportOptionsWindow(windowGeometry, self)
+        ExportOptionsWindow(self.root, self._mdl, self, self._ctrl)
         return 'break'
 
     def _open_help(self, event=None):
         open_help('')
 
-    def _view_options(self, event=None):
+    def _open_view_options(self, event=None):
         """Open a toplevel window to edit the view options."""
-        offset = 300
-        __, x, y = self.root.geometry().split('+')
-        windowGeometry = f'+{int(x)+offset}+{int(y)+offset}'
-        ViewOptionsWindow(windowGeometry, self)
+        ViewOptionsWindow(self.root, self._mdl, self, self._ctrl)
         return 'break'
 

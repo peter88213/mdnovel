@@ -10,23 +10,16 @@ from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import open_help
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
+from mdnvlib.view.pop_up.pop_up_base import PopUpBase
 import tkinter as tk
 
 
-class ExportOptionsWindow(tk.Toplevel):
+class ExportOptionsWindow(PopUpBase):
     """A pop-up window with export preference settings."""
 
-    def __init__(self, size, view, **kw):
-        """Open a pop-up window to edit the export options.
-        
-        Positional arguments:
-            size -- str: Window size and coordinates.
-        """
-        super().__init__(**kw)
+    def __init__(self, parent, model, view, controller, **kw):
+        PopUpBase.__init__(self, parent, model, view, controller, **kw)
         self.title(_('"Export" options'))
-        self.geometry(size)
-        self.grab_set()
-        self.focus()
         window = ttk.Frame(self)
         window.pack(
             fill='both',
