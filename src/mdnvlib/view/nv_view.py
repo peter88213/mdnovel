@@ -63,7 +63,7 @@ class NvView(ViewBase):
     # initial value when asking for the number of sections to add
 
     def __init__(self, model, controller, title):
-        """Set up the application's user interface."""
+        """Extends the superclass constructor."""
         super().__init__(model, controller, title)
 
         #--- Create the tk root window and set the size.
@@ -176,7 +176,10 @@ class NvView(ViewBase):
         return 'break'
 
     def disable_menu(self):
-        """Disable menu entries when no project is open."""
+        """Disable menu entries when no project is open.        
+        
+        Extends the superclass method.
+        """
         self.fileMenu.entryconfig(_('Close'), state='disabled')
         self.mainMenu.entryconfig(_('Part'), state='disabled')
         self.mainMenu.entryconfig(_('Chapter'), state='disabled')
@@ -235,7 +238,10 @@ class NvView(ViewBase):
         return 'break'
 
     def enable_menu(self):
-        """Enable menu entries when a project is open."""
+        """Enable menu entries when a project is open.
+        
+        Extends the superclass method.
+        """
         self.fileMenu.entryconfig(_('Close'), state='normal')
         self.mainMenu.entryconfig(_('Part'), state='normal')
         self.mainMenu.entryconfig(_('Chapter'), state='normal')
