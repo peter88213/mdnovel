@@ -134,7 +134,7 @@ setuplib.main(False)
             target,
             target,
             'apptk',
-            '../../mdnovel/src/',
+            '../../apptk/src/',
             copynovxlib=copynovxlib,
             )
 

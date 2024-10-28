@@ -3,6 +3,7 @@
 	<name>mdnovel</name>
 	<comment></comment>
 	<projects>
+		<project>apptk</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
