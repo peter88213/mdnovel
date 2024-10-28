@@ -4,6 +4,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+
+### Version 0.18.1
+
+- Link the project to the new apptk library.
+
+Based on apptk 1.0.0
+
 ### Version 0.18.0
 
 Refactor the code for better maintainability:
