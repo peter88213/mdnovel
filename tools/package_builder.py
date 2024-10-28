@@ -85,7 +85,7 @@ setuplib.main(False)
         """Generate the application/plugin script in the test directory."""
         print(f'\nInlining the code of the non-standard libraries ...')
         os.makedirs(self.testDir, exist_ok=True)
-        inliner.run(self.sourceFile, self.testFile, self.LOCAL_LIB, self.sourceDir, copynovxlib=copynovxlib)
+        inliner.run(self.sourceFile, self.testFile, self.LOCAL_LIB, self.sourceDir, copyapptk=copynovxlib)
         self.inline_modules(self.testFile, self.testFile)
         self.insert_version_number(self.testFile, version=self.version)
 
@@ -121,21 +121,21 @@ setuplib.main(False)
             print(f'Copying "{file}" to "{targetDir}" ...')
             copy2(file, targetDir)
 
-    def inline_modules(self, source, target, copynovxlib=False):
+    def inline_modules(self, source, target, copyapptk=False):
         """Inline all non-standard library modules."""
         inliner.run(
             source,
             target,
             'nvlib',
             '../../mdnovel/src/',
-            copynovxlib=copynovxlib,
+            copyapptk=copyapptk,
             )
         inliner.run(
             target,
             target,
             'apptk',
             '../../apptk/src/',
-            copynovxlib=copynovxlib,
+            copyapptk=copyapptk,
             )
 
     def insert_version_number(self, source, version='unknown'):

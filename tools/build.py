@@ -38,7 +38,7 @@ class ApplicationBuilder(PackageBuilder):
 
     def build_script(self):
         os.makedirs(self.testDir, exist_ok=True)
-        self.inline_modules(self.sourceFile, self.testFile, copynovxlib=False)
+        self.inline_modules(self.sourceFile, self.testFile, copyapptk=False)
         self.insert_version_number(self.testFile, version=self.version)
 
 

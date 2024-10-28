@@ -15,11 +15,11 @@ import os
 from shutil import copyfile
 
 
-def inline_module(file, package, packagePath, text, processedModules, copyNovxlib):
+def inline_module(file, package, packagePath, text, processedModules, copyapptk):
     with open(file, 'r', encoding='utf-8') as f:
         print(f'Processing "{file}"...')
-        if copyNovxlib:
-            target = file.replace('/../novxlib', '')
+        if copyapptk:
+            target = file.replace('/../apptk', '')
             targetDir = os.path.split(target)[0]
             os.makedirs(targetDir, exist_ok=True)
             if not os.path.isfile(target):
@@ -67,7 +67,7 @@ def inline_module(file, package, packagePath, text, processedModules, copyNovxli
                         if not (moduleName in processedModules):
                             processedModules.append(moduleName)
                             text = inline_module(
-                                f'{moduleName}.py', package, packagePath, text, processedModules, copyNovxlib)
+                                f'{moduleName}.py', package, packagePath, text, processedModules, copyapptk)
                     elif line.lstrip().startswith('import'):
                         moduleName = line.replace('import ', '').rstrip()
                         if not (moduleName in processedModules):
@@ -80,10 +80,10 @@ def inline_module(file, package, packagePath, text, processedModules, copyNovxli
         return(text)
 
 
-def run(sourceFile, targetFile, package, packagePath, copynovxlib=False):
+def run(sourceFile, targetFile, package, packagePath, copyapptk=False):
     text = ''
     processedModules = []
-    text = inline_module(sourceFile, package, packagePath, text, processedModules, copynovxlib)
+    text = inline_module(sourceFile, package, packagePath, text, processedModules, copyapptk)
     with open(targetFile, 'w', encoding='utf-8', newline='\n') as f:
         print(f'Writing "{targetFile}"...\n')
         f.write(text)
