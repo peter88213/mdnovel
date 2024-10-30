@@ -11,16 +11,16 @@ from mdnvlib.novx_globals import list_to_string
 from mdnvlib.nv_globals import open_help
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
-from apptk.view.pop_up_base import PopUpBase
+from apptk.view.modal_dialog import ModalDialog
 from apptk.widgets.drag_drop_listbox import DragDropListbox
 import tkinter as tk
 
 
-class ViewOptionsWindow(PopUpBase):
+class ViewOptionsWindow(ModalDialog):
     """A pop-up window with view preference settings."""
 
     def __init__(self, model, view, controller, **kw):
-        PopUpBase.__init__(self, model, view, controller, **kw)
+        ModalDialog.__init__(self, model, view, controller, **kw)
         self.title(_('"View" options'))
         window = ttk.Frame(self)
         window.pack(

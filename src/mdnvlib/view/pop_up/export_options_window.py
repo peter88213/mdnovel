@@ -10,15 +10,15 @@ from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import open_help
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
-from apptk.view.pop_up_base import PopUpBase
+from apptk.view.modal_dialog import ModalDialog
 import tkinter as tk
 
 
-class ExportOptionsWindow(PopUpBase):
+class ExportOptionsWindow(ModalDialog):
     """A pop-up window with export preference settings."""
 
     def __init__(self, model, view, controller, **kw):
-        PopUpBase.__init__(self, model, view, controller, **kw)
+        ModalDialog.__init__(self, model, view, controller, **kw)
         self.title(_('"Export" options'))
         window = ttk.Frame(self)
         window.pack(

@@ -36,8 +36,11 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         ViewComponentBase.__init__(self, model, view, controller)
         ttk.Frame.__init__(self, parent, **kw)
 
-        # Call a factory method to instantiate one view per element type.
-        self._noView = self._make_view(NoView, isClient=False)
+        self._viewComponents = []
+        # applying the Composite design pattern
+
+        # Call a factory method to instantiate and register one view component per element type.
+        self._noView = self._make_view(NoView)
         self._projectView = self._make_view(ProjectView)
         self._chapterView = self._make_view(ChapterView)
         self._stageView = self._make_view(StageView)
@@ -100,18 +103,18 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
             except:
                 pass
 
-    def _make_view(self, viewClass, isClient=True):
-        """Return a viewClass instance.
+    def _make_view(self, viewClass):
+        """Return a viewClass instance that is registered as a local view..
         
         Positional arguments:
             viewClass: BasicView subclass.
-            
-        Optional arguments:
-            isClient: Boolean -- If True, register the Object as a view.
         """
         newView = viewClass(self, self._mdl, self._ui, self._ctrl)
-        if isClient:
-            self._ui.register_view(newView)
+        self._viewComponents.append(newView)
+        # registering the view component locally
+        # NOTE: the new view component must not be registered by the main view,
+        # because the PropertiesViewer instance may be deleted and recreated
+        # due to re-parenting when docking the properties window.
         return newView
 
     def _set_data(self, elemId):
@@ -124,9 +127,9 @@ class PropertiesViewer(ViewComponentBase, ttk.Frame):
         Positional arguments:
             plId: str -- Plot line ID
         """
-        if not self._activeView is self._plotlineView:
+        if not self._activeView is self._plotLineView:
             self._activeView.hide()
-            self._activeView = self._plotlineView
+            self._activeView = self._plotLineView
             self._activeView.show()
         self._set_data(plId)
 
