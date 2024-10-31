@@ -6,6 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
+from apptk.view.view_component_base import ViewComponentBase
 from mdnvlib.novx_globals import _
 from mdnvlib.plugin.matrix.relations_table import RelationsTable
 from mdnvlib.plugin.matrix.table_frame import TableFrame
@@ -15,15 +16,14 @@ from mdnvlib.view.platform.platform_settings import PLATFORM
 import tkinter as tk
 
 
-class TableManager(tk.Toplevel):
+class TableManager(ViewComponentBase, tk.Toplevel):
 
     def __init__(self, model, view, controller, manager, **kwargs):
-        self._mdl = model
-        self._ui = view
-        self._ctrl = controller
+        ViewComponentBase.__init__(self, model, view, controller)
+        tk.Toplevel.__init__(self)
+
         self._manager = manager
         self._kwargs = kwargs
-        super().__init__()
 
         self._statusText = ''
 
