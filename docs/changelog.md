@@ -4,6 +4,11 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.18.2
+
+Refactor the code for better maintainability.
+
+Based on apptk 2.1.0
 
 ### Version 0.18.1
 
