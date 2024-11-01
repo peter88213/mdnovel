@@ -47,8 +47,9 @@ class NvController(ControllerBase):
             title: str -- Application title to be displayed at the window frame.
             tempDir: str -- Path of the temporary directory, used for e.g. packing zipfiles. 
         
-        Overrides the superclass constructor.
+        Extends the superclass constructor.
         """
+        super().__init__(title)
         self.tempDir = tempDir
 
         #--- Create the model.

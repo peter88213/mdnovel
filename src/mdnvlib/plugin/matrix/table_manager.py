@@ -31,7 +31,7 @@ class TableManager(ViewComponentBase, tk.Toplevel):
         self.lift()
         self.focus()
 
-        #--- Register this view.
+        #--- Register this view component.
         self._ui.register_view(self)
 
         #--- Event bindings.
@@ -43,15 +43,17 @@ class TableManager(ViewComponentBase, tk.Toplevel):
         self.mainMenu = tk.Menu(self)
         self.config(menu=self.mainMenu)
 
-        #--- Main window.
-        self.mainWindow = TableFrame(self)
+        #--- Main window and table frame.
+        self.mainWindow = ttk.Frame(self)
+        self.mainWindow.pack(fill='both', expand=True)
+        self.tableFrame = TableFrame(self.mainWindow)
 
         #--- The Relations Table.
         if self._mdl.novel is not None:
-            self._relationsTable = RelationsTable(self.mainWindow, self._mdl.novel, **self._kwargs)
+            self._relationsTable = RelationsTable(self.tableFrame, self._mdl.novel, **self._kwargs)
             self._relationsTable.set_nodes()
         self.isOpen = True
-        self.mainWindow.pack(fill='both', expand=True, padx=2, pady=2)
+        self.tableFrame.pack(fill='both', expand=True, padx=2, pady=2)
 
         #--- Initialize the view update mechanism.
         self._skipUpdate = False
@@ -63,7 +65,7 @@ class TableManager(ViewComponentBase, tk.Toplevel):
     def on_quit(self, event=None):
         self.isOpen = False
         self._manager.kwargs['window_geometry'] = self.winfo_geometry()
-        self.mainWindow.destroy()
+        self.tableFrame.destroy()
         # this is necessary for deleting the event bindings
         self._ui.unregister_view(self)
         self.destroy()
@@ -72,11 +74,11 @@ class TableManager(ViewComponentBase, tk.Toplevel):
         """Refresh the view after changes have been made "outsides"."""
         if self.isOpen:
             if not self._skipUpdate:
-                self.mainWindow.pack_forget()
-                self.mainWindow.destroy()
-                self.mainWindow = TableFrame(self)
-                self.mainWindow.pack(fill='both', expand=True, padx=2, pady=2)
-                self._relationsTable.draw_matrix(self.mainWindow)
+                self.tableFrame.pack_forget()
+                self.tableFrame.destroy()
+                self.tableFrame = TableFrame(self.mainWindow)
+                self.tableFrame.pack(fill='both', expand=True, padx=2, pady=2)
+                self._relationsTable.draw_matrix(self.tableFrame)
                 self._relationsTable.set_nodes()
 
     def on_element_change(self, event=None):

@@ -4,6 +4,13 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 0.18.3
+
+- Fix a bug where the Matrix "Close" button moves to a wrong position after refreshing the Matrix view.
+- Make the Matrix TableManager a ViewComponentBase subclass.
+
+Based on apptk 2.2.0
+
 ### Version 0.18.2
 
 Refactor the code for better maintainability.
