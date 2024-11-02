@@ -4,6 +4,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 1.0.0
+
+- The progress viewer is now auto-updating the word count at real time.
+- Include the apptk library with the mdnovel sources.
+- Revise the apptk library, adding Java-style Observer and Observable classes. 
+
 ### Version 0.18.3
 
 - Fix a bug where the Matrix "Close" button moves to a wrong position after refreshing the Matrix view.

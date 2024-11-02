@@ -16,12 +16,12 @@ class Progress(PluginBase):
     """mdnovel daily progress log view manager class."""
     FEATURE = _('Daily progress log')
     SETTINGS = dict(
-        wc_win_geomety='510x440',
-        wc_date_width=100,
-        wc_wordcount_width=100,
-        wc_wordcount_delta_width=100,
-        wc_totalcount_width=100,
-        wc_totalcount_delta_width=100,
+        window_geometry='510x440',
+        date_width=100,
+        wordcount_width=100,
+        wordcount_delta_width=100,
+        totalcount_width=100,
+        totalcount_delta_width=100,
     )
     OPTIONS = {}
 
@@ -91,7 +91,7 @@ class Progress(PluginBase):
                 self._progress_viewer.build_tree()
                 return
 
-        self._progress_viewer = ProgressViewer(self, self._mdl)
+        self._progress_viewer = ProgressViewer(self._mdl, self._ui, self._ctrl, self)
         self._progress_viewer.title(f'{self._mdl.novel.title} - {self.FEATURE}')
         set_icon(self._progress_viewer, icon='wLogo32', default=False)
 

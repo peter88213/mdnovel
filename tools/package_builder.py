@@ -134,7 +134,7 @@ setuplib.main(False)
             target,
             target,
             'apptk',
-            '../../apptk/src/',
+            '../../mdnovel/src/',
             copyapptk=copyapptk,
             )
 

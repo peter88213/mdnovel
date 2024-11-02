@@ -6,7 +6,7 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from apptk.view.view_component_base import ViewComponentBase
+from apptk.view.view_component_node import ViewComponentNode
 from mdnvlib.novx_globals import CHAPTER_PREFIX
 from mdnvlib.novx_globals import CHARACTER_PREFIX
 from mdnvlib.novx_globals import CH_ROOT
@@ -29,11 +29,11 @@ from mdnvlib.view.properties_window.project_view import ProjectView
 from mdnvlib.view.properties_window.stage_view import StageView
 
 
-class PropertiesViewer(ViewComponentBase, ttk.Frame):
+class PropertiesViewer(ViewComponentNode, ttk.Frame):
     """A window viewing the selected element's properties."""
 
     def __init__(self, parent, model, view, controller, **kw):
-        ViewComponentBase.__init__(self, model, view, controller)
+        ViewComponentNode.__init__(self, model, view, controller)
         ttk.Frame.__init__(self, parent, **kw)
 
         self._viewComponents = []

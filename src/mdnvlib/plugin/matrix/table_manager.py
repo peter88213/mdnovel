@@ -32,7 +32,7 @@ class TableManager(ViewComponentBase, tk.Toplevel):
         self.focus()
 
         #--- Register this view component.
-        self._ui.register_view(self)
+        self._ui.register_client(self)
 
         #--- Event bindings.
         if PLATFORM != 'win':
@@ -67,7 +67,7 @@ class TableManager(ViewComponentBase, tk.Toplevel):
         self._manager.kwargs['window_geometry'] = self.winfo_geometry()
         self.tableFrame.destroy()
         # this is necessary for deleting the event bindings
-        self._ui.unregister_view(self)
+        self._ui.unregister_client(self)
         self.destroy()
 
     def refresh(self):

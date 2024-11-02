@@ -7,20 +7,23 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 from datetime import date
 from tkinter import ttk
 
+from apptk.view.view_component_base import ViewComponentBase
 from mdnvlib.novx_globals import _
 from mdnvlib.view.platform.platform_settings import KEYS
 from mdnvlib.view.platform.platform_settings import PLATFORM
 import tkinter as tk
 
 
-class ProgressViewer(tk.Toplevel):
+class ProgressViewer(ViewComponentBase, tk.Toplevel):
 
-    def __init__(self, manager, model):
+    def __init__(self, model, view, controller, manager, **kwargs):
+        ViewComponentBase.__init__(self, model, view, controller)
+        tk.Toplevel.__init__(self)
+
+        self._ui.register_client(self)
         self._manager = manager
-        self._mdl = model
-        super().__init__()
 
-        self.geometry(self._manager.kwargs['wc_win_geomety'])
+        self.geometry(self._manager.kwargs['window_geometry'])
         self.lift()
         self.focus()
         self.protocol("WM_DELETE_WINDOW", self.on_quit)
@@ -47,22 +50,22 @@ class ProgressViewer(tk.Toplevel):
         self.tree.heading('totalWordCount', text=_('With unused'))
         self.tree.heading('totalWordCountDelta', text=_('Daily'))
         self.tree.column('#0', width=0)
-        self.tree.column('date', anchor='center', width=self._manager.kwargs['wc_date_width'], stretch=False)
-        self.tree.column('wordCount', anchor='center', width=self._manager.kwargs['wc_wordcount_width'], stretch=False)
-        self.tree.column('wordCountDelta', anchor='center', width=self._manager.kwargs['wc_wordcount_delta_width'], stretch=False)
-        self.tree.column('totalWordCount', anchor='center', width=self._manager.kwargs['wc_totalcount_width'], stretch=False)
-        self.tree.column('totalWordCountDelta', anchor='center', width=self._manager.kwargs['wc_totalcount_delta_width'], stretch=False)
+        self.tree.column('date', anchor='center', width=self._manager.kwargs['date_width'], stretch=False)
+        self.tree.column('wordCount', anchor='center', width=self._manager.kwargs['wordcount_width'], stretch=False)
+        self.tree.column('wordCountDelta', anchor='center', width=self._manager.kwargs['wordcount_delta_width'], stretch=False)
+        self.tree.column('totalWordCount', anchor='center', width=self._manager.kwargs['totalcount_width'], stretch=False)
+        self.tree.column('totalWordCountDelta', anchor='center', width=self._manager.kwargs['totalcount_delta_width'], stretch=False)
 
         self.tree.tag_configure('positive', foreground='black')
         self.tree.tag_configure('negative', foreground='red')
         self.isOpen = True
-        self.build_tree()
+        self._build_tree()
 
         # "Close" button.
         ttk.Button(self, text=_('Close'), command=self.on_quit).pack(side='right', padx=5, pady=5)
 
-    def build_tree(self):
-        self.reset_tree()
+    def _build_tree(self):
+        self._reset_tree()
         wcLog = {}
 
         # Copy the read-in word count log.
@@ -114,16 +117,20 @@ class ProgressViewer(tk.Toplevel):
             self.tree.insert('', startIndex, iid=wc, values=columns, tags=nodeTags, open=True)
 
     def on_quit(self, event=None):
-        self._manager.kwargs['wc_win_geomety'] = self.winfo_geometry()
-        self._manager.kwargs['wc_date_width'] = self.tree.column('date', 'width')
-        self._manager.kwargs['wc_wordcount_width'] = self.tree.column('wordCount', 'width')
-        self._manager.kwargs['wc_wordcount_delta_width'] = self.tree.column('wordCountDelta', 'width')
-        self._manager.kwargs['wc_totalcount_width'] = self.tree.column('totalWordCount', 'width')
-        self._manager.kwargs['wc_totalcount_delta_width'] = self.tree.column('totalWordCountDelta', 'width')
+        self._ui.unregister_client(self)
+        self._manager.kwargs['window_geometry'] = self.winfo_geometry()
+        self._manager.kwargs['date_width'] = self.tree.column('date', 'width')
+        self._manager.kwargs['wordcount_width'] = self.tree.column('wordCount', 'width')
+        self._manager.kwargs['wordcount_delta_width'] = self.tree.column('wordCountDelta', 'width')
+        self._manager.kwargs['totalcount_width'] = self.tree.column('totalWordCount', 'width')
+        self._manager.kwargs['totalcount_delta_width'] = self.tree.column('totalWordCountDelta', 'width')
         self.destroy()
         self.isOpen = False
 
-    def reset_tree(self):
+    def refresh(self):
+        self._build_tree()
+
+    def _reset_tree(self):
         """Clear the displayed tree."""
         for child in self.tree.get_children(''):
             self.tree.delete(child)
