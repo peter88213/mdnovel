@@ -83,9 +83,6 @@ which must be present in your file system.
 
 ```
 .
-├── apptk/
-│   └── src/
-│       └── apptk/
 └── mdnovel/
     ├── i18n/
     ├── src/
