@@ -115,7 +115,7 @@ def extract_templates(templateDir):
                 if not targetFile:
                     continue
                 if os.path.isfile(f'{templateDir}/{targetFile}'):
-                    output(f'Overwriting "{templateDir}/{targetFile}"')
+                    output(f'Overwriting "{templateDir}/{targetFile}" ...')
                 else:
                     output(f'Copying "{templateDir}/{targetFile}" ...')
                 with open(f'{templateDir}/{targetFile}', 'wb') as f:
@@ -126,11 +126,11 @@ def cp_templates(templateDir):
     try:
         with os.scandir(TEMPLATE_PATH) as files:
             for file in files:
-                if not os.path.isfile(f'{templateDir}/{file.name}'):
-                    output(f'Copying "{file.name}" ...')
-                    copy2(f'{TEMPLATE_PATH}/{file.name}', f'{templateDir}/{file.name}')
+                if os.path.isfile(f'{templateDir}/{file.name}'):
+                    output(f'Overwriting "{templateDir}/{file.name}" ...')
                 else:
-                    output(f'Keeping "{file.name}"')
+                    output(f'Copying "{file.name}" ...')
+                copy2(f'{TEMPLATE_PATH}/{file.name}', f'{templateDir}/{file.name}')
     except:
         pass
 
