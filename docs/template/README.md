@@ -69,6 +69,17 @@ But perhaps you are the exception. In any case, I hope you enjoy playing around 
 
 ## Download and install
 
+---
+
+**Note**
+
+The application comes with sample templates which are automatically
+copied into the *templates* folder of the *mdnovel* installation. 
+Existing files are overwritten. So if you customize your templates, 
+better rename them.  
+
+---
+
 ### Default: Executable Python zip archive
 
 Download the latest release [mdnovel_v0.99.0.pyzw](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.99.0.pyzw)
@@ -116,6 +127,13 @@ See the [online manual](https://peter88213.github.io/mdnovhelp-en/)
 ## Credits
 
 - The logo is made using the free *Pusab* font by Ryoichi Tsunekawa, [Flat-it](http://flat-it.com/).
+- The notes in the *Hero's journey* sample template are from the
+  [Wikipedia page](https://en.wikipedia.org/wiki/Hero%27s_journey) on this topic.
+- The notes in the *Save The Cat* sample template are based on the
+  [Wikipedia page](https://en.wikipedia.org/wiki/Save_the_Cat!:_The_Last_Book_on_Screenwriting_You%27ll_Ever_Need) 
+  on this topic.
+
+
 
 ## License
 
