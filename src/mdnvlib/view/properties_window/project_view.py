@@ -633,6 +633,7 @@ class ProjectView(BasicView):
                 self._cover.image = coverPic
                 # avoid garbage collection
         except:
+            self._coverFile = None
             self._cover.configure(image=None)
             self._cover.image = None
         super().show()

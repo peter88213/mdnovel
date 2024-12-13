@@ -4,6 +4,14 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 1.0.1
+
+- Deleting sections properly. Closes #24.
+- No longer trying to save editor changes after a section has been deleted. Closes #25.
+- Fixed a bug where the cover image may be not be displayed when opening
+  an existing project after discarding a new project. Closes #26.
+- No longer allow setting a section in an unused chapter "normal" via the properties checkbox. Closes #27. 
+
 ### Version 1.0.0
 
 - The progress viewer is now auto-updating the word count at real time.

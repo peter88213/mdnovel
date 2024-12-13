@@ -216,6 +216,9 @@ class EditorWindow(tk.Toplevel):
 
     def _apply_changes(self, event=None):
         """Transfer the editor content to the project, if modified."""
+        if not self._scId in self._mdl.novel.sections:
+            return
+
         try:
             self._sectionEditor.check_validity()
         except ValueError as ex:
@@ -230,6 +233,9 @@ class EditorWindow(tk.Toplevel):
 
     def _apply_changes_after_asking(self, event=None):
         """Transfer the editor content to the project, if modified. Ask first."""
+        if not self._scId in self._mdl.novel.sections:
+            return True
+
         sectionText = self._sectionEditor.get_text()
         if sectionText or self._section.sectionContent:
             if self._section.sectionContent != sectionText:

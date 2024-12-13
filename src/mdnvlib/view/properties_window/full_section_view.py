@@ -270,9 +270,12 @@ class FullSectionView(DatedSectionView):
 
         #--- 'Unused' checkbox.
         if self._isUnused.get():
-            self._element.scType = 1
+            self._ctrl.set_type(1)
         else:
-            self._element.scType = 0
+            self._ctrl.set_type(0)
+        if self._element.scType > 0:
+            self._isUnused.set(True)
+            # adjustment for section in an unused chapter
 
         #--- 'Append to previous section' checkbox.
         self._element.appendToPrev = self._appendToPrev.get()
