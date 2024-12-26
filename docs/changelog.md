@@ -4,6 +4,12 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+
+### Version 1.0.2
+
+- Added a legal notice to the user interface.
+
+
 ### Version 1.0.1
 
 - Deleting sections properly. Closes #24.

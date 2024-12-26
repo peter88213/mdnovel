@@ -3,8 +3,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.1\n"
-"POT-Creation-Date: 2024-12-13 19:08:46\n"
+"Project-Id-Version: 1.0.2\n"
+"POT-Creation-Date: 2024-12-26 09:50:51\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -39,6 +39,9 @@ msgid "A"
 msgstr ""
 
 msgid "AKA"
+msgstr ""
+
+msgid "About mdnovel"
 msgstr ""
 
 msgid "Action"

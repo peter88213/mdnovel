@@ -147,6 +147,13 @@ class NvView(ViewBase):
         #--- tk root event bindings.
         self._bind_events()
 
+    def about(self):
+        """Display a legal notice window.
+        
+        Important: after building the program, __doc__ will be the mdnovel docstring.
+        """
+        self.show_info(__doc__)
+
     def detach_properties_frame(self, event=None):
         """ViewBase the properties in its own window."""
         self.propertiesView.apply_changes()
@@ -589,6 +596,7 @@ class NvView(ViewBase):
         self.helpMenu = tk.Menu(self.mainMenu, tearoff=0)
         self.mainMenu.add_cascade(label=_('Help'), menu=self.helpMenu)
         self.helpMenu.add_command(label=_('Online help'), accelerator=KEYS.OPEN_HELP[1], command=self._open_help)
+        self.helpMenu.add_command(label=_('About mdnovel'), command=self.about)
         self.helpMenu.add_command(label=f"mdnovel {_('Home page')}", command=lambda: webbrowser.open(HOME_URL))
 
     def _open_export_options(self, event=None):

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.1\n"
-"POT-Creation-Date: 2024-12-13 19:08:46\n"
-"PO-Revision-Date: 2024-12-13 19:08:46\n"
+"Project-Id-Version: 1.0.2\n"
+"POT-Creation-Date: 2024-12-26 09:50:51\n"
+"PO-Revision-Date: 2024-12-26 09:50:51\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,9 @@ msgstr "A"
 
 msgid "AKA"
 msgstr "alias"
+
+msgid "About mdnovel"
+msgstr "Über mdnovel"
 
 msgid "Action"
 msgstr "Aktion"
