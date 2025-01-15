@@ -43,6 +43,7 @@ A novel writing application using markdown.
 
 ## Requirements
 
+- Screen resolution of at least 900 pixels in height.
 - Windows or Linux. Mac OS support is experimental.
 - [Python](https://www.python.org/) version 3.6+. 
      - For current Windows versions, use version 3.9.10 or above.
