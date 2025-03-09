@@ -28,7 +28,7 @@ A novel writing application using markdown.
 - The section relationships to plot lines, characters, locations, and items 
   can also be displayed and edited with a spreadsheet-like matrix.
 - To keep track of progress, the **word count** and the **completion status** of the sections are displayed. 
-  *mdnovel* dan display a list of daily word count log entries.
+  *mdnovel* can display a list of daily word count log entries.
 - Individual chapters and sections can be flagged as "unused" to exclude them from document export.
 - You can add information about the **narrative time** and duration to each section. If you enter a date, 
   the day of the week is displayed. You can also call up the age of characters that are assigned to
