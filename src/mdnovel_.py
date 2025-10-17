@@ -107,6 +107,14 @@ OPTIONS = dict(
 
 
 def main():
+    #--- Check the Python version.
+    major = sys.version_info.major
+    minor = sys.version_info.minor
+    if  major != 3 or minor < 7:
+        raise Exception(
+            f'Wrong Python version installed: {major}.{minor}.\n'
+            'Must be 3.7 or newer.'
+        )
     #--- Set up the directories for configuration and temporary files.
     try:
         homeDir = str(Path.home()).replace('\\', '/')

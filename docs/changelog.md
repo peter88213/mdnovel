@@ -4,6 +4,11 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+### Version 1.0.3
+
+- Checking the Python version during startup.
+
+
 
 ### Version 1.0.2
 
