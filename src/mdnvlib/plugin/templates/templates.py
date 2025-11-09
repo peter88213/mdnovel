@@ -4,7 +4,7 @@ Adds a 'Add Story Templates' entry to the 'Tools' menu to open a window
 with a combobox that lists all available themes. 
 The selected theme will be persistently applied.  
 
-Copyright (c) 2024 Peter Triesberger
+Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/nv_templates
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """

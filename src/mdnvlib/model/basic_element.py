@@ -1,7 +1,7 @@
 """Provide a base class for mdnovel element representation.
 
-Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mdnvlib
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from urllib.parse import quote
@@ -91,19 +91,6 @@ class BasicElement:
         """Standard callback routine for element changes."""
         pass
 
-    def from_yaml(self, yaml):
-        self._metaDict = {}
-        for entry in yaml:
-            try:
-                metaData = entry.split(':', maxsplit=1)
-                metaKey = metaData[0].strip()
-                metaValue = metaData[1].strip()
-                self._metaDict[metaKey] = metaValue
-            except:
-                pass
-
-        self.title = self._get_meta_value('Title')
-
     def get_links(self):
         """Return a list of (relative link, absolute link) tuples."""
         linkList = []
@@ -122,16 +109,4 @@ class BasicElement:
         for relativeLink, absoluteLink in linkList:
             links[unquote(relativeLink)] = unquote(absoluteLink).split('file:///')[1]
         self.links = links
-
-    def to_yaml(self, yaml):
-        if self.title:
-            yaml.append(f'Title: {self.title}')
-        return yaml
-
-    def _get_meta_value(self, key, default=None):
-        text = self._metaDict.get(key, None)
-        if text is not None:
-            return text
-        else:
-            return default
 

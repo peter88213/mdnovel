@@ -1,7 +1,7 @@
 """Provide a class for mdnovel plot line representation.
 
-Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mdnvlib
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mdnvlib.model.basic_element_notes import BasicElementNotes
@@ -53,16 +53,3 @@ class PlotLine(BasicElementNotes):
             self._sections = newVal
             self.on_element_change()
 
-    def from_yaml(self, yaml):
-        super().from_yaml(yaml)
-        self.shortName = self._get_meta_value('ShortName')
-        plSections = self._get_meta_value('Sections')
-        self.sections = string_to_list(plSections)
-
-    def to_yaml(self, yaml):
-        yaml = super().to_yaml(yaml)
-        if self.shortName:
-            yaml.append(f'ShortName: {self.shortName}')
-        if self.sections:
-            yaml.append(f'Sections: {list_to_string(self.sections)}')
-        return yaml

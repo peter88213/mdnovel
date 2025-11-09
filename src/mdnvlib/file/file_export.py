@@ -2,8 +2,8 @@
 
 All file representations with template-based write methods inherit from this class.
 
-Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mdnvlib
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 import os
@@ -37,6 +37,7 @@ class FileExport(File):
     This class is generic and contains no conversion algorithm and no templates.
     """
     SUFFIX = ''
+    _assocSectionTemplate = ''
     _fileHeader = ''
     _partTemplate = ''
     _chapterTemplate = ''
@@ -57,7 +58,8 @@ class FileExport(File):
     _itemTemplate = ''
     _fileFooter = ''
     _projectNoteTemplate = ''
-    _arcTemplate = ''
+    _plotLineTemplate = ''
+    _plotPointTemplate = ''
 
     _DIVIDER = ', '
 
@@ -78,7 +80,7 @@ class FileExport(File):
         self.characterFilter = Filter()
         self.locationFilter = Filter()
         self.itemFilter = Filter()
-        self.arcFilter = Filter()
+        self.plotlineFilter = Filter()
         self.turningPointFilter = Filter()
 
     def write(self):
@@ -122,7 +124,7 @@ class FileExport(File):
             text = ''
         return(text)
 
-    def _get_arcMapping(self, plId):
+    def _get_plotLineMapping(self, plId):
         """Return a mapping dictionary for a plot line section.
         
         Positional arguments:
@@ -130,7 +132,7 @@ class FileExport(File):
         
         This is a template method that can be extended or overridden by subclasses.
         """
-        arcMapping = dict(
+        plotlineMapping = dict(
             ID=plId,
             Title=self._convert_from_mdnov(self.novel.plotLines[plId].title, quick=True),
             Desc=self._convert_from_mdnov(self.novel.plotLines[plId].desc),
@@ -138,24 +140,93 @@ class FileExport(File):
             ProjectName=self._convert_from_mdnov(self.projectName, quick=True),
             ProjectPath=self.projectPath,
         )
-        return arcMapping
+        return plotlineMapping
 
-    def _get_arcs(self):
+    def _get_plotlines(self):
         """Process the plot lines. 
         
         Iterate through the sorted plot line list and apply the template, 
         substituting placeholders according to the plot line mapping dictionary.
         Skip plot lines not accepted by the plot line filter.
         Return a list of strings.
-        This is a template method that can be extended or overridden by subclasses.
+        This is a template method that can be extended 
+        or overridden by subclasses.
         """
         lines = []
         for plId in self.novel.tree.get_children(PL_ROOT):
-            if self.arcFilter.accept(self, plId):
-                if self._arcTemplate:
-                    template = Template(self._arcTemplate)
-                    lines.append(template.safe_substitute(self._get_arcMapping(plId)))
+            if self.plotlineFilter.accept(self, plId):
+                if self._plotLineTemplate:
+                    template = Template(self._plotLineTemplate)
+                    lines.append(
+                        template.safe_substitute(
+                            self._get_plotLineMapping(plId)
+                        )
+                    )
+
+            #--- Process plot points.
+            for ppId in self.novel.tree.get_children(plId):
+                if self._plotPointTemplate:
+                    template = Template(self._plotPointTemplate)
+                    plotPointMapping = self._get_plotPointMapping(ppId)
+                    lines.append(
+                        template.safe_substitute(
+                            plotPointMapping
+                        )
+                    )
         return lines
+
+    def _get_plotPointMapping(self, ppId):
+        """Return a mapping dictionary for a plot point.
+        
+        Positional arguments:
+            ppId: str -- plot point ID.
+        
+        This is a template method that can be extended 
+        or overridden by subclasses.
+        """
+        plotPointMapping = dict(
+            ID=ppId,
+            Title=self._convert_from_mdnov(
+                self.novel.plotPoints[ppId].title,
+                quick=True,
+            ),
+            Desc=self._convert_from_mdnov(
+                self.novel.plotPoints[ppId].desc,
+            ),
+            Notes=self._convert_from_mdnov(
+                self.novel.plotPoints[ppId].notes,
+            ),
+            Section='',
+            scID='',
+            SectionTitle='',
+            ProjectName=self._convert_from_mdnov(
+                self.projectName,
+                quick=True,
+            ),
+            ProjectPath=self.projectPath,
+        )
+        scId = self.novel.plotPoints[ppId].sectionAssoc
+        if scId:
+            template = Template(self._assocSectionTemplate)
+            plotPointMapping['Section'] = template.safe_substitute(
+                self._get_sectionAssocMapping(scId)
+            )
+        return plotPointMapping
+
+    def _get_sectionAssocMapping(self, scId):
+        # Return a mapping dictionary for a section that is
+        # associated to a plot point.
+        #    scId: str -- section ID.
+        # Extends the superclass method.
+        sectionAssocMapping = dict(
+            SectionTitle=self.novel.sections[scId].title,
+            ProjectName=self._convert_from_mdnov(
+                self.projectName,
+                quick=True,
+            ),
+            scID=scId,
+        )
+        return sectionAssocMapping
 
     def _get_chapterMapping(self, chId, chapterNumber):
         """Return a mapping dictionary for a chapter section.
@@ -331,7 +402,7 @@ class FileExport(File):
             self.characterFilter,
             self.locationFilter,
             self.itemFilter,
-            self.arcFilter,
+            self.plotlineFilter,
             self.turningPointFilter,
             ]
         for expFilter in expFilters:
@@ -772,7 +843,7 @@ class FileExport(File):
         lines.extend(self._get_characters())
         lines.extend(self._get_locations())
         lines.extend(self._get_items())
-        lines.extend(self._get_arcs())
+        lines.extend(self._get_plotlines())
         lines.extend(self._get_projectNotes())
         lines.extend(self._get_fileFooter())
         return ''.join(lines)

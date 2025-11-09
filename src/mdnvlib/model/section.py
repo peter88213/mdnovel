@@ -1,7 +1,7 @@
 """Provide a class for mdnovel section representation.
 
-Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mdnvlib
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
@@ -439,58 +439,6 @@ class Section(BasicElementTags):
             self._day = None
             return False
 
-    def from_yaml(self, yaml):
-        super().from_yaml(yaml)
-
-        # Attributes.
-        typeStr = self._get_meta_value('type', '0')
-        if typeStr in ('0', '1', '2', '3'):
-            self.scType = int(typeStr)
-        else:
-            self.scType = 1
-        status = self._get_meta_value('status', None)
-        if status in ('2', '3', '4', '5'):
-            self.status = int(status)
-        else:
-            self.status = 1
-        scene = self._get_meta_value('scene', 0)
-        if scene in ('1', '2', '3'):
-            self.scene = int(scene)
-        else:
-            self.scene = 0
-
-        if not self.scene:
-            # looking for deprecated attribute from DTD 1.3
-            sceneKind = self._get_meta_value('pacing', None)
-            if sceneKind in ('1', '2'):
-                self.scene = int(sceneKind) + 1
-
-        self.appendToPrev = self._get_meta_value('append', None) == '1'
-
-        # Date/Day and Time.
-        self.date = verified_date(self._get_meta_value('Date'))
-        if not self.date:
-            self.day = verified_int_string(self._get_meta_value('Day'))
-
-        self.time = verified_time(self._get_meta_value('Time'))
-
-        # Duration.
-        self.lastsDays = verified_int_string(self._get_meta_value('LastsDays'))
-        self.lastsHours = verified_int_string(self._get_meta_value('LastsHours'))
-        self.lastsMinutes = verified_int_string(self._get_meta_value('LastsMinutes'))
-
-        # Characters references.
-        scCharacters = self._get_meta_value('Characters')
-        self.characters = string_to_list(scCharacters)
-
-        # Locations references.
-        scLocations = self._get_meta_value('Locations')
-        self.locations = string_to_list(scLocations)
-
-        # Items references.
-        scItems = self._get_meta_value('Items')
-        self.items = string_to_list(scItems)
-
     def get_end_date_time(self):
         """Return the end (date, time, day) tuple calculated from start and duration."""
         endDate = None
@@ -531,43 +479,3 @@ class Section(BasicElementTags):
                     pass
         return endDate, endTime, endDay
 
-    def to_yaml(self, yaml):
-        yaml = super().to_yaml(yaml)
-        if self.scType:
-            yaml.append(f'type: {self.scType}')
-        if self.status > 1:
-            yaml.append(f'status: {self.status}')
-        if self.scene > 0:
-            yaml.append(f'scene: {self.scene}')
-        if self.appendToPrev:
-            yaml.append(f'append: 1')
-
-        # Date/Day and Time.
-        if self.date:
-            yaml.append(f'Date: {self.date}')
-        elif self.day:
-            yaml.append(f'Day: {self.day}')
-        if self.time:
-            yaml.append(f'Time: {self.time}')
-
-        # Duration.
-        if self.lastsDays and self.lastsDays != '0':
-            yaml.append(f'LastsDays: {self.lastsDays}')
-        if self.lastsHours and self.lastsHours != '0':
-            yaml.append(f'LastsHours: {self.lastsHours}')
-        if self.lastsMinutes and self.lastsMinutes != '0':
-            yaml.append(f'LastsMinutes: {self.lastsMinutes}')
-
-        # Characters references.
-        if self.characters:
-            yaml.append(f'Characters: {list_to_string(self.characters)}')
-
-        # Locations references.
-        if self.locations:
-            yaml.append(f'Locations: {list_to_string(self.locations)}')
-
-        # Items references.
-        if self.items:
-            yaml.append(f'Items: {list_to_string(self.items)}')
-
-        return yaml

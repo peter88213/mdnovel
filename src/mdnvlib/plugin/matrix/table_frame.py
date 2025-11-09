@@ -27,7 +27,7 @@ https://stackoverflow.com/questions/17355902/tkinter-binding-mousewheel-to-scrol
 https://stackoverflow.com/questions/63629407/tkinter-how-to-stop-scrolling-above-canvas-window
 https://stackoverflow.com/questions/51538818/python-tkinter-binding-child-widgets
 
-Copyright (c) 2024 Peter Triesberger
+Copyright (c) 2025 Peter Triesberger
 https://github.com/peter88213/
 License: GNU LGPLv3 (https://www.gnu.org/licenses/lgpl-3.0.en.html)
 """

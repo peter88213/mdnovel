@@ -1,6 +1,6 @@
 """Provide a class for mdnov file import and export.
 
-Copyright (c) 2024 Peter Triesberger
+Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
@@ -273,12 +273,12 @@ class PrjFile(MdFile):
         return mapping
 
     def _add_yaml(self, element, mapping):
-        yaml = element.to_yaml([])
+        yaml = element.export_data([])
         mapping['YAML'] = '\n'.join(yaml)
         return mapping
 
-    def _get_arcMapping(self, plId):
-        mapping = super()._get_arcMapping(plId)
+    def _get_plotLineMapping(self, plId):
+        mapping = super()._get_plotLineMapping(plId)
         element = self.novel.plotLines[plId]
         mapping = self._add_yaml(element, mapping)
         mapping = self._add_links(element, mapping)
@@ -404,7 +404,7 @@ class PrjFile(MdFile):
                 self._range = 'yaml'
                 self._collectedLines = []
             else:
-                element.from_yaml(self._collectedLines)
+                element.import_data(self._collectedLines)
                 self._range = None
             return
 
