@@ -13,7 +13,11 @@ from mdnvlib.controller.link_processor import LinkProcessor
 from mdnvlib.exporter.nv_doc_exporter import NvDocExporter
 from mdnvlib.exporter.nv_html_reporter import NvHtmlReporter
 from mdnvlib.importer.nv_doc_importer import NvDocImporter
+from mdnvlib.json.json_file import JsonFile
+from mdnvlib.mdnov.mdnov_file import MdnovFile
+from mdnvlib.model.novel import Novel
 from mdnvlib.model.nv_model import NvModel
+from mdnvlib.model.nv_tree import NvTree
 from mdnvlib.model.nv_work_file import NvWorkFile
 from mdnvlib.novx_globals import CHAPTER_PREFIX
 from mdnvlib.novx_globals import CHARACTER_PREFIX
@@ -40,6 +44,10 @@ from mdnvlib.view.nv_view import NvView
 class NvController(ControllerBase):
     """Controller for the mdnovel application."""
 
+    LEGACY_FILE_TYPES = [
+        MdnovFile,
+    ]
+
     def __init__(self, title, tempDir):
         """Initialize the model, set up the application's user interface, and load plugins.
     
@@ -65,7 +73,10 @@ class NvController(ControllerBase):
         self.linkProcessor = LinkProcessor(self._mdl)
         # strategy for processing links
 
-        self._fileTypes = [(NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION)]
+        self._fileTypes = [
+            (NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION),
+            (MdnovFile.DESCRIPTION, MdnovFile.EXTENSION),
+        ]
         self.importFiletypes = [(_('Markdown document'), '.md')]
 
         # Link the model to the view.
@@ -489,7 +500,7 @@ class NvController(ControllerBase):
         return prefs
 
     def import_md(self, event=None, sourcePath=None, defaultExtension='.md'):
-        """Update or create the project from a Marksown-formatted document.
+        """Update or create the project from a Markdown-formatted document.
         
         Optional arguments:
             sourcePath: str -- Path specifying the source document. If None, a file picker is used.
@@ -688,6 +699,17 @@ class NvController(ControllerBase):
             return False
 
         prefs['last_open'] = filePath
+
+        root, extension = os.path.splitext(filePath)
+        if extension != JsonFile.EXTENSION:
+            filePath = f'{root}{JsonFile.EXTENSION}'
+            try:
+                self._convert_legacy_file(root, extension, filePath)
+            except Error as ex:
+                self._ui.set_status(f'!{str(ex)}')
+                return False
+
+        # prefs['last_open'] = filePath
 
         if self._mdl.prjFile is not None:
             self.close_project(doNotSave=doNotSave)
@@ -978,6 +1000,21 @@ class NvController(ControllerBase):
             message = _('{0} parts, {1} chapters, {2} sections, {3} words').format(partCount, chapterCount, sectionCount, wordCount)
             self.wordCount = wordCount
         self._ui.show_status(message)
+
+    def _convert_legacy_file(self, root, extension, filePath):
+        """Convert a legacy file."""
+        for fileType in self.LEGACY_FILE_TYPES:
+            if extension == fileType.EXTENSION:
+                legacyFile = fileType(f'{root}{extension}')
+                break
+        else:
+            raise Error(f'{_("File type is not supported")}: "{extension}".')
+
+        legacyFile.novel = Novel(tree=NvTree())
+        legacyFile.read()
+        prjFile = JsonFile(filePath)
+        prjFile.novel = legacyFile.novel
+        prjFile.write()
 
     def _view_new_element(self, newNode):
         """View the element with ID newNode.

@@ -150,7 +150,6 @@ def main():
         sourcePath = ''
     if not sourcePath or not os.path.isfile(sourcePath):
         sourcePath = prefs['last_open']
-    root, extension = os.path.splitext(sourcePath)
     if sourcePath and os.path.isfile(sourcePath):
         app.open_project(filePath=sourcePath)
 
