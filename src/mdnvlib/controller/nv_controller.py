@@ -18,7 +18,6 @@ from mdnvlib.mdnov.mdnov_file import MdnovFile
 from mdnvlib.model.novel import Novel
 from mdnvlib.model.nv_model import NvModel
 from mdnvlib.model.nv_tree import NvTree
-from mdnvlib.model.nv_work_file import NvWorkFile
 from mdnvlib.novx_globals import CHAPTER_PREFIX
 from mdnvlib.novx_globals import CHARACTER_PREFIX
 from mdnvlib.novx_globals import CH_ROOT
@@ -39,13 +38,19 @@ from mdnvlib.novx_globals import norm_path
 from mdnvlib.nv_globals import prefs
 from mdnvlib.plugin.nv_plugin_collection import NvPluginCollection
 from mdnvlib.view.nv_view import NvView
+from mdnvlib.md.md_file import MdFile
 
 
 class NvController(ControllerBase):
     """Controller for the mdnovel application."""
 
-    LEGACY_FILE_TYPES = [
+    STANDARD_FILE_TYPE = JsonFile
+    FILE_TYPES = [
+        STANDARD_FILE_TYPE,
         MdnovFile,
+    ]
+    IMPORT_FILETYPES = [
+        MdFile,
     ]
 
     def __init__(self, title, tempDir):
@@ -73,11 +78,8 @@ class NvController(ControllerBase):
         self.linkProcessor = LinkProcessor(self._mdl)
         # strategy for processing links
 
-        self._fileTypes = [
-            (NvWorkFile.DESCRIPTION, NvWorkFile.EXTENSION),
-            (MdnovFile.DESCRIPTION, MdnovFile.EXTENSION),
-        ]
-        self.importFiletypes = [(_('Markdown document'), '.md')]
+        self._fileTypes = [(ft.DESCRIPTION, ft.EXTENSION) for ft in self.FILE_TYPES]
+        self._importFiletypes = [(ft.DESCRIPTION, ft.EXTENSION) for ft in self.IMPORT_FILETYPES]
 
         # Link the model to the view.
         # Strictly speaking, this breaks the MVC pattern, since the
@@ -512,10 +514,10 @@ class NvController(ControllerBase):
             else:
                 startDir = '.'
             sourcePath = filedialog.askopenfilename(
-                filetypes=self.importFiletypes,
+                filetypes=self._importFiletypes,
                 defaultextension=defaultExtension,
                 initialdir=startDir,
-                )
+            )
             if not sourcePath:
                 return 'break'
 
@@ -701,8 +703,8 @@ class NvController(ControllerBase):
         prefs['last_open'] = filePath
 
         root, extension = os.path.splitext(filePath)
-        if extension != JsonFile.EXTENSION:
-            filePath = f'{root}{JsonFile.EXTENSION}'
+        if extension != self.STANDARD_FILE_TYPE.EXTENSION:
+            filePath = f'{root}{self.STANDARD_FILE_TYPE.EXTENSION}'
             try:
                 self._convert_legacy_file(root, extension, filePath)
             except Error as ex:
@@ -901,7 +903,7 @@ class NvController(ControllerBase):
         if not fileName or not os.path.isfile(fileName):
             fileName = filedialog.askopenfilename(
                 filetypes=self._fileTypes,
-                defaultextension=NvWorkFile.EXTENSION,
+                defaultextension=self.STANDARD_FILE_TYPE.EXTENSION,
                 initialdir=initDir
                 )
         if not fileName:
@@ -1003,7 +1005,7 @@ class NvController(ControllerBase):
 
     def _convert_legacy_file(self, root, extension, filePath):
         """Convert a legacy file."""
-        for fileType in self.LEGACY_FILE_TYPES:
+        for fileType in self.FILE_TYPES:
             if extension == fileType.EXTENSION:
                 legacyFile = fileType(f'{root}{extension}')
                 break
@@ -1012,7 +1014,7 @@ class NvController(ControllerBase):
 
         legacyFile.novel = Novel(tree=NvTree())
         legacyFile.read()
-        prjFile = JsonFile(filePath)
+        prjFile = self.STANDARD_FILE_TYPE(filePath)
         prjFile.novel = legacyFile.novel
         prjFile.write()
 
