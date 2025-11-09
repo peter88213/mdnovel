@@ -151,8 +151,6 @@ def main():
     if not sourcePath or not os.path.isfile(sourcePath):
         sourcePath = prefs['last_open']
     root, extension = os.path.splitext(sourcePath)
-    if extension != NvWorkFile.EXTENSION:
-        sourcePath = f'{root}{NvWorkFile.EXTENSION}'
     if sourcePath and os.path.isfile(sourcePath):
         app.open_project(filePath=sourcePath)
 

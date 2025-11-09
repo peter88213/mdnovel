@@ -4,11 +4,17 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
-from datetime import date
-import os
-
+from mdnvlib.file.prj_file import PrjFile
 from mdnvlib.md.md_file import MdFile
 from mdnvlib.md.md_helper import sanitize_markdown
+from mdnvlib.mdnov.basic_element_yaml import BasicElementYaml
+from mdnvlib.mdnov.chapter_yaml import ChapterYaml
+from mdnvlib.mdnov.character_yaml import CharacterYaml
+from mdnvlib.mdnov.novel_yaml import NovelYaml
+from mdnvlib.mdnov.plot_line_yaml import PlotLineYaml
+from mdnvlib.mdnov.plot_point_yaml import PlotPointYaml
+from mdnvlib.mdnov.section_yaml import SectionYaml
+from mdnvlib.mdnov.world_element_yaml import WorldElementYaml
 from mdnvlib.model.basic_element import BasicElement
 from mdnvlib.model.chapter import Chapter
 from mdnvlib.model.character import Character
@@ -34,17 +40,9 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import intersection
 from mdnvlib.novx_globals import list_to_string
-from mdnvlib.mdnov.plot_line_yaml import PlotLineYaml
-from mdnvlib.mdnov.character_yaml import CharacterYaml
-from mdnvlib.mdnov.chapter_yaml import ChapterYaml
-from mdnvlib.mdnov.novel_yaml import NovelYaml
-from mdnvlib.mdnov.world_element_yaml import WorldElementYaml
-from mdnvlib.mdnov.basic_element_yaml import BasicElementYaml
-from mdnvlib.mdnov.section_yaml import SectionYaml
-from mdnvlib.mdnov.plot_point_yaml import PlotPointYaml
 
 
-class MdnovFile(MdFile):
+class MdnovFile(PrjFile, MdFile):
     """mdnov file representation.
 
     Public instance variables:
@@ -54,7 +52,6 @@ class MdnovFile(MdFile):
     
     
     """
-    DESCRIPTION = _('mdnovel project')
     EXTENSION = '.mdnov'
 
     _fileHeader = '''@@book
@@ -160,17 +157,6 @@ $Desc
         Extends the superclass constructor.
         """
         super().__init__(filePath)
-        self.on_element_change = None
-
-        self.wcLog = {}
-        # key: str -- date (iso formatted)
-        # value: list -- [word count: str, with unused: str]
-
-        self.wcLogUpdate = {}
-        # key: str -- date (iso formatted)
-        # value: list -- [word count: str, with unused: str]
-
-        self.timestamp = None
         self._range = None
         self._collectedLines = None
         self._properties = {}
@@ -184,35 +170,6 @@ $Desc
         self.basicElementCnv = BasicElementYaml()
         self.sectionCnv = SectionYaml()
         self.plotPointCnv = PlotPointYaml()
-
-    def adjust_section_types(self):
-        """Make sure that nodes with "Unused" parents inherit the type."""
-        partType = 0
-        for chId in self.novel.tree.get_children(CH_ROOT):
-            if self.novel.chapters[chId].chLevel == 1:
-                partType = self.novel.chapters[chId].chType
-            elif partType != 0 and not self.novel.chapters[chId].isTrash:
-                self.novel.chapters[chId].chType = partType
-            for scId in self.novel.tree.get_children(chId):
-                if self.novel.sections[scId].scType < self.novel.chapters[chId].chType:
-                    self.novel.sections[scId].scType = self.novel.chapters[chId].chType
-
-    def count_words(self):
-        """Return a tuple of word count totals.
-        
-        count: int -- Total words of "normal" type sections.
-        totalCount: int -- Total words of "normal" and "unused" sections.
-        """
-        count = 0
-        totalCount = 0
-        for chId in self.novel.tree.get_children(CH_ROOT):
-            if not self.novel.chapters[chId].isTrash:
-                for scId in self.novel.tree.get_children(chId):
-                    if self.novel.sections[scId].scType < 2:
-                        totalCount += self.novel.sections[scId].wordCount
-                        if self.novel.sections[scId].scType == 0:
-                            count += self.novel.sections[scId].wordCount
-        return count, totalCount
 
     def read(self):
         """Read and parse the mdnov file.
@@ -491,30 +448,6 @@ $Desc
         mapping['SectionContent'] = self._add_key(element.sectionContent, 'Content')
         return mapping
 
-    def _get_timestamp(self):
-        try:
-            self.timestamp = os.path.getmtime(self.filePath)
-        except:
-            self.timestamp = None
-
-    def _keep_word_count(self):
-        """Keep the actual wordcount, if not logged."""
-        if not self.wcLog:
-            return
-
-        actualCountInt, actualTotalCountInt = self.count_words()
-        actualCount = str(actualCountInt)
-        actualTotalCount = str(actualTotalCountInt)
-        latestDate = list(self.wcLog)[-1]
-        latestCount = self.wcLog[latestDate][0]
-        latestTotalCount = self.wcLog[latestDate][1]
-        if actualCount != latestCount or actualTotalCount != latestTotalCount:
-            try:
-                fileDateIso = date.fromtimestamp(self.timestamp).isoformat()
-            except:
-                fileDateIso = date.today().isoformat()
-            self.wcLogUpdate[fileDateIso] = [actualCount, actualTotalCount]
-
     def _read_element(self, importer, element):
         if self._line.startswith('---'):
             if self._range != 'yaml':
@@ -645,16 +578,4 @@ $Desc
 
             wc = (line.strip('- ').split(';'))
             self.wcLog[wc[0]] = [wc[1], wc[2]]
-
-    def _update_word_count_log(self):
-        """Add today's word count and word count when reading, if not logged."""
-        if self.novel.saveWordCount:
-            newCountInt, newTotalCountInt = self.count_words()
-            newCount = str(newCountInt)
-            newTotalCount = str(newTotalCountInt)
-            todayIso = date.today().isoformat()
-            self.wcLogUpdate[todayIso] = [newCount, newTotalCount]
-            for wcDate in self.wcLogUpdate:
-                self.wcLog[wcDate] = self.wcLogUpdate[wcDate]
-        self.wcLogUpdate = {}
 

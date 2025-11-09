@@ -24,6 +24,8 @@ from mdnvlib.novx_globals import PN_ROOT
 from mdnvlib.novx_globals import PRJ_NOTE_PREFIX
 from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
+import os
+from mdnvlib.mdnov.mdnov_file import MdnovFile
 
 
 class NvModel(ModelBase):
@@ -749,15 +751,25 @@ class NvModel(ModelBase):
         Positional arguments:
             filePath: str -- path to the prjFile file.
         """
+        root, extension = os.path.splitext(filePath)
         self.novel = self.nvService.make_novel(tree=self.tree, links={})
-        self.prjFile = NvWorkFile(filePath)
+        self.prjFile = NvWorkFile(f'{root}{NvWorkFile.EXTENSION}')
         self.prjFile.novel = self.novel
-        self.prjFile.read()
+        if extension == MdnovFile.EXTENSION:
+            importFile = MdnovFile(filePath)
+            importFile.novel = self.novel
+            importFile.read()
+            self.prjFile.write()
+        else:
+            self.prjFile.read()
         if self.prjFile.wcLogUpdate and self.novel.saveWordCount:
             self.isModified = True
         else:
             self.isModified = False
         self._initialize_tree(self.on_element_change)
+
+    def load_mdnov(self, filePath):
+        """Load a legacy file."""
 
     def renumber_chapters(self):
         """Modify chapter headings."""
