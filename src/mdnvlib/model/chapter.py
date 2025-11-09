@@ -1,7 +1,7 @@
 """Provide a class for mdnovel chapter representation.
 
-Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mdnvlib
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mdnvlib.model.basic_element_notes import BasicElementNotes
@@ -79,29 +79,3 @@ class Chapter(BasicElementNotes):
             self._isTrash = newVal
             self.on_element_change()
 
-    def from_yaml(self, yaml):
-        super().from_yaml(yaml)
-        typeStr = self._get_meta_value('type', '0')
-        if typeStr in ('0', '1'):
-            self.chType = int(typeStr)
-        else:
-            self.chType = 1
-        chLevel = self._get_meta_value('level', None)
-        if chLevel == '1':
-            self.chLevel = 1
-        else:
-            self.chLevel = 2
-        self.isTrash = self._get_meta_value('isTrash', None) == '1'
-        self.noNumber = self._get_meta_value('noNumber', None) == '1'
-
-    def to_yaml(self, yaml):
-        yaml = super().to_yaml(yaml)
-        if self.chType:
-            yaml.append(f'type: {self.chType}')
-        if self.chLevel == 1:
-            yaml.append(f'level: 1')
-        if self.isTrash:
-            yaml.append(f'isTrash: 1')
-        if self.noNumber:
-            yaml.append(f'noNumber: 1')
-        return yaml

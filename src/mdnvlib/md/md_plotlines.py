@@ -1,6 +1,6 @@
 """Provide a class for Markdown plot line descriptions export.
 
-Copyright (c) 2024 Peter Triesberger
+Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
@@ -24,7 +24,7 @@ class MdPlotlines(MdFile):
     _arcHeadingTemplate = f'''# {_('Plot lines')}
 '''
 
-    _arcTemplate = '\n## $Title\n\n$Desc\n\n$TurningPoints\n\n'
+    _plotLineTemplate = '\n## $Title\n\n$Desc\n\n$TurningPoints\n\n'
     _plotPointTemplate = '### $Title\n\n$Desc'
     _assocSectionTemplate = '$Section: *$SectionTitle*'
 
@@ -36,12 +36,12 @@ class MdPlotlines(MdFile):
         self._firstPlotLine = True
         super().write()
 
-    def _get_arcMapping(self, plId):
+    def _get_plotLineMapping(self, plId):
         """Add associated sections to the plot line mapping dictionary.
         
         Extends the superclass method.
         """
-        arcMapping = super()._get_arcMapping(plId)
+        arcMapping = super()._get_plotLineMapping(plId)
         if self._firstPlotLine:
             arcMapping['Heading'] = self._arcHeadingTemplate
             self._firstPlotLine = False

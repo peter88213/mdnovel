@@ -1,6 +1,6 @@
 """ Provide a class for the properties view window.
 
-Copyright (c) 2024 Peter Triesberger
+Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
@@ -23,7 +23,7 @@ from mdnvlib.view.properties_window.item_view import ItemView
 from mdnvlib.view.properties_window.location_view import LocationView
 from mdnvlib.view.properties_window.no_view import NoView
 from mdnvlib.view.properties_window.plot_line_view import PlotLineView
-from mdnvlib.view.properties_window.plot_point_view import TurningPointView
+from mdnvlib.view.properties_window.plot_point_view import PlotPointView
 from mdnvlib.view.properties_window.project_note_view import ProjectNoteView
 from mdnvlib.view.properties_window.project_view import ProjectView
 from mdnvlib.view.properties_window.stage_view import StageView
@@ -49,7 +49,7 @@ class PropertiesViewer(ViewComponentNode, ttk.Frame):
         self._locationView = self._make_view(LocationView)
         self._itemView = self._make_view(ItemView)
         self._plotlineView = self._make_view(PlotLineView)
-        self._plotPointView = self._make_view(TurningPointView)
+        self._plotPointView = self._make_view(PlotPointView)
         self._projectnoteView = self._make_view(ProjectNoteView)
 
         self._activeView = self._noView
@@ -127,9 +127,9 @@ class PropertiesViewer(ViewComponentNode, ttk.Frame):
         Positional arguments:
             plId: str -- Plot line ID
         """
-        if not self._activeView is self._plotLineView:
+        if not self._activeView is self._plotlineView:
             self._activeView.hide()
-            self._activeView = self._plotLineView
+            self._activeView = self._plotlineView
             self._activeView.show()
         self._set_data(plId)
 

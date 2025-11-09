@@ -1,6 +1,6 @@
 """Provide a class for mdnov file import and export.
 
-Copyright (c) 2024 Peter Triesberger
+Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
@@ -34,6 +34,14 @@ from mdnvlib.novx_globals import SECTION_PREFIX
 from mdnvlib.novx_globals import _
 from mdnvlib.novx_globals import intersection
 from mdnvlib.novx_globals import list_to_string
+from mdnvlib.mdnov.plot_line_yaml import PlotLineYaml
+from mdnvlib.mdnov.character_yaml import CharacterYaml
+from mdnvlib.mdnov.chapter_yaml import ChapterYaml
+from mdnvlib.mdnov.novel_yaml import NovelYaml
+from mdnvlib.mdnov.world_element_yaml import WorldElementYaml
+from mdnvlib.mdnov.basic_element_yaml import BasicElementYaml
+from mdnvlib.mdnov.section_yaml import SectionYaml
+from mdnvlib.mdnov.plot_point_yaml import PlotPointYaml
 
 
 class MdnovFile(MdFile):
@@ -115,7 +123,7 @@ $Links$Desc
     _itemSectionHeading = ''
     _itemTemplate = _locationTemplate
     _projectNoteTemplate = _locationTemplate
-    _arcTemplate = '''
+    _plotLineTemplate = '''
 @@$ID
     
 ---
@@ -123,6 +131,18 @@ $YAML
 ---
 
 $Links$Desc
+%%
+
+'''
+
+    _plotPointTemplate = '''
+@@$ID
+    
+---
+$YAML
+---
+
+$Desc
 %%
 
 '''
@@ -155,6 +175,15 @@ $Links$Desc
         self._collectedLines = None
         self._properties = {}
         self._plId = None
+
+        self.plotLineCnv = PlotLineYaml()
+        self.characterCnv = CharacterYaml()
+        self.chapterCnv = ChapterYaml()
+        self.novelCnv = NovelYaml()
+        self.worldElementCnv = WorldElementYaml()
+        self.basicElementCnv = BasicElementYaml()
+        self.sectionCnv = SectionYaml()
+        self.plotPointCnv = PlotPointYaml()
 
     def adjust_section_types(self):
         """Make sure that nodes with "Unused" parents inherit the type."""
@@ -352,15 +381,23 @@ $Links$Desc
         mapping['Plotlines'] = f'{plStr}\n\n'
         return mapping
 
-    def _add_yaml(self, element, mapping):
-        yaml = element.to_yaml([])
+    def _add_yaml(self, exporter, element, mapping):
+        yaml = exporter.export_data(element, [])
         mapping['YAML'] = '\n'.join(yaml)
         return mapping
 
-    def _get_arcMapping(self, plId):
-        mapping = super()._get_arcMapping(plId)
+    def _get_plotLineMapping(self, plId):
+        mapping = super()._get_plotLineMapping(plId)
         element = self.novel.plotLines[plId]
-        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_yaml(self.plotLineCnv, element, mapping)
+        mapping = self._add_links(element, mapping)
+        mapping['Desc'] = self._add_key(element.desc, 'Desc')
+        return mapping
+
+    def _get_plotPointMapping(self, ppId):
+        mapping = super()._get_plotPointMapping(ppId)
+        element = self.novel.plotPoints[ppId]
+        mapping = self._add_yaml(self.plotPointCnv, element, mapping)
         mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         return mapping
@@ -368,7 +405,7 @@ $Links$Desc
     def _get_chapterMapping(self, chId, chapterNumber):
         mapping = super()._get_chapterMapping(chId, chapterNumber)
         element = self.novel.chapters[chId]
-        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_yaml(self.chapterCnv, element, mapping)
         mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Notes'] = self._add_key(element.desc, 'Notes')
@@ -377,7 +414,7 @@ $Links$Desc
     def _get_characterMapping(self, crId):
         mapping = super()._get_characterMapping(crId)
         element = self.novel.characters[crId]
-        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_yaml(self.characterCnv, element, mapping)
         mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Bio'] = self._add_key(element.bio, 'Bio')
@@ -409,7 +446,7 @@ $Links$Desc
     def _get_fileHeaderMapping(self):
         mapping = super()._get_fileHeaderMapping()
         element = self.novel
-        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_yaml(self.novelCnv, element, mapping)
         mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         return mapping
@@ -417,7 +454,7 @@ $Links$Desc
     def _get_itemMapping(self, itId):
         mapping = super()._get_itemMapping(itId)
         element = self.novel.items[itId]
-        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_yaml(self.worldElementCnv, element, mapping)
         mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Notes'] = self._add_key(element.desc, 'Notes')
@@ -426,7 +463,7 @@ $Links$Desc
     def _get_locationMapping(self, lcId):
         mapping = super()._get_locationMapping(lcId)
         element = self.novel.locations[lcId]
-        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_yaml(self.worldElementCnv, element, mapping)
         mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         mapping['Notes'] = self._add_key(element.desc, 'Notes')
@@ -435,7 +472,7 @@ $Links$Desc
     def _get_prjNoteMapping(self, pnId):
         mapping = super()._get_prjNoteMapping(pnId)
         element = self.novel.projectNotes[pnId]
-        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_yaml(self.basicElementCnv, element, mapping)
         mapping = self._add_links(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
         return mapping
@@ -443,7 +480,7 @@ $Links$Desc
     def _get_sectionMapping(self, scId, sectionNumber, wordsTotal, firstInChapter=False):
         mapping = super()._get_sectionMapping(scId, sectionNumber, wordsTotal)
         element = self.novel.sections[scId]
-        mapping = self._add_yaml(element, mapping)
+        mapping = self._add_yaml(self.sectionCnv, element, mapping)
         mapping = self._add_links(element, mapping)
         mapping = self._add_plotline_notes(element, mapping)
         mapping['Desc'] = self._add_key(element.desc, 'Desc')
@@ -478,13 +515,13 @@ $Links$Desc
                 fileDateIso = date.today().isoformat()
             self.wcLogUpdate[fileDateIso] = [actualCount, actualTotalCount]
 
-    def _read_element(self, element):
+    def _read_element(self, importer, element):
         if self._line.startswith('---'):
             if self._range != 'yaml':
                 self._range = 'yaml'
                 self._collectedLines = []
             else:
-                element.from_yaml(self._collectedLines)
+                importer.import_data(element, self._collectedLines)
                 self._range = None
             return
 
@@ -521,7 +558,7 @@ $Links$Desc
             'Desc':Chapter.desc,
             'Notes':Chapter.notes,
         }
-        self._read_element(element)
+        self._read_element(self.chapterCnv, element)
 
     def _read_character(self, element):
         self._properties = {
@@ -530,40 +567,40 @@ $Links$Desc
             'Bio':Character.bio,
             'Goals':Character.goals,
         }
-        self._read_element(element)
+        self._read_element(self.chapterCnv, element)
 
     def _read_world_element(self, element):
         self._properties = {
             'Desc':WorldElement.desc,
             'Notes':WorldElement.notes,
         }
-        self._read_element(element)
+        self._read_element(self.worldElementCnv, element)
 
     def _read_plot_line(self, element):
         self._properties = {
             'Desc':PlotLine.desc,
             'Notes':PlotLine.notes,
         }
-        self._read_element(element)
+        self._read_element(self.plotLineCnv, element)
 
     def _read_plot_point(self, element):
         self._properties = {
             'Desc':PlotPoint.desc,
             'Notes':PlotPoint.notes,
         }
-        self._read_element(element)
+        self._read_element(self.plotPointCnv, element)
 
     def _read_project(self, element):
         self._properties = {
             'Desc':Novel.desc,
         }
-        self._read_element(element)
+        self._read_element(self.novelCnv, element)
 
     def _read_project_note(self, element):
         self._properties = {
             'Desc':BasicElement.desc,
         }
-        self._read_element(element)
+        self._read_element(self.basicElementCnv, element)
 
     def _read_section(self, element):
         if element.plotlineNotes is None:
@@ -576,11 +613,11 @@ $Links$Desc
             'Outcome':Section.outcome,
             'Content':Section.sectionContent,
         }
-        self._read_element(element)
+        self._read_element(self.sectionCnv, element)
 
     def _read_word_count_log(self, element):
         self._range = 'Progress'
-        self._read_element(element)
+        self._read_element(None, element)
 
     def _set_links(self, element, text):
         linkList = []

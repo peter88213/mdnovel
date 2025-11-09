@@ -12,7 +12,7 @@ from shutil import copytree
 sys.path.insert(0, f'{os.getcwd()}/../../mdnovel/tools')
 from package_builder import PackageBuilder
 
-VERSION = '1.0.3'
+VERSION = '1.1.0'
 
 
 class ApplicationBuilder(PackageBuilder):

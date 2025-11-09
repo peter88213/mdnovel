@@ -4,10 +4,18 @@
 
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
+
+### Version 1.1.0
+
+General refactoring and bugfix
+
+- Separated the YAML read/write routines from the data model.
+- Reading and writing plot lines and plot points.
+
+
 ### Version 1.0.3
 
 - Checking the Python version during startup.
-
 
 
 ### Version 1.0.2

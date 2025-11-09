@@ -1,7 +1,7 @@
 """Provide a class for a novel representation.
 
-Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mdnvlib
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
@@ -397,136 +397,6 @@ class Novel(BasicElement):
                 else:
                     self._referenceDate = newVal
                     self.on_element_change()
-
-    def from_yaml(self, yaml):
-        super().from_yaml(yaml)
-        self.renumberChapters = self._get_meta_value('renumberChapters', None) == '1'
-        self.renumberParts = self._get_meta_value('renumberParts', None) == '1'
-        self.renumberWithinParts = self._get_meta_value('renumberWithinParts', None) == '1'
-        self.romanChapterNumbers = self._get_meta_value('romanChapterNumbers', None) == '1'
-        self.romanPartNumbers = self._get_meta_value('romanPartNumbers', None) == '1'
-        self.saveWordCount = self._get_meta_value('saveWordCount', None) == '1'
-        workPhase = self._get_meta_value('workPhase', None)
-        if workPhase in ('1', '2', '3', '4', '5'):
-            self.workPhase = int(workPhase)
-        else:
-            self.workPhase = None
-
-        # Author.
-        self.authorName = self._get_meta_value('Author')
-
-        # Chapter heading prefix/suffix.
-        chapterHeadingPrefix = self._get_meta_value('ChapterHeadingPrefix')
-        if chapterHeadingPrefix:
-            chapterHeadingPrefix = chapterHeadingPrefix[1:-1]
-        self.chapterHeadingPrefix = chapterHeadingPrefix
-
-        chapterHeadingSuffix = self._get_meta_value('ChapterHeadingSuffix')
-        if chapterHeadingSuffix:
-            chapterHeadingSuffix = chapterHeadingSuffix[1:-1]
-        self.chapterHeadingSuffix = chapterHeadingSuffix
-
-        # Part heading prefix/suffix.
-        partHeadingPrefix = self._get_meta_value('PartHeadingPrefix')
-        if partHeadingPrefix:
-            partHeadingPrefix = partHeadingPrefix[1:-1]
-        self.partHeadingPrefix = partHeadingPrefix
-
-        partHeadingSuffix = self._get_meta_value('PartHeadingSuffix')
-        if partHeadingSuffix:
-            partHeadingSuffix = partHeadingSuffix[1:-1]
-        self.partHeadingSuffix = partHeadingSuffix
-
-        # N/A Goal/Conflict/Outcome.
-        self.customPlotProgress = self._get_meta_value('CustomPlotProgress')
-        self.customCharacterization = self._get_meta_value('CustomCharacterization')
-        self.customWorldBuilding = self._get_meta_value('CustomWorldBuilding')
-
-        # Custom Goal/Conflict/Outcome.
-        self.customGoal = self._get_meta_value('CustomGoal')
-        self.customConflict = self._get_meta_value('CustomConflict')
-        self.customOutcome = self._get_meta_value('CustomOutcome')
-
-        # Custom Character Bio/Goals.
-        self.customChrBio = self._get_meta_value('CustomChrBio')
-        self.customChrGoals = self._get_meta_value('CustomChrGoals')
-
-        # Word count start/Word target.
-        ws = self._get_meta_value('WordCountStart')
-        if ws is not None:
-            self.wordCountStart = int(ws)
-        wt = self._get_meta_value('WordTarget')
-        if wt is not None:
-            self.wordTarget = int(wt)
-
-        # Reference date.
-        self.referenceDate = verified_date(self._get_meta_value('ReferenceDate'))
-
-    def to_yaml(self, yaml):
-        yaml = super().to_yaml(yaml)
-        if self.renumberChapters:
-            yaml.append(f'renumberChapters: 1')
-        if self.renumberParts:
-            yaml.append(f'renumberParts: 1')
-        if self.renumberWithinParts:
-            yaml.append(f'renumberWithinParts: 1')
-        if self.romanChapterNumbers:
-            yaml.append(f'romanChapterNumbers: 1')
-        if self.romanPartNumbers:
-            yaml.append(f'romanPartNumbers: 1')
-        if self.saveWordCount:
-            yaml.append(f'saveWordCount: 1')
-        if self.workPhase is not None:
-            yaml.append(f'workPhase: {self.workPhase}')
-
-        # Author.
-        if self.authorName:
-            yaml.append(f'Author: {self.authorName}')
-
-        # Chapter heading prefix/suffix.
-        if self.chapterHeadingPrefix:
-            yaml.append(f'ChapterHeadingPrefix: "{self.chapterHeadingPrefix}"')
-        if self.chapterHeadingSuffix:
-            yaml.append(f'ChapterHeadingSuffix: "{self.chapterHeadingSuffix}"')
-
-        # Part heading prefix/suffix.
-        if self.partHeadingPrefix:
-            yaml.append(f'PartHeadingPrefix: "{self.partHeadingPrefix}"')
-        if self.partHeadingSuffix:
-            yaml.append(f'PartHeadingSuffix: "{self.partHeadingSuffix}"')
-
-        # Custom Plot progress/Characterization/World building.
-        if self.customPlotProgress:
-            yaml.append(f'CustomPlotProgress: {self.customPlotProgress}')
-        if self.customCharacterization:
-            yaml.append(f'CustomCharacterization: {self.customCharacterization}')
-        if self.customWorldBuilding:
-            yaml.append(f'CustomWorldBuilding: {self.customWorldBuilding}')
-
-        # Custom Goal/Conflict/Outcome.
-        if self.customGoal:
-            yaml.append(f'CustomGoal: {self.customGoal}')
-        if self.customConflict:
-            yaml.append(f'CustomConflict: {self.customConflict}')
-        if self.customOutcome:
-            yaml.append(f'CustomOutcome: {self.customOutcome}')
-
-        # Custom Character Bio/Goals.
-        if self.customChrBio:
-            yaml.append(f'CustomChrBio: {self.customChrBio}')
-        if self.customChrGoals:
-            yaml.append(f'CustomChrGoals: {self.customChrGoals}')
-
-        # Word count start/Word target.
-        if self.wordCountStart:
-            yaml.append(f'WordCountStart: {self.wordCountStart}')
-        if self.wordTarget:
-            yaml.append(f'WordTarget: {self.wordTarget}')
-
-        # Reference date.
-        if self.referenceDate:
-            yaml.append(f'ReferenceDate: {self.referenceDate}')
-        return yaml
 
     def update_plot_lines(self):
         """Set section back references to PlotLine.sections and PlotPoint.sectionAssoc. """

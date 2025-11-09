@@ -1,7 +1,7 @@
 """Provide a class for mdnovel character representation.
 
-Copyright (c) 2024 Peter Triesberger
-For further information see https://github.com/peter88213/mdnvlib
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mdnvlib.model.world_element import WorldElement
@@ -104,23 +104,4 @@ class Character(WorldElement):
         if self._deathDate != newVal:
             self._deathDate = newVal
             self.on_element_change()
-
-    def from_yaml(self, yaml):
-        super().from_yaml(yaml)
-        self.isMajor = self._get_meta_value('major', None) == '1'
-        self.fullName = self._get_meta_value('FullName')
-        self.birthDate = verified_date(self._get_meta_value('BirthDate'))
-        self.deathDate = verified_date(self._get_meta_value('DeathDate'))
-
-    def to_yaml(self, yaml):
-        yaml = super().to_yaml(yaml)
-        if self.isMajor:
-            yaml.append(f'major: 1')
-        if self.fullName:
-            yaml.append(f'FullName: {self.fullName}')
-        if self.birthDate:
-            yaml.append(f'BirthDate: {self.birthDate}')
-        if self.deathDate:
-            yaml.append(f'DeathDate: {self.deathDate}')
-        return yaml
 
