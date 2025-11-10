@@ -175,7 +175,7 @@ def make_context_menu(installPath):
     installUrl = installPath.replace('/', '\\\\')
     script = f'{installUrl}\\\\{START_UP_SCRIPT}'
     mapping = dict(PYTHON=python, SCRIPT=script, INSTALL=installUrl)
-    save_reg_file(f'{installPath}/add_mdnovel.reg', Template(ADD_TO_REGISTRY), mapping)
+    # save_reg_file(f'{installPath}/add_mdnovel.reg', Template(ADD_TO_REGISTRY), mapping)
     save_reg_file(f'{installPath}/remove_mdnovel.reg', Template(REMOVE_FROM_REGISTRY), {})
 
 
