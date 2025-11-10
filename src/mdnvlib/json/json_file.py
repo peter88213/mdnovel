@@ -119,7 +119,7 @@ class JsonFile(PrjFile):
         self._build_project_notes(jsonRoot)
         self._build_word_count_log(jsonRoot)
         with open(self.filePath, 'w', encoding='utf-8') as f:
-            json.dump(jsonData, f, indent=2)
+            json.dump(jsonData, f, indent=2, ensure_ascii=False)
         self._get_timestamp()
 
     def _build_project(self, root):
