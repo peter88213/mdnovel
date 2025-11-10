@@ -95,9 +95,7 @@ class PrjFile(File):
         if not self.wcLog:
             return
 
-        actualCountInt, actualTotalCountInt = self.count_words()
-        actualCount = str(actualCountInt)
-        actualTotalCount = str(actualTotalCountInt)
+        actualCount, actualTotalCount = self.count_words()
         latestDate = list(self.wcLog)[-1]
         latestCount = self.wcLog[latestDate][0]
         latestTotalCount = self.wcLog[latestDate][1]
