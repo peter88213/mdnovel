@@ -5,10 +5,8 @@ For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from datetime import date
-import locale
 
 from mdnvlib.model.basic_element import BasicElement
-from mdnvlib.novx_globals import verified_date
 
 
 class Novel(BasicElement):

@@ -6,7 +6,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mdnvlib.model.world_element import WorldElement
 from mdnvlib.novx_globals import _
-from mdnvlib.novx_globals import verified_date
 
 
 class Character(WorldElement):

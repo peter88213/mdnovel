@@ -14,11 +14,6 @@ from mdnvlib.model.basic_element_tags import BasicElementTags
 from mdnvlib.model.date_time_tools import get_specific_date
 from mdnvlib.model.date_time_tools import get_unspecific_date
 from mdnvlib.novx_globals import _
-from mdnvlib.novx_globals import list_to_string
-from mdnvlib.novx_globals import string_to_list
-from mdnvlib.novx_globals import verified_date
-from mdnvlib.novx_globals import verified_int_string
-from mdnvlib.novx_globals import verified_time
 
 # Regular expressions for counting words and characters like in LibreOffice.
 # See: https://help.libreoffice.org/latest/en-GB/text/swriter/guide/words_count.html

@@ -5,8 +5,6 @@ For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from mdnvlib.model.basic_element_notes import BasicElementNotes
-from mdnvlib.novx_globals import string_to_list
-from mdnvlib.novx_globals import list_to_string
 
 
 class PlotLine(BasicElementNotes):
