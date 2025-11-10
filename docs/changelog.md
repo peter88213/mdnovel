@@ -5,6 +5,14 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 2.0.0
+
+- File format change from the YAML/Markdown *.mdnov* format to *.JSON*.
+  *.mdnov* is supported as a "read only" legacy format.
+- Improved usability: All branches are collapsed before viewing a specific one 
+  via menu or toolbar command.
+
+
 ### Version 1.1.0
 
 General refactoring and bugfix
