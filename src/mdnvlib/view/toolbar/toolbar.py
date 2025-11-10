@@ -65,8 +65,8 @@ class Toolbar(ViewComponentBase, ttk.Frame):
             self.buttonBar,
             text=_('Book'),
             image=self._ui.icons.viewBookIcon,
-            command=lambda: self._ui.tv.show_branch(CH_ROOT)
-            )
+            command=self._ui.tv.show_book
+        )
         self._viewBookButton.pack(side='left')
         self._viewBookButton.image = self._ui.icons.viewBookIcon
 
@@ -75,8 +75,8 @@ class Toolbar(ViewComponentBase, ttk.Frame):
             self.buttonBar,
             text=_('Characters'),
             image=self._ui.icons.viewCharactersIcon,
-            command=lambda: self._ui.tv.show_branch(CR_ROOT)
-            )
+            command=self._ui.tv.show_characters
+        )
         self._viewCharactersButton.pack(side='left')
         self._viewCharactersButton.image = self._ui.icons.viewCharactersIcon
 
@@ -85,8 +85,8 @@ class Toolbar(ViewComponentBase, ttk.Frame):
             self.buttonBar,
             text=_('Locations'),
             image=self._ui.icons.viewLocationsIcon,
-            command=lambda: self._ui.tv.show_branch(LC_ROOT)
-            )
+            command=self._ui.tv.show_locations
+        )
         self._viewLocationsButton.pack(side='left')
         self._viewLocationsButton.image = self._ui.icons.viewLocationsIcon
 
@@ -95,8 +95,8 @@ class Toolbar(ViewComponentBase, ttk.Frame):
             self.buttonBar,
             text=_('Items'),
             image=self._ui.icons.viewItemsIcon,
-            command=lambda: self._ui.tv.show_branch(IT_ROOT)
-            )
+            command=self._ui.tv.show_items
+        )
         self._viewItemsButton.pack(side='left')
         self._viewItemsButton.image = self._ui.icons.viewItemsIcon
 
@@ -105,8 +105,8 @@ class Toolbar(ViewComponentBase, ttk.Frame):
             self.buttonBar,
             text=_('Plot lines'),
             image=self._ui.icons.viewPlotLinesIcon,
-            command=lambda: self._ui.tv.show_branch(PL_ROOT)
-            )
+            command=self._ui.tv.show_plot_lines
+        )
         self._viewPlotLinesButton.pack(side='left')
         self._viewPlotLinesButton.image = self._ui.icons.viewPlotLinesIcon
 
@@ -115,8 +115,8 @@ class Toolbar(ViewComponentBase, ttk.Frame):
             self.buttonBar,
             text=_('Project notes'),
             image=self._ui.icons.viewProjectnotesIcon,
-            command=lambda: self._ui.tv.show_branch(PN_ROOT)
-            )
+            command=self._ui.tv.show_project_notes
+        )
         self._viewProjectnotesButton.pack(side='left')
         self._viewProjectnotesButton.image = self._ui.icons.viewProjectnotesIcon
 

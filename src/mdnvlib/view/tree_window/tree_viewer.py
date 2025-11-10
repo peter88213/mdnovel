@@ -152,6 +152,9 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
         for child in self.tree.get_children(parent):
             self.close_children(child)
 
+    def collapse_all(self, event=None):
+        self.close_children('')
+
     def configure_columns(self):
         """Determine the order of the columnns.
         
@@ -341,6 +344,10 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
         self.tree.configure({'selectmode': 'none'})
         self._ctrl.reset_tree()
 
+    def show_book(self, event=None):
+        self.collapse_all()
+        self.show_branch(CH_ROOT)
+
     def show_branch(self, node):
         """Go to node and open children.
         
@@ -367,6 +374,26 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
 
         show_chapters(CH_ROOT)
         return 'break'
+
+    def show_characters(self, event=None):
+        self.collapse_all()
+        self.show_branch(CR_ROOT)
+
+    def show_items(self, event=None):
+        self.collapse_all()
+        self.show_branch(IT_ROOT)
+
+    def show_locations(self, event=None):
+        self.collapse_all()
+        self.show_branch(LC_ROOT)
+
+    def show_plot_lines(self, event=None):
+        self.collapse_all()
+        self.show_branch(PL_ROOT)
+
+    def show_project_notes(self, event=None):
+        self.collapse_all()
+        self.show_branch(PN_ROOT)
 
     def refresh(self, event=None):
         """Update the tree display to view changes.

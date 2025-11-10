@@ -485,12 +485,30 @@ class NvView(ViewBase):
         self.viewMenu.add_command(label=_('Expand all'), command=lambda: self.tv.open_children(''))
         self.viewMenu.add_command(label=_('Collapse all'), command=lambda: self.tv.close_children(''))
         self.viewMenu.add_separator()
-        self.viewMenu.add_command(label=_('Show Book'), command=lambda: self.tv.show_branch(CH_ROOT))
-        self.viewMenu.add_command(label=_('Show Characters'), command=lambda: self.tv.show_branch(CR_ROOT))
-        self.viewMenu.add_command(label=_('Show Locations'), command=lambda: self.tv.show_branch(LC_ROOT))
-        self.viewMenu.add_command(label=_('Show Items'), command=lambda: self.tv.show_branch(IT_ROOT))
-        self.viewMenu.add_command(label=_('Show Plot lines'), command=lambda: self.tv.show_branch(PL_ROOT))
-        self.viewMenu.add_command(label=_('Show Project notes'), command=lambda: self.tv.show_branch(PN_ROOT))
+        self.viewMenu.add_command(
+            label=_('Show Book'),
+            command=self.tv.show_book,
+        )
+        self.viewMenu.add_command(
+            label=_('Show Characters'),
+            command=self.tv.show_characters,
+        )
+        self.viewMenu.add_command(
+            label=_('Show Locations'),
+            command=self.tv.show_locations,
+        )
+        self.viewMenu.add_command(
+            label=_('Show Items'),
+            command=self.tv.show_items,
+        )
+        self.viewMenu.add_command(
+            label=_('Show Plot lines'),
+            command=self.tv.show_plot_lines,
+        )
+        self.viewMenu.add_command(
+            label=_('Show Project notes'),
+            command=self.tv.show_project_notes,
+        )
         self.viewMenu.add_separator()
         self.viewMenu.add_command(label=_('Toggle Text viewer'), accelerator=KEYS.TOGGLE_VIEWER[1], command=self.toggle_contents_view)
         self.viewMenu.add_command(label=_('Toggle Properties'), accelerator=KEYS.TOGGLE_PROPERTIES[1], command=self.toggle_properties_view)
