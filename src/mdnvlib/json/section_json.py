@@ -61,6 +61,9 @@ class SectionJson(BasicElementTagsJson):
         # Items references.
         element.items = json.get('Items', [])
 
+        # Plot line notes.
+        element.plotlineNotes = json.get('PlotlineNotes', {})
+
     def export_data(self, element, json):
         json = super().export_data(element, json)
         if element.scType:
@@ -109,5 +112,17 @@ class SectionJson(BasicElementTagsJson):
         # Items references.
         if element.items:
             json['Items'] = element.items
+
+        # Plot line notes.
+        if element.plotlineNotes:
+            json['PlotlineNotes'] = {}
+            for plId in element.plotlineNotes:
+                if not plId in element.scPlotLines:
+                    continue
+
+                if not element.plotlineNotes[plId]:
+                    continue
+
+                json['PlotlineNotes'][plId] = element.plotlineNotes[plId]
 
         return json

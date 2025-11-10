@@ -17,6 +17,10 @@ class CharacterJson(WorldElementJson):
         element.birthDate = verified_date(json.get('BirthDate', None))
         element.deathDate = verified_date(json.get('DeathDate', None))
 
+        # Text fields.
+        element.bio = json.get('Bio', None)
+        element.goals = json.get('Goals', None)
+
     def export_data(self, element, json):
         json = super().export_data(element, json)
         if element.isMajor:
@@ -27,5 +31,11 @@ class CharacterJson(WorldElementJson):
             json['BirthDate'] = element.birthDate
         if element.deathDate:
             json['DeathDate'] = element.deathDate
+
+        # Text fields.
+        if element.bio:
+            json['Bio'] = element.bio
+        if element.goals:
+            json['Goals'] = element.goals
         return json
 
