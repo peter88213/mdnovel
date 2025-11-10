@@ -700,7 +700,8 @@ class NvController(ControllerBase):
         if not filePath:
             return False
 
-        prefs['last_open'] = filePath
+        if self._mdl.prjFile is not None:
+            self.close_project(doNotSave=doNotSave)
 
         root, extension = os.path.splitext(filePath)
         if extension != self.STANDARD_FILE_TYPE.EXTENSION:
@@ -711,10 +712,8 @@ class NvController(ControllerBase):
                 self._ui.set_status(f'!{str(ex)}')
                 return False
 
-        # prefs['last_open'] = filePath
+        prefs['last_open'] = filePath
 
-        if self._mdl.prjFile is not None:
-            self.close_project(doNotSave=doNotSave)
         try:
             self._mdl.open_project(filePath)
         except Error as ex:
@@ -730,6 +729,14 @@ class NvController(ControllerBase):
         self.show_status()
         self._ui.contentsView.view_text()
         self._ui.tv.show_branch(CH_ROOT)
+
+        if extension != self.STANDARD_FILE_TYPE.EXTENSION:
+            self._ui.show_info(
+                message=(
+                    f'{_("The file format was updated")}:\n'
+                    f'"{extension}" {_("to")} "{self.STANDARD_FILE_TYPE.EXTENSION}"'
+                )
+            )
         return True
 
     def open_project_folder(self, event=None):

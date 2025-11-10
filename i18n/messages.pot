@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.1.0\n"
-"POT-Creation-Date: 2025-11-09 11:55:25\n"
+"POT-Creation-Date: 2025-11-10 14:45:04\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: LANGUAGE\n"
@@ -285,6 +285,9 @@ msgid "Convert days to dates"
 msgstr ""
 
 msgid "Copy"
+msgstr ""
+
+msgid "Corrupt project data"
 msgstr ""
 
 msgid "Create from Markdown..."
@@ -587,9 +590,6 @@ msgstr ""
 msgid "Manuscript"
 msgstr ""
 
-msgid "Markdown document"
-msgstr ""
-
 msgid "Matrix"
 msgstr ""
 
@@ -663,6 +663,12 @@ msgid "No mdnovel project to write"
 msgstr ""
 
 msgid "No text available"
+msgstr ""
+
+msgid "No valid JSON root element found in file"
+msgstr ""
+
+msgid "No valid version found in file"
 msgstr ""
 
 msgid "No {} file available for this project."
@@ -1022,10 +1028,19 @@ msgstr ""
 msgid "The change takes effect after next startup."
 msgstr ""
 
+msgid "The file format was updated"
+msgstr ""
+
 msgid "The next section has no time set."
 msgstr ""
 
 msgid "The previous section has no time set."
+msgstr ""
+
+msgid "The project \"{}\" was created with a newer mdnovel version."
+msgstr ""
+
+msgid "The project \"{}\" was created with an outdated mdnovel version."
 msgstr ""
 
 msgid "The sections are not of the same type"
@@ -1182,6 +1197,9 @@ msgid "no data"
 msgstr ""
 
 msgid "older"
+msgstr ""
+
+msgid "to"
 msgstr ""
 
 msgid "update"

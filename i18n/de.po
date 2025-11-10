@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.1.0\n"
-"POT-Creation-Date: 2025-11-09 11:55:25\n"
-"PO-Revision-Date: 2025-11-09 11:55:25\n"
+"POT-Creation-Date: 2025-11-10 14:45:04\n"
+"PO-Revision-Date: 2025-11-10 14:45:04\n"
 "Last-Translator: Peter Triesberger\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -279,6 +279,9 @@ msgstr "Tage in Datum umwandeln"
 
 msgid "Copy"
 msgstr "Kopieren"
+
+msgid "Corrupt project data"
+msgstr "Projektdaten fehlerhaft"
 
 msgid "Create from Markdown..."
 msgstr "Aus Markdown erzeugen..."
@@ -580,9 +583,6 @@ msgstr "Hauptfigur"
 msgid "Manuscript"
 msgstr "Manuskript"
 
-msgid "Markdown document"
-msgstr "Markdown-Dokument"
-
 msgid "Matrix"
 msgstr "Matrix"
 
@@ -657,6 +657,12 @@ msgstr "Kein mdnovel-Projekt zum Schreiben"
 
 msgid "No text available"
 msgstr "Kein Text vorhanden"
+
+msgid "No valid JSON root element found in file"
+msgstr "Kein gültiges JSON-Wurzelelement gefunden in Datei"
+
+msgid "No valid version found in file"
+msgstr "Keine gültige Versionsangabe in der Datei gefunden"
 
 msgid "No {} file available for this project."
 msgstr "Keine {}-Datei für dieses Projekt vorhanden."
@@ -1015,11 +1021,20 @@ msgstr "Der zulässige Mindestwert ist"
 msgid "The change takes effect after next startup."
 msgstr "Die Änderung wird beim nächsten Programmstart wirksam"
 
+msgid "The file format was updated"
+msgstr "Das Dateiformat wurde aktualisiert"
+
 msgid "The next section has no time set."
 msgstr "Der nachfolgende Abschnitt hat keine Zeitangabe"
 
 msgid "The previous section has no time set."
 msgstr "Der vorhergehende Abschnitt hat keine Zeitangabe"
+
+msgid "The project \"{}\" was created with a newer mdnovel version."
+msgstr "Das Projekt \"{}\" wurde mit einer neueren Version von mdnovel erzeugt."
+
+msgid "The project \"{}\" was created with an outdated mdnovel version."
+msgstr "Das Projekt \"{}\" wurde mit einer veralteten Version von mdnovel erzeugt."
 
 msgid "The sections are not of the same type"
 msgstr "Die Abschnitte sind nicht vom selben Typ"
@@ -1182,6 +1197,9 @@ msgstr "keine Daten"
 
 msgid "older"
 msgstr "älter"
+
+msgid "to"
+msgstr "zu"
 
 msgid "update"
 msgstr "aktualisieren"
