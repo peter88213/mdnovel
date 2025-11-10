@@ -1,0 +1,22 @@
+"""Provide a class for mdnovel element JSON import and export.
+
+Copyright (c) 2025 Peter Triesberger
+For further information see https://github.com/peter88213/mdnovel
+License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+"""
+from mdnvlib.json.basic_element_tags_json import BasicElementTagsJson
+
+
+class WorldElementJson(BasicElementTagsJson):
+    """Story world element representation (may be location or item)."""
+
+    def import_data(self, element, json):
+        super().import_data(element, json)
+        element.aka = json.get('Aka', None)
+
+    def export_data(self, element, json):
+        json = super().export_data(element, json)
+        if element.aka:
+            json['Aka'] = element.aka
+        return json
+

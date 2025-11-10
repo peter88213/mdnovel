@@ -577,5 +577,5 @@ $Desc
                 continue
 
             wc = (line.strip('- ').split(';'))
-            self.wcLog[wc[0]] = [wc[1], wc[2]]
+            self.wcLog[wc[0]] = [int(wc[1]), int(wc[2])]
 

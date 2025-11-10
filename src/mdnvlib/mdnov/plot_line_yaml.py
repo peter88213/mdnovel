@@ -1,4 +1,4 @@
-"""Provide a class for mdnovel element YAML import an export.
+"""Provide a class for mdnovel element YAML import and export.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel

@@ -74,7 +74,7 @@ class NvModel(ModelBase):
             isTrash=False,
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.tree.insert(CH_ROOT, index, chId)
         return chId
 
@@ -109,7 +109,7 @@ class NvModel(ModelBase):
             isMajor=kwargs.get('isMajor', False),
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.tree.insert(CR_ROOT, index, crId)
         return crId
 
@@ -138,7 +138,7 @@ class NvModel(ModelBase):
             tags='',
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.tree.insert(IT_ROOT, index, itId)
         return itId
 
@@ -167,7 +167,7 @@ class NvModel(ModelBase):
             tags='',
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.tree.insert(LC_ROOT, index, lcId)
         return lcId
 
@@ -202,7 +202,7 @@ class NvModel(ModelBase):
             isTrash=False,
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.tree.insert(CH_ROOT, index, chId)
         return chId
 
@@ -231,7 +231,7 @@ class NvModel(ModelBase):
             sections=[],
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.tree.insert(PL_ROOT, index, plId)
         return plId
 
@@ -266,7 +266,7 @@ class NvModel(ModelBase):
             desc='',
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.tree.insert(parent, index, ppId)
         return ppId
 
@@ -293,7 +293,7 @@ class NvModel(ModelBase):
             desc='',
             links={},
             on_element_change=self.on_element_change,
-            )
+        )
         self.tree.insert(PN_ROOT, index, pnId)
         return pnId
 
@@ -346,7 +346,7 @@ class NvModel(ModelBase):
             items=[],
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.novel.sections[scId].sectionContent = ''
         self.tree.insert(parent, index, scId)
         return scId
@@ -387,7 +387,7 @@ class NvModel(ModelBase):
             scene=0,
             links={},
             on_element_change=self.on_element_change,
-            )
+         )
         self.tree.insert(parent, index, scId)
         return scId
 
@@ -516,7 +516,7 @@ class NvModel(ModelBase):
                     noNumber=True,
                     isTrash=True,
                     on_element_change=self.on_element_change,
-                    )
+                )
                 self.tree.append(CH_ROOT, self.trashBin)
             if elemId.startswith(SECTION_PREFIX):
                 if self.tree.parent(elemId) == self.trashBin:
@@ -738,7 +738,7 @@ class NvModel(ModelBase):
             links=[],
             tree=tree,
             on_element_change=self.on_element_change,
-            )
+         )
         self.prjFile = NvWorkFile('')
         self.prjFile.novel = self.novel
         self._initialize_tree(self.on_element_change)

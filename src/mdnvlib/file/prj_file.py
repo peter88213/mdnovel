@@ -9,6 +9,7 @@ import os
 
 from mdnvlib.file.file import File
 from mdnvlib.novx_globals import CH_ROOT
+from mdnvlib.novx_globals import Error
 from mdnvlib.novx_globals import _
 
 
@@ -61,6 +62,11 @@ class PrjFile(File):
                 if self.novel.sections[scId].scType < self.novel.chapters[chId].chType:
                     self.novel.sections[scId].scType = self.novel.chapters[chId].chType
 
+    def _check_id(self, elemId, elemPrefix):
+        """Raise an exception if elemId does not start with the correct prefix."""
+        if not elemId.startswith(elemPrefix):
+            raise Error(f"bad ID: '{elemId}'")
+
     def count_words(self):
         """Return a tuple of word count totals.
         
@@ -105,9 +111,7 @@ class PrjFile(File):
     def _update_word_count_log(self):
         """Add today's word count and word count when reading, if not logged."""
         if self.novel.saveWordCount:
-            newCountInt, newTotalCountInt = self.count_words()
-            newCount = str(newCountInt)
-            newTotalCount = str(newTotalCountInt)
+            newCount, newTotalCount = self.count_words()
             todayIso = date.today().isoformat()
             self.wcLogUpdate[todayIso] = [newCount, newTotalCount]
             for wcDate in self.wcLogUpdate:

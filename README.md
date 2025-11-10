@@ -35,7 +35,7 @@ A novel writing application using markdown.
   a section. The date and time information can be synchronised with the [Timeline](http://thetimelineproj.sourceforge.net/) application.
 - For **printing**, *mdnovel* exports a neatly designed novel manuscript that can be converted with *pandoc*
   into several document and ebook formats. 
-- *mdnovel* saves its data in a single, easy-to-understand Markdown/YAML-formatted text file.
+- *mdnovel* saves its data in a single, easy-to-understand JSON-formatted text file.
 - *mdnovel* is written in Python and should run on several **operating systems**, like Windows and Linux.
 - The application is ready for internationalization with GNU gettext. German translations are provided. 
 

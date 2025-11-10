@@ -1,4 +1,4 @@
-"""Provide a class for mdnovel element YAML import an export.
+"""Provide a class for mdnovel element YAML import and export.
 
 Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
@@ -33,12 +33,6 @@ class SectionYaml(BasicElementTagsYaml):
             element.scene = int(scene)
         else:
             element.scene = 0
-
-        if not element.scene:
-            # looking for deprecated attribute from DTD 1.3
-            sceneKind = self._get_meta_value('pacing', None)
-            if sceneKind in ('1', '2'):
-                element.scene = int(sceneKind) + 1
 
         element.appendToPrev = self._get_meta_value('append', None) == '1'
 

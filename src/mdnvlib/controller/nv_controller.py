@@ -667,7 +667,7 @@ class NvController(ControllerBase):
                 self._ui.show_error(
                     str(ex),
                     title=_('Cannot open link')
-                    )
+                )
             else:
                 # Replace the broken link with the fixed one.
                 links = element.links
@@ -840,7 +840,7 @@ class NvController(ControllerBase):
             filetypes=self._fileTypes,
             defaultextension=self._fileTypes[0][1],
             initialdir=startDir,
-            )
+        )
         if fileName:
             if self._mdl.prjFile is not None:
                 self._ui.propertiesView.apply_changes()
@@ -905,7 +905,7 @@ class NvController(ControllerBase):
                 filetypes=self._fileTypes,
                 defaultextension=self.STANDARD_FILE_TYPE.EXTENSION,
                 initialdir=initDir
-                )
+            )
         if not fileName:
             return ''
 
