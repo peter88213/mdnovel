@@ -46,6 +46,7 @@ class JsonFile(PrjFile):
     """JSON file representation."""
     EXTENSION = '.json'
 
+    ROOT = 'mdnovel'
     MAJOR_VERSION = 1
     MINOR_VERSION = 0
 
@@ -80,7 +81,7 @@ class JsonFile(PrjFile):
             jsonData = json.load(f)
         try:
             self._check_version(jsonData)
-            jsonRoot = jsonData['mdnov']
+            jsonRoot = jsonData[self.ROOT]
             self._read_project(jsonRoot)
             self._read_locations(jsonRoot)
             self._read_items(jsonRoot)
@@ -105,11 +106,11 @@ class JsonFile(PrjFile):
         self._update_word_count_log()
         self.adjust_section_types()
         jsonData = {
-            'mdnov':{
+            self.ROOT:{
                 'version':f'{self.MAJOR_VERSION}.{self.MINOR_VERSION}',
             },
         }
-        jsonRoot = jsonData['mdnov']
+        jsonRoot = jsonData[self.ROOT]
         self._build_project(jsonRoot)
         self._build_chapters_and_sections(jsonRoot)
         self._build_characters(jsonRoot)
@@ -234,10 +235,10 @@ class JsonFile(PrjFile):
 
     def _check_version(self, jsonData):
         """Raise an exception if the jsonData element is not compatible with the supported DTD."""
-        if not 'mdnov' in jsonData:
+        if not self.ROOT in jsonData:
             raise Error(f'{_("No valid JSON root element found in file")}: "{norm_path(self.filePath)}".')
         try:
-            majorVersionStr, minorVersionStr = jsonData['mdnov']['version'].split('.')
+            majorVersionStr, minorVersionStr = jsonData[self.ROOT]['version'].split('.')
             majorVersion = int(majorVersionStr)
             minorVersion = int(minorVersionStr)
         except NotImplementedError:
