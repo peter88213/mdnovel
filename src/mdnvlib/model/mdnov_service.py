@@ -4,6 +4,7 @@ Copyright (c) 2025 Peter Triesberger
 For further information see https://github.com/peter88213/mdnovel
 License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
+from mdnvlib.json.json_file import JsonFile
 from mdnvlib.model.basic_element import BasicElement
 from mdnvlib.model.chapter import Chapter
 from mdnvlib.model.character import Character
@@ -13,14 +14,13 @@ from mdnvlib.model.plot_line import PlotLine
 from mdnvlib.model.plot_point import PlotPoint
 from mdnvlib.model.section import Section
 from mdnvlib.model.world_element import WorldElement
-from mdnvlib.mdnov.mdnov_file import MdnovFile
 
 
 class MdnovService:
     """Getters and factory methods for mdnov  model objects."""
 
     def get_prj_file_extension(self):
-        return MdnovFile.EXTENSION
+        return JsonFile.EXTENSION
 
     def make_basic_element(self, **kwargs):
         return BasicElement(**kwargs)
@@ -51,5 +51,5 @@ class MdnovService:
         return WorldElement(**kwargs)
 
     def make_prj_file(self, filePath, **kwargs):
-        return MdnovFile(filePath, **kwargs)
+        return JsonFile(filePath, **kwargs)
 

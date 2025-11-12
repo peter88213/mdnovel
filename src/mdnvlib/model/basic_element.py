@@ -43,6 +43,7 @@ class BasicElement:
             self._links = {}
         else:
             self._links = links
+        self._fields = {}
 
     @property
     def title(self):
@@ -85,6 +86,16 @@ class BasicElement:
                     assert type(val) == str
         if self._links != newVal:
             self._links = newVal
+            self.on_element_change()
+
+    @property
+    def fields(self):
+        return self._fields.copy()
+
+    @fields.setter
+    def fields(self, newVal):
+        if self._fields != newVal:
+            self._fields = newVal
             self.on_element_change()
 
     def do_nothing(self):

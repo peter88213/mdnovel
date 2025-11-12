@@ -44,24 +44,26 @@ class Section(BasicElementTags):
     NULL_TIME = '00:00:00'
 
     def __init__(self,
-            scType=None,
-            scene=None,
-            status=None,
-            appendToPrev=None,
-            goal=None,
-            conflict=None,
-            outcome=None,
-            plotNotes=None,
-            scDate=None,
-            scTime=None,
-            day=None,
-            lastsMinutes=None,
-            lastsHours=None,
-            lastsDays=None,
-            characters=None,
-            locations=None,
-            items=None,
-            **kwargs):
+        scType=None,
+        scene=None,
+        status=None,
+        appendToPrev=None,
+        viewpoint=None,
+        goal=None,
+        conflict=None,
+        outcome=None,
+        plotNotes=None,
+        scDate=None,
+        scTime=None,
+        day=None,
+        lastsMinutes=None,
+        lastsHours=None,
+        lastsDays=None,
+        characters=None,
+        locations=None,
+        items=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
         self._sectionContent = None
@@ -91,6 +93,7 @@ class Section(BasicElementTags):
         self._lastsMinutes = lastsMinutes
         self._lastsHours = lastsHours
         self._lastsDays = lastsDays
+        self._viewpoint = viewpoint
         self._characters = characters
         self._locations = locations
         self._items = items
@@ -338,6 +341,18 @@ class Section(BasicElementTags):
             assert type(newVal) == str
         if self._lastsDays != newVal:
             self._lastsDays = newVal
+            self.on_element_change()
+
+    @property
+    def viewpoint(self):
+        return self._viewpoint
+
+    @viewpoint.setter
+    def viewpoint(self, newVal):
+        if newVal is not None:
+            assert type(newVal) is str
+        if self._viewpoint != newVal:
+            self._viewpoint = newVal
             self.on_element_change()
 
     @property

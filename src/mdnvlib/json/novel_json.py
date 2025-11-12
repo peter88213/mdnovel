@@ -28,14 +28,14 @@ class NovelJson(BasicElementJson):
         element.chapterHeadingSuffix = json.get('ChapterHeadingSuffix', None)
         element.partHeadingPrefix = json.get('PartHeadingPrefix', None)
         element.partHeadingSuffix = json.get('PartHeadingSuffix', None)
-        element.customPlotProgress = json.get('CustomPlotProgress', None)
-        element.customCharacterization = json.get('CustomCharacterization', None)
-        element.customWorldBuilding = json.get('CustomWorldBuilding', None)
-        element.customGoal = json.get('CustomGoal', None)
-        element.customConflict = json.get('CustomConflict', None)
-        element.customOutcome = json.get('CustomOutcome', None)
-        element.customChrBio = json.get('CustomChrBio', None)
-        element.customChrGoals = json.get('CustomChrGoals', None)
+        element.noSceneField1 = json.get('CustomPlotProgress', None)
+        element.noSceneField2 = json.get('CustomCharacterization', None)
+        element.noSceneField3 = json.get('CustomWorldBuilding', None)
+        element.otherSceneField1 = json.get('CustomGoal', None)
+        element.otherSceneField2 = json.get('CustomConflict', None)
+        element.otherSceneField3 = json.get('CustomOutcome', None)
+        element.crField1 = json.get('CustomChrBio', None)
+        element.crField2 = json.get('CustomChrGoals', None)
         element.wordCountStart = json.get('WordCountStart', None)
         element.wordTarget = json.get('WordTarget', None)
         element.referenceDate = verified_date(json.get('ReferenceDate', None))
@@ -74,26 +74,26 @@ class NovelJson(BasicElementJson):
             json['PartHeadingSuffix'] = element.partHeadingSuffix
 
         # Custom Plot progress/Characterization/World building.
-        if element.customPlotProgress:
-            json['CustomPlotProgress'] = element.customPlotProgress
-        if element.customCharacterization:
-            json['CustomCharacterization'] = element.customCharacterization
-        if element.customWorldBuilding:
-            json['CustomWorldBuilding'] = element.customWorldBuilding
+        if element.noSceneField1:
+            json['CustomPlotProgress'] = element.noSceneField1
+        if element.noSceneField2:
+            json['CustomCharacterization'] = element.noSceneField2
+        if element.noSceneField3:
+            json['CustomWorldBuilding'] = element.noSceneField3
 
         # Custom Goal/Conflict/Outcome.
-        if element.customGoal:
-            json['CustomGoal'] = element.customGoal
-        if element.customConflict:
-            json['CustomConflict'] = element.customConflict
-        if element.customOutcome:
-            json['CustomOutcome'] = element.customOutcome
+        if element.otherSceneField1:
+            json['CustomGoal'] = element.otherSceneField1
+        if element.otherSceneField2:
+            json['CustomConflict'] = element.otherSceneField2
+        if element.otherSceneField3:
+            json['CustomOutcome'] = element.otherSceneField3
 
         # Custom Character Bio/Goals.
-        if element.customChrBio:
-            json['CustomChrBio'] = element.customChrBio
-        if element.customChrGoals:
-            json['CustomChrGoals'] = element.customChrGoals
+        if element.crField1:
+            json['CustomChrBio'] = element.crField1
+        if element.crField2:
+            json['CustomChrGoals'] = element.crField2
 
         # Word count start/Word target.
         if element.wordCountStart:

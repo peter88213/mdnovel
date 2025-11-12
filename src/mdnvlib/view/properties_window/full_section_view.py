@@ -137,12 +137,12 @@ class FullSectionView(DatedSectionView):
 
         # Scene radiobuttons.
         selectionFrame = ttk.Frame(self._sceneFrame)
-        self._customPlotProgress = ''
-        self._customCharacterization = ''
-        self._customWorldBuilding = ''
-        self._customGoal = ''
-        self._customConflict = ''
-        self._customOutcome = ''
+        self._noSceneField1 = ''
+        self._noSceneField2 = ''
+        self._noSceneField3 = ''
+        self._otherSceneField1 = ''
+        self._otherSceneField2 = ''
+        self._otherSceneField3 = ''
         self._scene = tk.IntVar()
 
         self._notApplicableRadiobutton = ttk.Radiobutton(
@@ -357,35 +357,35 @@ class FullSectionView(DatedSectionView):
             self._appendToPrev.set(False)
 
         # Customized Goal/Conflict/Outcome configuration.
-        if self._mdl.novel.customPlotProgress:
-            self._customPlotProgress = self._mdl.novel.customPlotProgress
+        if self._mdl.novel.noSceneField1:
+            self._noSceneField1 = self._mdl.novel.noSceneField1
         else:
-            self._customPlotProgress = ''
+            self._noSceneField1 = ''
 
-        if self._mdl.novel.customCharacterization:
-            self._customCharacterization = self._mdl.novel.customCharacterization
+        if self._mdl.novel.noSceneField2:
+            self._noSceneField2 = self._mdl.novel.noSceneField2
         else:
-            self._customCharacterization = ''
+            self._noSceneField2 = ''
 
-        if self._mdl.novel.customWorldBuilding:
-            self._customWorldBuilding = self._mdl.novel.customWorldBuilding
+        if self._mdl.novel.noSceneField3:
+            self._noSceneField3 = self._mdl.novel.noSceneField3
         else:
-            self._customWorldBuilding = ''
+            self._noSceneField3 = ''
 
-        if self._mdl.novel.customGoal:
-            self._customGoal = self._mdl.novel.customGoal
+        if self._mdl.novel.otherSceneField1:
+            self._otherSceneField1 = self._mdl.novel.otherSceneField1
         else:
-            self._customGoal = ''
+            self._otherSceneField1 = ''
 
-        if self._mdl.novel.customConflict:
-            self._customConflict = self._mdl.novel.customConflict
+        if self._mdl.novel.otherSceneField2:
+            self._otherSceneField2 = self._mdl.novel.otherSceneField2
         else:
-            self._customConflict = ''
+            self._otherSceneField2 = ''
 
-        if self._mdl.novel.customOutcome:
-            self._customOutcome = self._mdl.novel.customOutcome
+        if self._mdl.novel.otherSceneField3:
+            self._otherSceneField3 = self._mdl.novel.otherSceneField3
         else:
-            self._customOutcome = ''
+            self._otherSceneField3 = ''
 
         #--- Frame for 'Plot'.
         if prefs['show_plot']:
@@ -548,36 +548,36 @@ class FullSectionView(DatedSectionView):
         self._element.scene = self._scene.get()
 
     def _set_custom_scene(self, event=None):
-        if self._customGoal:
-            self._goalLabel.config(text=self._customGoal)
+        if self._otherSceneField1:
+            self._goalLabel.config(text=self._otherSceneField1)
         else:
             self._goalLabel.config(text=_('Opening'))
 
-        if self._customConflict:
-            self._conflictLabel.config(text=self._customConflict)
+        if self._otherSceneField2:
+            self._conflictLabel.config(text=self._otherSceneField2)
         else:
             self._conflictLabel.config(text=_('Peak emotional moment'))
 
-        if self._customOutcome:
-            self._outcomeLabel.config(text=self._customOutcome)
+        if self._otherSceneField3:
+            self._outcomeLabel.config(text=self._otherSceneField3)
         else:
             self._outcomeLabel.config(text=_('Ending'))
 
         self._element.scene = self._scene.get()
 
     def _set_not_applicable(self, event=None):
-        if self._customPlotProgress:
-            self._goalLabel.config(text=self._customPlotProgress)
+        if self._noSceneField1:
+            self._goalLabel.config(text=self._noSceneField1)
         else:
             self._goalLabel.config(text=_('Plot progress'))
 
-        if self._customCharacterization:
-            self._conflictLabel.config(text=self._customCharacterization)
+        if self._noSceneField2:
+            self._conflictLabel.config(text=self._noSceneField2)
         else:
             self._conflictLabel.config(text=_('Characterization'))
 
-        if self._customWorldBuilding:
-            self._outcomeLabel.config(text=self._customWorldBuilding)
+        if self._noSceneField3:
+            self._outcomeLabel.config(text=self._noSceneField3)
         else:
             self._outcomeLabel.config(text=_('World building'))
 

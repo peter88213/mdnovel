@@ -50,18 +50,18 @@ class NovelYaml(BasicElementYaml):
         element.partHeadingSuffix = partHeadingSuffix
 
         # N/A Goal/Conflict/Outcome.
-        element.customPlotProgress = self._get_meta_value('CustomPlotProgress')
-        element.customCharacterization = self._get_meta_value('CustomCharacterization')
-        element.customWorldBuilding = self._get_meta_value('CustomWorldBuilding')
+        element.noSceneField1 = self._get_meta_value('CustomPlotProgress')
+        element.noSceneField2 = self._get_meta_value('CustomCharacterization')
+        element.noSceneField3 = self._get_meta_value('CustomWorldBuilding')
 
         # Custom Goal/Conflict/Outcome.
-        element.customGoal = self._get_meta_value('CustomGoal')
-        element.customConflict = self._get_meta_value('CustomConflict')
-        element.customOutcome = self._get_meta_value('CustomOutcome')
+        element.otherSceneField1 = self._get_meta_value('CustomGoal')
+        element.otherSceneField2 = self._get_meta_value('CustomConflict')
+        element.otherSceneField3 = self._get_meta_value('CustomOutcome')
 
         # Custom Character Bio/Goals.
-        element.customChrBio = self._get_meta_value('CustomChrBio')
-        element.customChrGoals = self._get_meta_value('CustomChrGoals')
+        element.crField1 = self._get_meta_value('CustomChrBio')
+        element.crField2 = self._get_meta_value('CustomChrGoals')
 
         # Word count start/Word target.
         ws = self._get_meta_value('WordCountStart')
@@ -108,26 +108,26 @@ class NovelYaml(BasicElementYaml):
             yaml.append(f'PartHeadingSuffix: "{element.partHeadingSuffix}"')
 
         # Custom Plot progress/Characterization/World building.
-        if element.customPlotProgress:
-            yaml.append(f'CustomPlotProgress: {element.customPlotProgress}')
-        if element.customCharacterization:
-            yaml.append(f'CustomCharacterization: {element.customCharacterization}')
-        if element.customWorldBuilding:
-            yaml.append(f'CustomWorldBuilding: {element.customWorldBuilding}')
+        if element.noSceneField1:
+            yaml.append(f'CustomPlotProgress: {element.noSceneField1}')
+        if element.noSceneField2:
+            yaml.append(f'CustomCharacterization: {element.noSceneField2}')
+        if element.noSceneField3:
+            yaml.append(f'CustomWorldBuilding: {element.noSceneField3}')
 
         # Custom Goal/Conflict/Outcome.
-        if element.customGoal:
-            yaml.append(f'CustomGoal: {element.customGoal}')
-        if element.customConflict:
-            yaml.append(f'CustomConflict: {element.customConflict}')
-        if element.customOutcome:
-            yaml.append(f'CustomOutcome: {element.customOutcome}')
+        if element.otherSceneField1:
+            yaml.append(f'CustomGoal: {element.otherSceneField1}')
+        if element.otherSceneField2:
+            yaml.append(f'CustomConflict: {element.otherSceneField2}')
+        if element.otherSceneField3:
+            yaml.append(f'CustomOutcome: {element.otherSceneField3}')
 
         # Custom Character Bio/Goals.
-        if element.customChrBio:
-            yaml.append(f'CustomChrBio: {element.customChrBio}')
-        if element.customChrGoals:
-            yaml.append(f'CustomChrGoals: {element.customChrGoals}')
+        if element.crField1:
+            yaml.append(f'CustomChrBio: {element.crField1}')
+        if element.crField2:
+            yaml.append(f'CustomChrGoals: {element.crField2}')
 
         # Word count start/Word target.
         if element.wordCountStart:

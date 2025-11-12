@@ -176,8 +176,8 @@ class CharacterView(WorldElementView):
         self._fullName.set(self._element.fullName)
 
         #--- 'Bio' entry
-        if self._mdl.novel.customChrBio:
-            self._bioFrame.buttonText = self._mdl.novel.customChrBio
+        if self._mdl.novel.crField1:
+            self._bioFrame.buttonText = self._mdl.novel.crField1
         else:
             self._bioFrame.buttonText = _('Bio')
         if prefs['show_cr_bio']:
@@ -191,8 +191,8 @@ class CharacterView(WorldElementView):
         self._deathDate.set(self._element.deathDate)
 
         #--- 'Goals' entry.
-        if self._mdl.novel.customChrGoals:
-            self._goalsFrame.buttonText = self._mdl.novel.customChrGoals
+        if self._mdl.novel.crField2:
+            self._goalsFrame.buttonText = self._mdl.novel.crField2
         else:
             self._goalsFrame.buttonText = _('Goals')
         if prefs['show_cr_goals']:

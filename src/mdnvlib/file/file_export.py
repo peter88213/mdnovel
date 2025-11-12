@@ -522,36 +522,36 @@ class FileExport(File):
         return lines
 
     def _get_renamings(self):
-        if self.novel.customPlotProgress:
-            pltPrgs = self.novel.customPlotProgress
+        if self.novel.noSceneField1:
+            pltPrgs = self.novel.noSceneField1
         else:
             pltPrgs = _('Plot progress')
-        if self.novel.customCharacterization:
-            chrczn = self.novel.customCharacterization
+        if self.novel.noSceneField2:
+            chrczn = self.novel.noSceneField2
         else:
             chrczn = _('Characterization')
-        if self.novel.customWorldBuilding:
-            wrldbld = self.novel.customWorldBuilding
+        if self.novel.noSceneField3:
+            wrldbld = self.novel.noSceneField3
         else:
             wrldbld = _('World building')
-        if self.novel.customGoal:
-            goal = self.novel.customGoal
+        if self.novel.otherSceneField1:
+            goal = self.novel.otherSceneField1
         else:
             goal = _('Opening')
-        if self.novel.customConflict:
-            cflct = self.novel.customConflict
+        if self.novel.otherSceneField2:
+            cflct = self.novel.otherSceneField2
         else:
             cflct = _('Peak em. moment')
-        if self.novel.customOutcome:
-            outcm = self.novel.customOutcome
+        if self.novel.otherSceneField3:
+            outcm = self.novel.otherSceneField3
         else:
             outcm = _('Ending')
-        if self.novel.customChrBio:
-            chrBio = self.novel.customChrBio
+        if self.novel.crField1:
+            chrBio = self.novel.crField1
         else:
             chrBio = _('Bio')
-        if self.novel.customChrGoals:
-            chrGls = self.novel.customChrGoals
+        if self.novel.crField2:
+            chrGls = self.novel.crField2
         else:
             chrGls = _('Goals')
         return pltPrgs, chrczn, wrldbld, goal, cflct, outcm, chrBio, chrGls

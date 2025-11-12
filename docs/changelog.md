@@ -5,6 +5,12 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 2.1.0
+
+- Fixed a regression from version 2.0.0 where the Timeline sync feature doesn't work.
+- Refactored for compatibility with the novelibre 5.42 data model.
+
+
 ### Version 2.0.0
 
 - File format change from the YAML/Markdown *.mdnov* format to *.JSON*.

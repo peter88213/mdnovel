@@ -13,31 +13,32 @@ class Novel(BasicElement):
     """Novel representation."""
 
     def __init__(self,
-            authorName=None,
-            wordTarget=None,
-            wordCountStart=None,
-            renumberChapters=None,
-            renumberParts=None,
-            renumberWithinParts=None,
-            romanChapterNumbers=None,
-            romanPartNumbers=None,
-            saveWordCount=None,
-            workPhase=None,
-            chapterHeadingPrefix=None,
-            chapterHeadingSuffix=None,
-            partHeadingPrefix=None,
-            partHeadingSuffix=None,
-            customPlotProgress=None,
-            customCharacterization=None,
-            customWorldBuilding=None,
-            customGoal=None,
-            customConflict=None,
-            customOutcome=None,
-            customChrBio=None,
-            customChrGoals=None,
-            referenceDate=None,
-            tree=None,
-            **kwargs):
+        authorName=None,
+        wordTarget=None,
+        wordCountStart=None,
+        renumberChapters=None,
+        renumberParts=None,
+        renumberWithinParts=None,
+        romanChapterNumbers=None,
+        romanPartNumbers=None,
+        saveWordCount=None,
+        workPhase=None,
+        chapterHeadingPrefix=None,
+        chapterHeadingSuffix=None,
+        partHeadingPrefix=None,
+        partHeadingSuffix=None,
+        noSceneField1=None,
+        noSceneField2=None,
+        noSceneField3=None,
+        otherSceneField1=None,
+        otherSceneField2=None,
+        otherSceneField3=None,
+        crField1=None,
+        crField2=None,
+        referenceDate=None,
+        tree=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
         self._authorName = authorName
@@ -54,14 +55,14 @@ class Novel(BasicElement):
         self._chapterHeadingSuffix = chapterHeadingSuffix
         self._partHeadingPrefix = partHeadingPrefix
         self._partHeadingSuffix = partHeadingSuffix
-        self._customPlotProgress = customPlotProgress
-        self._customCharacterization = customCharacterization
-        self._customWorldBuilding = customWorldBuilding
-        self._customGoal = customGoal
-        self._customConflict = customConflict
-        self._customOutcome = customOutcome
-        self._customChrBio = customChrBio
-        self._customChrGoals = customChrGoals
+        self._noSceneField1 = noSceneField1
+        self._noSceneField2 = noSceneField2
+        self._noSceneField3 = noSceneField3
+        self._otherSceneField1 = otherSceneField1
+        self._otherSceneField2 = otherSceneField2
+        self._otherSceneField3 = otherSceneField3
+        self._crField1 = crField1
+        self._crField2 = crField2
 
         self.chapters = {}
         # key = chapter ID, value = Chapter instance.
@@ -278,99 +279,99 @@ class Novel(BasicElement):
             self.on_element_change()
 
     @property
-    def customPlotProgress(self):
-        return self._customPlotProgress
+    def noSceneField1(self):
+        return self._noSceneField1
 
-    @customPlotProgress.setter
-    def customPlotProgress(self, newVal):
+    @noSceneField1.setter
+    def noSceneField1(self, newVal):
         if newVal is not None:
             assert type(newVal) == str
-        if self._customPlotProgress != newVal:
-            self._customPlotProgress = newVal
+        if self._noSceneField1 != newVal:
+            self._noSceneField1 = newVal
             self.on_element_change()
 
     @property
-    def customCharacterization(self):
-        return self._customCharacterization
+    def noSceneField2(self):
+        return self._noSceneField2
 
-    @customCharacterization.setter
-    def customCharacterization(self, newVal):
+    @noSceneField2.setter
+    def noSceneField2(self, newVal):
         if newVal is not None:
             assert type(newVal) == str
-        if self._customCharacterization != newVal:
-            self._customCharacterization = newVal
+        if self._noSceneField2 != newVal:
+            self._noSceneField2 = newVal
             self.on_element_change()
 
     @property
-    def customWorldBuilding(self):
-        return self._customWorldBuilding
+    def noSceneField3(self):
+        return self._noSceneField3
 
-    @customWorldBuilding.setter
-    def customWorldBuilding(self, newVal):
+    @noSceneField3.setter
+    def noSceneField3(self, newVal):
         if newVal is not None:
             assert type(newVal) == str
-        if self._customWorldBuilding != newVal:
-            self._customWorldBuilding = newVal
+        if self._noSceneField3 != newVal:
+            self._noSceneField3 = newVal
             self.on_element_change()
 
     @property
-    def customGoal(self):
-        return self._customGoal
+    def otherSceneField1(self):
+        return self._otherSceneField1
 
-    @customGoal.setter
-    def customGoal(self, newVal):
+    @otherSceneField1.setter
+    def otherSceneField1(self, newVal):
         if newVal is not None:
             assert type(newVal) == str
-        if self._customGoal != newVal:
-            self._customGoal = newVal
+        if self._otherSceneField1 != newVal:
+            self._otherSceneField1 = newVal
             self.on_element_change()
 
     @property
-    def customConflict(self):
-        return self._customConflict
+    def otherSceneField2(self):
+        return self._otherSceneField2
 
-    @customConflict.setter
-    def customConflict(self, newVal):
+    @otherSceneField2.setter
+    def otherSceneField2(self, newVal):
         if newVal is not None:
             assert type(newVal) == str
-        if self._customConflict != newVal:
-            self._customConflict = newVal
+        if self._otherSceneField2 != newVal:
+            self._otherSceneField2 = newVal
             self.on_element_change()
 
     @property
-    def customOutcome(self):
-        return self._customOutcome
+    def otherSceneField3(self):
+        return self._otherSceneField3
 
-    @customOutcome.setter
-    def customOutcome(self, newVal):
+    @otherSceneField3.setter
+    def otherSceneField3(self, newVal):
         if newVal is not None:
             assert type(newVal) == str
-        if self._customOutcome != newVal:
-            self._customOutcome = newVal
+        if self._otherSceneField3 != newVal:
+            self._otherSceneField3 = newVal
             self.on_element_change()
 
     @property
-    def customChrBio(self):
-        return self._customChrBio
+    def crField1(self):
+        return self._crField1
 
-    @customChrBio.setter
-    def customChrBio(self, newVal):
+    @crField1.setter
+    def crField1(self, newVal):
         if newVal is not None:
             assert type(newVal) == str
-        if self._customChrBio != newVal:
-            self._customChrBio = newVal
+        if self._crField1 != newVal:
+            self._crField1 = newVal
             self.on_element_change()
 
     @property
-    def customChrGoals(self):
-        return self._customChrGoals
+    def crField2(self):
+        return self._crField2
 
-    @customChrGoals.setter
-    def customChrGoals(self, newVal):
+    @crField2.setter
+    def crField2(self, newVal):
         if newVal is not None:
             assert type(newVal) == str
-        if self._customChrGoals != newVal:
-            self._customChrGoals = newVal
+        if self._crField2 != newVal:
+            self._crField2 = newVal
             self.on_element_change()
 
     @property

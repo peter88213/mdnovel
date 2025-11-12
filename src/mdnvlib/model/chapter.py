@@ -11,17 +11,20 @@ class Chapter(BasicElementNotes):
     """mdnovel chapter representation."""
 
     def __init__(self,
-            chLevel=None,
-            chType=None,
-            noNumber=None,
-            isTrash=None,
-            **kwargs):
+        chLevel=None,
+        chType=None,
+        noNumber=None,
+        isTrash=None,
+        hasEpigraph=None,
+        **kwargs
+    ):
         """Extends the superclass constructor."""
         super().__init__(**kwargs)
         self._chLevel = chLevel
         self._chType = chType
         self._noNumber = noNumber
         self._isTrash = isTrash
+        self._hasEpigraph = hasEpigraph
 
     @property
     def chLevel(self):
@@ -77,5 +80,19 @@ class Chapter(BasicElementNotes):
             assert type(newVal) == bool
         if self._isTrash != newVal:
             self._isTrash = newVal
+            self.on_element_change()
+
+    @property
+    def hasEpigraph(self):
+        # True: The first section is an epigraph; its title is the source.
+        # False: The first section is a regular one.
+        return self._hasEpigraph
+
+    @hasEpigraph.setter
+    def hasEpigraph(self, newVal):
+        if newVal is not None:
+            assert type(newVal) is bool
+        if self._hasEpigraph != newVal:
+            self._hasEpigraph = newVal
             self.on_element_change()
 

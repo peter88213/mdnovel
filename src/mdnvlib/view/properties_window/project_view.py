@@ -171,11 +171,11 @@ class ProjectView(BasicView):
         ttk.Label(self._renamingsFrame, text=_('Not a scene')).pack(anchor='w')
 
         # Custom 'Plot progress' entry.
-        self._customPlotProgress = MyStringVar()
+        self._noSceneField1 = MyStringVar()
         self._customPlotProgressEntry = LabelEntry(
             self._renamingsFrame,
             text=_('Plot progress'),
-            textvariable=self._customPlotProgress,
+            textvariable=self._noSceneField1,
             command=self.apply_changes,
             lblWidth=20
             )
@@ -183,11 +183,11 @@ class ProjectView(BasicView):
         inputWidgets.append(self._customPlotProgressEntry)
 
         # Custom 'Characterization' entry.
-        self._customCharacterization = MyStringVar()
+        self._noSceneField2 = MyStringVar()
         self._customCharacterizationEntry = LabelEntry(
             self._renamingsFrame,
             text=_('Characterization'),
-            textvariable=self._customCharacterization,
+            textvariable=self._noSceneField2,
             command=self.apply_changes,
             lblWidth=20
             )
@@ -195,11 +195,11 @@ class ProjectView(BasicView):
         inputWidgets.append(self._customCharacterizationEntry)
 
         # Custom 'World building' entry.
-        self._customWorldBuilding = MyStringVar()
+        self._noSceneField3 = MyStringVar()
         self.__customWorldBuildingEntry = LabelEntry(
             self._renamingsFrame,
             text=_('World building'),
-            textvariable=self._customWorldBuilding,
+            textvariable=self._noSceneField3,
             command=self.apply_changes,
             lblWidth=20
             )
@@ -210,11 +210,11 @@ class ProjectView(BasicView):
         ttk.Label(self._renamingsFrame, text=_('Other scene')).pack(anchor='w')
 
         # 'Opening' entry.
-        self._customGoal = MyStringVar()
+        self._otherSceneField1 = MyStringVar()
         self._customGoalEntry = LabelEntry(
             self._renamingsFrame,
             text=_('Opening'),
-            textvariable=self._customGoal,
+            textvariable=self._otherSceneField1,
             command=self.apply_changes,
             lblWidth=20
             )
@@ -222,11 +222,11 @@ class ProjectView(BasicView):
         inputWidgets.append(self._customGoalEntry)
 
         # 'Peak emotional moment' entry.
-        self._customConflict = MyStringVar()
+        self._otherSceneField2 = MyStringVar()
         self._customConflictEntry = LabelEntry(
             self._renamingsFrame,
             text=_('Peak em. moment'),
-            textvariable=self._customConflict,
+            textvariable=self._otherSceneField2,
             command=self.apply_changes,
             lblWidth=20
             )
@@ -234,11 +234,11 @@ class ProjectView(BasicView):
         inputWidgets.append(self._customConflictEntry)
 
         # 'Ending' entry.
-        self._customOutcome = MyStringVar()
+        self._otherSceneField3 = MyStringVar()
         self._customOutcomeEntry = LabelEntry(
             self._renamingsFrame,
             text=_('Ending'),
-            textvariable=self._customOutcome,
+            textvariable=self._otherSceneField3,
             command=self.apply_changes,
             lblWidth=20
             )
@@ -249,11 +249,11 @@ class ProjectView(BasicView):
         ttk.Label(self._renamingsFrame, text=_('Character')).pack(anchor='w')
 
         # 'Bio' entry.
-        self._customChrBio = MyStringVar()
+        self._crField1 = MyStringVar()
         self._customChrBioEntry = LabelEntry(
             self._renamingsFrame,
             text=_('Bio'),
-            textvariable=self._customChrBio,
+            textvariable=self._crField1,
             command=self.apply_changes,
             lblWidth=20
             )
@@ -261,11 +261,11 @@ class ProjectView(BasicView):
         inputWidgets.append(self._customChrBioEntry)
 
         # 'Goals' entry.
-        self._customChrGoals = MyStringVar()
+        self._crField2 = MyStringVar()
         self._customChrGoalsEntry = LabelEntry(
             self._renamingsFrame,
             text=_('Goals'),
-            textvariable=self._customChrGoals,
+            textvariable=self._crField2,
             command=self.apply_changes,
             lblWidth=20
             )
@@ -422,14 +422,14 @@ class ProjectView(BasicView):
         self._element.chapterHeadingSuffix = self._chapterHeadingSuffix.get()
         self._element.partHeadingPrefix = self._partHeadingPrefix.get()
         self._element.partHeadingSuffix = self._partHeadingSuffix.get()
-        self._element.customPlotProgress = self._customPlotProgress.get()
-        self._element.customCharacterization = self._customCharacterization.get()
-        self._element.customWorldBuilding = self._customWorldBuilding.get()
-        self._element.customGoal = self._customGoal.get()
-        self._element.customConflict = self._customConflict.get()
-        self._element.customOutcome = self._customOutcome.get()
-        self._element.customChrBio = self._customChrBio.get()
-        self._element.customChrGoals = self._customChrGoals.get()
+        self._element.noSceneField1 = self._noSceneField1.get()
+        self._element.noSceneField2 = self._noSceneField2.get()
+        self._element.noSceneField3 = self._noSceneField3.get()
+        self._element.otherSceneField1 = self._otherSceneField1.get()
+        self._element.otherSceneField2 = self._otherSceneField2.get()
+        self._element.otherSceneField3 = self._otherSceneField3.get()
+        self._element.crField1 = self._crField1.get()
+        self._element.crField2 = self._crField2.get()
 
         #--- "Narrative time" frame.
         refDateStr = self._referenceDate.get()
@@ -547,14 +547,14 @@ class ProjectView(BasicView):
         else:
             self._renamingsFrame.hide()
 
-        self._customPlotProgress.set(self._element.customPlotProgress)
-        self._customCharacterization.set(self._element.customCharacterization)
-        self._customWorldBuilding.set(self._element.customWorldBuilding)
-        self._customGoal.set(self._element.customGoal)
-        self._customConflict.set(self._element.customConflict)
-        self._customOutcome.set(self._element.customOutcome)
-        self._customChrBio.set(self._element.customChrBio)
-        self._customChrGoals.set(self._element.customChrGoals)
+        self._noSceneField1.set(self._element.noSceneField1)
+        self._noSceneField2.set(self._element.noSceneField2)
+        self._noSceneField3.set(self._element.noSceneField3)
+        self._otherSceneField1.set(self._element.otherSceneField1)
+        self._otherSceneField2.set(self._element.otherSceneField2)
+        self._otherSceneField3.set(self._element.otherSceneField3)
+        self._crField1.set(self._element.crField1)
+        self._crField2.set(self._element.crField2)
 
         #--- "Narrative time" frame
         if prefs['show_narrative_time']:

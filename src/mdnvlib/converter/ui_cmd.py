@@ -13,7 +13,7 @@ class UiCmd(Ui):
     
     Public methods:
         ask_yes_no(text) -- query yes or no at the console.
-        set_info_how(message) -- show how the converter is doing.
+        set_info(message) -- show how the converter is doing.
         set_info_what(message) -- show what the converter is going to do.
         show_warning(message) -- Display a warning message.
     """
@@ -43,7 +43,7 @@ class UiCmd(Ui):
         else:
             return False
 
-    def set_info_how(self, message):
+    def set_info(self, message):
         """Show how the converter is doing.
 
         Positional arguments:
