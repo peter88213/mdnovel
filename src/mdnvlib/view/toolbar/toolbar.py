@@ -7,12 +7,6 @@ License: GNU GPLv3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 """
 from tkinter import ttk
 
-from mdnvlib.novx_globals import CH_ROOT
-from mdnvlib.novx_globals import CR_ROOT
-from mdnvlib.novx_globals import IT_ROOT
-from mdnvlib.novx_globals import LC_ROOT
-from mdnvlib.novx_globals import PL_ROOT
-from mdnvlib.novx_globals import PN_ROOT
 from mdnvlib.novx_globals import _
 from mdnvlib.nv_globals import prefs
 from mdnvlib.view.platform.platform_settings import KEYS
@@ -176,6 +170,39 @@ class Toolbar(ViewComponentBase, ttk.Frame):
         self._deleteElementButton.pack(side='left')
         self._deleteElementButton.image = self._ui.icons.removeIcon
 
+        # Separator.
+        tk.Frame(self.buttonBar, bg='light gray', width=1).pack(side='left', fill='y', padx=4)
+
+        # Put a "Cut" button on the toolbar.
+        self._cutButton = ttk.Button(
+            self.buttonBar,
+            text=f"{_('Cut')} ({KEYS.CUT[1]})",
+            image=self._ui.icons.cutIcon,
+            command=self._ctrl.cut_element
+        )
+        self._cutButton.pack(side='left')
+        self._cutButton.image = self._ui.icons.cutIcon
+
+        # Put a "Copy" button on the toolbar.
+        self._copyButton = ttk.Button(
+            self.buttonBar,
+            text=f"{_('Copy')} ({KEYS.COPY[1]})",
+            image=self._ui.icons.copyIcon,
+            command=self._ctrl.copy_element
+        )
+        self._copyButton.pack(side='left')
+        self._copyButton.image = self._ui.icons.copyIcon
+
+        # Put a "Paste" button on the toolbar.
+        self._pasteButton = ttk.Button(
+            self.buttonBar,
+            text=f"{_('Paste')} ({KEYS.PASTE[1]})",
+            image=self._ui.icons.pasteIcon,
+            command=self._ctrl.paste_element
+        )
+        self._pasteButton.pack(side='left')
+        self._pasteButton.image = self._ui.icons.pasteIcon
+
         # Reverse order (side='right').
 
         # "Toggle properties" button.
@@ -216,6 +243,9 @@ class Toolbar(ViewComponentBase, ttk.Frame):
         self._viewLocationsButton.config(state='disabled')
         self._viewPlotLinesButton.config(state='disabled')
         self._viewProjectnotesButton.config(state='disabled')
+        self._cutButton.config(state='disabled')
+        self._copyButton.config(state='disabled')
+        self._pasteButton.config(state='disabled')
 
     def enable_menu(self):
         """Enable toolbar buttons when a project is open."""
@@ -232,6 +262,9 @@ class Toolbar(ViewComponentBase, ttk.Frame):
         self._viewLocationsButton.config(state='normal')
         self._viewPlotLinesButton.config(state='normal')
         self._viewProjectnotesButton.config(state='normal')
+        self._cutButton.config(state='normal')
+        self._copyButton.config(state='normal')
+        self._pasteButton.config(state='normal')
 
     def _set_hovertips(self):
         if not prefs['enable_hovertips']:
@@ -252,4 +285,16 @@ class Toolbar(ViewComponentBase, ttk.Frame):
         Hovertip(self._viewPlotLinesButton, self._viewPlotLinesButton['text'])
         Hovertip(self._viewProjectnotesButton, self._viewProjectnotesButton['text'])
         Hovertip(self._viewerButton, f"{self._viewerButton['text']} ({KEYS.TOGGLE_VIEWER[1]})")
+        Hovertip(
+            self._cutButton,
+            self._cutButton['text']
+        )
+        Hovertip(
+            self._copyButton,
+            self._copyButton['text']
+        )
+        Hovertip(
+            self._pasteButton,
+            self._pasteButton['text']
+        )
 

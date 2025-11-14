@@ -39,6 +39,7 @@ from mdnvlib.nv_globals import prefs
 from mdnvlib.plugin.nv_plugin_collection import NvPluginCollection
 from mdnvlib.view.nv_view import NvView
 from mdnvlib.md.md_file import MdFile
+from mdnvlib.controller.clipboard_manager import ClipboardManager
 
 
 class NvController(ControllerBase):
@@ -85,6 +86,9 @@ class NvController(ControllerBase):
         # Strictly speaking, this breaks the MVC pattern, since the
         # model depends on a data structure defined by the GUI framework.
         self._mdl.tree = self._ui.tv.tree
+
+        #--- Initialize internal services.
+        self.clipboardManager = ClipboardManager(self._mdl, self._ui, self)
 
         #--- Initialize the plugins.
         self.plugins = NvPluginCollection(self._mdl, self._ui, self)
@@ -431,6 +435,12 @@ class NvController(ControllerBase):
         self.disable_menu()
         return 'break'
 
+    def cut_element(self, event=None):
+        self.clipboardManager.cut_element()
+
+    def copy_element(self, event=None):
+        self.clipboardManager.copy_element()
+
     def delete_elements(self, event=None, elements=None):
         """Delete elements and their children.
         
@@ -766,6 +776,9 @@ class NvController(ControllerBase):
                 except:
                     pass
         return 'break'
+
+    def paste_element(self, event=None):
+        self.clipboardManager.paste_element()
 
     def refresh(self):
         """Callback function to report model element modifications.

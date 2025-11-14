@@ -517,6 +517,9 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
         self._nvCtxtMenu.add_cascade(label=_('Change Level'), menu=self.selectLevelMenu)
         self._nvCtxtMenu.add_separator()
         self._nvCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
+        self._nvCtxtMenu.add_command(label=_('Cut'), accelerator=KEYS.CUT[1], command=self._ctrl.cut_element)
+        self._nvCtxtMenu.add_command(label=_('Copy'), accelerator=KEYS.COPY[1], command=self._ctrl.copy_element)
+        self._nvCtxtMenu.add_command(label=_('Paste'), accelerator=KEYS.PASTE[1], command=self._ctrl.paste_element)
         self._nvCtxtMenu.add_separator()
         self._nvCtxtMenu.add_cascade(label=_('Set Type'), menu=self.selectTypeMenu)
         self._nvCtxtMenu.add_cascade(label=_('Set Status'), menu=self.scStatusMenu)
@@ -534,6 +537,9 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
         self._wrCtxtMenu.add_command(label=_('Add'), command=self._ctrl.add_element)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
+        self._wrCtxtMenu.add_command(label=_('Cut'), accelerator=KEYS.CUT[1], command=self._ctrl.cut_element)
+        self._wrCtxtMenu.add_command(label=_('Copy'), accelerator=KEYS.COPY[1], command=self._ctrl.copy_element)
+        self._wrCtxtMenu.add_command(label=_('Paste'), accelerator=KEYS.PASTE[1], command=self._ctrl.paste_element)
         self._wrCtxtMenu.add_separator()
         self._wrCtxtMenu.add_cascade(label=_('Set Status'), menu=self.crStatusMenu)
 
@@ -543,12 +549,18 @@ class TreeViewer(ViewComponentBase, ttk.Frame):
         self._plCtxtMenu.add_command(label=_('Add Plot point'), command=self._ctrl.add_plot_point)
         self._plCtxtMenu.add_separator()
         self._plCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
+        self._plCtxtMenu.add_command(label=_('Cut'), accelerator=KEYS.CUT[1], command=self._ctrl.cut_element)
+        self._plCtxtMenu.add_command(label=_('Copy'), accelerator=KEYS.COPY[1], command=self._ctrl.copy_element)
+        self._plCtxtMenu.add_command(label=_('Paste'), accelerator=KEYS.PASTE[1], command=self._ctrl.paste_element)
 
         #--- Create a project note context menu.
         self._pnCtxtMenu = ContextMenu(self.tree, tearoff=0)
         self._pnCtxtMenu.add_command(label=_('Add Project note'), command=self._ctrl.add_project_note)
         self._pnCtxtMenu.add_separator()
         self._pnCtxtMenu.add_command(label=_('Delete'), accelerator=KEYS.DELETE[1], command=self._ctrl.delete_elements)
+        self._pnCtxtMenu.add_command(label=_('Cut'), accelerator=KEYS.CUT[1], command=self._ctrl.cut_element)
+        self._pnCtxtMenu.add_command(label=_('Copy'), accelerator=KEYS.COPY[1], command=self._ctrl.copy_element)
+        self._pnCtxtMenu.add_command(label=_('Paste'), accelerator=KEYS.PASTE[1], command=self._ctrl.paste_element)
 
     def _collect_ch_note_indicators(self, chId):
         """Return a string that indicates section notes within the chapter.

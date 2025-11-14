@@ -441,6 +441,9 @@ class NvView(ViewBase):
         self.root.bind(KEYS.ADD_ELEMENT[0], self._ctrl.add_element)
         self.root.bind(KEYS.ADD_CHILD[0], self._ctrl.add_child)
         self.root.bind(KEYS.ADD_PARENT[0], self._ctrl.add_parent)
+        self.root.bind(KEYS.COPY[0], self._ctrl.copy_element)
+        self.root.bind(KEYS.CUT[0], self._ctrl.cut_element)
+        self.root.bind(KEYS.PASTE[0], self._ctrl.paste_element)
         if PLATFORM == 'win':
             self.root.bind(MOUSE.BACK_CLICK, self.tv.go_back)
             self.root.bind(MOUSE.FORWARD_CLICK, self.tv.go_forward)

@@ -5,6 +5,11 @@
 See the [GitHub "Features" project](https://github.com/users/peter88213/projects/17)
 
 
+### Version 2.2.0
+
+- Implemented cut/copy/paste feature for project tree elements. 
+
+
 ### Version 2.1.0
 
 - Fixed a regression from version 2.0.0 where the Timeline sync feature doesn't work.
