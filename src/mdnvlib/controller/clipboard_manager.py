@@ -130,7 +130,6 @@ class ClipboardManager:
                 self._remove_references(jsonPlotPoint)
 
         text = json.dumps({jsonTag: jsonElement}, ensure_ascii=False)
-        # no utf-8 encoding here, because the text is escaped
         self._ui.root.clipboard_clear()
         self._ui.root.clipboard_append(text)
         self._ui.root.update()
