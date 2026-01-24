@@ -243,6 +243,8 @@ Refactor the code for better maintainability:
 
 ### Version 0.1.0
 
+Based on novelibre 4.11.4 and novxlib 4.6.7
+
 - The novx format is the standard file format for the time being. 
 - Featuring an in-place section editor.
 - Importing and exporting the *.novx* file format.
