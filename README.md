@@ -70,15 +70,12 @@ But perhaps you are the exception. In any case, I hope you enjoy playing around 
 
 ## Download and install
 
----
-
-> [!Note]
+> [!NOTE]
 > The application comes with sample templates which are automatically
 > copied into the *templates* folder of the *mdnovel* installation. 
 > Existing files are overwritten. So if you customize your templates, 
 > better rename them.  
 
----
 
 ### Default: Executable Python zip archive
 
