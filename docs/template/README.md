@@ -1,4 +1,4 @@
-[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.99.0.pyzw)
+[![Download the latest release](docs/img/download-button.png)](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v$Version.pyzw)
 [![Changelog](docs/img/changelog-button.png)](docs/changelog.md)
 [![Feedback](docs/img/feedback-button.png)](https://github.com/peter88213/mdnovel/discussions/)
 [![Online help](docs/img/help-button.png)](https://peter88213.github.io/mdnovhelp-en/)
@@ -72,40 +72,38 @@ But perhaps you are the exception. In any case, I hope you enjoy playing around 
 
 ---
 
-**Note**
-
-The application comes with sample templates which are automatically
-copied into the *templates* folder of the *mdnovel* installation. 
-Existing files are overwritten. So if you customize your templates, 
-better rename them.  
+> [!Note]
+> The application comes with sample templates which are automatically
+> copied into the *templates* folder of the *mdnovel* installation. 
+> Existing files are overwritten. So if you customize your templates, 
+> better rename them.  
 
 ---
 
 ### Default: Executable Python zip archive
 
-Download the latest release [mdnovel_v0.99.0.pyzw](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.99.0.pyzw)
+Download the latest release [mdnovel_v$Version.pyzw](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v$Version.pyzw) ($PyzSize)
 
-- Launch *mdnovel_v0.99.0.pyzw* by double-clicking (Windows/Linux desktop),
-- or execute `python mdnovel_v0.99.0.pyzw` (Windows), resp. `python3 mdnovel_v0.99.0.pyzw` (Linux) on the command line.
+- Launch *mdnovel_v$Version.pyzw* by double-clicking (Windows desktop),
+- or execute `python mdnovel_v$Version.pyzw` (Windows), resp. `python3 mdnovel_v$Version.pyzw` (Linux) on the command line.
 
-#### Important
-
-Many web browsers recognize the download as an executable file and offer to open it immediately. 
-This starts the installation.
-
-However, depending on your security settings, your browser may 
-initially  refuse  to download the executable file. 
-In this case, your confirmation or an additional action is required. 
-If this is not possible, you have the option of downloading 
-the zip file. 
+> [!IMPORTANT]
+> Many web browsers recognize the download as an executable file and offer to open it immediately. 
+> This starts the installation under Windows.
+> 
+> However, depending on your security settings, your browser may 
+> initially  refuse  to download the executable file. 
+> In this case, your confirmation or an additional action is required. 
+> If this is not possible, you have the option of downloading 
+> the zip file. 
 
 
 ### Alternative: Zip file
 
-The package is also available in zip format: [mdnovel_v0.99.0.zip](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v0.99.0.zip)
+The package is also available in zip format: [mdnovel_v$Version.zip](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v$Version.zip) ($ZipSize)
 
-- Extract the *mdnovel_v0.99.0* folder from the downloaded zipfile "mdnovel_v0.99.0.zip".
-- Move into this new folder and launch *setup.pyw* by double-clicking (Windows/Linux desktop), 
+- Extract the *mdnovel_v$Version* folder from the downloaded zipfile "mdnovel_v$Version.zip".
+- Move into this new folder and launch *setup.pyw* by double-clicking (Windows desktop), 
 - or execute `python setup.pyw` (Windows), resp. `python3 setup.pyw` (Linux) on the command line.
 
 ---

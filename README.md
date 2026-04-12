@@ -72,40 +72,38 @@ But perhaps you are the exception. In any case, I hope you enjoy playing around 
 
 ---
 
-**Note**
-
-The application comes with sample templates which are automatically
-copied into the *templates* folder of the *mdnovel* installation. 
-Existing files are overwritten. So if you customize your templates, 
-better rename them.  
+> [!Note]
+> The application comes with sample templates which are automatically
+> copied into the *templates* folder of the *mdnovel* installation. 
+> Existing files are overwritten. So if you customize your templates, 
+> better rename them.  
 
 ---
 
 ### Default: Executable Python zip archive
 
-Download the latest release [mdnovel_v2.2.0.pyzw](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v2.2.0.pyzw)
+Download the latest release [mdnovel_v2.2.0.pyzw](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v2.2.0.pyzw) (171 KB)
 
-- Launch *mdnovel_v2.2.0.pyzw* by double-clicking (Windows/Linux desktop),
+- Launch *mdnovel_v2.2.0.pyzw* by double-clicking (Windows desktop),
 - or execute `python mdnovel_v2.2.0.pyzw` (Windows), resp. `python3 mdnovel_v2.2.0.pyzw` (Linux) on the command line.
 
-#### Important
-
-Many web browsers recognize the download as an executable file and offer to open it immediately. 
-This starts the installation.
-
-However, depending on your security settings, your browser may 
-initially  refuse  to download the executable file. 
-In this case, your confirmation or an additional action is required. 
-If this is not possible, you have the option of downloading 
-the zip file. 
+> [!IMPORTANT]
+> Many web browsers recognize the download as an executable file and offer to open it immediately. 
+> This starts the installation under Windows.
+> 
+> However, depending on your security settings, your browser may 
+> initially  refuse  to download the executable file. 
+> In this case, your confirmation or an additional action is required. 
+> If this is not possible, you have the option of downloading 
+> the zip file. 
 
 
 ### Alternative: Zip file
 
-The package is also available in zip format: [mdnovel_v2.2.0.zip](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v2.2.0.zip)
+The package is also available in zip format: [mdnovel_v2.2.0.zip](https://github.com/peter88213/mdnovel/raw/main/dist/mdnovel_v2.2.0.zip) (171 KB)
 
 - Extract the *mdnovel_v2.2.0* folder from the downloaded zipfile "mdnovel_v2.2.0.zip".
-- Move into this new folder and launch *setup.pyw* by double-clicking (Windows/Linux desktop), 
+- Move into this new folder and launch *setup.pyw* by double-clicking (Windows desktop), 
 - or execute `python setup.pyw` (Windows), resp. `python3 setup.pyw` (Linux) on the command line.
 
 ---
